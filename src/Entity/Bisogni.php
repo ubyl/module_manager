@@ -16,6 +16,9 @@ class Bisogni
     #[ORM\Column(type: 'text')]
     private $nome;
 
+    #[ORM\ManyToOne(targetEntity: ValutazioneGenerale::class, inversedBy: 'bisogni')]
+    private $valutazioneGenerale;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Bisogni
     public function setNome(string $nome): self
     {
         $this->nome = $nome;
+
+        return $this;
+    }
+
+    public function getValutazioneGenerale(): ?ValutazioneGenerale
+    {
+        return $this->valutazioneGenerale;
+    }
+
+    public function setValutazioneGenerale(?ValutazioneGenerale $valutazioneGenerale): self
+    {
+        $this->valutazioneGenerale = $valutazioneGenerale;
 
         return $this;
     }

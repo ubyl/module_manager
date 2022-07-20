@@ -21,26 +21,26 @@ class ValutazioneFiguraProfessionale
     #[ORM\Column(type: 'text')]
     private $operatore;
 
-    #[ORM\Column(type: 'TipoOperatore')]
-    private $tipo_operatore;
+    #[ORM\Column(type: 'string')]
+    private $tipoOperatore;
 
     #[ORM\Column(type: 'text')]
-    private $diagnosi_professionale;
+    private $diagnosiProfessionale;
 
     #[ORM\Column(type: 'text')]
-    private $obbiettivi_da_raggiungere;
+    private $obbiettiviDaRaggiungere;
 
     #[ORM\Column(type: 'text')]
-    private $tipo_e_frequenza;
+    private $tipoEFrequenza;
 
     #[ORM\Column(type: 'text')]
-    private $modalità_tempi_monitoraggio;
+    private $modalitàTempiMonitoraggio;
 
     #[ORM\Column(type: 'date')]
-    private $data_valutazione;
+    private $dataValutazione;
 
     #[ORM\Column(type: 'text')]
-    private $firma_operatore;
+    private $firmaOperatore;
 
     public function getId(): ?int
     {
@@ -71,86 +71,86 @@ class ValutazioneFiguraProfessionale
         return $this;
     }
     
-    public function getTipoOperatore(): ?TipoOperatore
+    public function getTipoOperatore(): ?string
     {
-        return $this->tipo_operatore;
+        return $this->tipoOperatore;
     }
 
-    public function setTipoOperatore(TipoOperatore $tipo_operatore): self
+    public function setTipoOperatore(string $tipoOperatore): self
     {
-        $this->tipo_operatore = $tipo_operatore;
+        $this->tipoOperatore = $tipoOperatore;
         
         return $this;
     }
 
     public function getDiagnosiProfessionale(): ?string
     {
-        return $this->diagnosi_professionale;
+        return $this->diagnosiProfessionale;
     }
 
-    public function setDiagnosiProfessionale(string $diagnosi_professionale): self
+    public function setDiagnosiProfessionale(string $diagnosiProfessionale): self
     {
-        $this->diagnosi_professionale = $diagnosi_professionale;
+        $this->diagnosiProfessionale = $diagnosiProfessionale;
 
         return $this;
     }
 
     public function getObbiettiviDaRaggiungere(): ?string
     {
-        return $this->obbiettivi_da_raggiungere;
+        return $this->obbiettiviDaRaggiungere;
     }
 
-    public function setObbiettiviDaRaggiungere(string $obbiettivi_da_raggiungere): self
+    public function setObbiettiviDaRaggiungere(string $obbiettiviDaRaggiungere): self
     {
-        $this->obbiettivi_da_raggiungere = $obbiettivi_da_raggiungere;
+        $this->obbiettiviDaRaggiungere = $obbiettiviDaRaggiungere;
 
         return $this;
     }
 
     public function getTipoEFrequenza(): ?string
     {
-        return $this->tipo_e_frequenza;
+        return $this->tipoEFrequenza;
     }
 
-    public function setTipoEFrequenza(string $tipo_e_frequenza): self
+    public function setTipoEFrequenza(string $tipoEFrequenza): self
     {
-        $this->tipo_e_frequenza = $tipo_e_frequenza;
+        $this->tipoEFrequenza = $tipoEFrequenza;
 
         return $this;
     }
 
     public function getModalitàTempiMonitoraggio(): ?string
     {
-        return $this->modalità_tempi_monitoraggio;
+        return $this->modalitàTempiMonitoraggio;
     }
 
-    public function setModalitàTempiMonitoraggio(string $modalità_tempi_monitoraggio): self
+    public function setModalitàTempiMonitoraggio(string $modalitàTempiMonitoraggio): self
     {
-        $this->modalità_tempi_monitoraggio = $modalità_tempi_monitoraggio;
+        $this->modalitàTempiMonitoraggio = $modalitàTempiMonitoraggio;
 
         return $this;
     }
 
     public function getDataValutazione(): ?\DateTimeInterface
     {
-        return $this->data_valutazione;
+        return $this->dataValutazione;
     }
 
-    public function setDataValutazione(\DateTimeInterface $data_valutazione): self
+    public function setDataValutazione(\DateTimeInterface $dataValutazione): self
     {
-        $this->data_valutazione = $data_valutazione;
+        $this->dataValutazione = $dataValutazione;
 
         return $this;
     }
 
     public function getFirmaOperatore(): ?string
     {
-        return $this->firma_operatore;
+        return $this->firmaOperatore;
     }
 
-    public function setFirmaOperatore(string $firma_operatore): self
+    public function setFirmaOperatore(string $firmaOperatore): self
     {
-        $this->firma_operatore = $firma_operatore;
+        $this->firmaOperatore = $firmaOperatore;
 
         return $this;
     }

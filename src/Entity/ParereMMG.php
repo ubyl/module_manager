@@ -23,10 +23,10 @@ class ParereMMG
     private $descrizione;
 
     #[ORM\Column(type: 'text')]
-    private $firma_MMG;
+    private $firmaMMG;
 
     #[ORM\Column(type: 'text')]
-    private $firma_utente_famigliare_caregiver;
+    private $firmaUtenteFamigliareCaregiver;
 
     public function getId(): ?int
     {
@@ -71,24 +71,24 @@ class ParereMMG
 
     public function getFirmaMMG(): ?string
     {
-        return $this->firma_MMG;
+        return $this->firmaMMG;
     }
 
-    public function setFirmaMMG(string $firma_MMG): self
+    public function setFirmaMMG(string $firmaMMG): self
     {
-        $this->firma_MMG = $firma_MMG;
+        $this->firmaMMG = $firmaMMG;
 
         return $this;
     }
 
     public function getFirmaUtenteFamigliareCaregiver(): ?string
     {
-        return $this->firma_utente_famigliare_caregiver;
+        return $this->firmaUtenteFamigliareCaregiver;
     }
 
-    public function setFirmaUtenteFamigliareCaregiver(string $firma_utente_famigliare_caregiver): self
+    public function setFirmaUtenteFamigliareCaregiver(string $firmaUtenteFamigliareCaregiver): self
     {
-        $this->firma_utente_famigliare_caregiver = $firma_utente_famigliare_caregiver;
+        $this->firmaUtenteFamigliareCaregiver = $firmaUtenteFamigliareCaregiver;
 
         return $this;
     }
