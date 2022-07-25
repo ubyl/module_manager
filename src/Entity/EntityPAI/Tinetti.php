@@ -6,6 +6,8 @@ use App\Repository\TinettiRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TinettiRepository::class)]
+#[ORM\Table(name: 'SCHEDA_PAI_tinetti')]
+
 class Tinetti
 {
     #[ORM\Id]
@@ -90,6 +92,9 @@ class Tinetti
 
     #[ORM\Column(type: 'text')]
     private $firmaOperatore;
+
+    #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idTinetti')]
+    private $schedaPAI;
 
     public function getId(): ?int
     {
@@ -404,6 +409,18 @@ class Tinetti
     public function setFirmaOperatore(string $firmaOperatore): self
     {
         $this->firmaOperatore = $firmaOperatore;
+
+        return $this;
+    }
+
+    public function getSchedaPAI(): ?SchedaPAI
+    {
+        return $this->schedaPAI;
+    }
+
+    public function setSchedaPAI(?SchedaPAI $schedaPAI): self
+    {
+        $this->schedaPAI = $schedaPAI;
 
         return $this;
     }

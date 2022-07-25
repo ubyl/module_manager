@@ -6,6 +6,8 @@ use App\Repository\VasRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VasRepository::class)]
+#[ORM\Table(name: 'SCHEDA_PAI_vas')]
+
 class Vas
 {
     #[ORM\Id]
@@ -39,6 +41,9 @@ class Vas
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $trattamento;
+
+    #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idVas')]
+    private $schedaPAI;
 
     public function getId(): ?int
     {
@@ -149,6 +154,18 @@ class Vas
     public function setTrattamento(?bool $trattamento): self
     {
         $this->trattamento = $trattamento;
+
+        return $this;
+    }
+
+    public function getSchedaPAI(): ?SchedaPAI
+    {
+        return $this->schedaPAI;
+    }
+
+    public function setSchedaPAI(?SchedaPAI $schedaPAI): self
+    {
+        $this->schedaPAI = $schedaPAI;
 
         return $this;
     }

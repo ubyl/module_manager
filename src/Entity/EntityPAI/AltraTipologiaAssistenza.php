@@ -6,6 +6,8 @@ use App\Repository\AltraTipologiaAssistenzaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AltraTipologiaAssistenzaRepository::class)]
+#[ORM\Table(name: 'SCHEDA_PAI_altra_tipologia_assistenza')]
+
 class AltraTipologiaAssistenza
 {
     #[ORM\Id]

@@ -8,6 +8,7 @@ use App\Config\TipoOperatore;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 
 #[ORM\Entity(repositoryClass: ValutazioneFiguraProfessionaleRepository::class)]
+#[ORM\Table(name: 'SCHEDA_PAI_valutazione_figura_professionale')]
 class ValutazioneFiguraProfessionale
 {
     #[ORM\Id]
@@ -41,6 +42,9 @@ class ValutazioneFiguraProfessionale
 
     #[ORM\Column(type: 'text')]
     private $firmaOperatore;
+
+    #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idValutazioneFiguraProfessionale')]
+    private $schedaPAI;
 
     public function getId(): ?int
     {
@@ -151,6 +155,18 @@ class ValutazioneFiguraProfessionale
     public function setFirmaOperatore(string $firmaOperatore): self
     {
         $this->firmaOperatore = $firmaOperatore;
+
+        return $this;
+    }
+
+    public function getSchedaPAI(): ?SchedaPAI
+    {
+        return $this->schedaPAI;
+    }
+
+    public function setSchedaPAI(?SchedaPAI $schedaPAI): self
+    {
+        $this->schedaPAI = $schedaPAI;
 
         return $this;
     }

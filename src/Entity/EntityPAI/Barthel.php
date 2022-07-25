@@ -6,6 +6,8 @@ use App\Repository\BarthelRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BarthelRepository::class)]
+#[ORM\Table(name: 'SCHEDA_PAI_barthel')]
+
 class Barthel
 {
     #[ORM\Id]
@@ -63,6 +65,9 @@ class Barthel
 
     #[ORM\Column(type: 'text')]
     private $firmaOperatore;
+
+    #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idBarthel')]
+    private $schedaPAI;
 
     public function getId(): ?int
     {
@@ -269,6 +274,18 @@ class Barthel
     public function setFirmaOperatore(string $firmaOperatore): self
     {
         $this->firmaOperatore = $firmaOperatore;
+
+        return $this;
+    }
+
+    public function getSchedaPAI(): ?SchedaPAI
+    {
+        return $this->schedaPAI;
+    }
+
+    public function setSchedaPAI(?SchedaPAI $schedaPAI): self
+    {
+        $this->schedaPAI = $schedaPAI;
 
         return $this;
     }

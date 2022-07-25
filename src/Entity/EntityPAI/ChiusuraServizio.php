@@ -6,6 +6,8 @@ use App\Repository\ChiusuraServizioRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ChiusuraServizioRepository::class)]
+#[ORM\Table(name: 'SCHEDA_PAI_chiusura_servizio')]
+
 class ChiusuraServizio
 {
     #[ORM\Id]

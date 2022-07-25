@@ -6,6 +6,8 @@ use App\Repository\SPMSQRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SPMSQRepository::class)]
+#[ORM\Table(name: 'SCHEDA_PAI_spmsq')]
+
 class SPMSQ
 {
     #[ORM\Id]
@@ -54,6 +56,9 @@ class SPMSQ
 
     #[ORM\Column(type: 'text')]
     private $firmaOperatore;
+
+    #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idSpmsq')]
+    private $schedaPAI;
 
     public function getId(): ?int
     {
@@ -224,6 +229,18 @@ class SPMSQ
     public function setFirmaOperatore(string $firmaOperatore): self
     {
         $this->firmaOperatore = $firmaOperatore;
+
+        return $this;
+    }
+
+    public function getSchedaPAI(): ?SchedaPAI
+    {
+        return $this->schedaPAI;
+    }
+
+    public function setSchedaPAI(?SchedaPAI $schedaPAI): self
+    {
+        $this->schedaPAI = $schedaPAI;
 
         return $this;
     }

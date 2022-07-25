@@ -6,6 +6,8 @@ use App\Repository\BradenRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BradenRepository::class)]
+#[ORM\Table(name: 'SCHEDA_PAI_braden')]
+
 class Braden
 {
     #[ORM\Id]
@@ -42,6 +44,9 @@ class Braden
 
     #[ORM\Column(type: 'text')]
     private $firmaOperatore;
+
+    #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idBraden')]
+    private $schedaPAI;
 
     public function getId(): ?int
     {
@@ -164,6 +169,18 @@ class Braden
     public function setFirmaOperatore(string $firmaOperatore): self
     {
         $this->firmaOperatore = $firmaOperatore;
+
+        return $this;
+    }
+
+    public function getSchedaPAI(): ?SchedaPAI
+    {
+        return $this->schedaPAI;
+    }
+
+    public function setSchedaPAI(?SchedaPAI $schedaPAI): self
+    {
+        $this->schedaPAI = $schedaPAI;
 
         return $this;
     }

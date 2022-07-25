@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ValutazioneGeneraleRepository::class)]
+#[ORM\Table(name: 'SCHEDA_PAI_valutazione_generale')]
 class ValutazioneGenerale
 {
     #[ORM\Id]

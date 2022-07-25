@@ -6,6 +6,8 @@ use App\Repository\BisogniRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BisogniRepository::class)]
+#[ORM\Table(name: 'SCHEDA_PAI_bisogni')]
+
 class Bisogni
 {
     #[ORM\Id]

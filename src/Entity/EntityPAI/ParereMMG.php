@@ -6,6 +6,8 @@ use App\Repository\ParereMMGRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ParereMMGRepository::class)]
+#[ORM\Table(name: 'SCHEDA_PAI_parere_mmg')]
+
 class ParereMMG
 {
     #[ORM\Id]
