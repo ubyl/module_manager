@@ -3,18 +3,171 @@
 {% block title %}Hello ValutazioneGeneraleController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Valutazione Generale</h1>
+</div>
+<div class="form-floating">
+    <h4>Valutazione</h4>
+</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/ubyl/module_manager/src/Controller/ValutazioneGeneraleController.php'|file_link(0) }}">src/Controller/ValutazioneGeneraleController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/ubyl/module_manager/templates/valutazione_generale/index.html.twig'|file_link(0) }}">templates/valutazione_generale/index.html.twig</a></code></li>
-    </ul>
+<section class="container">
+  <form class="row">
+    <label for="date" class="col-1 col-form-label">Data Valutazione</label>
+    <div class="col-5">
+      <div class="input-group date" id="datepicker">
+        <input type="text" class="form-control" id="date"/>
+        <span class="input-group-append">
+          <span class="input-group-text bg-light d-block">
+            <i class="fa fa-calendar"></i>
+          </span>
+        </span>
+      </div>
+    </div>
+  </form>
+</section>
+
+<div class="mb-3">
+  <label for="integer" class="form-label">N. Componenti Nucleo Abitativo</label>
+  <input type="integer" class="form-control" id="componenti">
+</div>
+<select class="form-select" aria-label="Default select example">
+  <option selected>Tipologia Valutazione</option>
+  <option value="iniziale">Valutazione Iniziale</option>
+  <option value="ordinaria">Valutazione Ordinaria</option>
+  <option value="straordinaria">Valutazione Straordinaria</option>
+</select>
+
+
+<select class="form-select" aria-label="Default select example">
+  <option selected>Presenza Assistente Non Famigliare</option>
+  <option value="presente con funzione di care giver">presente con funzione di care giver</option>
+  <option value="presente senza funzione di care giver">presente senza funzione di care giver</option>
+  <option value="non presente">non presente</option>
+</select>
+
+<select class="form-select" aria-label="Default select example">
+  <option selected>Frequenza Assistente Non Famigliare</option>
+  <option value="24/24">Presenza 24h su 24</option>
+  <option value="saltuaria">Presenza saltuaria a ore nell'arco della settimana</option>
+  <option value="feriali">solo giorni feriali</option>
+</select>
+
+<select class="form-select" aria-label="Default select example">
+  <option selected>Indicatore Supporto Sociale</option>
+  <option value="presente">Presente</option>
+  <option value="presenza parziale">Presenza parziale e/o temporanea</option>
+  <option value="non presente">Non presente</option>
+</select>
+
+<div class="form-floating">
+    <h4>Altra Tipologia Assistenza</h4>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    Buono sociale
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    Trasporti
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    Voucer Sociale
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    SAD
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    Pasti
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    Assistenza Domiciliare Socio-Educativa
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    Contributo Caregiver
+  </label>
+</div>
+
+<div class="form-floating">
+    <h4>Indicatore di Autonomia/Disturbi</h4>
+</div>
+
+<select class="form-select" aria-label="Default select example">
+  <option selected>Uso Servizi Igenici</option>
+  <option value="autonomo">Autonomo</option>
+  <option value="parzialmente dipendente">Parzialente dipendente</option>
+  <option value="dipendente">Totalmente dipendente</option>
+</select>
+<select class="form-select" aria-label="Default select example">
+  <option selected>Abbigliamento</option>
+  <option value="autonomo">Autonomo</option>
+  <option value="parzialmente dipendente">Parzialente dipendente</option>
+  <option value="dipendente">Totalmente dipendente</option>
+</select>
+<select class="form-select" aria-label="Default select example">
+  <option selected>Alimentazione</option>
+  <option value="autonomo">Autonomo</option>
+  <option value="parzialmente dipendente">Parzialente dipendente</option>
+  <option value="dipendente">Totalmente dipendente</option>
+</select>
+<select class="form-select" aria-label="Default select example">
+  <option selected>Indicatore Deambulazione</option>
+  <option value="autonomo">Autonomo</option>
+  <option value="parzialmente dipendente">Parzialente dipendente</option>
+  <option value="dipendente">Totalmente dipendente</option>
+</select>
+<select class="form-select" aria-label="Default select example">
+  <option selected>Igiene Personale</option>
+  <option value="autonomo">Autonomo</option>
+  <option value="parzialmente dipendente">Parzialente dipendente</option>
+  <option value="dipendente">Totalmente dipendente</option>
+</select>
+<select class="form-select" aria-label="Default select example">
+  <option selected>Rischio infettivo</option>
+  <option value="si">Si</option>
+  <option value="no">No</option>
+</select>
+<select class="form-select" aria-label="Default select example">
+  <option selected>Cognitività</option>
+  <option value="assenti">assenti/lievi</option>
+  <option value="moderati">Moderati</option>
+  <option value="Gravi">Gravi</option>
+</select>
+<select class="form-select" aria-label="Default select example">
+  <option selected>Comportamento</option>
+  <option value="assenti">assenti/lievi</option>
+  <option value="moderati">Moderati</option>
+  <option value="Gravi">Gravi</option>
+</select>
+
+<div class="form-floating">
+    <h4>Diagnosi</h4>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label"></label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+</div>
+
+<div class="form-floating">
+    <h4>Bisogni</h4>
 </div>
 {% endblock %}

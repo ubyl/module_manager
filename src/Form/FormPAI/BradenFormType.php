@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\FormPAI;
 
 use App\Entity\Braden;
 use Symfony\Component\Form\AbstractType;

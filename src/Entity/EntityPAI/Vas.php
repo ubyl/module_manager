@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\EntityPAI;
 
 use App\Repository\VasRepository;
 use Doctrine\ORM\Mapping as ORM;
