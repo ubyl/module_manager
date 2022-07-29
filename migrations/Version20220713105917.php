@@ -30,10 +30,13 @@ final class Version20220713105917 extends AbstractMigration
         $this->addSql('DROP TABLE user');
         $this->addSql('DROP TABLE messenger_messages');
     }
+
     /**
      * @throws MigrationException|DBALException
      */
     public function postUp(Schema $schema): void {
-        $this->connection->executeQuery('INSERT INTO user (id, email, roles, password, is_verified) VALUES ("robyliga@live.it", "ROLE_USER", "\$2y\$13\$GUvaSGM1lHY8XHpigOHa/.YSR.whLgvc2AFEG3dJegoUCjmdzbH1i", 1)' );
+        // user: tecnico@metarete.it
+        // pass: metarete
+        $this->connection->insert('user', ['email' => 'tecnico@metarete.it', 'roles' => '["ROLE_USER"]', 'password' => '$2y$13$ueKhaFMj3Rn/bIP/5fJQsug/OKe9QXCiezkjlX6YpBqo99UQrFEVu', 'is_verified' => 1]);
     }
 }
