@@ -71,6 +71,9 @@ class SchedaPAI
     #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Vas::class)]
     private $idVas;
 
+    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Lesioni::class)]
+    private Collection $idLesioni;
+
     public function __construct()
     {
         $this->idValutazioneFiguraProfessionale = new ArrayCollection();
@@ -79,6 +82,7 @@ class SchedaPAI
         $this->idSpmsq = new ArrayCollection();
         $this->idTinetti = new ArrayCollection();
         $this->idVas = new ArrayCollection();
+        $this->idLesioni = new ArrayCollection();
     }
 
 
@@ -405,6 +409,36 @@ class SchedaPAI
             // set the owning side to null (unless already changed)
             if ($idVa->getSchedaPAI() === $this) {
                 $idVa->setSchedaPAI(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Lesioni>
+     */
+    public function getIdLesioni(): Collection
+    {
+        return $this->idLesioni;
+    }
+
+    public function addIdLesioni(Lesioni $idLesioni): self
+    {
+        if (!$this->idLesioni->contains($idLesioni)) {
+            $this->idLesioni->add($idLesioni);
+            $idLesioni->setSchedaPAI($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdLesioni(Lesioni $idLesioni): self
+    {
+        if ($this->idLesioni->removeElement($idLesioni)) {
+            // set the owning side to null (unless already changed)
+            if ($idLesioni->getSchedaPAI() === $this) {
+                $idLesioni->setSchedaPAI(null);
             }
         }
 

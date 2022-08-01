@@ -3,18 +3,89 @@
 {% block title %}Hello ValutazioneFiguraProfessionaleController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/ubyl/module_manager/src/Controller/ValutazioneFiguraProfessionaleController.php'|file_link(0) }}">src/Controller/ValutazioneFiguraProfessionaleController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/ubyl/module_manager/templates/valutazione_figura_professionale/index.html.twig'|file_link(0) }}">templates/valutazione_figura_professionale/index.html.twig</a></code></li>
-    </ul>
+    <h1>Valutazione Figura Professionale</h1>
 </div>
+<div class="form-floating">
+    <h4>Valutazione/Figura professionale</h4>
+</div>
+
+<div class ="row gy-5">
+    <div class="col-2">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Tipologia Operatore</option>
+            <option value="inf">INF</option>
+            <option value="tdr">TDR</option>
+            <option value="log">LOG</option>
+            <option value="asa">ASA</option>
+            <option value="oss">OSS</option>
+        </select>
+    </div>
+</div>  
+
+<div class="form-floating">
+    <h4>Diagnosi Professionale</h4>
+</div>
+
+<div class="col-2">
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label"></label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+  </div>
+</div>
+
+<div class="form-floating">
+    <h4>Obbiettivi da raggiungere</h4>
+</div>
+
+<div class="col-2">
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label"></label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+  </div>
+</div>
+
+<div class="form-floating">
+    <h4>Tipo e frequenza</h4>
+</div>
+
+<div class="col-2">
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label"></label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+  </div>
+</div>
+
+<div class="form-floating">
+    <h4>Modalità e tempi di monitoraggio degli Obbiettivi</h4>
+</div>
+
+<div class="col-2">
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label"></label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+  </div>
+</div>
+
+<section class="container-text-center">
+  <form class="row">
+    <label for="date" class="col-1">Data Valutazione</label>
+      <div class="row">
+        <div class="input-group date" id="datepicker">
+          <div class= "col-2">
+            <input type="text" class="form-control" id="date"/>
+              <div class= "col-2">
+                <span class="input-group-append">
+                <span class="input-group-text bg-light d-block">
+                  <i class="fa fa-calendar"></i>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>  
+      </div> 
+  </form>
+</section>
+
 {% endblock %}

@@ -21,6 +21,7 @@ Aggiornare node_modules
 
 ```
 $ yarn install
+$ yarn dev
 ```
 
 Eseguire migrations

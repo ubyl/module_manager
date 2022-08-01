@@ -3,18 +3,70 @@
 {% block title %}Hello BarthelController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/ubyl/module_manager/src/Controller/BarthelController.php'|file_link(0) }}">src/Controller/BarthelController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/ubyl/module_manager/templates/barthel/index.html.twig'|file_link(0) }}">templates/barthel/index.html.twig</a></code></li>
-    </ul>
+    <h1>Barthel</h1>
 </div>
+<div class="form-floating">
+    <h4>Valutazione</h4>
+</div>
+
+<section class="container-text-center">
+  <form class="row">
+    <label for="date" class="col-1">Data Valutazione</label>
+      <div class="row">
+        <div class="input-group date" id="datepicker">
+          <div class= "col-2">
+            <input type="text" class="form-control" id="date"/>
+              <div class= "col-2">
+                <span class="input-group-append">
+                <span class="input-group-text bg-light d-block">
+                  <i class="fa fa-calendar"></i>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>  
+      </div> 
+  </form>
+</section>
+
+<div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class = "col-2">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            Descrizione Alimentazione
+        </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+        <div class="accordion-body">
+            <strong>10</strong> Capace di alimentarsi da solo quando i cibi sono preparati su un vassoio o tavolo raggiungibili.
+            Se usa un ausilio deve essere capace di utilizzarlo, tagliare i cibi e, se lo desidera, usare sale e pepe, spalmare il burro, ecc.
+            <strong>8</strong> Indipendente nell'alimentarsi con i cibi preparati su un vassoio, ad eccezione di tagliare la carne, aprire
+            il contenitore del latte, girare il coperchio di un vasetto, ecc. Non è necessaria la presenza di un'altra persona.
+            <strong>5</strong> Capace di alimentarsi da solo, con supervisione. Richiede assistenza nelle attività associate come versare il 
+            latte, zucchero o altro nella tazza, usare sale e pepe, spalmare il burro, girare un piatto di portata o altro.
+            <strong>2</strong> Capace di utilizzare una posata, in genere un cucchiaio, ma qualcuno deve assistere attivamente durante il pasto
+            <strong>0</strong> Dipendente per tutti gli aspetti. Deve essere alimentato (imboccato, SNG, PEG, ecc).
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class ="row gy-5">
+  <div class="col-2">
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Valutazione Alimentazione</option>
+      <option value="dieci">10</option>
+      <option value="otto">8</option>
+      <option value="cinque">5</option>
+      <option value="due">2</option>
+      <option value="zero">0</option>
+    </select>
+  </div>
+</div>
+
+
 {% endblock %}
