@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ValutazioneFiguraProfessionaleController!{% endblock %}
+{% block title %}ValutazioneFiguraProfessionale{% endblock %}
 
 {% block body %}
 
@@ -12,7 +12,7 @@
 </div>
 
 <div class ="row gy-5">
-    <div class="col-2">
+    <div class="col-lg-6 col-12">
         <select class="form-select" aria-label="Default select example">
             <option selected>Tipologia Operatore</option>
             <option value="inf">INF</option>
@@ -28,7 +28,7 @@
     <h4>Diagnosi Professionale</h4>
 </div>
 
-<div class="col-2">
+<div class="col-lg-6 col-12">
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label"></label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
@@ -39,7 +39,7 @@
     <h4>Obbiettivi da raggiungere</h4>
 </div>
 
-<div class="col-2">
+<div class="col-lg-6 col-12">
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label"></label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
@@ -50,7 +50,7 @@
     <h4>Tipo e frequenza</h4>
 </div>
 
-<div class="col-2">
+<div class="col-lg-6 col-12">
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label"></label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
@@ -61,7 +61,7 @@
     <h4>Modalità e tempi di monitoraggio degli Obbiettivi</h4>
 </div>
 
-<div class="col-2">
+<div class="col-lg-6 col-12">
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label"></label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
@@ -70,10 +70,10 @@
 
 <section class="container-text-center">
   <form class="row">
-    <label for="date" class="col-1">Data Valutazione</label>
+    <label for="date" class="col-lg-6 col-12">Data Valutazione</label>
       <div class="row">
         <div class="input-group date" id="datepicker">
-          <div class= "col-2">
+          <div class= "col-lg-6 col-12">
             <input type="text" class="form-control" id="date"/>
               <div class= "col-2">
                 <span class="input-group-append">
@@ -87,5 +87,8 @@
       </div> 
   </form>
 </section>
+
+<button type="submit" class="btn btn-primary">Salva</button>
+
 
 {% endblock %}

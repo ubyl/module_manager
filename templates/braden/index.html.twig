@@ -1,20 +1,246 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BradenController!{% endblock %}
+{% block title %}ValutazioneBraden{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/ubyl/module_manager/src/Controller/BradenController.php'|file_link(0) }}">src/Controller/BradenController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/ubyl/module_manager/templates/braden/index.html.twig'|file_link(0) }}">templates/braden/index.html.twig</a></code></li>
-    </ul>
+    <h1>Braden</h1>
 </div>
+
+<section class="container-text-center">
+  <form class="row">
+    <label for="date" class="col-lg-6 col-12">Data Valutazione</label>
+      <div class="row">
+        <div class="input-group date" id="datepicker">
+          <div class= "col-lg-6 col-12">
+            <input type="text" class="form-control" id="date"/>
+              <div class= "col-2">
+                <span class="input-group-append">
+                <span class="input-group-text bg-light d-block">
+                  <i class="fa fa-calendar"></i>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>  
+      </div> 
+  </form>
+</section>
+
+<p class="fs-3">Percezione sensoriale</p>
+<p class="fs-5">Abilità a rispondere in modo corretto alla sensazione di disagio correlata alla pressione.</p>
+
+<div class="accordion" id="accordionPanel1">
+  <div class = "col-lg-6 col-12">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading1">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse1" aria-expanded="true" aria-controls="panelsStayOpen-collapse1">
+            Variabili percezione sensoriale
+        </button>
+        </h2>
+        <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading1">
+        <div class="accordion-body">
+            <strong>4-Non Limitata</strong> Risponde agli ordini verbali. Non ha deficit sensoriale che limiti la capacità di sentire
+            e di esprimere il dolore o il disagio.
+            <strong>3-Leggermente Limitata</strong> a: Risponde agli ordini verbali ma non piò comunicare sempre il suo disagio o il 
+            bisogno di cambiare posizione. b: Ha impedimento nel sensorio che limita la capacità di avvertire il dolore o il disagio in 
+            1 o 2 estremità.
+            <strong>2-Molto Limitata</strong> a: Risponde agli stimoli dolorosi. Non può comunicare il proprio disagio se non gemendo o agitandosi.
+            b: Ha impedimento al sensorio che limita la percezione del dolore o disagio almeno per la metà del corpo.
+            <strong>1-Completamente Limitata</strong> a: Non vi è risposta (non geme, non si contrae o afferra) allo stimolo doloroso,
+            a causa del diminuito livello di coscienza o alla sedazione. b: Limitata capacità di percepire dolore in molte zone del corpo.
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class ="row gy-5">
+  <div class="col-lg-6 col-12">
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Valutazione percezione sensoriale</option>
+      <option value="quattro">4</option>
+      <option value="tre">3</option>
+      <option value="due">2</option>
+      <option value="uno">1</option>
+    </select>
+  </div>
+</div>
+
+<p class="fs-3">Umidità</p>
+<p class="fs-5">Grado di esposizione della pelle all'umidità.</p>
+
+<div class="accordion" id="accordionPanel2">
+  <div class = "col-lg-6 col-12">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading2">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="true" aria-controls="panelsStayOpen-collapse2">
+            Variabili umidità
+        </button>
+        </h2>
+        <div id="panelsStayOpen-collapse2" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading2">
+        <div class="accordion-body">
+            <strong>4-Raramente Bagnato</strong> La pelle è abitualmente asciutta. Le lenzuola sono cambiate ad intervalli di routine.
+            <strong>3-Occasionalmente Bagnato</strong> La pelle è occasionalmente umida, richiede un cambio di lenzuola extra 1 volta al giorno.
+            <strong>2-Spesso Bagnato</strong> Pelle sovente ma non sempre umida. Le lenzuola devono essere cambiate almeno 1 volta per turno.
+            <strong>1-Continuamente Bagnato</strong> La pelle è mantenuta costantemente umida dalla traspirazione, dall'urina, ecc. Ogni volta
+            che il paziente si muove o si gira lo si trova sempre bagnato.
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class ="row gy-5">
+  <div class="col-lg-6 col-12">
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Valutazione umidità</option>
+      <option value="quattro">4</option>
+      <option value="tre">3</option>
+      <option value="due">2</option>
+      <option value="uno">1</option>
+    </select>
+  </div>
+</div>
+
+<p class="fs-3">Attività</p>
+<p class="fs-5">Grado di attività fisica.</p>
+
+<div class="accordion" id="accordionPanel3">
+  <div class = "col-lg-6 col-12">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading3">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse3" aria-expanded="true" aria-controls="panelsStayOpen-collapse3">
+            Variabili attività
+        </button>
+        </h2>
+        <div id="panelsStayOpen-collapse3" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading3">
+        <div class="accordion-body">
+            <strong>4</strong> 
+            <strong>3</strong> 
+            <strong>2</strong> 
+            <strong>1</strong> 
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class ="row gy-5">
+  <div class="col-lg-6 col-12">
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Valutazione attività</option>
+      <option value="quattro">4</option>
+      <option value="tre">3</option>
+      <option value="due">2</option>
+      <option value="uno">1</option>
+    </select>
+  </div>
+</div>
+
+<p class="fs-3">Mobilità</p>
+<p class="fs-5">Capacità di cambiare e di controllare le posizioni del corpo.</p>
+
+<div class="accordion" id="accordionPanel4">
+  <div class = "col-lg-6 col-12">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading4">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="true" aria-controls="panelsStayOpen-collapse4">
+            Variabili mobilità
+        </button>
+        </h2>
+        <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading4">
+        <div class="accordion-body">
+            <strong>4</strong> 
+            <strong>3</strong> 
+            <strong>2</strong> 
+            <strong>1</strong> 
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class ="row gy-5">
+  <div class="col-lg-6 col-12">
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Valutazione mobilità</option>
+      <option value="quattro">4</option>
+      <option value="tre">3</option>
+      <option value="due">2</option>
+      <option value="uno">1</option>
+    </select>
+  </div>
+</div>
+
+<p class="fs-3">Nutrizione</p>
+<p class="fs-5">Assunzione usuale di cibo.</p>
+
+<div class="accordion" id="accordionPanel5">
+  <div class = "col-lg-6 col-12">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading5">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse5" aria-expanded="true" aria-controls="panelsStayOpen-collapse5">
+            Variabili nutrizione
+        </button>
+        </h2>
+        <div id="panelsStayOpen-collapse5" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading5">
+        <div class="accordion-body">
+            <strong>4</strong> 
+            <strong>3</strong> 
+            <strong>2</strong> 
+            <strong>1</strong> 
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class ="row gy-5">
+  <div class="col-lg-6 col-12">
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Valutazione nutrizione</option>
+      <option value="quattro">4</option>
+      <option value="tre">3</option>
+      <option value="due">2</option>
+      <option value="uno">1</option>
+    </select>
+  </div>
+</div>
+
+<p class="fs-3">Frizione e scivolamento</p>
+
+<div class="accordion" id="accordionPanel6">
+  <div class = "col-lg-6 col-12">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading6">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse6" aria-expanded="true" aria-controls="panelsStayOpen-collapse6">
+            Variabili frizione e scivolamento
+        </button>
+        </h2>
+        <div id="panelsStayOpen-collapse6" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading6">
+        <div class="accordion-body">
+            <strong>3</strong> 
+            <strong>2</strong> 
+            <strong>1</strong> 
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class ="row gy-5">
+  <div class="col-lg-6 col-12">
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Valutazione frizione scivolamento</option>
+      <option value="tre">3</option>
+      <option value="due">2</option>
+      <option value="uno">1</option>
+    </select>
+  </div>
+</div>
+
+<button type="submit" class="btn btn-primary">Salva</button>
+
 {% endblock %}

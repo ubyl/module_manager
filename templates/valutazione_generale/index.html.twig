@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ValutazioneGeneraleController!{% endblock %}
+{% block title %}ValutazioneGenerale{% endblock %}
 
 {% block body %}
 
@@ -14,10 +14,10 @@
 
 <section class="container-text-center">
   <form class="row">
-    <label for="date" class="col-1">Data Valutazione</label>
+    <label for="date" class="col-lg-6 col-12">Data Valutazione</label>
       <div class="row">
         <div class="input-group date" id="datepicker">
-          <div class= "col-2">
+          <div class= "col-lg-6 col-12">
             <input type="text" class="form-control" id="date"/>
               <div class= "col-2">
                 <span class="input-group-append">
@@ -33,14 +33,14 @@
 </section>
 
 <div class="mb-3">
-  <div class = "col-2">
+  <div class = "col-lg-6 col-12">
     <label for="integer" class="form-label">N. Componenti Nucleo Abitativo</label>
     <input type="integer" class="form-control" id="componenti">
   </div>
 </div>
 
 <div class ="row gy-5">
-  <div class="col-2">
+  <div class="col-lg-6 col-12">
     <select class="form-select" aria-label="Default select example">
       <option selected>Tipologia Valutazione</option>
       <option value="iniziale">Valutazione Iniziale</option>
@@ -122,7 +122,7 @@
         <h4>Indicatore di Autonomia/Disturbi</h4>
     </div>
 
-<div class="col-2">
+<div class="col-lg-6 col-12">
   <select class="form-select" aria-label="Default select example">
     <option selected>Uso Servizi Igenici</option>
     <option value="autonomo">Autonomo</option>
@@ -176,7 +176,7 @@
     <h4>Diagnosi</h4>
 </div>
 
-<div class="col-2">
+<div class="col-lg-6 col-12">
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label"></label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
@@ -380,4 +380,7 @@
     Supporto al care giver
   </label>
 </div>
+
+<button type="submit" class="btn btn-primary">Salva</button>
+
 {% endblock %}

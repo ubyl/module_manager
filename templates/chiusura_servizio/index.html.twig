@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ChiusuraServizioController!{% endblock %}
+{% block title %}ChiusuraServizio{% endblock %}
 
 {% block body %}
 
@@ -8,7 +8,7 @@
     <h1>Chiusura Servizio</h1>
 </div>
 
-<div class="col-2">
+<div class="col-lg-6 col-12">
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label"></label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
@@ -17,10 +17,10 @@
 
 <section class="container-text-center">
   <form class="row">
-    <label for="date" class="col-1">Data Valutazione</label>
+    <label for="date" class="col-lg-6 col-12">Data Valutazione</label>
       <div class="row">
         <div class="input-group date" id="datepicker">
-          <div class= "col-2">
+          <div class= "col-lg-6 col-12">
             <input type="text" class="form-control" id="date"/>
               <div class= "col-2">
                 <span class="input-group-append">
@@ -34,4 +34,7 @@
       </div> 
   </form>
 </section>
+
+<button type="submit" class="btn btn-primary">Salva</button>
+
 {% endblock %}

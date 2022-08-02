@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ParereMMGController!{% endblock %}
+{% block title %}ParereMMG{% endblock %}
 
 {% block body %}
 
@@ -9,7 +9,7 @@
 </div>
 
 <div class ="row gy-5">
-  <div class="col-2">
+  <div class="col-lg-6 col-12">
     <select class="form-select" aria-label="Default select example">
       <option selected>Parere</option>
       <option value="favorevole">Favorevole</option>
@@ -22,10 +22,13 @@
     <h4>Note</h4>
 </div>
 
-<div class="col-2">
+<div class="col-lg-6 col-12">
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label"></label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
   </div>
 </div>
+
+<button type="submit" class="btn btn-primary">Salva</button>
+
 {% endblock %}
