@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\AltraTipologiaAssistenza;
+use App\Entity\EntityPAI\AltraTipologiaAssistenza;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

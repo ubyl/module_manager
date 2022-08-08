@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AltraTipologiaAssistenza index{% endblock %}
+
+{% block body %}
+    <h1>AltraTipologiaAssistenza index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for altra_tipologia_assistenza in altra_tipologia_assistenzas %}
+            <tr>
+                <td>{{ altra_tipologia_assistenza.id }}</td>
+                <td>{{ altra_tipologia_assistenza.nome }}</td>
+                <td>
+                    <a href="{{ path('app_controller_pai_altra_tipologia_assistenza_show', {'id': altra_tipologia_assistenza.id}) }}">show</a>
+                    <a href="{{ path('app_controller_pai_altra_tipologia_assistenza_edit', {'id': altra_tipologia_assistenza.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_controller_pai_altra_tipologia_assistenza_new') }}">Create new</a>
+{% endblock %}

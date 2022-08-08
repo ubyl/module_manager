@@ -31,9 +31,6 @@ class ValutazioneGenerale
     #[ORM\Column(type: 'text')]
     private $diagnosi;
 
-    #[ORM\Column(type: 'text')]
-    private $firma_operatore;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $tipologia_valutazione;
 
@@ -62,12 +59,12 @@ class ValutazioneGenerale
     private $igene_personale;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $cognitività;
+    private $cognitivita;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $comportamento;
 
-    #[ORM\OneToMany(mappedBy: 'valutazioneGenerale', targetEntity: AltraTipologiaAssistenza::class)]
+    #[ORM\ManyToMany(mappedBy: 'valutazioneGenerale', targetEntity: AltraTipologiaAssistenza::class)]
     private $altra_tipologia_assistenza;
 
     #[ORM\OneToMany(mappedBy: 'valutazioneGenerale', targetEntity: Bisogni::class)]
@@ -140,18 +137,6 @@ class ValutazioneGenerale
     public function setDiagnosi(string $diagnosi): self
     {
         $this->diagnosi = $diagnosi;
-
-        return $this;
-    }
-
-    public function getFirmaOperatore(): ?string
-    {
-        return $this->firma_operatore;
-    }
-
-    public function setFirmaOperatore(string $firma_operatore): self
-    {
-        $this->firma_operatore = $firma_operatore;
 
         return $this;
     }
@@ -264,14 +249,14 @@ class ValutazioneGenerale
         return $this;
     }
 
-    public function getCognitività(): ?string
+    public function getCognitivita(): ?string
     {
-        return $this->cognitività;
+        return $this->cognitivita;
     }
 
-    public function setCognitività(string $cognitività): self
+    public function setCognitivita(string $cognitivita): self
     {
-        $this->cognitività = $cognitività;
+        $this->cognitivita = $cognitivita;
 
         return $this;
     }

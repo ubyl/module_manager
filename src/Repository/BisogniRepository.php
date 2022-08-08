@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Bisogni;
+use App\Entity\EntityPAI\Bisogni;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

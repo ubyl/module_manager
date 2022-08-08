@@ -3,384 +3,63 @@
 {% block title %}ValutazioneGenerale{% endblock %}
 
 {% block body %}
-
-
-<div class="example-wrapper">
     <h1>Valutazione Generale</h1>
-</div>
-<div class="form-floating">
-    <h4>Valutazione</h4>
-</div>
 
-<section class="container-text-center">
-  <form class="row">
-    <label for="date" class="col-lg-6 col-12">Data Valutazione</label>
-      <div class="row">
-        <div class="input-group date" id="datepicker">
-          <div class= "col-lg-6 col-12">
-            <input type="text" class="form-control" id="date"/>
-              <div class= "col-2">
-                <span class="input-group-append">
-                <span class="input-group-text bg-light d-block">
-                  <i class="fa fa-calendar"></i>
-                </span>
-              </span>
-            </div>
-          </div>
-        </div>  
-      </div> 
-  </form>
-</section>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Data valutazione</th>
+                <th>N componenti nucleo abitativo</th>
+                <th>Rischio infettivo</th>
+                <th>Diagnosi</th>
+                <th>Tipologia valutazione</th>
+                <th>Panf</th>
+                <th>Fanf</th>
+                <th>Iss</th>
+                <th>Uso servizi igenici</th>
+                <th>Abbigliamento</th>
+                <th>Alimentazione</th>
+                <th>Indicatore deambulazione</th>
+                <th>Igene personale</th>
+                <th>Cognitività</th>
+                <th>Comportamento</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for valutazione_generale in valutazione_generales %}
+            <tr>
+                <td>{{ valutazione_generale.id }}</td>
+                <td>{{ valutazione_generale.nome }}</td>
+                <td>{{ valutazione_generale.dataValutazione ? valutazione_generale.dataValutazione|date('Y-m-d') : '' }}</td>
+                <td>{{ valutazione_generale.nComponentiNucleoAbitativo }}</td>
+                <td>{{ valutazione_generale.rischioInfettivo ? 'Yes' : 'No' }}</td>
+                <td>{{ valutazione_generale.diagnosi }}</td>
+                <td>{{ valutazione_generale.tipologiaValutazione }}</td>
+                <td>{{ valutazione_generale.panf }}</td>
+                <td>{{ valutazione_generale.fanf }}</td>
+                <td>{{ valutazione_generale.iss }}</td>
+                <td>{{ valutazione_generale.usoServiziIgenici }}</td>
+                <td>{{ valutazione_generale.abbigliamento }}</td>
+                <td>{{ valutazione_generale.alimentazione }}</td>
+                <td>{{ valutazione_generale.indicatoreDeambulazione }}</td>
+                <td>{{ valutazione_generale.igenePersonale }}</td>
+                <td>{{ valutazione_generale.cognitività }}</td>
+                <td>{{ valutazione_generale.comportamento }}</td>
+                <td>
+                    <a href="{{ path('app_valutazione_generale_show', {'id': valutazione_generale.id}) }}">show</a>
+                    <a href="{{ path('app_valutazione_generale_edit', {'id': valutazione_generale.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="19">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-<div class="mb-3">
-  <div class = "col-lg-6 col-12">
-    <label for="integer" class="form-label">N. Componenti Nucleo Abitativo</label>
-    <input type="integer" class="form-control" id="componenti">
-  </div>
-</div>
-
-<div class ="row gy-5">
-  <div class="col-lg-6 col-12">
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Tipologia Valutazione</option>
-      <option value="iniziale">Valutazione Iniziale</option>
-      <option value="ordinaria">Valutazione Ordinaria</option>
-      <option value="straordinaria">Valutazione Straordinaria</option>
-    </select>
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Presenza Assistente Non Famigliare</option>
-      <option value="presente con funzione di care giver">presente con funzione di care giver</option>
-      <option value="presente senza funzione di care giver">presente senza funzione di care giver</option>
-      <option value="non presente">non presente</option>
-    </select>
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Frequenza Assistente Non Famigliare</option>
-      <option value="24/24">Presenza 24h su 24</option>
-      <option value="saltuaria">Presenza saltuaria a ore nell'arco della settimana</option>
-      <option value="feriali">solo giorni feriali</option>
-    </select>
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Indicatore Supporto Sociale</option>
-      <option value="presente">Presente</option>
-      <option value="presenza parziale">Presenza parziale e/o temporanea</option>
-      <option value="non presente">Non presente</option>
-    </select>
-  </div>
-
-  <div class ="row gy-3">
-    <div class="form-floating">
-        <h4>Altra Tipologia Assistenza</h4>
-    </div>
-  </div>
-</div>
-
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-      Buono sociale
-    </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-      Trasporti
-    </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-      Voucer Sociale
-    </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-      SAD
-    </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-      Pasti
-    </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-      Assistenza Domiciliare Socio-Educativa
-    </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-      Contributo Caregiver
-    </label>
-  </div>
-
-  
-    <div class="form-floating">
-        <h4>Indicatore di Autonomia/Disturbi</h4>
-    </div>
-
-<div class="col-lg-6 col-12">
-  <select class="form-select" aria-label="Default select example">
-    <option selected>Uso Servizi Igenici</option>
-    <option value="autonomo">Autonomo</option>
-    <option value="parzialmente dipendente">Parzialente dipendente</option>
-    <option value="dipendente">Totalmente dipendente</option>
-  </select>
-  <select class="form-select" aria-label="Default select example">
-    <option selected>Abbigliamento</option>
-    <option value="autonomo">Autonomo</option>
-    <option value="parzialmente dipendente">Parzialente dipendente</option>
-    <option value="dipendente">Totalmente dipendente</option>
-  </select>
-  <select class="form-select" aria-label="Default select example">
-    <option selected>Alimentazione</option>
-    <option value="autonomo">Autonomo</option>
-    <option value="parzialmente dipendente">Parzialente dipendente</option>
-    <option value="dipendente">Totalmente dipendente</option>
-  </select>
-  <select class="form-select" aria-label="Default select example">
-    <option selected>Indicatore Deambulazione</option>
-    <option value="autonomo">Autonomo</option>
-    <option value="parzialmente dipendente">Parzialente dipendente</option>
-    <option value="dipendente">Totalmente dipendente</option>
-  </select>
-  <select class="form-select" aria-label="Default select example">
-    <option selected>Igiene Personale</option>
-    <option value="autonomo">Autonomo</option>
-    <option value="parzialmente dipendente">Parzialente dipendente</option>
-    <option value="dipendente">Totalmente dipendente</option>
-  </select>
-  <select class="form-select" aria-label="Default select example">
-    <option selected>Rischio infettivo</option>
-    <option value="si">Si</option>
-    <option value="no">No</option>
-  </select>
-  <select class="form-select" aria-label="Default select example">
-    <option selected>Cognitività</option>
-    <option value="assenti">assenti/lievi</option>
-    <option value="moderati">Moderati</option>
-    <option value="Gravi">Gravi</option>
-  </select>
-  <select class="form-select" aria-label="Default select example">
-    <option selected>Comportamento</option>
-    <option value="assenti">assenti/lievi</option>
-    <option value="moderati">Moderati</option>
-    <option value="Gravi">Gravi</option>
-  </select>
-</div>
-
-<div class="form-floating">
-    <h4>Diagnosi</h4>
-</div>
-
-<div class="col-lg-6 col-12">
-  <div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label"></label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
-  </div>
-</div>
-
-<div class="form-floating">
-    <h4>Bisogni</h4>
-</div>
-
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Broncoaspirazione/Drenaggio posturale
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Ossigeno terapia
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Ventilo terapia
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Tracheotomia
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Alimentazione assistita
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Alimentazione enterale
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Alimentazione parenterale
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Gestione della stomia
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Eliminazione urinaria/intestinale
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Alterazione del ritmo sonno/veglia
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Educazione terapeutica (addestramento/nursing)
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Ulcere da decubito di 1 e 2 grado
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Ulcere da decubito di 3 e 4 grado
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Ulcere cutanee (vascolari, traumatiche, ustioni, postchirurgiche, ecc) di 1 e 2 grado
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Ulcere cutanee (vascolari, traumatiche, ustioni, postchirurgiche, ecc) di 3 e 4 grado
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Prelievi venosi non occasionali
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Prelievi venosi occasionali
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    ECG
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Telemetria
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Procedura terapeutica (accesso venoso sottocute/intramuscolo)
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Gestione catetere centrale
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Trasfusioni
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Controllo del dolore
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Assistenza Stato di terminalità oncologica
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Assistenza Stato di terminalità non oncologica
-
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Trattamento riabilitativo neurologico in presenza di disabilità
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Trattamento riabilitativo ortopedico in presenza di disabilità
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Trattamento riabilitativo di mantenimento in presenza di disabilità
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Supervisione continua di utenti con disabilità
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Assistenza nelle IADL
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Assistenza nelle ADL
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Supporto al care giver
-  </label>
-</div>
-
-<button type="submit" class="btn btn-primary">Salva</button>
-
+    <a href="{{ path('app_valutazione_generale_new') }}">Nuova scheda</a>
 {% endblock %}

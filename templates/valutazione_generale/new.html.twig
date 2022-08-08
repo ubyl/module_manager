@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuova Valutazione Generale{% endblock %}
+
+{% block body %}
+    <h1>Valutazione Generale</h1>
+
+    {{ include('valutazione_generale/_form.html.twig') }}
+
+    <a href="{{ path('app_valutazione_generale_index') }}">torna alla lista</a>
+{% endblock %}

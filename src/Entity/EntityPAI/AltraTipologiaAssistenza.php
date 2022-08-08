@@ -18,7 +18,7 @@ class AltraTipologiaAssistenza
     #[ORM\Column(type: 'text')]
     private $nome;
 
-    #[ORM\ManyToOne(targetEntity: ValutazioneGenerale::class, inversedBy: 'altra_tipologia_assistenza')]
+    #[ORM\ManyToMany(targetEntity: ValutazioneGenerale::class, inversedBy: 'altra_tipologia_assistenza')]
     private $valutazioneGenerale;
 
     public function getId(): ?int
