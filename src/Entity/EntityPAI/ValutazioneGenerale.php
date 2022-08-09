@@ -2,10 +2,12 @@
 
 namespace App\Entity\EntityPAI;
 
-use App\Repository\ValutazioneGeneraleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Config\Valutazione;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use App\Repository\ValutazioneGeneraleRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ValutazioneGeneraleRepository::class)]
 #[ORM\Table(name: 'SCHEDA_PAI_valutazione_generale')]
@@ -17,58 +19,77 @@ class ValutazioneGenerale
     private $id;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank]
+    #[Assert\Type(\TextType::class)]
     private $nome;
 
     #[ORM\Column(type: 'date')]
+    #[Assert\NotBlank]
+    #[Assert\Type(\DateTime::class)]
     private $data_valutazione;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank]
+    #[Assert\Type(\IntegerType::class)]
     private $n_componenti_nucleo_abitativo;
 
     #[ORM\Column(type: 'boolean')]
+    #[Assert\NotBlank]
     private $rischio_infettivo;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\Type(\TextType::class)]
     private $diagnosi;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', enumType:Valutazione::class)]
+    #[Assert\NotBlank]
     private $tipologia_valutazione;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $panf;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $fanf;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $iss;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $uso_servizi_igenici;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $abbigliamento;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $alimentazione;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $indicatore_deambulazione;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $igene_personale;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $cognitivita;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $comportamento;
 
     #[ORM\ManyToMany(mappedBy: 'valutazioneGenerale', targetEntity: AltraTipologiaAssistenza::class)]
-    private $altra_tipologia_assistenza;
+    private Collection $altra_tipologia_assistenza;
 
-    #[ORM\OneToMany(mappedBy: 'valutazioneGenerale', targetEntity: Bisogni::class)]
-    private $bisogni;
+    #[ORM\ManyToMany(mappedBy: 'valutazioneGenerale', targetEntity: Bisogni::class)]
+    private Collection $bisogni;
 
     public function __construct()
     {
@@ -285,7 +306,7 @@ class ValutazioneGenerale
     {
         if (!$this->altra_tipologia_assistenza->contains($altraTipologiaAssistenza)) {
             $this->altra_tipologia_assistenza[] = $altraTipologiaAssistenza;
-            $altraTipologiaAssistenza->setValutazioneGenerale($this);
+            
         }
 
         return $this;
@@ -295,9 +316,7 @@ class ValutazioneGenerale
     {
         if ($this->altra_tipologia_assistenza->removeElement($altraTipologiaAssistenza)) {
             // set the owning side to null (unless already changed)
-            if ($altraTipologiaAssistenza->getValutazioneGenerale() === $this) {
-                $altraTipologiaAssistenza->setValutazioneGenerale(null);
-            }
+           
         }
 
         return $this;
@@ -315,7 +334,7 @@ class ValutazioneGenerale
     {
         if (!$this->bisogni->contains($bisogni)) {
             $this->bisogni[] = $bisogni;
-            $bisogni->setValutazioneGenerale($this);
+            
         }
 
         return $this;
@@ -325,9 +344,7 @@ class ValutazioneGenerale
     {
         if ($this->bisogni->removeElement($bisogni)) {
             // set the owning side to null (unless already changed)
-            if ($bisogni->getValutazioneGenerale() === $this) {
-                $bisogni->setValutazioneGenerale(null);
-            }
+           
         }
 
         return $this;

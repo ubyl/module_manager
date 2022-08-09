@@ -2,13 +2,15 @@
 
 namespace App\Form\FormPAI;
 
-use App\Entity\EntityPAI\AltraTipologiaAssistenza;
+use App\Config\Valutazione;
 use App\Entity\EntityPAI\Bisogni;
 use Symfony\Component\Form\AbstractType;
 use App\Entity\EntityPAI\ValutazioneGenerale;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\EntityPAI\AltraTipologiaAssistenza;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 
 class ValutazioneGeneraleFormType extends AbstractType
 {
@@ -17,7 +19,7 @@ class ValutazioneGeneraleFormType extends AbstractType
         $builder
             ->add('nome')
             ->add('data_valutazione')
-            ->add('tipologia_valutazione')
+            ->add('tipologia_valutazione', EnumType::class,['class' => Valutazione::class])
             ->add('n_componenti_nucleo_abitativo')
             ->add('panf')
             ->add('fanf')

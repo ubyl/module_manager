@@ -18,8 +18,10 @@ class AltraTipologiaAssistenza
     #[ORM\Column(type: 'text')]
     private $nome;
 
-    #[ORM\ManyToMany(targetEntity: ValutazioneGenerale::class, inversedBy: 'altra_tipologia_assistenza')]
-    private $valutazioneGenerale;
+    public function __toString()
+    {
+        return $this->nome;
+    }
 
     public function getId(): ?int
     {
@@ -38,15 +40,4 @@ class AltraTipologiaAssistenza
         return $this;
     }
 
-    public function getValutazioneGenerale(): ?ValutazioneGenerale
-    {
-        return $this->valutazioneGenerale;
-    }
-
-    public function setValutazioneGenerale(?ValutazioneGenerale $valutazioneGenerale): self
-    {
-        $this->valutazioneGenerale = $valutazioneGenerale;
-
-        return $this;
-    }
 }

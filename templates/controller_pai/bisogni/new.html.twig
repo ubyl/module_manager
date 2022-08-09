@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Bisogni{% endblock %}
+
+{% block body %}
+    <h1>Create new Bisogni</h1>
+
+    {{ include('controller_pai/bisogni/_form.html.twig') }}
+
+    <a href="{{ path('app_controller_pai_bisogni_index') }}">back to list</a>
+{% endblock %}

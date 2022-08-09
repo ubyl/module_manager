@@ -2,12 +2,12 @@
 
 namespace App\Form\EntityPAI;
 
-use App\Entity\EntityPAI\AltraTipologiaAssistenza;
+use App\Entity\EntityPAI\Bisogni;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AltraTipologiaAssistenzaType extends AbstractType
+class BisogniType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -19,7 +19,7 @@ class AltraTipologiaAssistenzaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => AltraTipologiaAssistenza::class,
+            'data_class' => Bisogni::class,
         ]);
     }
 }
