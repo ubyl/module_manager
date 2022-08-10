@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\ChiusuraServizio;
+use App\Entity\EntityPAI\ChiusuraServizio;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

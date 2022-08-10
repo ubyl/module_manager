@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ValutazioneFiguraProfessionale{% endblock %}
+
+{% block body %}
+    <h1>ValutazioneFiguraProfessionale</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ valutazione_figura_professionale.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ valutazione_figura_professionale.nome }}</td>
+            </tr>
+            <tr>
+                <th>Operatore</th>
+                <td>{{ valutazione_figura_professionale.operatore }}</td>
+            </tr>
+            <tr>
+                <th>TipoOperatore</th>
+                <td>{{ valutazione_figura_professionale.tipoOperatore }}</td>
+            </tr>
+            <tr>
+                <th>DiagnosiProfessionale</th>
+                <td>{{ valutazione_figura_professionale.diagnosiProfessionale }}</td>
+            </tr>
+            <tr>
+                <th>ObbiettiviDaRaggiungere</th>
+                <td>{{ valutazione_figura_professionale.obbiettiviDaRaggiungere }}</td>
+            </tr>
+            <tr>
+                <th>TipoEFrequenza</th>
+                <td>{{ valutazione_figura_professionale.tipoEFrequenza }}</td>
+            </tr>
+            <tr>
+                <th>ModalitàTempiMonitoraggio</th>
+                <td>{{ valutazione_figura_professionale.modalitàTempiMonitoraggio }}</td>
+            </tr>
+            <tr>
+                <th>DataValutazione</th>
+                <td>{{ valutazione_figura_professionale.dataValutazione ? valutazione_figura_professionale.dataValutazione|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_valutazione_figura_professionale_index') }}">back to list</a>
+
+    <a href="{{ path('app_valutazione_figura_professionale_edit', {'id': valutazione_figura_professionale.id}) }}">edit</a>
+
+    {{ include('valutazione_figura_professionale/_delete_form.html.twig') }}
+{% endblock %}

@@ -24,6 +24,7 @@ class ValutazioneGeneraleRepository extends ServiceEntityRepository
     public function add(ValutazioneGenerale $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
+        
 
         if ($flush) {
             $this->getEntityManager()->flush();

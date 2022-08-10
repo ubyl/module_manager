@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\SchedaPAI;
+use App\Entity\EntityPAI\SchedaPAI;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

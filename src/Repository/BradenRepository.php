@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Braden;
+use App\Entity\EntityPAI\Braden;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

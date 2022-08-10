@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\SPMSQ;
+use App\Entity\EntityPAI\SPMSQ;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

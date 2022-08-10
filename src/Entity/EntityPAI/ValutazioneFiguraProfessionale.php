@@ -2,10 +2,11 @@
 
 namespace App\Entity\EntityPAI;
 
-use App\Repository\ValutazioneFiguraProfessionaleRepository;
-use Doctrine\ORM\Mapping as ORM;
 use App\Config\TipoOperatore;
+use Doctrine\ORM\Mapping as ORM;
+use App\Entity\EntityPAI\SchedaPAI;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
+use App\Repository\ValutazioneFiguraProfessionaleRepository;
 
 #[ORM\Entity(repositoryClass: ValutazioneFiguraProfessionaleRepository::class)]
 #[ORM\Table(name: 'SCHEDA_PAI_valutazione_figura_professionale')]
@@ -35,13 +36,10 @@ class ValutazioneFiguraProfessionale
     private $tipoEFrequenza;
 
     #[ORM\Column(type: 'text')]
-    private $modalitàTempiMonitoraggio;
+    private $modalitaTempiMonitoraggio;
 
     #[ORM\Column(type: 'date')]
     private $dataValutazione;
-
-    #[ORM\Column(type: 'text')]
-    private $firmaOperatore;
 
     #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idValutazioneFiguraProfessionale')]
     private $schedaPAI;
@@ -123,14 +121,14 @@ class ValutazioneFiguraProfessionale
         return $this;
     }
 
-    public function getModalitàTempiMonitoraggio(): ?string
+    public function getModalitaTempiMonitoraggio(): ?string
     {
-        return $this->modalitàTempiMonitoraggio;
+        return $this->modalitaTempiMonitoraggio;
     }
 
-    public function setModalitàTempiMonitoraggio(string $modalitàTempiMonitoraggio): self
+    public function setModalitaTempiMonitoraggio(string $modalitaTempiMonitoraggio): self
     {
-        $this->modalitàTempiMonitoraggio = $modalitàTempiMonitoraggio;
+        $this->modalitaTempiMonitoraggio = $modalitaTempiMonitoraggio;
 
         return $this;
     }
@@ -143,18 +141,6 @@ class ValutazioneFiguraProfessionale
     public function setDataValutazione(\DateTimeInterface $dataValutazione): self
     {
         $this->dataValutazione = $dataValutazione;
-
-        return $this;
-    }
-
-    public function getFirmaOperatore(): ?string
-    {
-        return $this->firmaOperatore;
-    }
-
-    public function setFirmaOperatore(string $firmaOperatore): self
-    {
-        $this->firmaOperatore = $firmaOperatore;
 
         return $this;
     }

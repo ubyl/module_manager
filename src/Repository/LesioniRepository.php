@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Lesioni;
+use App\Entity\EntityPAI\Lesioni;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

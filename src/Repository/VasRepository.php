@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Vas;
+use App\Entity\EntityPAI\Vas;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

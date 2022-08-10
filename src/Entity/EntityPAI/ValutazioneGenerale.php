@@ -2,6 +2,11 @@
 
 namespace App\Entity\EntityPAI;
 
+use App\Config\ISS;
+use App\Config\FANF;
+use App\Config\PANF;
+use App\Config\Disturbi;
+use App\Config\Autonomia;
 use App\Config\Valutazione;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
@@ -18,9 +23,8 @@ class ValutazioneGenerale
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
-    #[Assert\Type(\TextType::class)]
     private $nome;
 
     #[ORM\Column(type: 'date')]
@@ -30,58 +34,55 @@ class ValutazioneGenerale
 
     #[ORM\Column(type: 'integer')]
     #[Assert\NotBlank]
-    #[Assert\Type(\IntegerType::class)]
     private $n_componenti_nucleo_abitativo;
 
     #[ORM\Column(type: 'boolean')]
-    #[Assert\NotBlank]
     private $rischio_infettivo;
 
-    #[ORM\Column(type: 'text')]
-    #[Assert\Type(\TextType::class)]
+    #[ORM\Column(type: 'string')]
     private $diagnosi;
 
     #[ORM\Column(type: 'string', enumType:Valutazione::class)]
     #[Assert\NotBlank]
     private $tipologia_valutazione;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', enumType:PANF::class)]
     #[Assert\NotBlank]
     private $panf;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', enumType:FANF::class)]
     #[Assert\NotBlank]
     private $fanf;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', enumType:ISS::class)]
     #[Assert\NotBlank]
     private $iss;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', enumType:Autonomia::class)]
     #[Assert\NotBlank]
     private $uso_servizi_igenici;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', enumType:Autonomia::class)]
     #[Assert\NotBlank]
     private $abbigliamento;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', enumType:Autonomia::class)]
     #[Assert\NotBlank]
     private $alimentazione;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', enumType:Autonomia::class)]
     #[Assert\NotBlank]
     private $indicatore_deambulazione;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', enumType:Autonomia::class)]
     #[Assert\NotBlank]
     private $igene_personale;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', enumType:Disturbi::class)]
     #[Assert\NotBlank]
     private $cognitivita;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', enumType:Disturbi::class)]
     #[Assert\NotBlank]
     private $comportamento;
 

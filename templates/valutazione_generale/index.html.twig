@@ -49,13 +49,13 @@
                 <td>{{ valutazione_generale.cognitività }}</td>
                 <td>{{ valutazione_generale.comportamento }}</td>
                 <td>
-                    <a href="{{ path('app_valutazione_generale_show', {'id': valutazione_generale.id}) }}">show</a>
-                    <a href="{{ path('app_valutazione_generale_edit', {'id': valutazione_generale.id}) }}">edit</a>
+                    <a href="{{ path('app_valutazione_generale_show', {'id': valutazione_generale.id}) }}">mostra</a>
+                    <a href="{{ path('app_valutazione_generale_edit', {'id': valutazione_generale.id}) }}">modifica</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="19">no records found</td>
+                <td colspan="19">Nessula valutazione disponibile</td>
             </tr>
         {% endfor %}
         </tbody>

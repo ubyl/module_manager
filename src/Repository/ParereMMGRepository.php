@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\ParereMMG;
+use App\Entity\EntityPAI\ParereMMG;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

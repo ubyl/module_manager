@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\ValutazioneFiguraProfessionale;
+use App\Entity\EntityPAI\ValutazioneFiguraProfessionale;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

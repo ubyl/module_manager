@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Tinetti;
+use App\Entity\EntityPAI\Tinetti;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

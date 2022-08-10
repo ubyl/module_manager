@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ValutazioneFiguraProfessionale{% endblock %}
+
+{% block body %}
+    <h1>Edit ValutazioneFiguraProfessionale</h1>
+
+    {{ include('valutazione_figura_professionale/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_valutazione_figura_professionale_index') }}">back to list</a>
+
+    {{ include('valutazione_figura_professionale/_delete_form.html.twig') }}
+{% endblock %}

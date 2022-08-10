@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Barthel;
+use App\Entity\EntityPAI\Barthel;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

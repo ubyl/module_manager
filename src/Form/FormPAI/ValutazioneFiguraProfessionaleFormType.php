@@ -2,7 +2,7 @@
 
 namespace App\Form\FormPAI;
 
-use App\Entity\ValutazioneFiguraProfessionale;
+use App\Entity\EntityPAI\ValutazioneFiguraProfessionale;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,10 +18,8 @@ class ValutazioneFiguraProfessionaleFormType extends AbstractType
             ->add('diagnosiProfessionale')
             ->add('obbiettiviDaRaggiungere')
             ->add('tipoEFrequenza')
-            ->add('modalitàTempiMonitoraggio')
+            ->add('modalitaTempiMonitoraggio')
             ->add('dataValutazione')
-            ->add('firmaOperatore')
-            ->add('schedaPAI')
         ;
     }
 
