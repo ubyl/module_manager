@@ -2,7 +2,7 @@
 
 namespace App\Form\FormPAI;
 
-use App\Entity\ChiusuraServizio;
+use App\Entity\EntityPAI\ChiusuraServizio;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,7 +15,6 @@ class ChiusuraServizioFormType extends AbstractType
             ->add('nome')
             ->add('conclusioni')
             ->add('dataValutazione')
-            ->add('firmaOperatore')
         ;
     }
 

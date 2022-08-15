@@ -24,9 +24,6 @@ class ChiusuraServizio
     #[ORM\Column(type: 'date')]
     private $dataValutazione;
 
-    #[ORM\Column(type: 'text')]
-    private $firmaOperatore;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -64,18 +61,6 @@ class ChiusuraServizio
     public function setDataValutazione(\DateTimeInterface $dataValutazione): self
     {
         $this->dataValutazione = $dataValutazione;
-
-        return $this;
-    }
-
-    public function getFirmaOperatore(): ?string
-    {
-        return $this->firmaOperatore;
-    }
-
-    public function setFirmaOperatore(string $firmaOperatore): self
-    {
-        $this->firmaOperatore = $firmaOperatore;
 
         return $this;
     }

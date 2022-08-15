@@ -2,9 +2,9 @@
 
 namespace App\Config;
 
-enum ISS: string
+enum ISS
 {
-    case presente = 'presente';
-    case presenzaParziale = 'presenza parziale e/o temporanea';
-    case nonPresente = 'non presente';
+    case presente;
+    case presenzaParziale;
+    case nonPresente;
 }

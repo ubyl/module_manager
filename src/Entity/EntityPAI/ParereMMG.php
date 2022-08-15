@@ -18,17 +18,11 @@ class ParereMMG
     #[ORM\Column(type: 'text')]
     private $nome;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: 'string')]
     private $parere;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private $descrizione;
-
-    #[ORM\Column(type: 'text')]
-    private $firmaMMG;
-
-    #[ORM\Column(type: 'text')]
-    private $firmaUtenteFamigliareCaregiver;
 
     public function getId(): ?int
     {
@@ -47,12 +41,12 @@ class ParereMMG
         return $this;
     }
 
-    public function isParere(): ?bool
+    public function isParere(): ?string
     {
         return $this->parere;
     }
 
-    public function setParere(bool $parere): self
+    public function setParere(string $parere): self
     {
         $this->parere = $parere;
 
@@ -67,30 +61,6 @@ class ParereMMG
     public function setDescrizione(?string $descrizione): self
     {
         $this->descrizione = $descrizione;
-
-        return $this;
-    }
-
-    public function getFirmaMMG(): ?string
-    {
-        return $this->firmaMMG;
-    }
-
-    public function setFirmaMMG(string $firmaMMG): self
-    {
-        $this->firmaMMG = $firmaMMG;
-
-        return $this;
-    }
-
-    public function getFirmaUtenteFamigliareCaregiver(): ?string
-    {
-        return $this->firmaUtenteFamigliareCaregiver;
-    }
-
-    public function setFirmaUtenteFamigliareCaregiver(string $firmaUtenteFamigliareCaregiver): self
-    {
-        $this->firmaUtenteFamigliareCaregiver = $firmaUtenteFamigliareCaregiver;
 
         return $this;
     }

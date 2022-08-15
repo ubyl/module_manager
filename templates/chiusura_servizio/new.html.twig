@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ChiusuraServizio{% endblock %}
+
+{% block body %}
+    <h1>Crea nuova scheda Chiusura Servizio</h1>
+
+    {{ include('chiusura_servizio/_form.html.twig') }}
+
+    <a href="{{ path('app_chiusura_servizio_index') }}">Torna alla lista</a>
+{% endblock %}

@@ -2,9 +2,9 @@
 
 namespace App\Config;
 
-enum Disturbi: string
+enum Disturbi
 {
-    case assenti = 'assenti/lievi';
-    case moderati = 'moderati';
-    case gravi = 'gravi';
+    case assenti;
+    case moderati;
+    case gravi;
 }

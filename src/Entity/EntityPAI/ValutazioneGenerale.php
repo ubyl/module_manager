@@ -168,7 +168,7 @@ class ValutazioneGenerale
         return $this->tipologia_valutazione;
     }
 
-    public function setTipologiaValutazione(string $tipologia_valutazione): self
+    public function setTipologiaValutazione(Valutazione $tipologia_valutazione): self
     {
         $this->tipologia_valutazione = $tipologia_valutazione;
 
@@ -180,7 +180,7 @@ class ValutazioneGenerale
         return $this->panf;
     }
 
-    public function setPanf(string $panf): self
+    public function setPanf(PANF $panf): self
     {
         $this->panf = $panf;
 
@@ -192,7 +192,7 @@ class ValutazioneGenerale
         return $this->fanf;
     }
 
-    public function setFanf(string $fanf): self
+    public function setFanf(FANF $fanf): self
     {
         $this->fanf = $fanf;
 
@@ -204,7 +204,7 @@ class ValutazioneGenerale
         return $this->iss;
     }
 
-    public function setIss(string $iss): self
+    public function setIss(ISS $iss): self
     {
         $this->iss = $iss;
 
@@ -216,7 +216,7 @@ class ValutazioneGenerale
         return $this->uso_servizi_igenici;
     }
 
-    public function setUsoServiziIgenici(string $uso_servizi_igenici): self
+    public function setUsoServiziIgenici(Autonomia $uso_servizi_igenici): self
     {
         $this->uso_servizi_igenici = $uso_servizi_igenici;
 
@@ -228,7 +228,7 @@ class ValutazioneGenerale
         return $this->abbigliamento;
     }
 
-    public function setAbbigliamento(string $abbigliamento): self
+    public function setAbbigliamento(Autonomia $abbigliamento): self
     {
         $this->abbigliamento = $abbigliamento;
 
@@ -240,7 +240,7 @@ class ValutazioneGenerale
         return $this->alimentazione;
     }
 
-    public function setAlimentazione(string $alimentazione): self
+    public function setAlimentazione(Autonomia $alimentazione): self
     {
         $this->alimentazione = $alimentazione;
 
@@ -252,7 +252,7 @@ class ValutazioneGenerale
         return $this->indicatore_deambulazione;
     }
 
-    public function setIndicatoreDeambulazione(string $indicatore_deambulazione): self
+    public function setIndicatoreDeambulazione(Autonomia $indicatore_deambulazione): self
     {
         $this->indicatore_deambulazione = $indicatore_deambulazione;
 
@@ -264,7 +264,7 @@ class ValutazioneGenerale
         return $this->igene_personale;
     }
 
-    public function setIgenePersonale(string $igene_personale): self
+    public function setIgenePersonale(Autonomia $igene_personale): self
     {
         $this->igene_personale = $igene_personale;
 
@@ -276,7 +276,7 @@ class ValutazioneGenerale
         return $this->cognitivita;
     }
 
-    public function setCognitivita(string $cognitivita): self
+    public function setCognitivita(Disturbi $cognitivita): self
     {
         $this->cognitivita = $cognitivita;
 
@@ -288,7 +288,7 @@ class ValutazioneGenerale
         return $this->comportamento;
     }
 
-    public function setComportamento(string $comportamento): self
+    public function setComportamento(Disturbi $comportamento): self
     {
         $this->comportamento = $comportamento;
 

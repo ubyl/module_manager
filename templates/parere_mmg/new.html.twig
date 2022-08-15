@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ParereMMG{% endblock %}
+
+{% block body %}
+    <h1>Crea Nuovo Parere MMG</h1>
+
+    {{ include('parere_mmg/_form.html.twig') }}
+
+    <a href="{{ path('app_parere_mmg_index') }}">Torna alla lista</a>
+{% endblock %}

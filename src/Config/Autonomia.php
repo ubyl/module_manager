@@ -2,9 +2,9 @@
 
 namespace App\Config;
 
-enum Autonomia: string
+enum Autonomia
 {
-    case autonomo = 'autonomo';
-    case parziale = 'parzialmente dipendente';
-    case dipendente = 'totalmente dipendente';
+    case autonomo;
+    case parziale;
+    case dipendente;
 }

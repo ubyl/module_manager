@@ -2,9 +2,9 @@
 
 namespace App\Config;
 
-enum FANF: string
+enum FANF
 {
-    case presenza24 = 'presenza 24h su 24';
-    case presenzaSaltuaria = "presenza saltuaria a ore nell'arco della settimana";
-    case giorniFeriali = 'solo giorni feriali';
+    case presenza24;
+    case presenzaSaltuaria;
+    case giorniFeriali;
 }

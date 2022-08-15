@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ParereMMG index{% endblock %}
+
+{% block body %}
+    <h1>Parere MMG</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Parere</th>
+                <th>Descrizione</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for parere_mmg in parere_mmgs %}
+            <tr>
+                <td>{{ parere_mmg.id }}</td>
+                <td>{{ parere_mmg.nome }}</td>
+                <td>{{ parere_mmg.parere}}</td>
+                <td>{{ parere_mmg.descrizione }}</td>
+                <td>
+                    <a href="{{ path('app_parere_mmg_show', {'id': parere_mmg.id}) }}">Visualizza</a>
+                    <a href="{{ path('app_parere_mmg_edit', {'id': parere_mmg.id}) }}">Modifica</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Nessun parere MMG trovato</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_parere_mmg_new') }}">Crea nuovo parere MMG</a>
+{% endblock %}
