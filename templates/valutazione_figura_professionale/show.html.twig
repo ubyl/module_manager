@@ -3,7 +3,7 @@
 {% block title %}ValutazioneFiguraProfessionale{% endblock %}
 
 {% block body %}
-    <h1>ValutazioneFiguraProfessionale</h1>
+    <h1>Valutazione Figura Professionale</h1>
 
     <table class="table">
         <tbody>
@@ -16,39 +16,35 @@
                 <td>{{ valutazione_figura_professionale.nome }}</td>
             </tr>
             <tr>
-                <th>Operatore</th>
-                <td>{{ valutazione_figura_professionale.operatore }}</td>
-            </tr>
-            <tr>
-                <th>TipoOperatore</th>
+                <th>Tipo di operatore</th>
                 <td>{{ valutazione_figura_professionale.tipoOperatore }}</td>
             </tr>
             <tr>
-                <th>DiagnosiProfessionale</th>
+                <th>Diagnosi Professionale</th>
                 <td>{{ valutazione_figura_professionale.diagnosiProfessionale }}</td>
             </tr>
             <tr>
-                <th>ObbiettiviDaRaggiungere</th>
+                <th>Obbiettivi da raggiungere</th>
                 <td>{{ valutazione_figura_professionale.obbiettiviDaRaggiungere }}</td>
             </tr>
             <tr>
-                <th>TipoEFrequenza</th>
+                <th>Tipo e frequenza</th>
                 <td>{{ valutazione_figura_professionale.tipoEFrequenza }}</td>
             </tr>
             <tr>
-                <th>ModalitàTempiMonitoraggio</th>
-                <td>{{ valutazione_figura_professionale.modalitàTempiMonitoraggio }}</td>
+                <th>Modalità e tempi di monitoraggio degli obbiettivi</th>
+                <td>{{ valutazione_figura_professionale.modalitaTempiMonitoraggio }}</td>
             </tr>
             <tr>
-                <th>DataValutazione</th>
+                <th>Data di valutazione</th>
                 <td>{{ valutazione_figura_professionale.dataValutazione ? valutazione_figura_professionale.dataValutazione|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_valutazione_figura_professionale_index') }}">back to list</a>
+    <a href="{{ path('app_valutazione_figura_professionale_index') }}">Torna alla lista</a>
 
-    <a href="{{ path('app_valutazione_figura_professionale_edit', {'id': valutazione_figura_professionale.id}) }}">edit</a>
+    <a href="{{ path('app_valutazione_figura_professionale_edit', {'id': valutazione_figura_professionale.id}) }}">Modifica</a>
 
     {{ include('valutazione_figura_professionale/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Barthel index{% endblock %}
+
+{% block body %}
+    <h1>Barthel index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>DataValutazione</th>
+                <th>Alimentazione</th>
+                <th>BagnoDoccia</th>
+                <th>IgienePersonale</th>
+                <th>Abbigliamento</th>
+                <th>ContinenzaIntestinale</th>
+                <th>ContinenzaUrinaria</th>
+                <th>Toilet</th>
+                <th>TotaleValutazioneFunzionale</th>
+                <th>TrasferimentoLettoSedia</th>
+                <th>Scale</th>
+                <th>Deambulazione</th>
+                <th>DeambulazioneValida</th>
+                <th>UsoCarrozzina</th>
+                <th>Totale</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for barthel in barthels %}
+            <tr>
+                <td>{{ barthel.id }}</td>
+                <td>{{ barthel.nome }}</td>
+                <td>{{ barthel.dataValutazione ? barthel.dataValutazione|date('Y-m-d') : '' }}</td>
+                <td>{{ barthel.alimentazione }}</td>
+                <td>{{ barthel.bagnoDoccia }}</td>
+                <td>{{ barthel.igienePersonale }}</td>
+                <td>{{ barthel.abbigliamento }}</td>
+                <td>{{ barthel.continenzaIntestinale }}</td>
+                <td>{{ barthel.continenzaUrinaria }}</td>
+                <td>{{ barthel.toilet }}</td>
+                <td>{{ barthel.totaleValutazioneFunzionale }}</td>
+                <td>{{ barthel.trasferimentoLettoSedia }}</td>
+                <td>{{ barthel.scale }}</td>
+                <td>{{ barthel.deambulazione ? 'Yes' : 'No' }}</td>
+                <td>{{ barthel.deambulazioneValida }}</td>
+                <td>{{ barthel.usoCarrozzina }}</td>
+                <td>{{ barthel.totale }}</td>
+                <td>
+                    <a href="{{ path('app_barthel_show', {'id': barthel.id}) }}">show</a>
+                    <a href="{{ path('app_barthel_edit', {'id': barthel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_barthel_new') }}">Create new</a>
+{% endblock %}

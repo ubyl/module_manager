@@ -3,21 +3,20 @@
 {% block title %}ValutazioneFiguraProfessionale index{% endblock %}
 
 {% block body %}
-    <h1>ValutazioneFiguraProfessionale index</h1>
+    <h1>Valutazione Figura Professionale</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
-                <th>Operatore</th>
-                <th>TipoOperatore</th>
-                <th>DiagnosiProfessionale</th>
-                <th>ObbiettiviDaRaggiungere</th>
-                <th>TipoEFrequenza</th>
-                <th>ModalitàTempiMonitoraggio</th>
-                <th>DataValutazione</th>
-                <th>actions</th>
+                <th>Tipo operatore</th>
+                <th>Diagnosi Professionale</th>
+                <th>Obbiettivi da raggiungere</th>
+                <th>Tipo e frequenza</th>
+                <th>Modalità e tempi di monitoraggio degli obbiettivi</th>
+                <th>Data di valutazione</th>
+                <th>Azioni</th>
             </tr>
         </thead>
         <tbody>
@@ -25,25 +24,24 @@
             <tr>
                 <td>{{ valutazione_figura_professionale.id }}</td>
                 <td>{{ valutazione_figura_professionale.nome }}</td>
-                <td>{{ valutazione_figura_professionale.operatore }}</td>
                 <td>{{ valutazione_figura_professionale.tipoOperatore }}</td>
                 <td>{{ valutazione_figura_professionale.diagnosiProfessionale }}</td>
                 <td>{{ valutazione_figura_professionale.obbiettiviDaRaggiungere }}</td>
                 <td>{{ valutazione_figura_professionale.tipoEFrequenza }}</td>
-                <td>{{ valutazione_figura_professionale.modalitàTempiMonitoraggio }}</td>
+                <td>{{ valutazione_figura_professionale.modalitaTempiMonitoraggio }}</td>
                 <td>{{ valutazione_figura_professionale.dataValutazione ? valutazione_figura_professionale.dataValutazione|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_valutazione_figura_professionale_show', {'id': valutazione_figura_professionale.id}) }}">show</a>
-                    <a href="{{ path('app_valutazione_figura_professionale_edit', {'id': valutazione_figura_professionale.id}) }}">edit</a>
+                    <a href="{{ path('app_valutazione_figura_professionale_show', {'id': valutazione_figura_professionale.id}) }}">Mostra</a>
+                    <a href="{{ path('app_valutazione_figura_professionale_edit', {'id': valutazione_figura_professionale.id}) }}">Modifica</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+                <td colspan="10">Nessuna valutazione trovata</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_valutazione_figura_professionale_new') }}">Create new</a>
+    <a href="{{ path('app_valutazione_figura_professionale_new') }}">Crea nuova valutazione</a>
 {% endblock %}

@@ -2,12 +2,7 @@
 
 namespace App\Entity\EntityPAI;
 
-use App\Config\ISS;
-use App\Config\FANF;
-use App\Config\PANF;
-use App\Config\Disturbi;
-use App\Config\Autonomia;
-use App\Config\Valutazione;
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -42,47 +37,47 @@ class ValutazioneGenerale
     #[ORM\Column(type: 'string')]
     private $diagnosi;
 
-    #[ORM\Column(type: 'string', enumType:Valutazione::class)]
+    #[ORM\Column(type:"Valutazione", nullable:false)]
     #[Assert\NotBlank]
     private $tipologia_valutazione;
 
-    #[ORM\Column(type: 'string', enumType:PANF::class)]
+    #[ORM\Column(type: 'PANF', nullable:false)]
     #[Assert\NotBlank]
     private $panf;
 
-    #[ORM\Column(type: 'string', enumType:FANF::class)]
+    #[ORM\Column(type: 'FANF', nullable:false)]
     #[Assert\NotBlank]
     private $fanf;
 
-    #[ORM\Column(type: 'string', enumType:ISS::class)]
+    #[ORM\Column(type: 'ISS', nullable:false)]
     #[Assert\NotBlank]
     private $iss;
 
-    #[ORM\Column(type: 'string', enumType:Autonomia::class)]
+    #[ORM\Column(type: 'Autonomia', nullable:false)]
     #[Assert\NotBlank]
     private $uso_servizi_igenici;
 
-    #[ORM\Column(type: 'string', enumType:Autonomia::class)]
+    #[ORM\Column(type: 'Autonomia', nullable:false)]
     #[Assert\NotBlank]
     private $abbigliamento;
 
-    #[ORM\Column(type: 'string', enumType:Autonomia::class)]
+    #[ORM\Column(type: 'Autonomia', nullable:false)]
     #[Assert\NotBlank]
     private $alimentazione;
 
-    #[ORM\Column(type: 'string', enumType:Autonomia::class)]
+    #[ORM\Column(type: 'Autonomia', nullable:false)]
     #[Assert\NotBlank]
     private $indicatore_deambulazione;
 
-    #[ORM\Column(type: 'string', enumType:Autonomia::class)]
+    #[ORM\Column(type: 'Autonomia', nullable:false)]
     #[Assert\NotBlank]
     private $igene_personale;
 
-    #[ORM\Column(type: 'string', enumType:Disturbi::class)]
+    #[ORM\Column(type: 'Disturbi', nullable:false)]
     #[Assert\NotBlank]
     private $cognitivita;
 
-    #[ORM\Column(type: 'string', enumType:Disturbi::class)]
+    #[ORM\Column(type: 'Disturbi', nullable:false)]
     #[Assert\NotBlank]
     private $comportamento;
 
@@ -168,7 +163,7 @@ class ValutazioneGenerale
         return $this->tipologia_valutazione;
     }
 
-    public function setTipologiaValutazione(Valutazione $tipologia_valutazione): self
+    public function setTipologiaValutazione(string $tipologia_valutazione): self
     {
         $this->tipologia_valutazione = $tipologia_valutazione;
 
@@ -180,7 +175,7 @@ class ValutazioneGenerale
         return $this->panf;
     }
 
-    public function setPanf(PANF $panf): self
+    public function setPanf(string $panf): self
     {
         $this->panf = $panf;
 
@@ -192,7 +187,7 @@ class ValutazioneGenerale
         return $this->fanf;
     }
 
-    public function setFanf(FANF $fanf): self
+    public function setFanf(string $fanf): self
     {
         $this->fanf = $fanf;
 
@@ -204,7 +199,7 @@ class ValutazioneGenerale
         return $this->iss;
     }
 
-    public function setIss(ISS $iss): self
+    public function setIss(string $iss): self
     {
         $this->iss = $iss;
 
@@ -216,7 +211,7 @@ class ValutazioneGenerale
         return $this->uso_servizi_igenici;
     }
 
-    public function setUsoServiziIgenici(Autonomia $uso_servizi_igenici): self
+    public function setUsoServiziIgenici(string $uso_servizi_igenici): self
     {
         $this->uso_servizi_igenici = $uso_servizi_igenici;
 
@@ -228,7 +223,7 @@ class ValutazioneGenerale
         return $this->abbigliamento;
     }
 
-    public function setAbbigliamento(Autonomia $abbigliamento): self
+    public function setAbbigliamento(string $abbigliamento): self
     {
         $this->abbigliamento = $abbigliamento;
 
@@ -240,7 +235,7 @@ class ValutazioneGenerale
         return $this->alimentazione;
     }
 
-    public function setAlimentazione(Autonomia $alimentazione): self
+    public function setAlimentazione(string $alimentazione): self
     {
         $this->alimentazione = $alimentazione;
 
@@ -252,7 +247,7 @@ class ValutazioneGenerale
         return $this->indicatore_deambulazione;
     }
 
-    public function setIndicatoreDeambulazione(Autonomia $indicatore_deambulazione): self
+    public function setIndicatoreDeambulazione(string $indicatore_deambulazione): self
     {
         $this->indicatore_deambulazione = $indicatore_deambulazione;
 
@@ -264,7 +259,7 @@ class ValutazioneGenerale
         return $this->igene_personale;
     }
 
-    public function setIgenePersonale(Autonomia $igene_personale): self
+    public function setIgenePersonale(string $igene_personale): self
     {
         $this->igene_personale = $igene_personale;
 
@@ -276,7 +271,7 @@ class ValutazioneGenerale
         return $this->cognitivita;
     }
 
-    public function setCognitivita(Disturbi $cognitivita): self
+    public function setCognitivita(string $cognitivita): self
     {
         $this->cognitivita = $cognitivita;
 
@@ -288,7 +283,7 @@ class ValutazioneGenerale
         return $this->comportamento;
     }
 
-    public function setComportamento(Disturbi $comportamento): self
+    public function setComportamento(string $comportamento): self
     {
         $this->comportamento = $comportamento;
 

@@ -2,10 +2,9 @@
 
 namespace App\Entity\EntityPAI;
 
-use App\Config\TipoOperatore;
+
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\EntityPAI\SchedaPAI;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use App\Repository\ValutazioneFiguraProfessionaleRepository;
 
 #[ORM\Entity(repositoryClass: ValutazioneFiguraProfessionaleRepository::class)]
@@ -20,10 +19,7 @@ class ValutazioneFiguraProfessionale
     #[ORM\Column(type: 'text')]
     private $nome;
 
-    #[ORM\Column(type: 'text')]
-    private $operatore;
-
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type:"TipoOperatore", nullable:false)]
     private $tipoOperatore;
 
     #[ORM\Column(type: 'text')]
@@ -57,18 +53,6 @@ class ValutazioneFiguraProfessionale
     public function setNome(string $nome): self
     {
         $this->nome = $nome;
-
-        return $this;
-    }
-
-    public function getOperatore(): ?string
-    {
-        return $this->operatore;
-    }
-
-    public function setOperatore(string $operatore): self
-    {
-        $this->operatore = $operatore;
 
         return $this;
     }

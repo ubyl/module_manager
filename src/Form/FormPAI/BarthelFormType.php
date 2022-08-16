@@ -2,7 +2,7 @@
 
 namespace App\Form\FormPAI;
 
-use App\Entity\Barthel;
+use App\Entity\EntityPAI\Barthel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,8 +28,6 @@ class BarthelFormType extends AbstractType
             ->add('deambulazioneValida')
             ->add('usoCarrozzina')
             ->add('totale')
-            ->add('firmaOperatore')
-            ->add('schedaPAI')
         ;
     }
 

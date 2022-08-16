@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Barthel{% endblock %}
+
+{% block body %}
+    <h1>Barthel</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ barthel.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ barthel.nome }}</td>
+            </tr>
+            <tr>
+                <th>DataValutazione</th>
+                <td>{{ barthel.dataValutazione ? barthel.dataValutazione|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Alimentazione</th>
+                <td>{{ barthel.alimentazione }}</td>
+            </tr>
+            <tr>
+                <th>BagnoDoccia</th>
+                <td>{{ barthel.bagnoDoccia }}</td>
+            </tr>
+            <tr>
+                <th>IgienePersonale</th>
+                <td>{{ barthel.igienePersonale }}</td>
+            </tr>
+            <tr>
+                <th>Abbigliamento</th>
+                <td>{{ barthel.abbigliamento }}</td>
+            </tr>
+            <tr>
+                <th>ContinenzaIntestinale</th>
+                <td>{{ barthel.continenzaIntestinale }}</td>
+            </tr>
+            <tr>
+                <th>ContinenzaUrinaria</th>
+                <td>{{ barthel.continenzaUrinaria }}</td>
+            </tr>
+            <tr>
+                <th>Toilet</th>
+                <td>{{ barthel.toilet }}</td>
+            </tr>
+            <tr>
+                <th>TotaleValutazioneFunzionale</th>
+                <td>{{ barthel.totaleValutazioneFunzionale }}</td>
+            </tr>
+            <tr>
+                <th>TrasferimentoLettoSedia</th>
+                <td>{{ barthel.trasferimentoLettoSedia }}</td>
+            </tr>
+            <tr>
+                <th>Scale</th>
+                <td>{{ barthel.scale }}</td>
+            </tr>
+            <tr>
+                <th>Deambulazione</th>
+                <td>{{ barthel.deambulazione ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>DeambulazioneValida</th>
+                <td>{{ barthel.deambulazioneValida }}</td>
+            </tr>
+            <tr>
+                <th>UsoCarrozzina</th>
+                <td>{{ barthel.usoCarrozzina }}</td>
+            </tr>
+            <tr>
+                <th>Totale</th>
+                <td>{{ barthel.totale }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_barthel_index') }}">back to list</a>
+
+    <a href="{{ path('app_barthel_edit', {'id': barthel.id}) }}">edit</a>
+
+    {{ include('barthel/_delete_form.html.twig') }}
+{% endblock %}
