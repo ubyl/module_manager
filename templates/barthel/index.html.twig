@@ -3,29 +3,29 @@
 {% block title %}Barthel index{% endblock %}
 
 {% block body %}
-    <h1>Barthel index</h1>
+    <h1>Barthel</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
-                <th>DataValutazione</th>
+                <th>Data di valutazione</th>
                 <th>Alimentazione</th>
-                <th>BagnoDoccia</th>
-                <th>IgienePersonale</th>
+                <th>Bagno Doccia</th>
+                <th>Igiene Personale</th>
                 <th>Abbigliamento</th>
-                <th>ContinenzaIntestinale</th>
-                <th>ContinenzaUrinaria</th>
+                <th>Continenza Intestinale</th>
+                <th>Continenza Urinaria</th>
                 <th>Toilet</th>
-                <th>TotaleValutazioneFunzionale</th>
-                <th>TrasferimentoLettoSedia</th>
+                <th>Totale Valutazione Funzionale</th>
+                <th>Trasferimento Letto-Sedia</th>
                 <th>Scale</th>
                 <th>Deambulazione</th>
                 <th>DeambulazioneValida</th>
-                <th>UsoCarrozzina</th>
+                <th>Uso Carrozzina</th>
                 <th>Totale</th>
-                <th>actions</th>
+                <th>Azioni</th>
             </tr>
         </thead>
         <tbody>
@@ -49,17 +49,17 @@
                 <td>{{ barthel.usoCarrozzina }}</td>
                 <td>{{ barthel.totale }}</td>
                 <td>
-                    <a href="{{ path('app_barthel_show', {'id': barthel.id}) }}">show</a>
-                    <a href="{{ path('app_barthel_edit', {'id': barthel.id}) }}">edit</a>
+                    <a href="{{ path('app_barthel_show', {'id': barthel.id}) }}">mostra</a>
+                    <a href="{{ path('app_barthel_edit', {'id': barthel.id}) }}">modifica</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="18">no records found</td>
+                <td colspan="18">nessuna scheda trovata</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_barthel_new') }}">Create new</a>
+    <a href="{{ path('app_barthel_new') }}">Crea nuova scheda</a>
 {% endblock %}

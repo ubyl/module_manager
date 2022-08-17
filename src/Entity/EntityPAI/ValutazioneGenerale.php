@@ -81,10 +81,10 @@ class ValutazioneGenerale
     #[Assert\NotBlank]
     private $comportamento;
 
-    #[ORM\ManyToMany(mappedBy: 'valutazioneGenerale', targetEntity: AltraTipologiaAssistenza::class)]
+    #[ORM\ManyToMany(inversedBy: 'valutazioneGenerale', targetEntity: AltraTipologiaAssistenza::class)]
     private Collection $altra_tipologia_assistenza;
 
-    #[ORM\ManyToMany(mappedBy: 'valutazioneGenerale', targetEntity: Bisogni::class)]
+    #[ORM\ManyToMany(inversedBy: 'valutazioneGenerale', targetEntity: Bisogni::class)]
     private Collection $bisogni;
 
     public function __construct()
@@ -300,6 +300,7 @@ class ValutazioneGenerale
 
     public function addAltraTipologiaAssistenza(AltraTipologiaAssistenza $altraTipologiaAssistenza): self
     {
+        
         if (!$this->altra_tipologia_assistenza->contains($altraTipologiaAssistenza)) {
             $this->altra_tipologia_assistenza[] = $altraTipologiaAssistenza;
             
