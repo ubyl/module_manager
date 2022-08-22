@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New SPMSQ{% endblock %}
+
+{% block body %}
+    <h1>Crea nuova scheda Valutazione Cognitiva:SPMSQ</h1>
+
+    {{ include('spmsq/_form.html.twig') }}
+
+    <a href="{{ path('app_s_p_m_s_q_index') }}">Torna alla lista</a>
+{% endblock %}

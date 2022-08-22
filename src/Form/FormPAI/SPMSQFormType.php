@@ -2,10 +2,11 @@
 
 namespace App\Form\FormPAI;
 
-use App\Entity\SPMSQ;
+use App\Entity\EntityPAI\SPMSQ;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class SPMSQFormType extends AbstractType
 {
@@ -14,19 +15,47 @@ class SPMSQFormType extends AbstractType
         $builder
             ->add('nome')
             ->add('dataValutazione')
-            ->add('giornoOggi')
-            ->add('giornoSettimana')
-            ->add('posto')
-            ->add('indirizzo')
-            ->add('anni')
-            ->add('dataNascita')
-            ->add('presidenteAttuale')
-            ->add('presidentePrecedente')
-            ->add('cognomeMadre')
-            ->add('sottrazione')
+            ->add('giornoOggi', CheckboxType::class, [
+                'label'    => 'Errori alla domanda:Che giorno è oggi?',
+                'required' => false,
+            ])
+            ->add('giornoSettimana', CheckboxType::class, [
+                'label'    => 'Errori alla domanda:Che giorno della settimana è?',
+                'required' => false,
+            ])
+            ->add('posto', CheckboxType::class, [
+                'label'    => 'Errori alla domanda:Come si chiama questo posto?',
+                'required' => false,
+            ])
+            ->add('indirizzo', CheckboxType::class, [
+                'label'    => 'Errori alla domanda:Qual è il suo indirizzo?',
+                'required' => false,
+            ])
+            ->add('anni', CheckboxType::class, [
+                'label'    => 'Errori alla domanda:Quanti anni ha?',
+                'required' => false,
+            ])
+            ->add('dataNascita', CheckboxType::class, [
+                'label'    => 'Errori alla domanda:Quando è nato?',
+                'required' => false,
+            ])
+            ->add('presidenteAttuale', CheckboxType::class, [
+                'label'    => 'Errori alla domanda:Chi è il Presidente della Repubblica?',
+                'required' => false,
+            ])
+            ->add('presidentePrecedente', CheckboxType::class, [
+                'label'    => 'Errori alla domanda:Chi era il Presidente precedente?',
+                'required' => false,
+            ])
+            ->add('cognomeMadre', CheckboxType::class, [
+                'label'    => 'Errori alla domanda:Qual è il cognome da ragazza si sua madre?',
+                'required' => false,
+            ])
+            ->add('sottrazione', CheckboxType::class, [
+                'label'    => 'Errori nel calcolo:Sottragga da 20 tre e poi ancora fino in fondo',
+                'required' => false,
+            ])
             ->add('totale')
-            ->add('firmaOperatore')
-            ->add('schedaPAI')
         ;
     }
 

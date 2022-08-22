@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Braden{% endblock %}
+
+{% block body %}
+    <h1>Crea nuova scheda Braden</h1>
+
+    {{ include('braden/_form.html.twig') }}
+
+    <a href="{{ path('app_form_pai_braden_index') }}">torna alla lista</a>
+{% endblock %}

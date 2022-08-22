@@ -1,0 +1,70 @@
+{{ form_start(form) }}
+
+<div class="row">
+        <div class="col">
+            {{ form_row(form.nome) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.dataValutazione) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.giornoOggi) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.giornoSettimana) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.posto) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.indirizzo) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.anni) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.dataNascita) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.presidenteAttuale) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.presidentePrecedente) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.cognomeMadre) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.sottrazione) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.totale) }}
+        </div>
+</div>
+
+    <button class="btn">{{ button_label|default('Salva') }}</button>
+{{ form_end(form) }}

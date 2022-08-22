@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit SPMSQ{% endblock %}
+
+{% block body %}
+    <h1>Modifica scheda SPMSQ</h1>
+
+    {{ include('spmsq/_form.html.twig', {'button_label': 'Modifica'}) }}
+
+    <a href="{{ path('app_s_p_m_s_q_index') }}">Torna alla lista</a>
+
+    {{ include('spmsq/_delete_form.html.twig') }}
+{% endblock %}

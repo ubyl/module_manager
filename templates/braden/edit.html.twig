@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Braden{% endblock %}
+
+{% block body %}
+    <h1>Modifica scheda Braden</h1>
+
+    {{ include('braden/_form.html.twig', {'button_label': 'Modifica'}) }}
+
+    <a href="{{ path('app_form_pai_braden_index') }}">Torna alla lista</a>
+
+    {{ include('braden/_delete_form.html.twig') }}
+{% endblock %}

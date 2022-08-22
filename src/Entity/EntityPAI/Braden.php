@@ -15,20 +15,20 @@ class Braden
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'string')]
     private $nome;
 
     #[ORM\Column(type: 'integer')]
     private $percezioneSensoriale;
 
     #[ORM\Column(type: 'integer')]
-    private $umidità;
+    private $umidita;
 
     #[ORM\Column(type: 'integer')]
-    private $attività;
+    private $attivita;
 
     #[ORM\Column(type: 'integer')]
-    private $mobilità;
+    private $mobilita;
 
     #[ORM\Column(type: 'integer')]
     private $nutrizione;
@@ -41,9 +41,6 @@ class Braden
 
     #[ORM\Column(type: 'integer')]
     private $totale;
-
-    #[ORM\Column(type: 'text')]
-    private $firmaOperatore;
 
     #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idBraden')]
     private $schedaPAI;
@@ -77,38 +74,38 @@ class Braden
         return $this;
     }
 
-    public function getUmidità(): ?int
+    public function getUmidita(): ?int
     {
-        return $this->umidità;
+        return $this->umidita;
     }
 
-    public function setUmidità(int $umidità): self
+    public function setUmidita(int $umidita): self
     {
-        $this->umidità = $umidità;
+        $this->umidita = $umidita;
 
         return $this;
     }
 
-    public function getAttività(): ?int
+    public function getAttivita(): ?int
     {
-        return $this->attività;
+        return $this->attivita;
     }
 
-    public function setAttività(int $attività): self
+    public function setAttivita(int $attivita): self
     {
-        $this->attività = $attività;
+        $this->attivita = $attivita;
 
         return $this;
     }
 
-    public function getMobilità(): ?int
+    public function getMobilita(): ?int
     {
-        return $this->mobilità;
+        return $this->mobilita;
     }
 
-    public function setMobilità(int $mobilità): self
+    public function setMobilita(int $mobilita): self
     {
-        $this->mobilità = $mobilità;
+        $this->mobilita = $mobilita;
 
         return $this;
     }
@@ -157,18 +154,6 @@ class Braden
     public function setTotale(int $totale): self
     {
         $this->totale = $totale;
-
-        return $this;
-    }
-
-    public function getFirmaOperatore(): ?string
-    {
-        return $this->firmaOperatore;
-    }
-
-    public function setFirmaOperatore(string $firmaOperatore): self
-    {
-        $this->firmaOperatore = $firmaOperatore;
 
         return $this;
     }

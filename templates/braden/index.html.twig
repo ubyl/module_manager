@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Braden index{% endblock %}
+
+{% block body %}
+    <h1>Braden</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Percezione Sensoriale</th>
+                <th>Umidità</th>
+                <th>Attività</th>
+                <th>Mobilità</th>
+                <th>Nutrizione</th>
+                <th>Frizione Scivolamento</th>
+                <th>Data Valutazione</th>
+                <th>Totale</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for braden in bradens %}
+            <tr>
+                <td>{{ braden.id }}</td>
+                <td>{{ braden.nome }}</td>
+                <td>{{ braden.percezioneSensoriale }}</td>
+                <td>{{ braden.umidita }}</td>
+                <td>{{ braden.attivita }}</td>
+                <td>{{ braden.mobilita }}</td>
+                <td>{{ braden.nutrizione }}</td>
+                <td>{{ braden.frizioneScivolamento }}</td>
+                <td>{{ braden.dataValutazione ? braden.dataValutazione|date('Y-m-d') : '' }}</td>
+                <td>{{ braden.totale }}</td>
+                <td>
+                    <a href="{{ path('app_form_pai_braden_show', {'id': braden.id}) }}">Mostra</a>
+                    <a href="{{ path('app_form_pai_braden_edit', {'id': braden.id}) }}">Modifica</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">Nessuna scheda trovata</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_form_pai_braden_new') }}">Crea nuova scheda</a>
+{% endblock %}

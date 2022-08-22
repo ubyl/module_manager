@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SPMSQ index{% endblock %}
+
+{% block body %}
+    <h1>Valutazione Cognitiva:SPMSQ </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Data di valutazione</th>
+                <th>Che giorno è oggi?</th>
+                <th>Che giorno della settimana è?</th>
+                <th>Come si chiama questo posto?</th>
+                <th>Qual è il suo indirizzo?</th>
+                <th>Quanti anni ha?</th>
+                <th>Quando è nato?</th>
+                <th>Chi è il Presidente della Repubblica?</th>
+                <th>Chi era il Presidente precedente?</th>
+                <th>Qual è il cognome da ragazza si sua madre?</th>
+                <th>Sottragga da 20 tre e poi ancora fino in fondo</th>
+                <th>Totale</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for s_p_m_s_q in s_p_m_s_qs %}
+            <tr>
+                <td>{{ s_p_m_s_q.id }}</td>
+                <td>{{ s_p_m_s_q.nome }}</td>
+                <td>{{ s_p_m_s_q.dataValutazione ? s_p_m_s_q.dataValutazione|date('Y-m-d') : '' }}</td>
+                <td>{{ s_p_m_s_q.giornoOggi ? 'Si' : 'No' }}</td>
+                <td>{{ s_p_m_s_q.giornoSettimana ? 'Si' : 'No' }}</td>
+                <td>{{ s_p_m_s_q.posto ? 'Si' : 'No' }}</td>
+                <td>{{ s_p_m_s_q.indirizzo ? 'Si' : 'No' }}</td>
+                <td>{{ s_p_m_s_q.anni ? 'Si' : 'No' }}</td>
+                <td>{{ s_p_m_s_q.dataNascita ? 'Si' : 'No' }}</td>
+                <td>{{ s_p_m_s_q.presidenteAttuale ? 'Si' : 'No' }}</td>
+                <td>{{ s_p_m_s_q.presidentePrecedente ? 'Si' : 'No' }}</td>
+                <td>{{ s_p_m_s_q.cognomeMadre ? 'Si' : 'No' }}</td>
+                <td>{{ s_p_m_s_q.sottrazione ? 'Si' : 'No' }}</td>
+                <td>{{ s_p_m_s_q.totale }}</td>
+                <td>
+                    <a href="{{ path('app_s_p_m_s_q_show', {'id': s_p_m_s_q.id}) }}">Mostra</a>
+                    <a href="{{ path('app_s_p_m_s_q_edit', {'id': s_p_m_s_q.id}) }}">Modifica</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">nessuna scheda trovata</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_s_p_m_s_q_new') }}">Crea nuova scheda</a>
+{% endblock %}

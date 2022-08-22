@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SPMSQ{% endblock %}
+
+{% block body %}
+    <h1>SPMSQ</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ s_p_m_s_q.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ s_p_m_s_q.nome }}</td>
+            </tr>
+            <tr>
+                <th>Data di Valutazione</th>
+                <td>{{ s_p_m_s_q.dataValutazione ? s_p_m_s_q.dataValutazione|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Che giorno è oggi?</th>
+                <td>{{ s_p_m_s_q.giornoOggi ? 'Si' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Che giorno della settimana è?</th>
+                <td>{{ s_p_m_s_q.giornoSettimana ? 'Si' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Come si chiama questo posto?</th>
+                <td>{{ s_p_m_s_q.posto ? 'Si' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Qual è il suo indirizzo?</th>
+                <td>{{ s_p_m_s_q.indirizzo ? 'Si' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Quanti anni ha?</th>
+                <td>{{ s_p_m_s_q.anni ? 'Si' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Quando è nato?</th>
+                <td>{{ s_p_m_s_q.dataNascita ? 'Si' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Chi è il Presidente della Repubblica?</th>
+                <td>{{ s_p_m_s_q.presidenteAttuale ? 'Si' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Chi era il Presidente precedente?</th>
+                <td>{{ s_p_m_s_q.presidentePrecedente ? 'Si' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Qual è il cognome da ragazza si sua madre?</th>
+                <td>{{ s_p_m_s_q.cognomeMadre ? 'Si' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Sottragga da 20 tre e poi ancora fino in fondo</th>
+                <td>{{ s_p_m_s_q.sottrazione ? 'Si' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Totale</th>
+                <td>{{ s_p_m_s_q.totale }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_s_p_m_s_q_index') }}">Torna alla lista</a>
+
+    <a href="{{ path('app_s_p_m_s_q_edit', {'id': s_p_m_s_q.id}) }}">Modifica</a>
+
+    {{ include('spmsq/_delete_form.html.twig') }}
+{% endblock %}
