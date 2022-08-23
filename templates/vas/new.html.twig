@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Vas{% endblock %}
+
+{% block body %}
+    <h1>Crea nuova scheda Vas</h1>
+
+    {{ include('vas/_form.html.twig') }}
+
+    <a href="{{ path('app_vas_index') }}">Torna alla lista</a>
+{% endblock %}

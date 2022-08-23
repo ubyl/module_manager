@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lesioni index{% endblock %}
+
+{% block body %}
+    <h1>Lesioni</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Data Rivalutazioni Settimanali</th>
+                <th>Tipologia Lesione</th>
+                <th>Numero Sede Lesione</th>
+                <th>Grado Lesione</th>
+                <th>Condizione Lesione</th>
+                <th>Bordi Lesione</th>
+                <th>Cute Perilesionale</th>
+                <th>Note sulla lesione</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lesioni in lesionis %}
+            <tr>
+                <td>{{ lesioni.id }}</td>
+                <td>{{ lesioni.nome }}</td>
+                <td>{{ lesioni.dataRivalutazioniSettimanali ? lesioni.dataRivalutazioniSettimanali|date('Y-m-d') : '' }}</td>
+                <td>{{ lesioni.tipologiaLesione }}</td>
+                <td>{{ lesioni.numeroSedeLesione }}</td>
+                <td>{{ lesioni.gradoLesione }}</td>
+                <td>{{ lesioni.condizioneLesione }}</td>
+                <td>{{ lesioni.bordiLesione }}</td>
+                <td>{{ lesioni.cutePerilesionale }}</td>
+                <td>{{ lesioni.noteSullaLesione }}</td>
+                <td>
+                    <a href="{{ path('app_lesioni_show', {'id': lesioni.id}) }}">Mostra</a>
+                    <a href="{{ path('app_lesioni_edit', {'id': lesioni.id}) }}">Modifica</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">Nessuna scheda trovata</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_lesioni_new') }}">Crea nuova scheda</a>
+{% endblock %}

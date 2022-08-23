@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Lesioni{% endblock %}
+
+{% block body %}
+    <h1>Modifica scheda Lesioni</h1>
+
+    {{ include('lesioni/_form.html.twig', {'button_label': 'Modifica'}) }}
+
+    <a href="{{ path('app_lesioni_index') }}">Torna alla lista</a>
+
+    {{ include('lesioni/_delete_form.html.twig') }}
+{% endblock %}

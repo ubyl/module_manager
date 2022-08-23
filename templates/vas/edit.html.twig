@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Vas{% endblock %}
+
+{% block body %}
+    <h1>Modifica scheda Vas</h1>
+
+    {{ include('vas/_form.html.twig', {'button_label': 'Modifica'}) }}
+
+    <a href="{{ path('app_vas_index') }}">Torna alla lista</a>
+
+    {{ include('vas/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vas index{% endblock %}
+
+{% block body %}
+    <h1>Vas</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Paziente</th>
+                <th>Data</th>
+                <th>Ora</th>
+                <th>Rilevazione di Base 2 volte</th>
+                <th>Rilevazione al bisogno del Pz</th>
+                <th>Esito rilevazione post trattamento</th>
+                <th>Rilevazione Monitoraggio</th>
+                <th>Farmaci</th>
+                <th>Altro</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for va in vas %}
+            <tr>
+                <td>{{ va.id }}</td>
+                <td>{{ va.paziente }}</td>
+                <td>{{ va.data ? va.data|date('Y-m-d') : '' }}</td>
+                <td>{{ va.ora ? va.ora|date('H:i:s') : '' }}</td>
+                <td>{{ va.base2 }}</td>
+                <td>{{ va.pz }}</td>
+                <td>{{ va.esito }}</td>
+                <td>{{ va.rilevanzaMonitoraggio }}</td>
+                <td>{{ va.farmaci ? 'Yes' : 'No' }}</td>
+                <td>{{ va.altro ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_vas_show', {'id': va.id}) }}">Mostra</a>
+                    <a href="{{ path('app_vas_edit', {'id': va.id}) }}">Modifica</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Nessuna scheda trovata</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_vas_new') }}">Crea nuova scheda</a>
+{% endblock %}

@@ -2,7 +2,7 @@
 
 namespace App\Entity\EntityPAI;
 
-use App\Entity\EntityPAISchedaPAI;
+use App\Entity\EntityPAI\SchedaPAI;
 use App\Repository\LesioniRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,6 +15,9 @@ class Lesioni
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    #[ORM\Column]
+    private ?string $nome = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dataRivalutazioniSettimanali = null;
@@ -46,6 +49,18 @@ class Lesioni
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getNome(): ?string
+    {
+        return $this->nome;
+    }
+
+    public function setNome(string $nome): self
+    {
+        $this->nome = $nome;
+
+        return $this;
     }
 
     public function getDataRivalutazioniSettimanali(): ?\DateTimeInterface

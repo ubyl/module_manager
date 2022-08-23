@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Lesioni{% endblock %}
+
+{% block body %}
+    <h1>Crea nuova scheda Lesioni</h1>
+
+    {{ include('lesioni/_form.html.twig') }}
+
+    <a href="{{ path('app_lesioni_index') }}">Torna alla lista</a>
+{% endblock %}

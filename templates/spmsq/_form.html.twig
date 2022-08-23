@@ -65,6 +65,31 @@
             {{ form_row(form.totale) }}
         </div>
 </div>
-
+<div class="alert alert-info" role="alert">
+    <div class="row">
+    Esito della valutazione
+    </div>
+    <div class="row">
+    - 0-2 errori: assenza di deterioramento
+    </div>
+    <div class="row">
+    - 3-4 errori: deterioramento lieve
+    </div>
+    <div class="row">
+    - 5-7 errori: deterioramento moderato
+    </div>
+    <div class="row">
+    - 8-10 errori: deterioramento grave
+    </div>
+    <div class="row">
+    Note:
+    </div>
+    <div class="row">
+    E' consentito un errore in più se il soggetto ha un livello di istruzione inferiore
+    </div>
+    <div class="row">
+    E' consentito un errore in meno se il soggetto ha un livello di istruzione superiore
+    </div>
+</div>
     <button class="btn">{{ button_label|default('Salva') }}</button>
 {{ form_end(form) }}

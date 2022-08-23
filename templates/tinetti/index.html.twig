@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tinetti index{% endblock %}
+
+{% block body %}
+    <h1>Tinetti</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Data di valutazione</th>
+                <th>Equilibrio da seduto</th>
+                <th>Alzarsi dalla sedia</th>
+                <th>Tentativo di alzarsi</th>
+                <th>Equilibrio stazione eretta</th>
+                <th>Equilibrio stazione eretta prolungata</th>
+                <th>Romberg</th>
+                <th>Romberg Sensibilizzato</th>
+                <th>Girarsi a 360° a</th>
+                <th>Girarsi a 360° b</th>
+                <th>Sedersi</th>
+                <th>Totale Equilibrio</th>
+                <th>Inizio della deambulazione immediatamente dopo il via</th>
+                <th>Lunghezza passo piede destro</th>
+                <th>Altezza passo piede destro</th>
+                <th>Lunghezza passo piede sinistro</th>
+                <th>Altezza passo piede sinistro</th>
+                <th>Simmetria del passo</th>
+                <th>Continuita del passo</th>
+                <th>Traiettoria</th>
+                <th>Tronco</th>
+                <th>Cammino</th>
+                <th>Totale Andatura</th>
+                <th>Totale</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tinetti in tinettis %}
+            <tr>
+                <td>{{ tinetti.id }}</td>
+                <td>{{ tinetti.nome }}</td>
+                <td>{{ tinetti.dataValutazione ? tinetti.dataValutazione|date('Y-m-d') : '' }}</td>
+                <td>{{ tinetti.equilibrioSeduto }}</td>
+                <td>{{ tinetti.sedia }}</td>
+                <td>{{ tinetti.alzarsi }}</td>
+                <td>{{ tinetti.stazioneEretta }}</td>
+                <td>{{ tinetti.stazioneErettaProlungata }}</td>
+                <td>{{ tinetti.romberg }}</td>
+                <td>{{ tinetti.rombergSensibilizzato }}</td>
+                <td>{{ tinetti.girarsi1 }}</td>
+                <td>{{ tinetti.girarsi2 }}</td>
+                <td>{{ tinetti.sedersi }}</td>
+                <td>{{ tinetti.totaleEquilibrio }}</td>
+                <td>{{ tinetti.inizioDeambulazione }}</td>
+                <td>{{ tinetti.piedeDx }}</td>
+                <td>{{ tinetti.piedeDx2 }}</td>
+                <td>{{ tinetti.piedeSx }}</td>
+                <td>{{ tinetti.piedeSx2 }}</td>
+                <td>{{ tinetti.simmetriaPasso }}</td>
+                <td>{{ tinetti.continuitaPasso }}</td>
+                <td>{{ tinetti.traiettoria }}</td>
+                <td>{{ tinetti.tronco }}</td>
+                <td>{{ tinetti.cammino }}</td>
+                <td>{{ tinetti.totaleAndatura }}</td>
+                <td>{{ tinetti.totale }}</td>
+                <td>
+                    <a href="{{ path('app_tinetti_show', {'id': tinetti.id}) }}">Mostra</a>
+                    <a href="{{ path('app_tinetti_edit', {'id': tinetti.id}) }}">Modifica</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="27">nessuna scheda trovata</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_tinetti_new') }}">Crea nuova scheda</a>
+{% endblock %}

@@ -15,7 +15,7 @@ class Vas
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'string')]
     private $paziente;
 
     #[ORM\Column(type: 'date')]
@@ -36,11 +36,11 @@ class Vas
     #[ORM\Column(type: 'integer')]
     private $rilevanzaMonitoraggio;
 
-    #[ORM\Column(type: 'text')]
-    private $firmaSanitario;
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $farmaci;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
-    private $trattamento;
+    private $altro;
 
     #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idVas')]
     private $schedaPAI;
@@ -134,26 +134,26 @@ class Vas
         return $this;
     }
 
-    public function getFirmaSanitario(): ?string
+    public function isFarmaci(): ?bool
     {
-        return $this->firmaSanitario;
+        return $this->farmaci;
     }
 
-    public function setFirmaSanitario(string $firmaSanitario): self
+    public function setFarmaci(?bool $farmaci): self
     {
-        $this->firmaSanitario = $firmaSanitario;
+        $this->farmaci = $farmaci;
 
         return $this;
     }
 
-    public function isTrattamento(): ?bool
+    public function isAltro(): ?bool
     {
-        return $this->trattamento;
+        return $this->altro;
     }
 
-    public function setTrattamento(?bool $trattamento): self
+    public function setAltro(?bool $altro): self
     {
-        $this->trattamento = $trattamento;
+        $this->altro = $altro;
 
         return $this;
     }

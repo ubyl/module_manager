@@ -3,7 +3,7 @@
 namespace App\Controller\ControllerPAI;
 
 use App\Entity\EntityPAI\Braden;
-use App\Form\FormPAI\BradenType;
+use App\Form\FormPAI\BradenFormType;
 use App\Repository\BradenRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

@@ -15,7 +15,7 @@ class Tinetti
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'string')]
     private $nome;
 
     #[ORM\Column(type: 'date')]
@@ -89,9 +89,6 @@ class Tinetti
 
     #[ORM\Column(type: 'integer')]
     private $totale;
-
-    #[ORM\Column(type: 'text')]
-    private $firmaOperatore;
 
     #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idTinetti')]
     private $schedaPAI;
@@ -397,18 +394,6 @@ class Tinetti
     public function setTotale(int $totale): self
     {
         $this->totale = $totale;
-
-        return $this;
-    }
-
-    public function getFirmaOperatore(): ?string
-    {
-        return $this->firmaOperatore;
-    }
-
-    public function setFirmaOperatore(string $firmaOperatore): self
-    {
-        $this->firmaOperatore = $firmaOperatore;
 
         return $this;
     }

@@ -1,0 +1,53 @@
+{{ form_start(form) }}
+<div class="row">
+        <div class="col">
+            {{ form_row(form.nome) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.dataRivalutazioniSettimanali) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.tipologiaLesione) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.numeroSedeLesione) }}
+        </div>
+</div>
+<figure class="figure">
+  <img src="..." class="figure-img img-fluid rounded" alt="...">
+  <figcaption class="figure-caption">Immagine sedi lesioni</figcaption>
+</figure>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.gradoLesione) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.condizioneLesione) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.bordiLesione) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.cutePerilesionale) }}
+        </div>
+</div>
+<div class="row">
+        <div class="col">
+            {{ form_row(form.noteSullaLesione) }}
+        </div>
+</div>
+
+    <button class="btn">{{ button_label|default('Salva') }}</button>
+{{ form_end(form) }}
