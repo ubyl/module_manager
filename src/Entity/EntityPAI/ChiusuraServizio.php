@@ -4,6 +4,7 @@ namespace App\Entity\EntityPAI;
 
 use App\Repository\ChiusuraServizioRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ChiusuraServizioRepository::class)]
 #[ORM\Table(name: 'SCHEDA_PAI_chiusura_servizio')]
@@ -15,13 +16,18 @@ class ChiusuraServizio
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'string')]
+    #[Assert\Regex(
+        pattern: '/^[^\d]+$/',
+        message: 'Carattere non valido',
+    )]
     private $nome;
 
     #[ORM\Column(type: 'text')]
     private $conclusioni;
 
     #[ORM\Column(type: 'date')]
+    #[Assert\Type(\DateTime::class)]
     private $dataValutazione;
 
     public function getId(): ?int

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit ParereMMG{% endblock %}
+{% block title %}ModificaParereMMG{% endblock %}
 
 {% block body %}
     <h1>Modifica Parere MMG</h1>
 
-    {{ include('parere_mmg/_form.html.twig', {'button_label': 'Salva modifiche'}) }}
+    {{ include('parere_mmg/_form.html.twig', {'button_label': 'Salva'}) }}
 
     <a href="{{ path('app_parere_mmg_index') }}">Torna alla lista</a>
 

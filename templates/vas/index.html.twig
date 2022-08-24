@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vas index{% endblock %}
+{% block title %}ElencoVas{% endblock %}
 
 {% block body %}
     <h1>Vas</h1>
@@ -32,20 +32,20 @@
                 <td>{{ va.pz }}</td>
                 <td>{{ va.esito }}</td>
                 <td>{{ va.rilevanzaMonitoraggio }}</td>
-                <td>{{ va.farmaci ? 'Yes' : 'No' }}</td>
-                <td>{{ va.altro ? 'Yes' : 'No' }}</td>
+                <td>{{ va.farmaci ? 'Si' : 'No' }}</td>
+                <td>{{ va.altro ? 'Si' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_vas_show', {'id': va.id}) }}">Mostra</a>
+                    <a href="{{ path('app_vas_show', {'id': va.id}) }}">Visualizza</a>
                     <a href="{{ path('app_vas_edit', {'id': va.id}) }}">Modifica</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">Nessuna scheda trovata</td>
+                <td colspan="11">Nessuna scheda disponibile</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_vas_new') }}">Crea nuova scheda</a>
+    <a href="{{ path('app_vas_new') }}">Nuova scheda</a>
 {% endblock %}

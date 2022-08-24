@@ -4,6 +4,7 @@ namespace App\Entity\EntityPAI;
 
 use App\Repository\SPMSQRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SPMSQRepository::class)]
 #[ORM\Table(name: 'SCHEDA_PAI_spmsq')]
@@ -16,9 +17,14 @@ class SPMSQ
     private $id;
 
     #[ORM\Column(type: 'string')]
+    #[Assert\Regex(
+        pattern: '/^[^\d]+$/',
+        message: 'Carattere non valido',
+    )]
     private $nome;
 
     #[ORM\Column(type: 'date')]
+    #[Assert\Type(\DateTime::class)]
     private $dataValutazione;
 
     #[ORM\Column(type: 'boolean')]

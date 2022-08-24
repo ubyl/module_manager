@@ -6,6 +6,7 @@ use App\Entity\EntityPAI\SchedaPAI;
 use App\Repository\LesioniRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LesioniRepository::class)]
 #[ORM\Table(name: 'SCHEDA_PAI_lesioni')]
@@ -17,9 +18,14 @@ class Lesioni
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\Regex(
+        pattern: '/^[^\d]+$/',
+        message: 'Carattere non valido',
+    )]
     private ?string $nome = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\Type(\DateTime::class)]
     private ?\DateTimeInterface $dataRivalutazioniSettimanali = null;
 
     #[ORM\Column(length: 255)]

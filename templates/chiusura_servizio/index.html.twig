@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Chiusura Servizio index{% endblock %}
+{% block title %}ElencoChiusuraServizio{% endblock %}
 
 {% block body %}
     <h1>Chiusura Servizio</h1>
@@ -12,7 +12,7 @@
                 <th>Nome</th>
                 <th>Conclusioni</th>
                 <th>Data di valutazione</th>
-                <th>Azioni</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -29,11 +29,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Nessuna scheda chiusura servizio trovata</td>
+                <td colspan="5">Nessuna scheda disponibile</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_chiusura_servizio_new') }}">Crea nuova scheda </a>
+    <a href="{{ path('app_chiusura_servizio_new') }}">Nuova scheda </a>
 {% endblock %}

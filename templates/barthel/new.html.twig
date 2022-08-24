@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Barthel{% endblock %}
+{% block title %}NuovaBarthel{% endblock %}
 
 {% block body %}
-    <h1>Crea nuova scheda Barthel</h1>
+    <h1>Nuova scheda Barthel</h1>
 
     {{ include('barthel/_form.html.twig') }}
 
-    <a href="{{ path('app_barthel_index') }}">torna alla lista</a>
+    <a href="{{ path('app_barthel_index') }}">Torna alla lista</a>
 {% endblock %}

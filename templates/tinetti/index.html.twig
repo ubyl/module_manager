@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tinetti index{% endblock %}
+{% block title %}ElencoTinetti{% endblock %}
 
 {% block body %}
     <h1>Tinetti</h1>
@@ -34,7 +34,7 @@
                 <th>Cammino</th>
                 <th>Totale Andatura</th>
                 <th>Totale</th>
-                <th>actions</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -67,17 +67,17 @@
                 <td>{{ tinetti.totaleAndatura }}</td>
                 <td>{{ tinetti.totale }}</td>
                 <td>
-                    <a href="{{ path('app_tinetti_show', {'id': tinetti.id}) }}">Mostra</a>
+                    <a href="{{ path('app_tinetti_show', {'id': tinetti.id}) }}">Visualizza</a>
                     <a href="{{ path('app_tinetti_edit', {'id': tinetti.id}) }}">Modifica</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="27">nessuna scheda trovata</td>
+                <td colspan="27">Nessuna scheda disponibile</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_tinetti_new') }}">Crea nuova scheda</a>
+    <a href="{{ path('app_tinetti_new') }}">Nuova scheda</a>
 {% endblock %}

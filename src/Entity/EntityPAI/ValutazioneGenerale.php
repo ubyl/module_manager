@@ -20,6 +20,10 @@ class ValutazioneGenerale
 
     #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern: '/^[^\d]+$/',
+        message: 'Carattere non valido',
+    )]
     private $nome;
 
     #[ORM\Column(type: 'date')]
@@ -29,6 +33,7 @@ class ValutazioneGenerale
 
     #[ORM\Column(type: 'integer')]
     #[Assert\NotBlank]
+    #[Assert\GreaterThan(0)]
     private $n_componenti_nucleo_abitativo;
 
     #[ORM\Column(type: 'boolean')]

@@ -4,6 +4,7 @@ namespace App\Entity\EntityPAI;
 
 use App\Repository\BradenRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BradenRepository::class)]
 #[ORM\Table(name: 'SCHEDA_PAI_braden')]
@@ -16,6 +17,10 @@ class Braden
     private $id;
 
     #[ORM\Column(type: 'string')]
+    #[Assert\Regex(
+        pattern: '/^[^\d]+$/',
+        message: 'Carattere non valido',
+    )]
     private $nome;
 
     #[ORM\Column(type: 'integer')]
@@ -37,6 +42,7 @@ class Braden
     private $frizioneScivolamento;
 
     #[ORM\Column(type: 'date')]
+    #[Assert\Type(\DateTime::class)]
     private $dataValutazione;
 
     #[ORM\Column(type: 'integer')]

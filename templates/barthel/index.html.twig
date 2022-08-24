@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Barthel index{% endblock %}
+{% block title %}ElencoBarthel{% endblock %}
 
 {% block body %}
     <h1>Barthel</h1>
@@ -25,7 +25,7 @@
                 <th>DeambulazioneValida</th>
                 <th>Uso Carrozzina</th>
                 <th>Totale</th>
-                <th>Azioni</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -44,22 +44,22 @@
                 <td>{{ barthel.totaleValutazioneFunzionale }}</td>
                 <td>{{ barthel.trasferimentoLettoSedia }}</td>
                 <td>{{ barthel.scale }}</td>
-                <td>{{ barthel.deambulazione ? 'Yes' : 'No' }}</td>
+                <td>{{ barthel.deambulazione ? 'Si' : 'No' }}</td>
                 <td>{{ barthel.deambulazioneValida }}</td>
                 <td>{{ barthel.usoCarrozzina }}</td>
                 <td>{{ barthel.totale }}</td>
                 <td>
-                    <a href="{{ path('app_barthel_show', {'id': barthel.id}) }}">mostra</a>
-                    <a href="{{ path('app_barthel_edit', {'id': barthel.id}) }}">modifica</a>
+                    <a href="{{ path('app_barthel_show', {'id': barthel.id}) }}">Visualizza</a>
+                    <a href="{{ path('app_barthel_edit', {'id': barthel.id}) }}">Modifica</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="18">nessuna scheda trovata</td>
+                <td colspan="18">Nessuna scheda disponibile</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_barthel_new') }}">Crea nuova scheda</a>
+    <a href="{{ path('app_barthel_new') }}">Nuova scheda</a>
 {% endblock %}

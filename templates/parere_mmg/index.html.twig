@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ParereMMG index{% endblock %}
+{% block title %}ElencoParereMMG{% endblock %}
 
 {% block body %}
     <h1>Parere MMG</h1>
@@ -29,11 +29,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">Nessun parere MMG trovato</td>
+                <td colspan="7">Nessun parere MMG disponibile</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_parere_mmg_new') }}">Crea nuovo parere MMG</a>
+    <a href="{{ path('app_parere_mmg_new') }}">Nuovo parere MMG</a>
 {% endblock %}

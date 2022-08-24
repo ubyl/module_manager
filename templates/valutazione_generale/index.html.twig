@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ValutazioneGenerale{% endblock %}
+{% block title %}ElencoValutazioneGenerale{% endblock %}
 
 {% block body %}
     <h1>Valutazione Generale</h1>
@@ -25,7 +25,7 @@
                 <th>Igene personale</th>
                 <th>Cognitività</th>
                 <th>Comportamento</th>
-                <th>Azioni</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -35,7 +35,7 @@
                 <td>{{ valutazione_generale.nome }}</td>
                 <td>{{ valutazione_generale.dataValutazione ? valutazione_generale.dataValutazione|date('Y-m-d') : '' }}</td>
                 <td>{{ valutazione_generale.nComponentiNucleoAbitativo }}</td>
-                <td>{{ valutazione_generale.rischioInfettivo ? 'Yes' : 'No' }}</td>
+                <td>{{ valutazione_generale.rischioInfettivo ? 'Si' : 'No' }}</td>
                 <td>{{ valutazione_generale.diagnosi }}</td>
                 <td>{{ valutazione_generale.tipologiaValutazione }}</td>
                 <td>{{ valutazione_generale.panf }}</td>
@@ -49,13 +49,13 @@
                 <td>{{ valutazione_generale.cognitivita }}</td>
                 <td>{{ valutazione_generale.comportamento }}</td>
                 <td>
-                    <a href="{{ path('app_valutazione_generale_show', {'id': valutazione_generale.id}) }}">mostra</a>
-                    <a href="{{ path('app_valutazione_generale_edit', {'id': valutazione_generale.id}) }}">modifica</a>
+                    <a href="{{ path('app_valutazione_generale_show', {'id': valutazione_generale.id}) }}">Visualizza</a>
+                    <a href="{{ path('app_valutazione_generale_edit', {'id': valutazione_generale.id}) }}">Modifica</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="19">Nessula valutazione disponibile</td>
+                <td colspan="19">Nessuna scheda disponibile</td>
             </tr>
         {% endfor %}
         </tbody>

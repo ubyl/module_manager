@@ -6,6 +6,7 @@ namespace App\Entity\EntityPAI;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\EntityPAI\SchedaPAI;
 use App\Repository\ValutazioneFiguraProfessionaleRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ValutazioneFiguraProfessionaleRepository::class)]
 #[ORM\Table(name: 'SCHEDA_PAI_valutazione_figura_professionale')]
@@ -16,7 +17,11 @@ class ValutazioneFiguraProfessionale
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'string')]
+    #[Assert\Regex(
+        pattern: '/^[^\d]+$/',
+        message: 'Carattere non valido',
+    )]
     private $nome;
 
     #[ORM\Column(type:"TipoOperatore", nullable:false)]
@@ -35,6 +40,7 @@ class ValutazioneFiguraProfessionale
     private $modalitaTempiMonitoraggio;
 
     #[ORM\Column(type: 'date')]
+    #[Assert\Type(\DateTime::class)]
     private $dataValutazione;
 
     #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idValutazioneFiguraProfessionale')]

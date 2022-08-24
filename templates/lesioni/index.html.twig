@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lesioni index{% endblock %}
+{% block title %}ElencoLesioni{% endblock %}
 
 {% block body %}
     <h1>Lesioni</h1>
@@ -18,7 +18,7 @@
                 <th>Bordi Lesione</th>
                 <th>Cute Perilesionale</th>
                 <th>Note sulla lesione</th>
-                <th>actions</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -35,17 +35,17 @@
                 <td>{{ lesioni.cutePerilesionale }}</td>
                 <td>{{ lesioni.noteSullaLesione }}</td>
                 <td>
-                    <a href="{{ path('app_lesioni_show', {'id': lesioni.id}) }}">Mostra</a>
+                    <a href="{{ path('app_lesioni_show', {'id': lesioni.id}) }}">Visualizza</a>
                     <a href="{{ path('app_lesioni_edit', {'id': lesioni.id}) }}">Modifica</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">Nessuna scheda trovata</td>
+                <td colspan="10">Nessuna scheda disponibile</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_lesioni_new') }}">Crea nuova scheda</a>
+    <a href="{{ path('app_lesioni_new') }}">Nuova scheda</a>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ValutazioneFiguraProfessionale index{% endblock %}
+{% block title %}ElencoValutazioneFiguraProfessionale{% endblock %}
 
 {% block body %}
     <h1>Valutazione Figura Professionale</h1>
@@ -16,7 +16,7 @@
                 <th>Tipo e frequenza</th>
                 <th>Modalità e tempi di monitoraggio degli obbiettivi</th>
                 <th>Data di valutazione</th>
-                <th>Azioni</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -31,17 +31,17 @@
                 <td>{{ valutazione_figura_professionale.modalitaTempiMonitoraggio }}</td>
                 <td>{{ valutazione_figura_professionale.dataValutazione ? valutazione_figura_professionale.dataValutazione|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_valutazione_figura_professionale_show', {'id': valutazione_figura_professionale.id}) }}">Mostra</a>
+                    <a href="{{ path('app_valutazione_figura_professionale_show', {'id': valutazione_figura_professionale.id}) }}">Visualizza</a>
                     <a href="{{ path('app_valutazione_figura_professionale_edit', {'id': valutazione_figura_professionale.id}) }}">Modifica</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">Nessuna valutazione trovata</td>
+                <td colspan="10">Nessuna scheda disponibile</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_valutazione_figura_professionale_new') }}">Crea nuova valutazione</a>
+    <a href="{{ path('app_valutazione_figura_professionale_new') }}">Nuova scheda</a>
 {% endblock %}

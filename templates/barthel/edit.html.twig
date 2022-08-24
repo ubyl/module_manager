@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Barthel{% endblock %}
+{% block title %}ModificaBarthel{% endblock %}
 
 {% block body %}
     <h1>Modifica Barthel</h1>
 
-    {{ include('barthel/_form.html.twig', {'button_label': 'modifica'}) }}
+    {{ include('barthel/_form.html.twig', {'button_label': 'Modifica'}) }}
 
-    <a href="{{ path('app_barthel_index') }}">torna alla lista</a>
+    <a href="{{ path('app_barthel_index') }}">Torna alla lista</a>
 
     {{ include('barthel/_delete_form.html.twig') }}
 {% endblock %}

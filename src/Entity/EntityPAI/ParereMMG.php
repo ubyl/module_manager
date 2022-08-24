@@ -4,6 +4,7 @@ namespace App\Entity\EntityPAI;
 
 use App\Repository\ParereMMGRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ParereMMGRepository::class)]
 #[ORM\Table(name: 'SCHEDA_PAI_parere_mmg')]
@@ -15,7 +16,11 @@ class ParereMMG
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'string')]
+    #[Assert\Regex(
+        pattern: '/^[^\d]+$/',
+        message: 'Carattere non valido',
+    )]
     private $nome;
 
     #[ORM\Column(type: 'string')]

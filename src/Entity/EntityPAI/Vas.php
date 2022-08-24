@@ -2,8 +2,10 @@
 
 namespace App\Entity\EntityPAI;
 
-use App\Repository\VasRepository;
+
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\VasRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: VasRepository::class)]
 #[ORM\Table(name: 'SCHEDA_PAI_vas')]
@@ -16,9 +18,14 @@ class Vas
     private $id;
 
     #[ORM\Column(type: 'string')]
+    #[Assert\Regex(
+        pattern: '/^[^\d]+$/',
+        message: 'Carattere non valido',
+    )]
     private $paziente;
 
     #[ORM\Column(type: 'date')]
+    #[Assert\Type(\DateTime::class)]
     private $data;
 
     #[ORM\Column(type: 'time')]
