@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SchedaPAI index{% endblock %}
+
+{% block body %}
+    <h1>Schede PAI</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id Operatore Principale</th>
+                <th>Id Operatore Secondario Inf</th>
+                <th>Id Operatore Secondario Tdr</th>
+                <th>Id Operatore Secondario Log</th>
+                <th>Id Operatore Secondario Asa</th>
+                <th>Id Operatore Secondario Oss</th>
+                <th>Id Assistito</th>
+                <th>Id Console</th>
+                <th>Id Progetto</th>
+                <th>Operazioni</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for scheda_pai in scheda_pais %}
+            <tr>
+                <td>{{ scheda_pai.id }}</td>
+                <td>{{ scheda_pai.idOperatorePrincipale }}</td>
+                <td>{{ scheda_pai.idOperatoreSecondarioInf ? scheda_pai.idOperatoreSecondarioInf|join(', ') : '' }}</td>
+                <td>{{ scheda_pai.idOperatoreSecondarioTdr ? scheda_pai.idOperatoreSecondarioTdr|join(', ') : '' }}</td>
+                <td>{{ scheda_pai.idOperatoreSecondarioLog ? scheda_pai.idOperatoreSecondarioLog|join(', ') : '' }}</td>
+                <td>{{ scheda_pai.idOperatoreSecondarioAsa ? scheda_pai.idOperatoreSecondarioAsa|join(', ') : '' }}</td>
+                <td>{{ scheda_pai.idOperatoreSecondarioOss ? scheda_pai.idOperatoreSecondarioOss|join(', ') : '' }}</td>
+                <td>{{ scheda_pai.idAssistito }}</td>
+                <td>{{ scheda_pai.idConsole }}</td>
+                <td>{{ scheda_pai.idProgetto }}</td>
+                <td>
+                    <a href="{{ path('app_scheda_pai_show', {'id': scheda_pai.id}) }}">Visualizza</a>
+                    <a href="{{ path('app_scheda_pai_edit', {'id': scheda_pai.id}) }}">Modifica</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Nessuna scheda disponibile</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_scheda_pai_new') }}">Nuova scheda</a>
+{% endblock %}

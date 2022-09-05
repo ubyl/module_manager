@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SchedaPAI{% endblock %}
+
+{% block body %}
+    <h1>Scheda PAI</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ scheda_pai.id }}</td>
+            </tr>
+            <tr>
+                <th>Id Operatore Principale</th>
+                <td>{{ scheda_pai.idOperatorePrincipale }}</td>
+            </tr>
+            <tr> 
+                <th>Id Operatore Secondario Inf</th>
+                <td>{{ scheda_pai.idOperatoreSecondarioInf ? scheda_pai.idOperatoreSecondarioInf|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Id Operatore Secondario Tdr</th>
+                <td>{{ scheda_pai.idOperatoreSecondarioTdr ? scheda_pai.idOperatoreSecondarioTdr|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Id Operatore Secondario Log</th>
+                <td>{{ scheda_pai.idOperatoreSecondarioLog ? scheda_pai.idOperatoreSecondarioLog|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Id Operatore Secondario Asa</th>
+                <td>{{ scheda_pai.idOperatoreSecondarioAsa ? scheda_pai.idOperatoreSecondarioAsa|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Id Operatore Secondario Oss</th>
+                <td>{{ scheda_pai.idOperatoreSecondarioOss ? scheda_pai.idOperatoreSecondarioOss|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Id Assistito</th>
+                <td>{{ scheda_pai.idAssistito }}</td>
+            </tr>
+            <tr>
+                <th>Id Console</th>
+                <td>{{ scheda_pai.idConsole }}</td>
+            </tr>
+            <tr>
+                <th>Id Progetto</th>
+                <td>{{ scheda_pai.idProgetto }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_scheda_pai_index') }}">Torna alla lista</a>
+
+    <a href="{{ path('app_scheda_pai_edit', {'id': scheda_pai.id}) }}">Modifica</a>
+
+    {{ include('scheda_pai/_delete_form.html.twig') }}
+{% endblock %}

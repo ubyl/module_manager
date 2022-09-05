@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EditSchedaPAI{% endblock %}
+
+{% block body %}
+    <h1>Modifica Scheda PAI</h1>
+
+    {{ include('scheda_pai/_form.html.twig', {'button_label': 'Modifica'}) }}
+
+    <a href="{{ path('app_scheda_pai_index') }}">Torna alla lista</a>
+
+    {{ include('scheda_pai/_delete_form.html.twig') }}
+{% endblock %}

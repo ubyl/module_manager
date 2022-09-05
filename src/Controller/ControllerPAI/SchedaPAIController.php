@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Controller\ControllerPAI;
+
+use App\Entity\EntityPAI\SchedaPAI;
+use App\Form\FormPAI\SchedaPAIType;
+use App\Repository\SchedaPAIRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+#[Route('/scheda_pai')]
+class SchedaPAIController extends AbstractController
+{
+    #[Route('/', name: 'app_scheda_pai_index', methods: ['GET'])]
+    public function index(SchedaPAIRepository $schedaPAIRepository): Response
+    {
+        return $this->render('scheda_pai/index.html.twig', [
+            'scheda_pais' => $schedaPAIRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/new', name: 'app_scheda_pai_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, SchedaPAIRepository $schedaPAIRepository): Response
+    {
+        $schedaPAI = new SchedaPAI();
+        $form = $this->createForm(SchedaPAIType::class, $schedaPAI);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $schedaPAIRepository->add($schedaPAI, true);
+
+            return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('scheda_pai/new.html.twig', [
+            'scheda_pai' => $schedaPAI,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_scheda_pai_show', methods: ['GET'])]
+    public function show(SchedaPAI $schedaPAI): Response
+    {
+        return $this->render('scheda_pai/show.html.twig', [
+            'scheda_pai' => $schedaPAI,
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'app_scheda_pai_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, SchedaPAI $schedaPAI, SchedaPAIRepository $schedaPAIRepository): Response
+    {
+        $form = $this->createForm(SchedaPAIType::class, $schedaPAI);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $schedaPAIRepository->add($schedaPAI, true);
+
+            return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('scheda_pai/edit.html.twig', [
+            'scheda_pai' => $schedaPAI,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_scheda_pai_delete', methods: ['POST'])]
+    public function delete(Request $request, SchedaPAI $schedaPAI, SchedaPAIRepository $schedaPAIRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$schedaPAI->getId(), $request->request->get('_token'))) {
+            $schedaPAIRepository->remove($schedaPAI, true);
+        }
+
+        return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
+    }
+}

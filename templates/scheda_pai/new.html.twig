@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New SchedaPAI{% endblock %}
+
+{% block body %}
+    <h1>Cre nuova Scheda PAI</h1>
+
+    {{ include('scheda_pai/_form.html.twig') }}
+
+    <a href="{{ path('app_scheda_pai_index') }}">Torna alla lista</a>
+{% endblock %}
