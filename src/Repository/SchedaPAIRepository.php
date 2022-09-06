@@ -39,6 +39,15 @@ class SchedaPAIRepository extends ServiceEntityRepository
         }
     }
 
+    public function contaSchedePai(): int
+    {
+        return $this->createQueryBuilder('s')
+        ->select('count(s.id)')
+        ->getQuery()
+        ->getSingleScalarResult();
+
+    }
+
 //    /**
 //     * @return SchedaPAI[] Returns an array of SchedaPAI objects
 //     */

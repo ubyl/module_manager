@@ -13,12 +13,21 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/scheda_pai')]
 class SchedaPAIController extends AbstractController
 {
-    #[Route('/', name: 'app_scheda_pai_index', methods: ['GET'])]
-    public function index(SchedaPAIRepository $schedaPAIRepository): Response
+    #[Route('/{page}', name: 'app_scheda_pai_index',requirements: ['page' => '\d+'], methods: ['GET'])]
+    public function index(SchedaPAIRepository $schedaPAIRepository, int $page = 1): Response
     {
+        $schedePerPagina = 2;
+        $arrivo = $schedePerPagina*$page;
+        $totaleSchede = $schedaPAIRepository->contaSchedePai();
+        if ($page >1){
         return $this->render('scheda_pai/index.html.twig', [
-            'scheda_pais' => $schedaPAIRepository->findAll(),
+            'scheda_pais' => $schedaPAIRepository->findBy([],$orderBy = null, $limit = $arrivo, $offset = $schedePerPagina)]);
+        }
+        else{
+        return $this->render('scheda_pai/index.html.twig', [
+            'scheda_pais' => $schedaPAIRepository->findBy([],$orderBy = null, $limit = $arrivo, $offset = $schedePerPagina),
         ]);
+        }
     }
 
     #[Route('/new', name: 'app_scheda_pai_new', methods: ['GET', 'POST'])]
