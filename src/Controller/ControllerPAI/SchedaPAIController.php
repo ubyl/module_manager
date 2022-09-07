@@ -14,20 +14,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class SchedaPAIController extends AbstractController
 {
     #[Route('/{page}', name: 'app_scheda_pai_index',requirements: ['page' => '\d+'], methods: ['GET'])]
-    public function index(SchedaPAIRepository $schedaPAIRepository, int $page = 1): Response
+    public function index(SchedaPAIRepository $schedaPAIRepository, int $page=1): Response
     {
         $schedePerPagina = 2;
-        $arrivo = $schedePerPagina*$page;
+        $offset = $schedePerPagina*$page-$schedePerPagina;
         $totaleSchede = $schedaPAIRepository->contaSchedePai();
-        if ($page >1){
+        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
+        
         return $this->render('scheda_pai/index.html.twig', [
-            'scheda_pais' => $schedaPAIRepository->findBy([],$orderBy = null, $limit = $arrivo, $offset = $schedePerPagina)]);
-        }
-        else{
-        return $this->render('scheda_pai/index.html.twig', [
-            'scheda_pais' => $schedaPAIRepository->findBy([],$orderBy = null, $limit = $arrivo, $offset = $schedePerPagina),
-        ]);
-        }
+            'scheda_pais' => $schedaPAIRepository->findBy([], null, $schedePerPagina, $offset ),
+            'pagina'=>$page,
+            'pagine_totali'=>$pagineTotali]);
     }
 
     #[Route('/new', name: 'app_scheda_pai_new', methods: ['GET', 'POST'])]
@@ -49,7 +46,7 @@ class SchedaPAIController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_scheda_pai_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_scheda_pai_show', methods: ['GET'])]
     public function show(SchedaPAI $schedaPAI): Response
     {
         return $this->render('scheda_pai/show.html.twig', [

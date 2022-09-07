@@ -1,0 +1,36 @@
+# config/packages/workflow.yaml
+framework:
+    workflows:
+        blog_publishing:
+            type: 'workflow' # or 'state_machine'
+            audit_trail:
+                enabled: true
+            marking_store:
+                type: 'method'
+                property: 'currentPlace'
+            supports:
+                - App\Entity\EntityPAI\SchedaPAI
+            initial_marking: nuova
+            places:
+                - nuova
+                - approvata
+                - attiva
+                - in_attesa_di_chiusura
+                - chiusa
+                - chiusa_con_rinnovo
+            transitions:
+                approva:
+                    from: nuova
+                    to:   approvata
+                attiva:
+                    from: approvata
+                    to:   attiva
+                attendi:
+                    from: attiva
+                    to:   in_attesa_di_chiusura
+                chiudi:
+                    from: in_attesa_di_chiusura
+                    to: chiusa
+                chiudi_e_rinnova:
+                    from: in_attesa_di_chiusura
+                    to: chiusa_con_rinnovo

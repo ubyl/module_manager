@@ -74,6 +74,10 @@ class SchedaPAI
     #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Lesioni::class)]
     private Collection $idLesioni;
 
+    #[ORM\Column(type: 'string')]
+    private $currentPlace;
+
+
     public function __construct()
     {
         $this->idValutazioneFiguraProfessionale = new ArrayCollection();
@@ -443,6 +447,16 @@ class SchedaPAI
         }
 
         return $this;
+    }
+
+    public function getCurrentPlace()
+    {
+        return $this->currentPlace;
+    }
+
+    public function setCurrentPlace($currentPlace, $context = [])
+    {
+        $this->currentPlace = $currentPlace;
     }
 
 }

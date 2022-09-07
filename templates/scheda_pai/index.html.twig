@@ -18,7 +18,9 @@
                 <th>Id Assistito</th>
                 <th>Id Console</th>
                 <th>Id Progetto</th>
+                <th>Stato</th>
                 <th>Operazioni</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -34,6 +36,7 @@
                 <td>{{ scheda_pai.idAssistito }}</td>
                 <td>{{ scheda_pai.idConsole }}</td>
                 <td>{{ scheda_pai.idProgetto }}</td>
+                <td>{{ scheda_pai.currentPlace }}</td>
                 <td>
                     <a href="{{ path('app_scheda_pai_show', {'id': scheda_pai.id}) }}">Visualizza</a>
                     <a href="{{ path('app_scheda_pai_edit', {'id': scheda_pai.id}) }}">Modifica</a>
@@ -50,16 +53,16 @@
     <a href="{{ path('app_scheda_pai_new') }}">Nuova scheda</a>
     
 <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
+   <ul class="pagination justify-content-center">
+       <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="{{ path('app_scheda_pai_index') }}"><<</a></li>
+        <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="{{ path('app_scheda_pai_index', {'page':pagina-1}) }}"><</a></li>
+    {% for i in 1..pagine_totali %}
+        {% if i <= pagina + 1 and i >= pagina - 1 %}
+            <li class="page-item"><a class="page-link" href="{{ path('app_scheda_pai_index', {'page':i}) }}">{{i}}</a></li>
+        {% endif %}
+    {% endfor %}
+    <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="{{ path('app_scheda_pai_index', {'page':pagina+1}) }}">></a></li>
+      <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="{{ path('app_scheda_pai_index', {'page':pagine_totali}) }}">>></a></li>
   </ul>
 </nav>
 {% endblock %}
