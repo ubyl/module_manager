@@ -5,18 +5,27 @@ namespace App\Controller\ControllerPAI;
 use App\Entity\EntityPAI\SchedaPAI;
 use App\Form\FormPAI\SchedaPAIType;
 use App\Repository\SchedaPAIRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Workflow\WorkflowInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 #[Route('/scheda_pai')]
 class SchedaPAIController extends AbstractController
 {
+    private $workflow;
+
+    public function __construct(WorkflowInterface $schedePaiCreatingStateMachine)
+    {
+        $this->workflow = $schedePaiCreatingStateMachine;
+    }
+
     #[Route('/{page}', name: 'app_scheda_pai_index',requirements: ['page' => '\d+'], methods: ['GET'])]
     public function index(SchedaPAIRepository $schedaPAIRepository, int $page=1): Response
     {
-        $schedePerPagina = 2;
+        $schedePerPagina = 10;
         $offset = $schedePerPagina*$page-$schedePerPagina;
         $totaleSchede = $schedaPAIRepository->contaSchedePai();
         $pagineTotali = ceil($totaleSchede/$schedePerPagina);
@@ -35,8 +44,11 @@ class SchedaPAIController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $schedaPAI->setCurrentPlace('nuova');
+            if($this->workflow->can($schedaPAI, 'approva')){
+                $this->workflow->apply($schedaPAI, 'approva');
+            }
             $schedaPAIRepository->add($schedaPAI, true);
-
             return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
         }
 

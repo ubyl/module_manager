@@ -75,7 +75,7 @@ class SchedaPAI
     private Collection $idLesioni;
 
     #[ORM\Column(type: 'string')]
-    private $currentPlace;
+    private $currentPlace = 'nuova';
 
 
     public function __construct()

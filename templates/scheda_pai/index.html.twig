@@ -20,6 +20,7 @@
                 <th>Id Progetto</th>
                 <th>Stato</th>
                 <th>Operazioni</th>
+                <th>Schede/Valutazioni</th>
                 
             </tr>
         </thead>
@@ -40,6 +41,27 @@
                 <td>
                     <a href="{{ path('app_scheda_pai_show', {'id': scheda_pai.id}) }}">Visualizza</a>
                     <a href="{{ path('app_scheda_pai_edit', {'id': scheda_pai.id}) }}">Modifica</a>
+                </td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Seleziona
+                        </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_valutazione_generale_new')}}">Valutazione Generale</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_valutazione_figura_professionale_new')}}">Valutazione Figura Professionale</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_parere_mmg_new')}}">Parere MMG</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_chiusura_servizio_new')}}">Chiusura servizio</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_barthel_new')}}">Barthel</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_form_pai_braden_new')}}">Braden</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_s_p_m_s_q_new')}}">SPMSQ</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_tinetti_new')}}">Tinetti</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_vas_new')}}">Vas</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_lesioni_new')}}">Lesioni</a></li>
+                        
+                    </ul>
+                    </div>
+                    
                 </td>
             </tr>
         {% else %}

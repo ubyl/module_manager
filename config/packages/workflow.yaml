@@ -1,8 +1,8 @@
 # config/packages/workflow.yaml
 framework:
     workflows:
-        blog_publishing:
-            type: 'workflow' # or 'state_machine'
+        schede_pai_creating:
+            type: 'state_machine'
             audit_trail:
                 enabled: true
             marking_store:
@@ -12,12 +12,12 @@ framework:
                 - App\Entity\EntityPAI\SchedaPAI
             initial_marking: nuova
             places:
-                - nuova
-                - approvata
-                - attiva
-                - in_attesa_di_chiusura
-                - chiusa
-                - chiusa_con_rinnovo
+                nuova: ~
+                approvata: ~
+                attiva: ~
+                in_attesa_di_chiusura: ~
+                chiusa: ~
+                chiusa_con_rinnovo: ~
             transitions:
                 approva:
                     from: nuova
@@ -34,3 +34,4 @@ framework:
                 chiudi_e_rinnova:
                     from: in_attesa_di_chiusura
                     to: chiusa_con_rinnovo
+                
