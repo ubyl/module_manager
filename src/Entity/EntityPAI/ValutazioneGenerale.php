@@ -86,6 +86,9 @@ class ValutazioneGenerale
     #[Assert\NotBlank]
     private $comportamento;
 
+    #[ORM\OneToOne(targetEntity: SchedaPAI::class, mappedBy: 'idValutazioneGenerale',  cascade: ['persist'])]
+    private $schedaPAI;
+
     #[ORM\ManyToMany(inversedBy: 'valutazioneGenerale', targetEntity: AltraTipologiaAssistenza::class)]
     private Collection $altra_tipologia_assistenza;
 
@@ -291,6 +294,18 @@ class ValutazioneGenerale
     public function setComportamento(string $comportamento): self
     {
         $this->comportamento = $comportamento;
+
+        return $this;
+    }
+
+    public function getSchedaPAI(): ?SchedaPAI
+    {
+        return $this->schedaPAI;
+    }
+
+    public function setSchedaPAI(?SchedaPAI $schedaPAI): self
+    {
+        $this->schedaPAI = $schedaPAI;
 
         return $this;
     }

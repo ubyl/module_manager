@@ -29,6 +29,9 @@ class ParereMMG
     #[ORM\Column(type: 'text', nullable: true)]
     private $descrizione;
 
+    #[ORM\OneToOne(targetEntity: SchedaPAI::class, mappedBy: 'idParereMmg',  cascade: ['persist'])]
+    private $schedaPAI;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -66,6 +69,17 @@ class ParereMMG
     public function setDescrizione(?string $descrizione): self
     {
         $this->descrizione = $descrizione;
+
+        return $this;
+    }
+    public function getSchedaPAI(): ?SchedaPAI
+    {
+        return $this->schedaPAI;
+    }
+
+    public function setSchedaPAI(?SchedaPAI $schedaPAI): self
+    {
+        $this->schedaPAI = $schedaPAI;
 
         return $this;
     }

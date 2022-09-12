@@ -44,16 +44,16 @@ class SchedaPAI
     #[ORM\Column(type: 'integer')]
     private $idProgetto;
 
-    #[ORM\OneToOne(targetEntity: ValutazioneGenerale::class, cascade: ['persist', 'remove'])]
-    private $id_valutazione_generale;
+    #[ORM\OneToOne(targetEntity: ValutazioneGenerale::class, inversedBy: 'schedaPAI', cascade: ['persist', 'remove'])]
+    private $idValutazioneGenerale;
 
     #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: ValutazioneFiguraProfessionale::class)]
     private $idValutazioneFiguraProfessionale;
 
-    #[ORM\OneToOne(targetEntity: ParereMMG::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: ParereMMG::class, inversedBy: 'schedaPAI', cascade: ['persist', 'remove'])]
     private $idParereMmg;
 
-    #[ORM\OneToOne(targetEntity: ChiusuraServizio::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: ChiusuraServizio::class,inversedBy: 'schedaPAI', cascade: ['persist', 'remove'])]
     private $idChiusuraServizio;
 
     #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Barthel::class)]
@@ -205,12 +205,12 @@ class SchedaPAI
 
     public function getIdValutazioneGenerale(): ?ValutazioneGenerale
     {
-        return $this->id_valutazione_generale;
+        return $this->idValutazioneGenerale;
     }
 
-    public function setIdValutazioneGenerale(?ValutazioneGenerale $id_valutazione_generale): self
+    public function setIdValutazioneGenerale(?ValutazioneGenerale $idValutazioneGenerale): self
     {
-        $this->id_valutazione_generale = $id_valutazione_generale;
+        $this->idValutazioneGenerale = $idValutazioneGenerale;
 
         return $this;
     }

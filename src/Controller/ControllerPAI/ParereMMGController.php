@@ -3,16 +3,24 @@
 namespace App\Controller\ControllerPAI;
 
 use App\Entity\EntityPAI\ParereMMG;
+use App\Entity\EntityPAI\SchedaPAI;
 use App\Form\FormPAI\ParereMMGFormType;
 use App\Repository\ParereMMGRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 #[Route('/parere_mmg')]
 class ParereMMGController extends AbstractController
 {
+    public function __construct(ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+        $this->entityManager = $this->managerRegistry->getManager();
+    }
     #[Route('/', name: 'app_parere_mmg_index', methods: ['GET'])]
     public function index(ParereMMGRepository $parereMMGRepository): Response
     {
@@ -22,16 +30,25 @@ class ParereMMGController extends AbstractController
     }
 
     #[Route('/new', name: 'app_parere_mmg_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ParereMMGRepository $parereMMGRepository): Response
+    public function new(Request $request): Response
     {
         $parereMMG = new ParereMMG();
         $form = $this->createForm(ParereMMGFormType::class, $parereMMG);
         $form->handleRequest($request);
+        $id_pai = $request->query->get('id_pai');
+        $SchedaPAIRepository = $this->entityManager->getRepository(SchedaPAI::class);
+        $schedaPai = $SchedaPAIRepository->find($id_pai);
+        if (!$schedaPai) {
+            return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $schedaPai->setIdParereMmg($parereMMG);
+            $parereMMGRepository = $this->entityManager->getRepository(ParereMMG::class);
             $parereMMGRepository->add($parereMMG, true);
+            $this->entityManager->flush();
 
-            return $this->redirectToRoute('app_parere_mmg_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('parere_mmg/new.html.twig', [

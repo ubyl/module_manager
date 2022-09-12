@@ -2,17 +2,30 @@
 
 namespace App\Controller\ControllerPAI;
 
+use App\Entity\EntityPAI\SchedaPAI;
 use App\Entity\EntityPAI\ValutazioneGenerale;
 use App\Form\FormPAI\ValutazioneGeneraleFormType;
 use App\Repository\ValutazioneGeneraleRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Workflow\WorkflowInterface;
 
 #[Route('/valutazione_generale')]
 class ValutazioneGeneraleController extends AbstractController
 {
+    private $entityManager;
+    private $managerRegistry;
+    private $workflow;
+
+    public function __construct(ManagerRegistry $managerRegistry, WorkflowInterface $schedePaiCreatingStateMachine)
+    {
+        $this->managerRegistry = $managerRegistry;
+        $this->entityManager = $this->managerRegistry->getManager();
+        $this->workflow = $schedePaiCreatingStateMachine;
+    }
     #[Route('/', name: 'app_valutazione_generale_index', methods: ['GET'])]
     public function index(ValutazioneGeneraleRepository $valutazioneGeneraleRepository): Response
     {
@@ -22,16 +35,29 @@ class ValutazioneGeneraleController extends AbstractController
     }
 
     #[Route('/new', name: 'app_valutazione_generale_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ValutazioneGeneraleRepository $valutazioneGeneraleRepository): Response
+    public function new(Request $request): Response
     {
         $valutazioneGenerale = new ValutazioneGenerale();
         $form = $this->createForm(ValutazioneGeneraleFormType::class, $valutazioneGenerale);
         $form->handleRequest($request);
+        $id_pai = $request->query->get('id_pai');
+        $SchedaPAIRepository = $this->entityManager->getRepository(SchedaPAI::class);
+        $schedaPai = $SchedaPAIRepository->find($id_pai);
+        if (!$schedaPai) {
+            return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $valutazioneGeneraleRepository->add($valutazioneGenerale, true);
 
-            return $this->redirectToRoute('app_valutazione_generale_index', [], Response::HTTP_SEE_OTHER);
+            $schedaPai->setIdValutazioneGenerale($valutazioneGenerale);
+            $valutazioneGeneraleRepository = $this->entityManager->getRepository(ValutazioneGenerale::class);
+            $valutazioneGeneraleRepository->add($valutazioneGenerale, true);
+            if($this->workflow->can($schedaPai, 'attiva')){
+                $this->workflow->apply($schedaPai, 'attiva');
+            }
+            $this->entityManager->flush();
+            
+            return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('valutazione_generale/new.html.twig', [
@@ -69,7 +95,7 @@ class ValutazioneGeneraleController extends AbstractController
     #[Route('/{id}', name: 'app_valutazione_generale_delete', methods: ['POST'])]
     public function delete(Request $request, ValutazioneGenerale $valutazioneGenerale, ValutazioneGeneraleRepository $valutazioneGeneraleRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$valutazioneGenerale->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $valutazioneGenerale->getId(), $request->request->get('_token'))) {
             $valutazioneGeneraleRepository->remove($valutazioneGenerale, true);
         }
 

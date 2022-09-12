@@ -30,6 +30,9 @@ class ChiusuraServizio
     #[Assert\Type(\DateTime::class)]
     private $dataValutazione;
 
+    #[ORM\OneToOne(targetEntity: SchedaPAI::class, mappedBy: 'idChiusuraServizio',  cascade: ['persist'])]
+    private $schedaPAI;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -67,6 +70,17 @@ class ChiusuraServizio
     public function setDataValutazione(\DateTimeInterface $dataValutazione): self
     {
         $this->dataValutazione = $dataValutazione;
+
+        return $this;
+    }
+    public function getSchedaPAI(): ?SchedaPAI
+    {
+        return $this->schedaPAI;
+    }
+
+    public function setSchedaPAI(?SchedaPAI $schedaPAI): self
+    {
+        $this->schedaPAI = $schedaPAI;
 
         return $this;
     }
