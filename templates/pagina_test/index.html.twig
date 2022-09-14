@@ -1,15 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Module Manager!{% endblock %}
+{% block title %}Pagina Principale{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Module manager! </h1>
-    
+    <h1>Menù Principale Admin</h1>
+<div class="d-grid gap-2"> 
+  <a class="btn btn-primary" href="{{ path('app_scheda_pai_index') }}">Schede Pai</a>
+  <a class="btn btn-secondary" href="{{ path('app_valutazione_generale_index') }}">Valutazioni Generali<a/>
+  <a class="btn btn-success" href="{{ path('app_valutazione_figura_professionale_index') }}">Valutazioni Professionali<a/>
+  <a class="btn btn-danger" href="{{ path('app_parere_mmg_index') }}">Pareri MMG<a/>
+  <a class="btn btn-warning" href="{{ path('app_chiusura_servizio_index') }}">Chiusure servizi<a/>
+  <a class="btn btn-info" href="{{ path('app_barthel_index') }}">Schede Barthel<a/>
+  <a class="btn btn-light" href="{{ path('app_form_pai_braden_index') }}">Schede Braden<a/>
+  <a class="btn btn-dark" href="{{ path('app_s_p_m_s_q_index') }}">Schede SPMSQ<a/>
+  <a class="btn btn-primary" href="{{ path('app_tinetti_index') }}">Schede Tinetti<a/>
+  <a class="btn btn-secondary" href="{{ path('app_vas_index') }}">Schede Vas<a/>
+  <a class="btn btn-success" href="{{ path('app_lesioni_index') }}">Schede Lesioni<a/>
 </div>
+
 {% endblock %}

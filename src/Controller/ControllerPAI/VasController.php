@@ -5,14 +5,21 @@ namespace App\Controller\ControllerPAI;
 use App\Entity\EntityPAI\Vas;
 use App\Form\FormPAI\VasFormType;
 use App\Repository\VasRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\EntityPAI\SchedaPAI;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/vas')]
 class VasController extends AbstractController
 {
+    public function __construct(ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+        $this->entityManager = $this->managerRegistry->getManager();
+    }
     #[Route('/', name: 'app_vas_index', methods: ['GET'])]
     public function index(VasRepository $vasRepository): Response
     {
@@ -22,20 +29,29 @@ class VasController extends AbstractController
     }
 
     #[Route('/new', name: 'app_vas_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, VasRepository $vasRepository): Response
+    public function new(Request $request): Response
     {
-        $va = new Vas();
-        $form = $this->createForm(VasFormType::class, $va);
+        $vas = new Vas();
+        $form = $this->createForm(VasFormType::class, $vas);
         $form->handleRequest($request);
-
+        $id_pai = $request->query->get('id_pai');
+        $SchedaPAIRepository = $this->entityManager->getRepository(SchedaPAI::class);
+        $schedaPai = $SchedaPAIRepository->find($id_pai);
+        if (!$schedaPai) {
+            return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
+        }
         if ($form->isSubmitted() && $form->isValid()) {
-            $vasRepository->add($va, true);
+            $schedaPai->addIdVas($vas);
+            $vasRepository = $this->entityManager->getRepository(Vas::class);
+            $vasRepository->add($vas, true);
+            $this->entityManager->flush();
+
 
             return $this->redirectToRoute('app_vas_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('vas/new.html.twig', [
-            'va' => $va,
+            'va' => $vas,
             'form' => $form,
         ]);
     }

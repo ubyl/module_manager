@@ -3,16 +3,23 @@
 namespace App\Controller\ControllerPAI;
 
 use App\Entity\EntityPAI\Tinetti;
+use App\Entity\EntityPAI\SchedaPAI;
 use App\Form\FormPAI\TinettiFormType;
 use App\Repository\TinettiRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/tinetti')]
 class TinettiController extends AbstractController
 {
+    public function __construct(ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+        $this->entityManager = $this->managerRegistry->getManager();
+    }
     #[Route('/', name: 'app_tinetti_index', methods: ['GET'])]
     public function index(TinettiRepository $tinettiRepository): Response
     {
@@ -22,14 +29,23 @@ class TinettiController extends AbstractController
     }
 
     #[Route('/new', name: 'app_tinetti_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, TinettiRepository $tinettiRepository): Response
+    public function new(Request $request): Response
     {
         $tinetti = new Tinetti();
         $form = $this->createForm(TinettiFormType::class, $tinetti);
         $form->handleRequest($request);
-
+        $id_pai = $request->query->get('id_pai');
+        $SchedaPAIRepository = $this->entityManager->getRepository(SchedaPAI::class);
+        $schedaPai = $SchedaPAIRepository->find($id_pai);
+        if (!$schedaPai) {
+            return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
+        }
         if ($form->isSubmitted() && $form->isValid()) {
+            $schedaPai->addIdTinetti($tinetti);
+            $tinettiRepository = $this->entityManager->getRepository(Tinetti::class);
             $tinettiRepository->add($tinetti, true);
+            $this->entityManager->flush();
+
 
             return $this->redirectToRoute('app_tinetti_index', [], Response::HTTP_SEE_OTHER);
         }

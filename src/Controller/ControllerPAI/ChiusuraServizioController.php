@@ -2,17 +2,23 @@
 
 namespace App\Controller\ControllerPAI;
 
+use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\EntityPAI\ChiusuraServizio;
+use Symfony\Component\HttpFoundation\Request;
 use App\Form\FormPAI\ChiusuraServizioFormType;
 use App\Repository\ChiusuraServizioRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/chiusura_servizio')]
 class ChiusuraServizioController extends AbstractController
 {
+    public function __construct(ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+        $this->entityManager = $this->managerRegistry->getManager();
+    }
     #[Route('/', name: 'app_chiusura_servizio_index', methods: ['GET'])]
     public function index(ChiusuraServizioRepository $chiusuraServizioRepository): Response
     {
@@ -22,16 +28,24 @@ class ChiusuraServizioController extends AbstractController
     }
 
     #[Route('/new', name: 'app_chiusura_servizio_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ChiusuraServizioRepository $chiusuraServizioRepository): Response
+    public function new(Request $request): Response
     {
         $chiusuraServizio = new ChiusuraServizio();
         $form = $this->createForm(ChiusuraServizioFormType::class, $chiusuraServizio);
         $form->handleRequest($request);
-
+        $id_pai = $request->query->get('id_pai');
+        $SchedaPAIRepository = $this->entityManager->getRepository(SchedaPAI::class);
+        $schedaPai = $SchedaPAIRepository->find($id_pai);
+        if (!$schedaPai) {
+            return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
+        }
         if ($form->isSubmitted() && $form->isValid()) {
+            $schedaPai->setIdChiusuraServizio($chiusuraServizio);
+            $chiusuraServizioRepository = $this->entityManager->getRepository(ChiusuraServizio::class);
             $chiusuraServizioRepository->add($chiusuraServizio, true);
+            $this->entityManager->flush();
 
-            return $this->redirectToRoute('app_chiusura_servizio_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('chiusura_servizio/new.html.twig', [

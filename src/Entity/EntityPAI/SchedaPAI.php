@@ -397,22 +397,22 @@ class SchedaPAI
         return $this->idVas;
     }
 
-    public function addIdVa(Vas $idVa): self
+    public function addIdVas(Vas $idVas): self
     {
-        if (!$this->idVas->contains($idVa)) {
-            $this->idVas[] = $idVa;
-            $idVa->setSchedaPAI($this);
+        if (!$this->idVas->contains($idVas)) {
+            $this->idVas[] = $idVas;
+            $idVas->setSchedaPAI($this);
         }
 
         return $this;
     }
 
-    public function removeIdVa(Vas $idVa): self
+    public function removeIdVas(Vas $idVas): self
     {
-        if ($this->idVas->removeElement($idVa)) {
+        if ($this->idVas->removeElement($idVas)) {
             // set the owning side to null (unless already changed)
-            if ($idVa->getSchedaPAI() === $this) {
-                $idVa->setSchedaPAI(null);
+            if ($idVas->getSchedaPAI() === $this) {
+                $idVas->setSchedaPAI(null);
             }
         }
 

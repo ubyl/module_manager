@@ -20,7 +20,7 @@
                 <th>Id Progetto</th>
                 <th>Stato</th>
                 <th>Operazioni</th>
-                <th>Schede/Valutazioni</th>
+                <th>Crea Schede/Valutazioni</th>
                 
             </tr>
         </thead>
@@ -39,8 +39,13 @@
                 <td>{{ scheda_pai.idProgetto }}</td>
                 <td>{{ scheda_pai.currentPlace }}</td>
                 <td>
-                    <a href="{{ path('app_scheda_pai_show', {'id': scheda_pai.id}) }}">Visualizza</a>
-                    <a href="{{ path('app_scheda_pai_edit', {'id': scheda_pai.id}) }}">Modifica</a>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Apri
+                        </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_scheda_pai_show', {'id': scheda_pai.id}) }}">Visualizza</a>
+                        <li><a class="dropdown-item" href="{{ path('app_scheda_pai_edit', {'id': scheda_pai.id}) }}">Modifica</a>
                 </td>
                 <td>
                     <div class="btn-group" role="group">
@@ -48,16 +53,16 @@
                         Seleziona
                         </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ path('app_valutazione_generale_new', {'id_pai': scheda_pai.id})}}">Valutazione Generale</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_valutazione_figura_professionale_new', {'id_pai': scheda_pai.id})}}">Valutazione Figura Professionale</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_parere_mmg_new', {'id_pai': scheda_pai.id})}}">Parere MMG</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_chiusura_servizio_new', {'id_pai': scheda_pai.id})}}">Chiusura servizio</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_barthel_new', {'id_pai': scheda_pai.id})}}">Barthel</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_form_pai_braden_new', {'id_pai': scheda_pai.id})}}">Braden</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_s_p_m_s_q_new', {'id_pai': scheda_pai.id})}}">SPMSQ</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_tinetti_new', {'id_pai': scheda_pai.id})}}">Tinetti</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_vas_new', {'id_pai': scheda_pai.id})}}">Vas</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_lesioni_new', {'id_pai': scheda_pai.id})}}">Lesioni</a></li>
+                        <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'approvata' %}disabled{% endif %}" href="{{ path('app_valutazione_generale_new', {'id_pai': scheda_pai.id})}}">Valutazione Generale</a></li>
+                        <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_valutazione_figura_professionale_new', {'id_pai': scheda_pai.id})}}">Valutazione Figura Professionale</a></li>
+                        <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_parere_mmg_new', {'id_pai': scheda_pai.id})}}">Parere MMG</a></li>
+                        <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'in_attesa_di_chiusura' %}disabled{% endif %}" href="{{ path('app_chiusura_servizio_new', {'id_pai': scheda_pai.id})}}">Chiusura servizio</a></li>
+                        <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_barthel_new', {'id_pai': scheda_pai.id})}}">Barthel</a></li>
+                        <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_form_pai_braden_new', {'id_pai': scheda_pai.id})}}">Braden</a></li>
+                        <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_s_p_m_s_q_new', {'id_pai': scheda_pai.id})}}">SPMSQ</a></li>
+                        <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_tinetti_new', {'id_pai': scheda_pai.id})}}">Tinetti</a></li>
+                        <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_vas_new', {'id_pai': scheda_pai.id})}}">Vas</a></li>
+                        <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_lesioni_new', {'id_pai': scheda_pai.id})}}">Lesioni</a></li>
                         
                     </ul>
                     </div>
@@ -72,7 +77,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_scheda_pai_new') }}">Nuova scheda</a>
+    <a class="btn btn-success" href="{{ path('app_scheda_pai_new') }}">Nuova scheda</a>
     
 <nav aria-label="Page navigation example">
    <ul class="pagination justify-content-center">

@@ -3,16 +3,23 @@
 namespace App\Controller\ControllerPAI;
 
 use App\Entity\EntityPAI\Lesioni;
+use App\Entity\EntityPAI\SchedaPAI;
 use App\Form\FormPAI\LesioniFormType;
 use App\Repository\LesioniRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/lesioni')]
 class LesioniController extends AbstractController
 {
+    public function __construct(ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+        $this->entityManager = $this->managerRegistry->getManager();
+    }
     #[Route('/', name: 'app_lesioni_index', methods: ['GET'])]
     public function index(LesioniRepository $lesioniRepository): Response
     {
@@ -22,14 +29,22 @@ class LesioniController extends AbstractController
     }
 
     #[Route('/new', name: 'app_lesioni_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, LesioniRepository $lesioniRepository): Response
+    public function new(Request $request): Response
     {
         $lesioni = new Lesioni();
         $form = $this->createForm(LesioniFormType::class, $lesioni);
         $form->handleRequest($request);
-
+        $id_pai = $request->query->get('id_pai');
+        $SchedaPAIRepository = $this->entityManager->getRepository(SchedaPAI::class);
+        $schedaPai = $SchedaPAIRepository->find($id_pai);
+        if (!$schedaPai) {
+            return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
+        }
         if ($form->isSubmitted() && $form->isValid()) {
+            $schedaPai->addIdLesioni($lesioni);
+            $lesioniRepository = $this->entityManager->getRepository(Lesioni::class);
             $lesioniRepository->add($lesioni, true);
+            $this->entityManager->flush();
 
             return $this->redirectToRoute('app_lesioni_index', [], Response::HTTP_SEE_OTHER);
         }
