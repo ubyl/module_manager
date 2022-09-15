@@ -38,6 +38,14 @@ class BradenRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function contaSchede(): int
+    {
+        return $this->createQueryBuilder('s')
+        ->select('count(s.id)')
+        ->getQuery()
+        ->getSingleScalarResult();
+
+    }
 
 //    /**
 //     * @return Braden[] Returns an array of Braden objects

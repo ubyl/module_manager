@@ -15,16 +15,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/valutazione_figura_professionale')]
 class ValutazioneFiguraProfessionaleController extends AbstractController
 {
+    private $entityManager;
+    private $managerRegistry;
+
     public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->managerRegistry = $managerRegistry;
         $this->entityManager = $this->managerRegistry->getManager();
     }
-    #[Route('/', name: 'app_valutazione_figura_professionale_index', methods: ['GET'])]
-    public function index(ValutazioneFiguraProfessionaleRepository $valutazioneFiguraProfessionaleRepository): Response
+    #[Route('/{page}', name: 'app_valutazione_figura_professionale_index',requirements: ['page' => '\d+'], methods: ['GET'])]
+    public function index(ValutazioneFiguraProfessionaleRepository $valutazioneFiguraProfessionaleRepository, int $page=1): Response
     {
+        $schedePerPagina = 10;
+        $offset = $schedePerPagina*$page-$schedePerPagina;
+        $totaleSchede = $valutazioneFiguraProfessionaleRepository->contaSchede();
+        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
         return $this->render('valutazione_figura_professionale/index.html.twig', [
-            'valutazione_figura_professionales' => $valutazioneFiguraProfessionaleRepository->findAll(),
+            'valutazione_figura_professionales' => $valutazioneFiguraProfessionaleRepository->findBy([], null, $schedePerPagina, $offset ),
+            'pagina'=>$page,
+            'pagine_totali'=>$pagineTotali
         ]);
     }
 
@@ -55,7 +64,7 @@ class ValutazioneFiguraProfessionaleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_valutazione_figura_professionale_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_valutazione_figura_professionale_show', methods: ['GET'])]
     public function show(ValutazioneFiguraProfessionale $valutazioneFiguraProfessionale): Response
     {
         return $this->render('valutazione_figura_professionale/show.html.twig', [

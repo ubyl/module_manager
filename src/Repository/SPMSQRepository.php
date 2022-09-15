@@ -38,6 +38,14 @@ class SPMSQRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function contaSchede(): int
+    {
+        return $this->createQueryBuilder('s')
+        ->select('count(s.id)')
+        ->getQuery()
+        ->getSingleScalarResult();
+
+    }
 
 //    /**
 //     * @return SPMSQ[] Returns an array of SPMSQ objects

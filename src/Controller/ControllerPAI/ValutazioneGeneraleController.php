@@ -26,11 +26,17 @@ class ValutazioneGeneraleController extends AbstractController
         $this->entityManager = $this->managerRegistry->getManager();
         $this->workflow = $schedePaiCreatingStateMachine;
     }
-    #[Route('/', name: 'app_valutazione_generale_index', methods: ['GET'])]
-    public function index(ValutazioneGeneraleRepository $valutazioneGeneraleRepository): Response
+    #[Route('/{page}', name: 'app_valutazione_generale_index',requirements: ['page' => '\d+'], methods: ['GET'])]
+    public function index(ValutazioneGeneraleRepository $valutazioneGeneraleRepository, int $page=1): Response
     {
+        $schedePerPagina = 10;
+        $offset = $schedePerPagina*$page-$schedePerPagina;
+        $totaleSchede = $valutazioneGeneraleRepository->contaSchede();
+        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
         return $this->render('valutazione_generale/index.html.twig', [
-            'valutazione_generales' => $valutazioneGeneraleRepository->findAll(),
+            'valutazione_generales' => $valutazioneGeneraleRepository->findBy([], null, $schedePerPagina, $offset ),
+            'pagina'=>$page,
+            'pagine_totali'=>$pagineTotali
         ]);
     }
 
@@ -66,7 +72,7 @@ class ValutazioneGeneraleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_valutazione_generale_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_valutazione_generale_show', methods: ['GET'])]
     public function show(ValutazioneGenerale $valutazioneGenerale): Response
     {
         return $this->render('valutazione_generale/show.html.twig', [

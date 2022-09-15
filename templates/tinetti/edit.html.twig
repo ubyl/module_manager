@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Modifica scheda Tinetti</h1>
 
-    {{ include('tinetti/_form.html.twig', {'button_label': 'Modifica'}) }}
+    {{ include('tinetti/_form.html.twig', {'button_label': 'Salva'}) }}
 
-    <a href="{{ path('app_tinetti_index') }}">Torna alla lista</a>
+    <a class="btn btn-warning" href="{{ path('app_tinetti_index') }}">Annulla</a>
 
     {{ include('tinetti/_delete_form.html.twig') }}
 {% endblock %}

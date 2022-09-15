@@ -16,16 +16,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/parere_mmg')]
 class ParereMMGController extends AbstractController
 {
+    private $entityManager;
+    private $managerRegistry;
+
     public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->managerRegistry = $managerRegistry;
         $this->entityManager = $this->managerRegistry->getManager();
     }
-    #[Route('/', name: 'app_parere_mmg_index', methods: ['GET'])]
-    public function index(ParereMMGRepository $parereMMGRepository): Response
+    #[Route('/[page}', name: 'app_parere_mmg_index',requirements: ['page' => '\d+'], methods: ['GET'])]
+    public function index(ParereMMGRepository $parereMMGRepository, int $page=1): Response
     {
+        $schedePerPagina = 10;
+        $offset = $schedePerPagina*$page-$schedePerPagina;
+        $totaleSchede = $parereMMGRepository->contaSchede();
+        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
         return $this->render('parere_mmg/index.html.twig', [
-            'parere_mmgs' => $parereMMGRepository->findAll(),
+            'parere_mmgs' => $parereMMGRepository->findBy([], null, $schedePerPagina, $offset ),
+            'pagina'=>$page,
+            'pagine_totali'=>$pagineTotali
         ]);
     }
 
@@ -57,7 +66,7 @@ class ParereMMGController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_parere_mmg_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_parere_mmg_show', methods: ['GET'])]
     public function show(ParereMMG $parereMMG): Response
     {
         return $this->render('parere_mmg/show.html.twig', [

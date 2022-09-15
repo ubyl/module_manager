@@ -12,7 +12,7 @@
                 <th>Nome</th>
                 <th>Conclusioni</th>
                 <th>Data di valutazione</th>
-                <th></th>
+                <th>Operazioni</th>
             </tr>
         </thead>
         <tbody>
@@ -23,8 +23,13 @@
                 <td>{{ chiusura_servizio.conclusioni }}</td>
                 <td>{{ chiusura_servizio.dataValutazione ? chiusura_servizio.dataValutazione|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_chiusura_servizio_show', {'id': chiusura_servizio.id}) }}">Visualizza</a>
-                    <a href="{{ path('app_chiusura_servizio_edit', {'id': chiusura_servizio.id}) }}">Modifica</a>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Apri
+                        </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_chiusura_servizio_show', {'id': chiusura_servizio.id}) }}">Visualizza</a>
+                        <li><a class="dropdown-item" href="{{ path('app_chiusura_servizio_edit', {'id': chiusura_servizio.id}) }}">Modifica</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +40,20 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_chiusura_servizio_new') }}">Nuova scheda </a>
+    
+    <a class="btn btn-warning" href="{{ path('app_homepage') }}">Menù Principale</a>
+
+<nav aria-label="Page navigation example">
+   <ul class="pagination justify-content-center">
+       <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="{{ path('app_chiusura_servizio_index') }}"><<</a></li>
+        <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="{{ path('app_chiusura_servizio_index', {'page':pagina-1}) }}"><</a></li>
+    {% for i in 1..pagine_totali %}
+        {% if i <= pagina + 1 and i >= pagina - 1 %}
+            <li class="page-item"><a class="page-link" href="{{ path('app_chiusura_servizio_index', {'page':i}) }}">{{i}}</a></li>
+        {% endif %}
+    {% endfor %}
+    <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="{{ path('app_chiusura_servizio_index', {'page':pagina+1}) }}">></a></li>
+      <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="{{ path('app_chiusura_servizio_index', {'page':pagine_totali}) }}">>></a></li>
+  </ul>
+</nav>
 {% endblock %}

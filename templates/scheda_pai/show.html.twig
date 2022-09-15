@@ -50,9 +50,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_scheda_pai_index') }}">Torna alla lista</a>
+    <a class="btn btn-warning" href="{{ path('app_scheda_pai_index') }}">Torna alla lista</a>
 
-    <a href="{{ path('app_scheda_pai_edit', {'id': scheda_pai.id}) }}">Modifica</a>
+    <a class="btn btn-primary" href="{{ path('app_scheda_pai_edit', {'id': scheda_pai.id}) }}">Modifica</a>
 
     {{ include('scheda_pai/_delete_form.html.twig') }}
 {% endblock %}

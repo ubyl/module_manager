@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Modifica Valutazione Generale</h1>
 
-    {{ include('valutazione_generale/_form.html.twig', {'button_label': 'Modifica'}) }}
+    {{ include('valutazione_generale/_form.html.twig', {'button_label': 'Salva'}) }}
 
-    <a href="{{ path('app_valutazione_generale_index') }}">Torna alla lista</a>
+    <a class="btn btn-warning" href="{{ path('app_valutazione_generale_index') }}">Annulla</a>
 
     {{ include('valutazione_generale/_delete_form.html.twig') }}
 {% endblock %}

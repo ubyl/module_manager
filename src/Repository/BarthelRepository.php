@@ -38,6 +38,14 @@ class BarthelRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function contaSchede(): int
+    {
+        return $this->createQueryBuilder('s')
+        ->select('count(s.id)')
+        ->getQuery()
+        ->getSingleScalarResult();
+
+    }
 
 //    /**
 //     * @return Barthel[] Returns an array of Barthel objects

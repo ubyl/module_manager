@@ -38,6 +38,14 @@ class TinettiRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function contaSchede(): int
+    {
+        return $this->createQueryBuilder('s')
+        ->select('count(s.id)')
+        ->getQuery()
+        ->getSingleScalarResult();
+
+    }
 
 //    /**
 //     * @return Tinetti[] Returns an array of Tinetti objects

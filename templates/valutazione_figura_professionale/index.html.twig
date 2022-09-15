@@ -16,7 +16,7 @@
                 <th>Tipo e frequenza</th>
                 <th>Modalità e tempi di monitoraggio degli obbiettivi</th>
                 <th>Data di valutazione</th>
-                <th></th>
+                <th>Operazioni</th>
             </tr>
         </thead>
         <tbody>
@@ -31,8 +31,13 @@
                 <td>{{ valutazione_figura_professionale.modalitaTempiMonitoraggio }}</td>
                 <td>{{ valutazione_figura_professionale.dataValutazione ? valutazione_figura_professionale.dataValutazione|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_valutazione_figura_professionale_show', {'id': valutazione_figura_professionale.id}) }}">Visualizza</a>
-                    <a href="{{ path('app_valutazione_figura_professionale_edit', {'id': valutazione_figura_professionale.id}) }}">Modifica</a>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Apri
+                        </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_valutazione_figura_professionale_show', {'id': valutazione_figura_professionale.id}) }}">Visualizza</a>
+                        <li><a class="dropdown-item" href="{{ path('app_valutazione_figura_professionale_edit', {'id': valutazione_figura_professionale.id}) }}">Modifica</a>
                 </td>
             </tr>
         {% else %}
@@ -43,5 +48,20 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_valutazione_figura_professionale_new') }}">Nuova scheda</a>
+    
+    <a class="btn btn-warning" href="{{ path('app_homepage') }}">Menù Principale</a>
+
+<nav aria-label="Page navigation example">
+   <ul class="pagination justify-content-center">
+       <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="{{ path('app_valutazione_figura_professionale_index') }}"><<</a></li>
+        <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="{{ path('app_valutazione_figura_professionale_index', {'page':pagina-1}) }}"><</a></li>
+    {% for i in 1..pagine_totali %}
+        {% if i <= pagina + 1 and i >= pagina - 1 %}
+            <li class="page-item"><a class="page-link" href="{{ path('app_valutazione_figura_professionale_index', {'page':i}) }}">{{i}}</a></li>
+        {% endif %}
+    {% endfor %}
+    <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="{{ path('app_valutazione_figura_professionale_index', {'page':pagina+1}) }}">></a></li>
+      <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="{{ path('app_valutazione_figura_professionale_index', {'page':pagine_totali}) }}">>></a></li>
+  </ul>
+</nav>
 {% endblock %}

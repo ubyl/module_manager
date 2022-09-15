@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Modifica scheda Vas</h1>
 
-    {{ include('vas/_form.html.twig', {'button_label': 'Modifica'}) }}
+    {{ include('vas/_form.html.twig', {'button_label': 'Salva'}) }}
 
-    <a href="{{ path('app_vas_index') }}">Torna alla lista</a>
+    <a class="btn btn-warning" href="{{ path('app_vas_index') }}">Annulla</a>
 
     {{ include('vas/_delete_form.html.twig') }}
 {% endblock %}

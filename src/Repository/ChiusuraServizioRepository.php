@@ -38,6 +38,14 @@ class ChiusuraServizioRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function contaSchede(): int
+    {
+        return $this->createQueryBuilder('s')
+        ->select('count(s.id)')
+        ->getQuery()
+        ->getSingleScalarResult();
+
+    }
 
 //    /**
 //     * @return ChiusuraServizio[] Returns an array of ChiusuraServizio objects

@@ -15,16 +15,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/lesioni')]
 class LesioniController extends AbstractController
 {
+    private $entityManager;
+    private $managerRegistry;
+    
     public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->managerRegistry = $managerRegistry;
         $this->entityManager = $this->managerRegistry->getManager();
     }
-    #[Route('/', name: 'app_lesioni_index', methods: ['GET'])]
-    public function index(LesioniRepository $lesioniRepository): Response
+    #[Route('/{page}', name: 'app_lesioni_index',requirements: ['page' => '\d+'], methods: ['GET'])]
+    public function index(LesioniRepository $lesioniRepository, int $page=1): Response
     {
+        $schedePerPagina = 10;
+        $offset = $schedePerPagina*$page-$schedePerPagina;
+        $totaleSchede = $lesioniRepository->contaSchede();
+        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
         return $this->render('lesioni/index.html.twig', [
-            'lesionis' => $lesioniRepository->findAll(),
+            'lesionis' => $lesioniRepository->findBy([], null, $schedePerPagina, $offset ),
+            'pagina'=>$page,
+            'pagine_totali'=>$pagineTotali
         ]);
     }
 
@@ -55,7 +64,7 @@ class LesioniController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_lesioni_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_lesioni_show', methods: ['GET'])]
     public function show(Lesioni $lesioni): Response
     {
         return $this->render('lesioni/show.html.twig', [

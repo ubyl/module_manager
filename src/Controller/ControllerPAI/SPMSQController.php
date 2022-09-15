@@ -15,16 +15,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/spmsq')]
 class SPMSQController extends AbstractController
 {
+    private $entityManager;
+    private $managerRegistry;
+
     public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->managerRegistry = $managerRegistry;
         $this->entityManager = $this->managerRegistry->getManager();
     }
-    #[Route('/', name: 'app_s_p_m_s_q_index', methods: ['GET'])]
-    public function index(SPMSQRepository $sPMSQRepository): Response
+    #[Route('/{page}', name: 'app_s_p_m_s_q_index',requirements: ['page' => '\d+'], methods: ['GET'])]
+    public function index(SPMSQRepository $sPMSQRepository, int $page=1): Response
     {
+        $schedePerPagina = 10;
+        $offset = $schedePerPagina*$page-$schedePerPagina;
+        $totaleSchede = $sPMSQRepository->contaSchede();
+        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
         return $this->render('spmsq/index.html.twig', [
-            's_p_m_s_qs' => $sPMSQRepository->findAll(),
+            's_p_m_s_qs' => $sPMSQRepository->findBy([], null, $schedePerPagina, $offset ),
+            'pagina'=>$page,
+            'pagine_totali'=>$pagineTotali
         ]);
     }
 
@@ -56,7 +65,7 @@ class SPMSQController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_s_p_m_s_q_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_s_p_m_s_q_show', methods: ['GET'])]
     public function show(SPMSQ $sPMSQ): Response
     {
         return $this->render('spmsq/show.html.twig', [

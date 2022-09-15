@@ -15,16 +15,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/barthel')]
 class BarthelController extends AbstractController
 {
+    private $entityManager;
+    private $managerRegistry;
+
     public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->managerRegistry = $managerRegistry;
         $this->entityManager = $this->managerRegistry->getManager();
     }
-    #[Route('/', name: 'app_barthel_index', methods: ['GET'])]
-    public function index(BarthelRepository $barthelRepository): Response
+    #[Route('/{page}', name: 'app_barthel_index',requirements: ['page' => '\d+'], methods: ['GET'])]
+    public function index(BarthelRepository $barthelRepository, int $page=1): Response
     {
+        $schedePerPagina = 10;
+        $offset = $schedePerPagina*$page-$schedePerPagina;
+        $totaleSchede = $barthelRepository->contaSchede();
+        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
         return $this->render('barthel/index.html.twig', [
-            'barthels' => $barthelRepository->findAll(),
+            'barthels' => $barthelRepository->findBy([], null, $schedePerPagina, $offset ),
+            'pagina'=>$page,
+            'pagine_totali'=>$pagineTotali
         ]);
     }
 
@@ -55,7 +64,7 @@ class BarthelController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_barthel_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_barthel_show', methods: ['GET'])]
     public function show(Barthel $barthel): Response
     {
         return $this->render('barthel/show.html.twig', [

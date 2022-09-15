@@ -15,16 +15,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/braden')]
 class BradenController extends AbstractController
 {
+    private $entityManager;
+    private $managerRegistry;
+
     public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->managerRegistry = $managerRegistry;
         $this->entityManager = $this->managerRegistry->getManager();
     }
-    #[Route('/', name: 'app_form_pai_braden_index', methods: ['GET'])]
-    public function index(BradenRepository $bradenRepository): Response
+    #[Route('/{page}', name: 'app_form_pai_braden_index',requirements: ['page' => '\d+'], methods: ['GET'])]
+    public function index(BradenRepository $bradenRepository, int $page=1): Response
     {
+        $schedePerPagina = 10;
+        $offset = $schedePerPagina*$page-$schedePerPagina;
+        $totaleSchede = $bradenRepository->contaSchede();
+        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
         return $this->render('braden/index.html.twig', [
-            'bradens' => $bradenRepository->findAll(),
+            'bradens' => $bradenRepository->findBy([], null, $schedePerPagina, $offset ),
+            'pagina'=>$page,
+            'pagine_totali'=>$pagineTotali
         ]);
     }
 
@@ -55,7 +64,7 @@ class BradenController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_form_pai_braden_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_form_pai_braden_show', methods: ['GET'])]
     public function show(Braden $braden): Response
     {
         return $this->render('braden/show.html.twig', [

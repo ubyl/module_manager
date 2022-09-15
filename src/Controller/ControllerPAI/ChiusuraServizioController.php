@@ -2,6 +2,7 @@
 
 namespace App\Controller\ControllerPAI;
 
+use App\Entity\EntityPAI\SchedaPAI;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\EntityPAI\ChiusuraServizio;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,16 +15,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/chiusura_servizio')]
 class ChiusuraServizioController extends AbstractController
 {
+    private $entityManager;
+    private $managerRegistry;
+
     public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->managerRegistry = $managerRegistry;
         $this->entityManager = $this->managerRegistry->getManager();
     }
-    #[Route('/', name: 'app_chiusura_servizio_index', methods: ['GET'])]
-    public function index(ChiusuraServizioRepository $chiusuraServizioRepository): Response
+    #[Route('/{page}', name: 'app_chiusura_servizio_index',requirements: ['page' => '\d+'], methods: ['GET'])]
+    public function index(ChiusuraServizioRepository $chiusuraServizioRepository, int $page=1): Response
     {
+        $schedePerPagina = 10;
+        $offset = $schedePerPagina*$page-$schedePerPagina;
+        $totaleSchede = $chiusuraServizioRepository->contaSchede();
+        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
         return $this->render('chiusura_servizio/index.html.twig', [
-            'chiusura_servizios' => $chiusuraServizioRepository->findAll(),
+            'chiusura_servizios' => $chiusuraServizioRepository->findBy([], null, $schedePerPagina, $offset ),
+            'pagina'=>$page,
+            'pagine_totali'=>$pagineTotali
         ]);
     }
 
@@ -54,7 +64,7 @@ class ChiusuraServizioController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_chiusura_servizio_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_chiusura_servizio_show', methods: ['GET'])]
     public function show(ChiusuraServizio $chiusuraServizio): Response
     {
         return $this->render('chiusura_servizio/show.html.twig', [

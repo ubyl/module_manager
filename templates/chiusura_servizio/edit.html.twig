@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Modifica Chiusura Servizio</h1>
 
-    {{ include('chiusura_servizio/_form.html.twig', {'button_label': 'Modifica'}) }}
+    {{ include('chiusura_servizio/_form.html.twig', {'button_label': 'Salva'}) }}
 
-    <a href="{{ path('app_chiusura_servizio_index') }}">Torna alla lista</a>
+    <a class="btn btn-warning" href="{{ path('app_chiusura_servizio_index') }}">Annulla</a>
 
     {{ include('chiusura_servizio/_delete_form.html.twig') }}
 {% endblock %}

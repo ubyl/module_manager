@@ -15,16 +15,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/tinetti')]
 class TinettiController extends AbstractController
 {
+    private $entityManager;
+    private $managerRegistry;
+
     public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->managerRegistry = $managerRegistry;
         $this->entityManager = $this->managerRegistry->getManager();
     }
-    #[Route('/', name: 'app_tinetti_index', methods: ['GET'])]
-    public function index(TinettiRepository $tinettiRepository): Response
+    #[Route('/{page}', name: 'app_tinetti_index',requirements: ['page' => '\d+'], methods: ['GET'])]
+    public function index(TinettiRepository $tinettiRepository, int $page=1): Response
     {
+        $schedePerPagina = 10;
+        $offset = $schedePerPagina*$page-$schedePerPagina;
+        $totaleSchede = $tinettiRepository->contaSchede();
+        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
         return $this->render('tinetti/index.html.twig', [
-            'tinettis' => $tinettiRepository->findAll(),
+            'tinettis' => $tinettiRepository->findBy([], null, $schedePerPagina, $offset ),
+            'pagina'=>$page,
+            'pagine_totali'=>$pagineTotali
         ]);
     }
 
@@ -56,7 +65,7 @@ class TinettiController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_tinetti_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_tinetti_show', methods: ['GET'])]
     public function show(Tinetti $tinetti): Response
     {
         return $this->render('tinetti/show.html.twig', [

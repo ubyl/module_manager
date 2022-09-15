@@ -18,7 +18,7 @@
                 <th>Bordi Lesione</th>
                 <th>Cute Perilesionale</th>
                 <th>Note sulla lesione</th>
-                <th></th>
+                <th>Operazioni</th>
             </tr>
         </thead>
         <tbody>
@@ -35,8 +35,13 @@
                 <td>{{ lesioni.cutePerilesionale }}</td>
                 <td>{{ lesioni.noteSullaLesione }}</td>
                 <td>
-                    <a href="{{ path('app_lesioni_show', {'id': lesioni.id}) }}">Visualizza</a>
-                    <a href="{{ path('app_lesioni_edit', {'id': lesioni.id}) }}">Modifica</a>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Apri
+                        </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_lesioni_show', {'id': lesioni.id}) }}">Visualizza</a>
+                        <li><a class="dropdown-item" href="{{ path('app_lesioni_edit', {'id': lesioni.id}) }}">Modifica</a>
                 </td>
             </tr>
         {% else %}
@@ -47,5 +52,20 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_lesioni_new') }}">Nuova scheda</a>
+    
+    <a class="btn btn-warning" href="{{ path('app_homepage') }}">Menù Principale</a>
+
+<nav aria-label="Page navigation example">
+   <ul class="pagination justify-content-center">
+       <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="{{ path('app_lesioni_index') }}"><<</a></li>
+        <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="{{ path('app_lesioni_index', {'page':pagina-1}) }}"><</a></li>
+    {% for i in 1..pagine_totali %}
+        {% if i <= pagina + 1 and i >= pagina - 1 %}
+            <li class="page-item"><a class="page-link" href="{{ path('app_lesioni_index', {'page':i}) }}">{{i}}</a></li>
+        {% endif %}
+    {% endfor %}
+    <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="{{ path('app_lesioni_index', {'page':pagina+1}) }}">></a></li>
+      <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="{{ path('app_lesioni_index', {'page':pagine_totali}) }}">>></a></li>
+  </ul>
+</nav>
 {% endblock %}

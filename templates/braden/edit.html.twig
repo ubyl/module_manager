@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Modifica scheda Braden</h1>
 
-    {{ include('braden/_form.html.twig', {'button_label': 'Modifica'}) }}
+    {{ include('braden/_form.html.twig', {'button_label': 'Salva'}) }}
 
-    <a href="{{ path('app_form_pai_braden_index') }}">Torna alla lista</a>
+    <a class="btn btn-warning" href="{{ path('app_form_pai_braden_index') }}">Annulla</a>
 
     {{ include('braden/_delete_form.html.twig') }}
 {% endblock %}
