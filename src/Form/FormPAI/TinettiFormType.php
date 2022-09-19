@@ -8,6 +8,7 @@ use App\Doctrine\DBAL\Type\VotiTinetti01;
 use App\Doctrine\DBAL\Type\VotiTinetti02;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class TinettiFormType extends AbstractType
@@ -21,7 +22,9 @@ class TinettiFormType extends AbstractType
 
         $builder
             ->add('nome')
-            ->add('dataValutazione')
+            ->add('dataValutazione', DateType::class,[
+                'widget' => 'single_text',  
+            ])
             ->add('equilibrioSeduto', ChoiceType::class,[
                 'choices' => $votiTinetti01Choices
             ])

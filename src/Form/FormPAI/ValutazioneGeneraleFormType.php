@@ -16,6 +16,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\EntityPAI\AltraTipologiaAssistenza;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 
 class ValutazioneGeneraleFormType extends AbstractType
@@ -39,7 +40,9 @@ class ValutazioneGeneraleFormType extends AbstractType
 
         $builder
             ->add('nome')
-            ->add('data_valutazione')
+            ->add('data_valutazione', DateType::class,[
+                'widget' => 'single_text',  
+            ])
             ->add('tipologia_valutazione', ChoiceType::class,[
                 'choices' => $valutazioneChoices
             ])

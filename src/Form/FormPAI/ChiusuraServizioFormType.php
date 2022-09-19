@@ -6,6 +6,7 @@ use App\Entity\EntityPAI\ChiusuraServizio;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class ChiusuraServizioFormType extends AbstractType
 {
@@ -14,7 +15,9 @@ class ChiusuraServizioFormType extends AbstractType
         $builder
             ->add('nome')
             ->add('conclusioni')
-            ->add('dataValutazione')
+            ->add('dataValutazione', DateType::class,[
+                'widget' => 'single_text',  
+            ])
         ;
     }
 

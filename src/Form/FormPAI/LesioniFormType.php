@@ -12,6 +12,7 @@ use App\Doctrine\DBAL\Type\CutePerilesionale;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class LesioniFormType extends AbstractType
 {
@@ -30,7 +31,9 @@ class LesioniFormType extends AbstractType
 
         $builder
             ->add('nome')
-            ->add('dataRivalutazioniSettimanali')
+            ->add('dataRivalutazioniSettimanali', DateType::class,[
+                'widget' => 'single_text',  
+            ])
             ->add('tipologiaLesione', ChoiceType::class,[
                 'choices' => $tipoLesioneChoices
             ])

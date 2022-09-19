@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class BradenFormType extends AbstractType
 {
@@ -21,7 +22,9 @@ class BradenFormType extends AbstractType
 
         $builder
             ->add('nome')
-            ->add('dataValutazione')
+            ->add('dataValutazione', DateType::class,[
+                'widget' => 'single_text',  
+            ])
             ->add('percezioneSensoriale', ChoiceType::class,[
                 'choices' => $votiBraden14Choices
             ])

@@ -10,6 +10,7 @@ use App\Doctrine\DBAL\Type\VotiBarthel015;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class BarthelFormType extends AbstractType
 {
@@ -24,7 +25,9 @@ class BarthelFormType extends AbstractType
 
         $builder
             ->add('nome')
-            ->add('dataValutazione')
+            ->add('dataValutazione', DateType::class,[
+                'widget' => 'single_text',  
+            ])
             ->add('alimentazione', ChoiceType::class,[
                 'choices' => $votiBarthel010Choices
             ])

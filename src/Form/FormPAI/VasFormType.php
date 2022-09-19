@@ -9,6 +9,7 @@ use App\Doctrine\DBAL\Type\VotiMonitoraggioVas;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class VasFormType extends AbstractType
 {
@@ -20,7 +21,9 @@ class VasFormType extends AbstractType
         $votiRilevazioneVasChoices = $VotiRilevazioneVas->getValues();
         $builder
             ->add('paziente')
-            ->add('data')
+            ->add('data', DateType::class,[
+                'widget' => 'single_text',  
+            ])
             ->add('ora')
             ->add('base2', ChoiceType::class,[
                 'choices' => $votiRilevazioneVasChoices
