@@ -15,8 +15,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\EntityPAI\AltraTipologiaAssistenza;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
 class ValutazioneGeneraleFormType extends AbstractType
@@ -41,7 +42,7 @@ class ValutazioneGeneraleFormType extends AbstractType
         $builder
             ->add('nome')
             ->add('data_valutazione', DateType::class,[
-                'widget' => 'single_text',  
+                'widget' => 'single_text', 
             ])
             ->add('tipologia_valutazione', ChoiceType::class,[
                 'choices' => $valutazioneChoices
@@ -92,7 +93,9 @@ class ValutazioneGeneraleFormType extends AbstractType
             ->add('comportamento', ChoiceType::class,[
                 'choices' => $disturbiChoices
             ])
-            ->add('diagnosi')
+            ->add('diagnosi', TextType::class, [
+                'attr' => array('style' => 'height:100px')
+            ])
             ->add('bisogni', EntityType::class,[
                 'class'=> Bisogni::class,
                 'expanded'=> true,

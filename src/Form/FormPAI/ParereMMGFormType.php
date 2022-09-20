@@ -4,9 +4,10 @@ namespace App\Form\FormPAI;
 
 use App\Entity\EntityPAI\ParereMMG;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ParereMMGFormType extends AbstractType
 {
@@ -19,7 +20,9 @@ class ParereMMGFormType extends AbstractType
                     'favorevole' => 'Favorevole',
                     'contrario' => 'Contrario',
                 ]])
-            ->add('descrizione')
+            ->add('descrizione', TextType::class, [
+                'attr' => array('style' => 'height:100px')
+            ])
         ;
     }
 

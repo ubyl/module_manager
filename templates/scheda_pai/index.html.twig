@@ -19,9 +19,7 @@
                 <th>Id Console</th>
                 <th>Id Progetto</th>
                 <th>Stato</th>
-                <th>Operazioni</th>
-                <th>Crea Schede/Valutazioni</th>
-                
+                <th>Azioni</th>
             </tr>
         </thead>
         <tbody>
@@ -44,15 +42,13 @@
                         Apri
                         </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ path('app_scheda_pai_show', {'id': scheda_pai.id}) }}">Visualizza</a>
-                        <li><a class="dropdown-item" href="{{ path('app_scheda_pai_edit', {'id': scheda_pai.id}) }}">Modifica</a>
-                </td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        Seleziona
-                        </button>
-                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_scheda_pai_show', {'id': scheda_pai.id}) }}">Visualizza scheda Pai</a>
+                        <li><a class="dropdown-item" href="{{ path('app_scheda_pai_edit', {'id': scheda_pai.id}) }}">Modifica scheda Pai</a>
+                        <form method="post" action="{{ path('app_scheda_pai_delete', {'id': scheda_pai.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ scheda_pai.id) }}">
+                        <li><a class="dropdown-item" href="{{ path('app_scheda_pai_delete', {'id': scheda_pai.id}) }}">Elimina scheda Pai</a>
+                        </form>
+                        <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'approvata' %}disabled{% endif %}" href="{{ path('app_valutazione_generale_new', {'id_pai': scheda_pai.id})}}">Valutazione Generale</a></li>
                         <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_valutazione_figura_professionale_new', {'id_pai': scheda_pai.id})}}">Valutazione Figura Professionale</a></li>
                         <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_parere_mmg_new', {'id_pai': scheda_pai.id})}}">Parere MMG</a></li>
@@ -62,8 +58,7 @@
                         <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_s_p_m_s_q_new', {'id_pai': scheda_pai.id})}}">SPMSQ</a></li>
                         <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_tinetti_new', {'id_pai': scheda_pai.id})}}">Tinetti</a></li>
                         <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_vas_new', {'id_pai': scheda_pai.id})}}">Vas</a></li>
-                        <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_lesioni_new', {'id_pai': scheda_pai.id})}}">Lesioni</a></li>
-                        
+                        <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_lesioni_new', {'id_pai': scheda_pai.id})}}">Lesioni</a></li>  
                     </ul>
                     </div>
                     

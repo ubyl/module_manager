@@ -2,13 +2,14 @@
 
 namespace App\Form\FormPAI;
 
-use App\Doctrine\DBAL\Type\TipoOperatore;
 use Symfony\Component\Form\AbstractType;
+use App\Doctrine\DBAL\Type\TipoOperatore;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\EntityPAI\ValutazioneFiguraProfessionale;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ValutazioneFiguraProfessionaleFormType extends AbstractType
 {
@@ -22,10 +23,18 @@ class ValutazioneFiguraProfessionaleFormType extends AbstractType
             ->add('tipoOperatore', ChoiceType::class,[
                 'choices' => $operatoreChoices
             ])
-            ->add('diagnosiProfessionale')
-            ->add('obbiettiviDaRaggiungere')
-            ->add('tipoEFrequenza')
-            ->add('modalitaTempiMonitoraggio')
+            ->add('diagnosiProfessionale', TextType::class, [
+                'attr' => array('style' => 'height:100px')
+            ])
+            ->add('obbiettiviDaRaggiungere', TextType::class, [
+                'attr' => array('style' => 'height:100px')
+            ])
+            ->add('tipoEFrequenza', TextType::class, [
+                'attr' => array('style' => 'height:100px')
+            ])
+            ->add('modalitaTempiMonitoraggio', TextType::class, [
+                'attr' => array('style' => 'height:100px')
+            ])
             ->add('dataValutazione', DateType::class,[
                 'widget' => 'single_text',  
             ])

@@ -11,8 +11,9 @@ use App\Doctrine\DBAL\Type\CondizioneLesione;
 use App\Doctrine\DBAL\Type\CutePerilesionale;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class LesioniFormType extends AbstractType
 {
@@ -50,7 +51,9 @@ class LesioniFormType extends AbstractType
             ->add('cutePerilesionale', ChoiceType::class,[
                 'choices' => $cuteChoices
             ])
-            ->add('noteSullaLesione')
+            ->add('noteSullaLesione', TextType::class, [
+                'attr' => array('style' => 'height:100px')
+            ])
         ;
     }
 

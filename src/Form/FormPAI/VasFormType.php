@@ -8,8 +8,9 @@ use App\Doctrine\DBAL\Type\VotiRilevazioneVas;
 use App\Doctrine\DBAL\Type\VotiMonitoraggioVas;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class VasFormType extends AbstractType
 {
@@ -24,7 +25,11 @@ class VasFormType extends AbstractType
             ->add('data', DateType::class,[
                 'widget' => 'single_text',  
             ])
-            ->add('ora')
+            ->add('ora', TimeType::class, [
+                'widget' => 'single_text',
+                'attr'=>array
+                ('class'=>'timepicker')
+            ])
             ->add('base2', ChoiceType::class,[
                 'choices' => $votiRilevazioneVasChoices
             ])
