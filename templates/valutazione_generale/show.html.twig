@@ -75,6 +75,34 @@
                 <th>Comportamento</th>
                 <td>{{ valutazione_generale.comportamento }}</td>
             </tr>
+             <tr>
+                <th>Altra tipologia assistenza</th>
+                <td>
+                <ul>
+                {% if valutazione_generale.altraTipologiaAssistenza|length-1<=0 %}
+                <li> Nessuna altra tipologia di assistenza</li>
+                {% else %}
+                    {% for i in 0..valutazione_generale.altraTipologiaAssistenza|length-1 %}
+                    <li>{{ valutazione_generale.altraTipologiaAssistenza[i] }}</li>
+                    {% endfor %}
+                {% endif %}
+                </ul>
+                </td>
+            </tr>
+             <tr>
+                <th>Bisogni</th>
+                <td>
+                <ul>
+                {% if valutazione_generale.bisogni|length-1<=0 %}
+                <li> Nessun bisogno</li>
+                {% else %}
+                    {% for i in 0..valutazione_generale.bisogni|length-1 %}
+                    <li>{{ valutazione_generale.bisogni[i] }}</li>
+                    {% endfor %}
+                {% endif %}
+                </ul>
+                </td>
+            </tr>
         </tbody>
     </table>
 

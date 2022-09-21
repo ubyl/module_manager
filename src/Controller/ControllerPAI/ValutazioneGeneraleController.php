@@ -2,6 +2,7 @@
 
 namespace App\Controller\ControllerPAI;
 
+use App\Entity\EntityPAI\AltraTipologiaAssistenza;
 use App\Entity\EntityPAI\SchedaPAI;
 use App\Entity\EntityPAI\ValutazioneGenerale;
 use App\Form\FormPAI\ValutazioneGeneraleFormType;

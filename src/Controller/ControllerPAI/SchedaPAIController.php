@@ -30,6 +30,7 @@ class SchedaPAIController extends AbstractController
         $totaleSchede = $schedaPAIRepository->contaSchedePai();
         $pagineTotali = ceil($totaleSchede/$schedePerPagina);
         
+        
         return $this->render('scheda_pai/index.html.twig', [
             'scheda_pais' => $schedaPAIRepository->findBy([], null, $schedePerPagina, $offset ),
             'pagina'=>$page,
