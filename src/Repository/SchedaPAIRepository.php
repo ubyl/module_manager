@@ -48,6 +48,17 @@ class SchedaPAIRepository extends ServiceEntityRepository
 
     }
 
+    public function findUserSchedePai(int $idUser): array
+    {
+        return $this->createQueryBuilder('s')
+        ->Where('s.idOperatorePrincipale = :id')
+        ->setParameter('id', $idUser)
+        ->orderBy('s.id','ASC')
+        ->getQuery()
+        ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return SchedaPAI[] Returns an array of SchedaPAI objects
 //     */

@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\EntityPAI\SchedaPAI;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\ErrorHandler\Collecting;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -29,6 +31,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    
 
     public function getId(): ?int
     {
@@ -64,7 +68,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        //$roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }

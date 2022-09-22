@@ -30,11 +30,26 @@ class SchedaPAIController extends AbstractController
         $totaleSchede = $schedaPAIRepository->contaSchedePai();
         $pagineTotali = ceil($totaleSchede/$schedePerPagina);
         
-        
+        $user= $this-> getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
+        }
+        $ruoloUser = $user->getRoles();
+        $idUser = $user->getId();
+
+        if($ruoloUser[0] == "ROLE_ADMIN"){
         return $this->render('scheda_pai/index.html.twig', [
             'scheda_pais' => $schedaPAIRepository->findBy([], null, $schedePerPagina, $offset ),
             'pagina'=>$page,
             'pagine_totali'=>$pagineTotali]);
+        }
+        if($ruoloUser[0] == "ROLE_USER"){
+            return $this->render('scheda_pai/index.html.twig', [
+            'scheda_pais' => $schedaPAIRepository->findUserSchedePai($idUser),
+            'pagina'=>$page,
+            'pagine_totali'=>$pagineTotali]);
+        }
+
     }
 
     #[Route('/new', name: 'app_scheda_pai_new', methods: ['GET', 'POST'])]
