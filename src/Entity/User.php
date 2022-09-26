@@ -32,7 +32,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\ManyToMany(mappedBy: 'idOperatoreSecondarioInf', targetEntity: SchedaPai::class)]
+    private $infSchedaPai;
+
+    #[ORM\ManyToMany(mappedBy: 'idOperatoreSecondarioTdr', targetEntity: SchedaPai::class)]
+    private $tdrSchedaPai;
+
+    #[ORM\ManyToMany(mappedBy: 'idOperatoreSecondarioLog', targetEntity: SchedaPai::class)]
+    private $logSchedaPai;
+
+    #[ORM\ManyToMany(mappedBy: 'idOperatoreSecondarioAsa', targetEntity: SchedaPai::class)]
+    private $asaSchedaPai;
+   
+    #[ORM\ManyToMany(mappedBy: 'idOperatoreSecondarioOss', targetEntity: SchedaPai::class)]
+    private $ossSchedaPai;
     
+
+    public function __toString()
+    {
+        return $this->id;
+    }
 
     public function getId(): ?int
     {
@@ -112,6 +131,146 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+     /**
+     * @return Collection<int, SchedaPai>
+     */
+    public function getInfSchedaPai(): Collection
+    {
+        return $this->infSchedaPai;
+    }
+
+    public function addinfSchedaPai(SchedaPAI $infSchedaPai): self
+    {
+        if (!$this->infSchedaPai->contains($infSchedaPai)) {
+            $this->infSchedaPai[] = $infSchedaPai;
+            
+        }
+
+        return $this;
+    }
+
+    public function removeinfSchedaPai(SchedaPai $infSchedaPai): self
+    {
+        if ($this->infSchedaPai->removeElement($infSchedaPai)) {
+            // set the owning side to null (unless already changed)
+           
+        }
+
+        return $this;
+    }
+
+         /**
+     * @return Collection<int, SchedaPai>
+     */
+    public function getTdrSchedaPai(): Collection
+    {
+        return $this->tdrSchedaPai;
+    }
+
+    public function addtdrSchedaPai(SchedaPAI $tdrSchedaPai): self
+    {
+        if (!$this->tdrSchedaPai->contains($tdrSchedaPai)) {
+            $this->tdrSchedaPai[] = $tdrSchedaPai;
+            
+        }
+
+        return $this;
+    }
+
+    public function removetdrSchedaPai(SchedaPai $tdrSchedaPai): self
+    {
+        if ($this->tdrSchedaPai->removeElement($tdrSchedaPai)) {
+            // set the owning side to null (unless already changed)
+           
+        }
+
+        return $this;
+    }
+
+         /**
+     * @return Collection<int, SchedaPai>
+     */
+    public function getLogSchedaPai(): Collection
+    {
+        return $this->logSchedaPai;
+    }
+
+    public function addlogSchedaPai(SchedaPAI $logSchedaPai): self
+    {
+        if (!$this->logSchedaPai->contains($logSchedaPai)) {
+            $this->logSchedaPai[] = $logSchedaPai;
+            
+        }
+
+        return $this;
+    }
+
+    public function removelogSchedaPai(SchedaPai $logSchedaPai): self
+    {
+        if ($this->logSchedaPai->removeElement($logSchedaPai)) {
+            // set the owning side to null (unless already changed)
+           
+        }
+
+        return $this;
+    }
+
+         /**
+     * @return Collection<int, SchedaPai>
+     */
+    public function getAsaSchedaPai(): Collection
+    {
+        return $this->asaSchedaPai;
+    }
+
+    public function addasaSchedaPai(SchedaPAI $asaSchedaPai): self
+    {
+        if (!$this->asaSchedaPai->contains($asaSchedaPai)) {
+            $this->asaSchedaPai[] = $asaSchedaPai;
+            
+        }
+
+        return $this;
+    }
+
+    public function removeasaSchedaPai(SchedaPai $asaSchedaPai): self
+    {
+        if ($this->asaSchedaPai->removeElement($asaSchedaPai)) {
+            // set the owning side to null (unless already changed)
+           
+        }
+
+        return $this;
+    }
+
+         /**
+     * @return Collection<int, SchedaPai>
+     */
+    public function getOssSchedaPai(): Collection
+    {
+        return $this->ossSchedaPai;
+    }
+
+    public function addossSchedaPai(SchedaPAI $ossSchedaPai): self
+    {
+        if (!$this->ossSchedaPai->contains($ossSchedaPai)) {
+            $this->ossSchedaPai[] = $ossSchedaPai;
+            
+        }
+
+        return $this;
+    }
+
+    public function removeossSchedaPai(SchedaPai $ossSchedaPai): self
+    {
+        if ($this->ossSchedaPai->removeElement($ossSchedaPai)) {
+            // set the owning side to null (unless already changed)
+           
+        }
 
         return $this;
     }

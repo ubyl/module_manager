@@ -48,15 +48,27 @@ class SchedaPAIRepository extends ServiceEntityRepository
 
     }
 
+
     public function findUserSchedePai(int $idUser): array
     {
         return $this->createQueryBuilder('s')
+
+        ->leftJoin('s.idOperatoreSecondarioInf', 's1')
+        ->leftJoin('s.idOperatoreSecondarioTdr', 's2')
+        ->leftJoin('s.idOperatoreSecondarioLog', 's3')
+        ->leftJoin('s.idOperatoreSecondarioAsa', 's4')
+        ->leftJoin('s.idOperatoreSecondarioOss', 's5')
         ->Where('s.idOperatorePrincipale = :id')
+        ->orWhere('s1.id = :id')
+        ->orWhere('s2.id = :id')
+        ->orWhere('s3.id = :id')
+        ->orWhere('s4.id = :id')
+        ->orWhere('s5.id = :id')
         ->setParameter('id', $idUser)
         ->orderBy('s.id','ASC')
         ->getQuery()
-        ->getResult()
-        ;
+        ->getResult();
+        
     }
 
 //    /**

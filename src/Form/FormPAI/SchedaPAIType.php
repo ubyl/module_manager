@@ -2,11 +2,13 @@
 
 namespace App\Form\FormPAI;
 
+use App\Entity\User;
 use App\Entity\EntityPAI\SchedaPAI;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class SchedaPAIType extends AbstractType
 {
@@ -14,51 +16,32 @@ class SchedaPAIType extends AbstractType
     {
         $builder
             ->add('idOperatorePrincipale')
-            ->add('idOperatoreSecondarioInf', ChoiceType::class, [
-                'multiple' => true,
-                'choices'  => [
-                    '1' => '1',
-                    '2' => '2',
-                    '3' => '3',
-                ],
+            ->add('idOperatoreSecondarioInf', EntityType::class,[
+                'class'=> User::class,
+                'multiple'=> true,
                 'autocomplete' => true,
-                ])
-            ->add('idOperatoreSecondarioTdr', ChoiceType::class, [
-                'multiple' => true,
-                'choices'  => [
-                    '1' => '1',
-                    '2' => '2',
-                    '3' => '3',
-                ],
+            ])
+               
+            ->add('idOperatoreSecondarioTdr', EntityType::class,[
+                'class'=> User::class,
+                'multiple'=> true,
                 'autocomplete' => true,
-                ])
-            ->add('idOperatoreSecondarioLog', ChoiceType::class, [
-                'multiple' => true,
-                'choices'  => [
-                    '1' => '1',
-                    '2' => '2',
-                    '3' => '3',
-                ],
+            ])
+            ->add('idOperatoreSecondarioLog', EntityType::class,[
+                'class'=> User::class,
+                'multiple'=> true,
                 'autocomplete' => true,
-                ])
-            ->add('idOperatoreSecondarioAsa', ChoiceType::class, [
-                'multiple' => true,
-                'choices'  => [
-                    '1' => '1',
-                    '2' => '2',
-                    '3' => '3',
-                ],
+            ])
+            ->add('idOperatoreSecondarioAsa', EntityType::class,[
+                'class'=> User::class,
+                'multiple'=> true,
                 'autocomplete' => true,
-                ])
-            ->add('idOperatoreSecondarioOss', ChoiceType::class, [
-                'multiple' => true,
-                'choices'  => [
-                    '1' => '1',
-                    '2' => '2',
-                    '3' => '3',
-                ],
+            ])
+            ->add('idOperatoreSecondarioOss', EntityType::class,[
+                'class'=> User::class,
+                'multiple'=> true,
                 'autocomplete' => true,
-                ])
+            ])
             ->add('idAssistito')
             ->add('idConsole')
             ->add('idProgetto')

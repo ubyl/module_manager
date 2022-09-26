@@ -2,10 +2,11 @@
 
 namespace App\Entity\EntityPAI;
 
-use App\Repository\SchedaPAIRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\SchedaPAIRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: SchedaPAIRepository::class)]
 #[ORM\Table(name: 'SCHEDA_PAI')]
@@ -20,20 +21,35 @@ class SchedaPAI
     #[ORM\Column(type: 'integer')]
     private $idOperatorePrincipale;
 
-    #[ORM\Column(type: 'array', nullable: true)]
-    private $idOperatoreSecondarioInf = [];
+    #[ORM\ManyToMany(inversedBy: 'infSchedaPai', targetEntity: User::class)]
+    #[ORM\JoinTable(name: 'scheda_pai_user_inf')]
+    #[ORM\JoinColumn(name: 'user_inf_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'scheda_pai_inf_id', referencedColumnName: 'id')]
+    private $idOperatoreSecondarioInf;
 
-    #[ORM\Column(type: 'array', nullable: true)]
-    private $idOperatoreSecondarioTdr = [];
+    #[ORM\ManyToMany(inversedBy: 'tdrSchedaPai', targetEntity: User::class)]
+    #[ORM\JoinTable(name: 'scheda_pai_user_tdr')]
+    #[ORM\JoinColumn(name: 'user_tdr_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'scheda_pai_tdr_id', referencedColumnName: 'id')]
+    private $idOperatoreSecondarioTdr;
 
-    #[ORM\Column(type: 'array', nullable: true)]
-    private $idOperatoreSecondarioLog = [];
+    #[ORM\ManyToMany(inversedBy: 'logSchedaPai', targetEntity: User::class)]
+    #[ORM\JoinTable(name: 'scheda_pai_user_log')]
+    #[ORM\JoinColumn(name: 'user_log_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'scheda_pai_log_id', referencedColumnName: 'id')]
+    private $idOperatoreSecondarioLog;
 
-    #[ORM\Column(type: 'array', nullable: true)]
-    private $idOperatoreSecondarioAsa = [];
+    #[ORM\ManyToMany(inversedBy: 'asaSchedaPai', targetEntity: User::class)]
+    #[ORM\JoinTable(name: 'scheda_pai_user_asa')]
+    #[ORM\JoinColumn(name: 'user_asa_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'scheda_pai_asa_id', referencedColumnName: 'id')]
+    private $idOperatoreSecondarioAsa;
 
-    #[ORM\Column(type: 'array', nullable: true)]
-    private $idOperatoreSecondarioOss = [];
+    #[ORM\ManyToMany(inversedBy: 'ossSchedaPai', targetEntity: User::class)]
+    #[ORM\JoinTable(name: 'scheda_pai_user_oss')]
+    #[ORM\JoinColumn(name: 'user_oss_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'scheda_pai_oss_id', referencedColumnName: 'id')]
+    private $idOperatoreSecondarioOss;
 
     #[ORM\Column(type: 'integer')]
     private $idAssistito;
@@ -80,6 +96,11 @@ class SchedaPAI
 
     public function __construct()
     {
+        $this->idOperatoreSecondarioInf = new ArrayCollection();
+        $this->idOperatoreSecondarioTdr = new ArrayCollection();
+        $this->idOperatoreSecondarioLog = new ArrayCollection();
+        $this->idOperatoreSecondarioAsa = new ArrayCollection();
+        $this->idOperatoreSecondarioOss = new ArrayCollection();
         $this->idValutazioneFiguraProfessionale = new ArrayCollection();
         $this->idBarthel = new ArrayCollection();
         $this->idBraden = new ArrayCollection();
@@ -107,62 +128,142 @@ class SchedaPAI
         return $this;
     }
 
-    public function getIdOperatoreSecondarioInf(): ?array
+    /**
+     * @return Collection<int, User>
+     */
+    public function getidOperatoreSecondarioInf(): Collection
     {
         return $this->idOperatoreSecondarioInf;
     }
 
-    public function setIdOperatoreSecondarioInf(?array $idOperatoreSecondarioInf): self
+    public function addidOperatoreSecondarioInf(User $idOperatoreSecondarioInf): self
     {
-        $this->idOperatoreSecondarioInf = $idOperatoreSecondarioInf;
+        if (!$this->idOperatoreSecondarioInf->contains($idOperatoreSecondarioInf)) {
+            $this->idOperatoreSecondarioInf[] = $idOperatoreSecondarioInf;
+            
+        }
 
         return $this;
     }
 
-    public function getIdOperatoreSecondarioTdr(): ?array
+    public function removeidOperatoreSecondarioInf(User $idOperatoreSecondarioInf): self
+    {
+        if ($this->idOperatoreSecondarioInf->removeElement($idOperatoreSecondarioInf)) {
+            // set the owning side to null (unless already changed)
+           
+        }
+
+        return $this;
+    }
+
+     /**
+     * @return Collection<int, User>
+     */
+    public function getidOperatoreSecondarioTdr(): Collection
     {
         return $this->idOperatoreSecondarioTdr;
     }
 
-    public function setIdOperatoreSecondarioTdr(?array $idOperatoreSecondarioTdr): self
+    public function addidOperatoreSecondarioTdr(User $idOperatoreSecondarioTdr): self
     {
-        $this->idOperatoreSecondarioTdr = $idOperatoreSecondarioTdr;
+        if (!$this->idOperatoreSecondarioTdr->contains($idOperatoreSecondarioTdr)) {
+            $this->idOperatoreSecondarioTdr[] = $idOperatoreSecondarioTdr;
+            
+        }
 
         return $this;
     }
 
-    public function getIdOperatoreSecondarioLog(): ?array
+    public function removeidOperatoreSecondarioTdr(User $idOperatoreSecondarioTdr): self
+    {
+        if ($this->idOperatoreSecondarioTdr->removeElement($idOperatoreSecondarioTdr)) {
+            // set the owning side to null (unless already changed)
+           
+        }
+
+        return $this;
+    }
+
+     /**
+     * @return Collection<int, User>
+     */
+    public function getidOperatoreSecondarioLog(): Collection
     {
         return $this->idOperatoreSecondarioLog;
     }
 
-    public function setIdOperatoreSecondarioLog(?array $idOperatoreSecondarioLog): self
+    public function addidOperatoreSecondarioLog(User $idOperatoreSecondarioLog): self
     {
-        $this->idOperatoreSecondarioLog = $idOperatoreSecondarioLog;
+        if (!$this->idOperatoreSecondarioLog->contains($idOperatoreSecondarioLog)) {
+            $this->idOperatoreSecondarioLog[] = $idOperatoreSecondarioLog;
+            
+        }
 
         return $this;
     }
 
-    public function getIdOperatoreSecondarioAsa(): ?array
+    public function removeidOperatoreSecondarioLog(User $idOperatoreSecondarioLog): self
+    {
+        if ($this->idOperatoreSecondarioLog->removeElement($idOperatoreSecondarioLog)) {
+            // set the owning side to null (unless already changed)
+           
+        }
+
+        return $this;
+    }
+
+     /**
+     * @return Collection<int, User>
+     */
+    public function getidOperatoreSecondarioAsa(): Collection
     {
         return $this->idOperatoreSecondarioAsa;
     }
 
-    public function setIdOperatoreSecondarioAsa(?array $idOperatoreSecondarioAsa): self
+    public function addidOperatoreSecondarioAsa(User $idOperatoreSecondarioAsa): self
     {
-        $this->idOperatoreSecondarioAsa = $idOperatoreSecondarioAsa;
+        if (!$this->idOperatoreSecondarioAsa->contains($idOperatoreSecondarioAsa)) {
+            $this->idOperatoreSecondarioAsa[] = $idOperatoreSecondarioAsa;
+            
+        }
 
         return $this;
     }
 
-    public function getIdOperatoreSecondarioOss(): ?array
+    public function removeidOperatoreSecondarioAsa(User $idOperatoreSecondarioAsa): self
+    {
+        if ($this->idOperatoreSecondarioAsa->removeElement($idOperatoreSecondarioAsa)) {
+            // set the owning side to null (unless already changed)
+           
+        }
+
+        return $this;
+    }
+
+     /**
+     * @return Collection<int, User>
+     */
+    public function getidOperatoreSecondarioOss(): Collection
     {
         return $this->idOperatoreSecondarioOss;
     }
 
-    public function setIdOperatoreSecondarioOss(?array $idOperatoreSecondarioOss): self
+    public function addidOperatoreSecondarioOss(User $idOperatoreSecondarioOss): self
     {
-        $this->idOperatoreSecondarioOss = $idOperatoreSecondarioOss;
+        if (!$this->idOperatoreSecondarioOss->contains($idOperatoreSecondarioOss)) {
+            $this->idOperatoreSecondarioOss[] = $idOperatoreSecondarioOss;
+            
+        }
+
+        return $this;
+    }
+
+    public function removeidOperatoreSecondarioOss(User $idOperatoreSecondarioOss): self
+    {
+        if ($this->idOperatoreSecondarioOss->removeElement($idOperatoreSecondarioOss)) {
+            // set the owning side to null (unless already changed)
+           
+        }
 
         return $this;
     }
