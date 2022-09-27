@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Chiusura Servizio</h1>
 
-    <table class="table">
+<div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
         <thead>
             <tr>
                 <th>Id</th>
@@ -18,11 +20,11 @@
         <tbody>
         {% for chiusura_servizio in chiusura_servizios %}
             <tr>
-                <td>{{ chiusura_servizio.id }}</td>
-                <td>{{ chiusura_servizio.nome }}</td>
-                <td>{{ chiusura_servizio.conclusioni }}</td>
-                <td>{{ chiusura_servizio.dataValutazione ? chiusura_servizio.dataValutazione|date('Y-m-d') : '' }}</td>
-                <td>
+                <td date-title='Id'>{{ chiusura_servizio.id }}</td>
+                <td date-title= 'Nome'>{{ chiusura_servizio.nome }}</td>
+                <td date-title= 'Conclusioni'>{{ chiusura_servizio.conclusioni }}</td>
+                <td date-title='Data di valutazione'>{{ chiusura_servizio.dataValutazione ? chiusura_servizio.dataValutazione|date('Y-m-d') : '' }}</td>
+                <td date-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Apri
@@ -39,6 +41,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
     
     <a class="btn btn-warning" href="{{ path('app_homepage') }}">Menù Principale</a>

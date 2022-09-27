@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Lesioni</h1>
 
-    <table class="table">
+<div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -49,6 +51,7 @@
             </tr>
         </tbody>
     </table>
+</div>
 
     <a class="btn btn-warning" href="{{ path('app_lesioni_index') }}">Torna alla lista</a>
 

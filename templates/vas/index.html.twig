@@ -4,9 +4,10 @@
 
 {% block body %}
     <h1>Vas</h1>
-
-    <table class="table">
-        <thead>
+ 
+ <div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
             <tr>
                 <th>Id</th>
                 <th>Paziente</th>
@@ -24,17 +25,17 @@
         <tbody>
         {% for va in vas %}
             <tr>
-                <td>{{ va.id }}</td>
-                <td>{{ va.paziente }}</td>
-                <td>{{ va.data ? va.data|date('Y-m-d') : '' }}</td>
-                <td>{{ va.ora ? va.ora|date('H:i:s') : '' }}</td>
-                <td>{{ va.base2 }}</td>
-                <td>{{ va.pz }}</td>
-                <td>{{ va.esito }}</td>
-                <td>{{ va.rilevanzaMonitoraggio }}</td>
-                <td>{{ va.farmaci ? 'Si' : 'No' }}</td>
-                <td>{{ va.altro ? 'Si' : 'No' }}</td>
-                <td>
+                <td data-title='Id'>{{ va.id }}</td>
+                <td data-title='Paziente'>{{ va.paziente }}</td>
+                <td data-title='Data'>{{ va.data ? va.data|date('Y-m-d') : '' }}</td>
+                <td data-title='Ora'>{{ va.ora ? va.ora|date('H:i:s') : '' }}</td>
+                <td data-title='Rilevazione di Base 2 volte'>{{ va.base2 }}</td>
+                <td data-title='Rilevazione al bisogno del Pz'>{{ va.pz }}</td>
+                <td data-title='Esito rilevazione post trattamento'>{{ va.esito }}</td>
+                <td data-title='Rilevazione Monitoraggio'>{{ va.rilevanzaMonitoraggio }}</td>
+                <td data-title='Farmaci'>{{ va.farmaci ? 'Si' : 'No' }}</td>
+                <td data-title='Altro'>{{ va.altro ? 'Si' : 'No' }}</td>
+                <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Apri
@@ -51,6 +52,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
     
     <a class="btn btn-warning" href="{{ path('app_homepage') }}">Menù Principale</a>

@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Barthel</h1>
 
-    <table class="table">
+<div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
         <thead>
             <tr>
                 <th>Id</th>
@@ -22,7 +24,7 @@
                 <th>Trasferimento Letto-Sedia</th>
                 <th>Scale</th>
                 <th>Deambulazione</th>
-                <th>DeambulazioneValida</th>
+                <th>Deambulazione Valida</th>
                 <th>Uso Carrozzina</th>
                 <th>Totale</th>
                 <th>Operazioni</th>
@@ -31,24 +33,24 @@
         <tbody>
         {% for barthel in barthels %}
             <tr>
-                <td>{{ barthel.id }}</td>
-                <td>{{ barthel.nome }}</td>
-                <td>{{ barthel.dataValutazione ? barthel.dataValutazione|date('Y-m-d') : '' }}</td>
-                <td>{{ barthel.alimentazione }}</td>
-                <td>{{ barthel.bagnoDoccia }}</td>
-                <td>{{ barthel.igienePersonale }}</td>
-                <td>{{ barthel.abbigliamento }}</td>
-                <td>{{ barthel.continenzaIntestinale }}</td>
-                <td>{{ barthel.continenzaUrinaria }}</td>
-                <td>{{ barthel.toilet }}</td>
-                <td>{{ barthel.totaleValutazioneFunzionale }}</td>
-                <td>{{ barthel.trasferimentoLettoSedia }}</td>
-                <td>{{ barthel.scale }}</td>
-                <td>{{ barthel.deambulazione ? 'Si' : 'No' }}</td>
-                <td>{{ barthel.deambulazioneValida }}</td>
-                <td>{{ barthel.usoCarrozzina }}</td>
-                <td>{{ barthel.totale }}</td>
-                <td>
+                <td data-title='Id'>{{ barthel.id }}</td>
+                <td data-title='Nome'>{{ barthel.nome }}</td>
+                <td data-title='Data valutazione'>{{ barthel.dataValutazione ? barthel.dataValutazione|date('Y-m-d') : '' }}</td>
+                <td data-title='Alimentazione'>{{ barthel.alimentazione }}</td>
+                <td data-title='Bagno doccia'>{{ barthel.bagnoDoccia }}</td>
+                <td data-title='Igiene Personale'>{{ barthel.igienePersonale }}</td>
+                <td data-title='Abbigliamento'>{{ barthel.abbigliamento }}</td>
+                <td data-title='Continenza Intestinale'>{{ barthel.continenzaIntestinale }}</td>
+                <td data-title='Continentza Urinaria'>{{ barthel.continenzaUrinaria }}</td>
+                <td data-title='Toilet'>{{ barthel.toilet }}</td>
+                <td data-title='Totale valutazione funzionale'>{{ barthel.totaleValutazioneFunzionale }}</td>
+                <td data-title='Trasferimento Letto-sedia'>{{ barthel.trasferimentoLettoSedia }}</td>
+                <td data-title='Scale'>{{ barthel.scale }}</td>
+                <td data-title='Deambulazione'>{{ barthel.deambulazione ? 'Si' : 'No' }}</td>
+                <td data-title='Deambulazione Valida'>{{ barthel.deambulazioneValida }}</td>
+                <td data-title='Uso Carrozzina'>{{ barthel.usoCarrozzina }}</td>
+                <td data-title='Totale'>{{ barthel.totale }}</td>
+                <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Apri
@@ -65,6 +67,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
     
     <a class="btn btn-primary" href="{{ path('app_homepage') }}">Menù Principale</a>

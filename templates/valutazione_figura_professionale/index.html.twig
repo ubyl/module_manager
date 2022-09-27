@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Valutazione Figura Professionale</h1>
 
-    <table class="table">
+<div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
         <thead>
             <tr>
                 <th>Id</th>
@@ -22,15 +24,15 @@
         <tbody>
         {% for valutazione_figura_professionale in valutazione_figura_professionales %}
             <tr>
-                <td>{{ valutazione_figura_professionale.id }}</td>
-                <td>{{ valutazione_figura_professionale.nome }}</td>
-                <td>{{ valutazione_figura_professionale.tipoOperatore }}</td>
-                <td>{{ valutazione_figura_professionale.diagnosiProfessionale }}</td>
-                <td>{{ valutazione_figura_professionale.obbiettiviDaRaggiungere }}</td>
-                <td>{{ valutazione_figura_professionale.tipoEFrequenza }}</td>
-                <td>{{ valutazione_figura_professionale.modalitaTempiMonitoraggio }}</td>
-                <td>{{ valutazione_figura_professionale.dataValutazione ? valutazione_figura_professionale.dataValutazione|date('Y-m-d') : '' }}</td>
-                <td>
+                <td data-title='Id'>{{ valutazione_figura_professionale.id }}</td>
+                <td data-title='Nome'>{{ valutazione_figura_professionale.nome }}</td>
+                <td data-title='Tipo Operatore'>{{ valutazione_figura_professionale.tipoOperatore }}</td>
+                <td data-title='Diagnosi professionale'>{{ valutazione_figura_professionale.diagnosiProfessionale }}</td>
+                <td data-title='Obbiettivi da raggiungere'>{{ valutazione_figura_professionale.obbiettiviDaRaggiungere }}</td>
+                <td data-title='Tipo e frequenza'>{{ valutazione_figura_professionale.tipoEFrequenza }}</td>
+                <td data-title='Modalità e tempi di monitoraggio obbiettivi'>{{ valutazione_figura_professionale.modalitaTempiMonitoraggio }}</td>
+                <td data-title='Data di valutazione'>{{ valutazione_figura_professionale.dataValutazione ? valutazione_figura_professionale.dataValutazione|date('Y-m-d') : '' }}</td>
+                <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Apri
@@ -47,6 +49,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
     
     <a class="btn btn-warning" href="{{ path('app_homepage') }}">Menù Principale</a>

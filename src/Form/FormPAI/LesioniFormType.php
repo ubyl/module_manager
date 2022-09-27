@@ -52,6 +52,7 @@ class LesioniFormType extends AbstractType
                 'choices' => $cuteChoices
             ])
             ->add('noteSullaLesione', TextType::class, [
+                'required' => false,
                 'attr' => array('style' => 'height:100px')
             ])
         ;

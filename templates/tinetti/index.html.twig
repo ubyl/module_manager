@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Tinetti</h1>
 
-    <table class="table">
+<div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
         <thead>
             <tr>
                 <th>Id</th>
@@ -40,33 +42,33 @@
         <tbody>
         {% for tinetti in tinettis %}
             <tr>
-                <td>{{ tinetti.id }}</td>
-                <td>{{ tinetti.nome }}</td>
-                <td>{{ tinetti.dataValutazione ? tinetti.dataValutazione|date('Y-m-d') : '' }}</td>
-                <td>{{ tinetti.equilibrioSeduto }}</td>
-                <td>{{ tinetti.sedia }}</td>
-                <td>{{ tinetti.alzarsi }}</td>
-                <td>{{ tinetti.stazioneEretta }}</td>
-                <td>{{ tinetti.stazioneErettaProlungata }}</td>
-                <td>{{ tinetti.romberg }}</td>
-                <td>{{ tinetti.rombergSensibilizzato }}</td>
-                <td>{{ tinetti.girarsi1 }}</td>
-                <td>{{ tinetti.girarsi2 }}</td>
-                <td>{{ tinetti.sedersi }}</td>
-                <td>{{ tinetti.totaleEquilibrio }}</td>
-                <td>{{ tinetti.inizioDeambulazione }}</td>
-                <td>{{ tinetti.piedeDx }}</td>
-                <td>{{ tinetti.piedeDx2 }}</td>
-                <td>{{ tinetti.piedeSx }}</td>
-                <td>{{ tinetti.piedeSx2 }}</td>
-                <td>{{ tinetti.simmetriaPasso }}</td>
-                <td>{{ tinetti.continuitaPasso }}</td>
-                <td>{{ tinetti.traiettoria }}</td>
-                <td>{{ tinetti.tronco }}</td>
-                <td>{{ tinetti.cammino }}</td>
-                <td>{{ tinetti.totaleAndatura }}</td>
-                <td>{{ tinetti.totale }}</td>
-                <td>
+                <td data-title='Id'>{{ tinetti.id }}</td>
+                <td data-title='Nome'>{{ tinetti.nome }}</td>
+                <td data-title='Data valutazione'>{{ tinetti.dataValutazione ? tinetti.dataValutazione|date('Y-m-d') : '' }}</td>
+                <td data-title='Equilibrio da seduto'>{{ tinetti.equilibrioSeduto }}</td>
+                <td data-title='Alzarsi dalla sedia'>{{ tinetti.sedia }}</td>
+                <td data-title='Tentativo di alzarsi'>{{ tinetti.alzarsi }}</td>
+                <td data-title='Equilibrio stazione eretta'>{{ tinetti.stazioneEretta }}</td>
+                <td data-title='Equilibrio stazione eretta prolungata'>{{ tinetti.stazioneErettaProlungata }}</td>
+                <td data-title='Romberg'>{{ tinetti.romberg }}</td>
+                <td data-title='Romberg sensibilizzato'>{{ tinetti.rombergSensibilizzato }}</td>
+                <td data-title='Girarsi a 360° a'>{{ tinetti.girarsi1 }}</td>
+                <td data-title='Girarsi a 360° b'>{{ tinetti.girarsi2 }}</td>
+                <td data-title='Sedersi'>{{ tinetti.sedersi }}</td>
+                <td data-title='Totale equilibrio'>{{ tinetti.totaleEquilibrio }}</td>
+                <td data-title='Inizio della deambulazione immediatamente dopo il via'>{{ tinetti.inizioDeambulazione }}</td>
+                <td data-title='Lunghezza passo piede destro'>{{ tinetti.piedeDx }}</td>
+                <td data-title='Altezza passo piede destro'>{{ tinetti.piedeDx2 }}</td>
+                <td data-title='Lunghezza passo piede sinistro'>{{ tinetti.piedeSx }}</td>
+                <td data-title='Altezza passo piede sinistro'>{{ tinetti.piedeSx2 }}</td>
+                <td data-title='Simmetria del passo'>{{ tinetti.simmetriaPasso }}</td>
+                <td data-title='Continuita del passo'>{{ tinetti.continuitaPasso }}</td>
+                <td data-title='Traiettoria'>{{ tinetti.traiettoria }}</td>
+                <td data-title='Tronco'>{{ tinetti.tronco }}</td>
+                <td data-title='Cammino'>{{ tinetti.cammino }}</td>
+                <td data-title='Totale andatura'>{{ tinetti.totaleAndatura }}</td>
+                <td data-title='Totale'>{{ tinetti.totale }}</td>
+                <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Apri
@@ -83,6 +85,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
     
     <a class="btn btn-warning" href="{{ path('app_homepage') }}">Menù Principale</a>

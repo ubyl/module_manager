@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Parere MMG</h1>
 
-    <table class="table">
+<div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
         <thead>
             <tr>
                 <th>Id</th>
@@ -18,11 +20,11 @@
         <tbody>
         {% for parere_mmg in parere_mmgs %}
             <tr>
-                <td>{{ parere_mmg.id }}</td>
-                <td>{{ parere_mmg.nome }}</td>
-                <td>{{ parere_mmg.parere}}</td>
-                <td>{{ parere_mmg.descrizione }}</td>
-                <td>
+                <td data-title='Id'>{{ parere_mmg.id }}</td>
+                <td data-title='Nome'>{{ parere_mmg.nome }}</td>
+                <td data-title='Parere'>{{ parere_mmg.parere}}</td>
+                <td data-title='Descrizione'>{{ parere_mmg.descrizione }}</td>
+                <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Apri
@@ -39,6 +41,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
     
     <a class="btn btn-warning" href="{{ path('app_homepage') }}">Menù Principale</a>

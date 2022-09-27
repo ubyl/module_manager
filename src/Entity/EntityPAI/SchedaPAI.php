@@ -23,31 +23,31 @@ class SchedaPAI
 
     #[ORM\ManyToMany(inversedBy: 'infSchedaPai', targetEntity: User::class)]
     #[ORM\JoinTable(name: 'scheda_pai_user_inf')]
-    #[ORM\JoinColumn(name: 'user_inf_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_inf_id', referencedColumnName: 'id', nullable:true)]
     #[ORM\InverseJoinColumn(name: 'scheda_pai_inf_id', referencedColumnName: 'id')]
     private $idOperatoreSecondarioInf;
 
     #[ORM\ManyToMany(inversedBy: 'tdrSchedaPai', targetEntity: User::class)]
     #[ORM\JoinTable(name: 'scheda_pai_user_tdr')]
-    #[ORM\JoinColumn(name: 'user_tdr_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_tdr_id', referencedColumnName: 'id', nullable:true)]
     #[ORM\InverseJoinColumn(name: 'scheda_pai_tdr_id', referencedColumnName: 'id')]
     private $idOperatoreSecondarioTdr;
 
     #[ORM\ManyToMany(inversedBy: 'logSchedaPai', targetEntity: User::class)]
     #[ORM\JoinTable(name: 'scheda_pai_user_log')]
-    #[ORM\JoinColumn(name: 'user_log_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_log_id', referencedColumnName: 'id', nullable:true)]
     #[ORM\InverseJoinColumn(name: 'scheda_pai_log_id', referencedColumnName: 'id')]
     private $idOperatoreSecondarioLog;
 
     #[ORM\ManyToMany(inversedBy: 'asaSchedaPai', targetEntity: User::class)]
     #[ORM\JoinTable(name: 'scheda_pai_user_asa')]
-    #[ORM\JoinColumn(name: 'user_asa_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_asa_id', referencedColumnName: 'id', nullable:true)]
     #[ORM\InverseJoinColumn(name: 'scheda_pai_asa_id', referencedColumnName: 'id')]
     private $idOperatoreSecondarioAsa;
 
     #[ORM\ManyToMany(inversedBy: 'ossSchedaPai', targetEntity: User::class)]
     #[ORM\JoinTable(name: 'scheda_pai_user_oss')]
-    #[ORM\JoinColumn(name: 'user_oss_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_oss_id', referencedColumnName: 'id', nullable:true)]
     #[ORM\InverseJoinColumn(name: 'scheda_pai_oss_id', referencedColumnName: 'id')]
     private $idOperatoreSecondarioOss;
 

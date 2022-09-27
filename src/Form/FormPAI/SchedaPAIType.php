@@ -19,27 +19,32 @@ class SchedaPAIType extends AbstractType
             ->add('idOperatoreSecondarioInf', EntityType::class,[
                 'class'=> User::class,
                 'multiple'=> true,
+                'required'   => false,
                 'autocomplete' => true,
             ])
                
             ->add('idOperatoreSecondarioTdr', EntityType::class,[
                 'class'=> User::class,
                 'multiple'=> true,
+                'required'   => false,
                 'autocomplete' => true,
             ])
             ->add('idOperatoreSecondarioLog', EntityType::class,[
                 'class'=> User::class,
                 'multiple'=> true,
+                'required'   => false,
                 'autocomplete' => true,
             ])
             ->add('idOperatoreSecondarioAsa', EntityType::class,[
                 'class'=> User::class,
                 'multiple'=> true,
+                'required'   => false,
                 'autocomplete' => true,
             ])
             ->add('idOperatoreSecondarioOss', EntityType::class,[
                 'class'=> User::class,
                 'multiple'=> true,
+                'required'   => false,
                 'autocomplete' => true,
             ])
             ->add('idAssistito')

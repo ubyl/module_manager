@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Braden</h1>
 
-    <table class="table">
+<div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
         <thead>
             <tr>
                 <th>Id</th>
@@ -24,17 +26,17 @@
         <tbody>
         {% for braden in bradens %}
             <tr>
-                <td>{{ braden.id }}</td>
-                <td>{{ braden.nome }}</td>
-                <td>{{ braden.percezioneSensoriale }}</td>
-                <td>{{ braden.umidita }}</td>
-                <td>{{ braden.attivita }}</td>
-                <td>{{ braden.mobilita }}</td>
-                <td>{{ braden.nutrizione }}</td>
-                <td>{{ braden.frizioneScivolamento }}</td>
-                <td>{{ braden.dataValutazione ? braden.dataValutazione|date('Y-m-d') : '' }}</td>
-                <td>{{ braden.totale }}</td>
-                <td>
+                <td data-title='Id'>{{ braden.id }}</td>
+                <td data-title='Nome'>{{ braden.nome }}</td>
+                <td data-title='Percentuale sensoriale'>{{ braden.percezioneSensoriale }}</td>
+                <td data-title='Umidità'>{{ braden.umidita }}</td>
+                <td data-title='Attività'>{{ braden.attivita }}</td>
+                <td data-title='Mobilità'>{{ braden.mobilita }}</td>
+                <td data-title='Nutrizione'>{{ braden.nutrizione }}</td>
+                <td data-title='Frizione scivolamento'>{{ braden.frizioneScivolamento }}</td>
+                <td data-title='Data Valutazione'>{{ braden.dataValutazione ? braden.dataValutazione|date('Y-m-d') : '' }}</td>
+                <td data-title='Totale'>{{ braden.totale }}</td>
+                <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Apri
@@ -51,6 +53,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
     
     <a class="btn btn-warning" href="{{ path('app_homepage') }}">Menù Principale</a>

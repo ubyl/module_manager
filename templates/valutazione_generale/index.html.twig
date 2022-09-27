@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Valutazione Generale</h1>
 
-    <table class="table">
+<div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
         <thead>
             <tr>
                 <th>Id</th>
@@ -31,24 +33,24 @@
         <tbody>
         {% for valutazione_generale in valutazione_generales %}
             <tr>
-                <td>{{ valutazione_generale.id }}</td>
-                <td>{{ valutazione_generale.nome }}</td>
-                <td>{{ valutazione_generale.dataValutazione ? valutazione_generale.dataValutazione|date('Y-m-d') : '' }}</td>
-                <td>{{ valutazione_generale.nComponentiNucleoAbitativo }}</td>
-                <td>{{ valutazione_generale.rischioInfettivo ? 'Si' : 'No' }}</td>
-                <td>{{ valutazione_generale.diagnosi }}</td>
-                <td>{{ valutazione_generale.tipologiaValutazione }}</td>
-                <td>{{ valutazione_generale.panf }}</td>
-                <td>{{ valutazione_generale.fanf }}</td>
-                <td>{{ valutazione_generale.iss }}</td>
-                <td>{{ valutazione_generale.usoServiziIgenici }}</td>
-                <td>{{ valutazione_generale.abbigliamento }}</td>
-                <td>{{ valutazione_generale.alimentazione }}</td>
-                <td>{{ valutazione_generale.indicatoreDeambulazione }}</td>
-                <td>{{ valutazione_generale.igenePersonale }}</td>
-                <td>{{ valutazione_generale.cognitivita }}</td>
-                <td>{{ valutazione_generale.comportamento }}</td>
-                <td>
+                <td data-title='Id'>{{ valutazione_generale.id }}</td>
+                <td data-title='Nome'>{{ valutazione_generale.nome }}</td>
+                <td data-title='Data valutazione'>{{ valutazione_generale.dataValutazione ? valutazione_generale.dataValutazione|date('Y-m-d') : '' }}</td>
+                <td data-title='N componenti nucleo abitativo'>{{ valutazione_generale.nComponentiNucleoAbitativo }}</td>
+                <td data-title='Rischio infettivo'>{{ valutazione_generale.rischioInfettivo ? 'Si' : 'No' }}</td>
+                <td data-title='Diagnosi'>{{ valutazione_generale.diagnosi }}</td>
+                <td data-title='Tipologia valutazione'>{{ valutazione_generale.tipologiaValutazione }}</td>
+                <td data-title='Panf'>{{ valutazione_generale.panf }}</td>
+                <td data-title='Fanf'>{{ valutazione_generale.fanf }}</td>
+                <td data-title='Iss'>{{ valutazione_generale.iss }}</td>
+                <td data-title='Uso servizi igenici'>{{ valutazione_generale.usoServiziIgenici }}</td>
+                <td data-title='Abbigliamento'>{{ valutazione_generale.abbigliamento }}</td>
+                <td data-title='Alimentazione'>{{ valutazione_generale.alimentazione }}</td>
+                <td data-title='Inficatore deambulazione'>{{ valutazione_generale.indicatoreDeambulazione }}</td>
+                <td data-title='Igene personale'>{{ valutazione_generale.igenePersonale }}</td>
+                <td data-title='Cognitività'>{{ valutazione_generale.cognitivita }}</td>
+                <td data-title='Comportamento'>{{ valutazione_generale.comportamento }}</td>
+                <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Apri
@@ -65,6 +67,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
     
     <a class="btn btn-warning" href="{{ path('app_homepage') }}">Menù Principale</a>
