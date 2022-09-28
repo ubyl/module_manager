@@ -4,37 +4,58 @@
 
 {% block body %}
     <h1>Schede PAI</h1>
-
+<form action="{{ path('app_scheda_pai_index')}}" method="POST">
 <div id="no-more-tables">
     <table class="col-sm-12  table-striped table-condensed cf">
         <thead class="cf">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Id Operatore Principale</th>
-                <th>Id Operatore Secondario Inf</th>
-                <th>Id Operatore Secondario Tdr</th>
-                <th>Id Operatore Secondario Log</th>
-                <th>Id Operatore Secondario Asa</th>
-                <th>Id Operatore Secondario Oss</th>
-                <th>Id Assistito</th>
+                <th>Operatore Principale</th>
+                <th>Operatore Secondario Inf</th>
+                <th>Operatore Secondario Tdr</th>
+                <th>Operatore Secondario Log</th>
+                <th>Operatore Secondario Asa</th>
+                <th>Operatore Secondario Oss</th>
+                <th>Assistito</th>
                 <th>Id Console</th>
                 <th>Id Progetto</th>
                 <th>Stato</th>
                 <th>Operazioni</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th><select class="form-select" name='filtro_stato' onchange="this.form.submit()">
+                    <option selected>Filtra</option>
+                    <option value="nuova">Nuova</option>
+                    <option value="attiva">Attiva</option>
+                    <option value="approvata">Approvata</option>
+                    <option value=null>Nessuno</option>
+                    </select>
+                </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for scheda_pai in scheda_pais %}
             <tr>
                 <td data-title='Id'>{{ scheda_pai.id }}</td>
-                <td data-title='Id Operatore Principale'>{{ scheda_pai.idOperatorePrincipale }}</td>
-                <td data-title='Id Operatore Secondario Inf'>{{ scheda_pai.idOperatoreSecondarioInf ? scheda_pai.idOperatoreSecondarioInf|default('Nessuno')|join(', ') : 'Nessuno' }}</td>
-                <td data-title='Id Operatore Secondario Tdr'>{{ scheda_pai.idOperatoreSecondarioTdr ? scheda_pai.idOperatoreSecondarioTdr|default('Nessuno')|join(', ') : 'Nessuno' }}</td>
-                <td data-title='Id Operatore Secondario Log'>{{ scheda_pai.idOperatoreSecondarioLog ? scheda_pai.idOperatoreSecondarioLog|default('Nessuno')|join(', ') : 'Nessuno' }}</td>
-                <td data-title='Id Operatore Secondario Asa'>{{ scheda_pai.idOperatoreSecondarioAsa ? scheda_pai.idOperatoreSecondarioAsa|default('Nessuno')|join(', ') : 'Nessuno' }}</td>
-                <td data-title='Id Operatore Secondario Oss'>{{ scheda_pai.idOperatoreSecondarioOss ? scheda_pai.idOperatoreSecondarioOss|default('Nessuno')|join(', ') : 'Nessuno' }}</td>
-                <td data-title='Id Assistito'>{{ scheda_pai.idAssistito }}</td>
+                <td data-title='Operatore Principale'>{{ scheda_pai.idOperatorePrincipale }}</td>
+                <td data-title='Operatore Secondario Inf'>{{ scheda_pai.idOperatoreSecondarioInf ? scheda_pai.idOperatoreSecondarioInf|default('Nessuno')|join(', ') : 'Nessuno' }}</td>
+                <td data-title='Operatore Secondario Tdr'>{{ scheda_pai.idOperatoreSecondarioTdr ? scheda_pai.idOperatoreSecondarioTdr|default('Nessuno')|join(', ') : 'Nessuno' }}</td>
+                <td data-title='Operatore Secondario Log'>{{ scheda_pai.idOperatoreSecondarioLog ? scheda_pai.idOperatoreSecondarioLog|default('Nessuno')|join(', ') : 'Nessuno' }}</td>
+                <td data-title='Operatore Secondario Asa'>{{ scheda_pai.idOperatoreSecondarioAsa ? scheda_pai.idOperatoreSecondarioAsa|default('Nessuno')|join(', ') : 'Nessuno' }}</td>
+                <td data-title='Operatore Secondario Oss'>{{ scheda_pai.idOperatoreSecondarioOss ? scheda_pai.idOperatoreSecondarioOss|default('Nessuno')|join(', ') : 'Nessuno' }}</td>
+                <td data-title='Assistito'>{{ scheda_pai.idAssistito }}</td>
                 <td data-title='Id Console'>{{ scheda_pai.idConsole }}</td>
                 <td data-title='Id Progetto'>{{ scheda_pai.idProgetto }}</td>
                 <td data-title='Stato'>{{ scheda_pai.currentPlace }}</td>
@@ -74,9 +95,10 @@
         </tbody>
     </table>
 </div>
+</form>
 
-    <a class="btn btn-success" href="{{ path('app_scheda_pai_new') }}">Nuova scheda</a>
-    <a class="btn btn-warning" href="{{ path('app_homepage') }}">Menù Principale</a>
+    <a class="btn btn-primary" href="{{ path('app_scheda_pai_new') }}">Nuova scheda</a>
+    <a class="btn btn-primary" href="{{ path('app_homepage') }}">Menù Principale</a>
     
 <nav aria-label="Page navigation example">
    <ul class="pagination justify-content-center">

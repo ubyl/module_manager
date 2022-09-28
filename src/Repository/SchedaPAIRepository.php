@@ -71,6 +71,17 @@ class SchedaPAIRepository extends ServiceEntityRepository
         
     }
 
+    public function selectStatoSchedePai(string $stato): array
+    {
+        return $this->createQueryBuilder('s')
+
+        ->Where('s.currentPlace = :stato')
+        ->setParameter('stato', $stato)
+        ->getQuery()
+        ->getResult();
+        
+    }
+
 //    /**
 //     * @return SchedaPAI[] Returns an array of SchedaPAI objects
 //     */

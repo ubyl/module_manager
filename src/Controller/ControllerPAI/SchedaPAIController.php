@@ -22,15 +22,20 @@ class SchedaPAIController extends AbstractController
         $this->workflow = $schedePaiCreatingStateMachine;
     }
 
-    #[Route('/{page}', name: 'app_scheda_pai_index',requirements: ['page' => '\d+'], methods: ['GET'])]
-    public function index(SchedaPAIRepository $schedaPAIRepository, int $page=1): Response
+    #[Route('/{page}', name: 'app_scheda_pai_index',requirements: ['page' => '\d+'], methods: ['GET', 'POST'])]
+    public function index(Request $request, SchedaPAIRepository $schedaPAIRepository, int $page=1): Response
     {
         $schedePerPagina = 10;
         $offset = $schedePerPagina*$page-$schedePerPagina;
         $totaleSchede = $schedaPAIRepository->contaSchedePai();
         $pagineTotali = ceil($totaleSchede/$schedePerPagina);
+        $schedaPais= null;
+
+        //filtri
+        $stato=$request->request->get('filtro_stato');
         
         $user= $this-> getUser();
+
         if($user == null){
             return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
         }
@@ -38,19 +43,23 @@ class SchedaPAIController extends AbstractController
         $idUser = $user->getId();
 
         if($ruoloUser[0] == "ROLE_ADMIN"){
-        return $this->render('scheda_pai/index.html.twig', [
-            'scheda_pais' => $schedaPAIRepository->findBy([], null, $schedePerPagina, $offset ),
-            'pagina'=>$page,
-            'pagine_totali'=>$pagineTotali]);
+            if($stato != null)
+            $schedaPais = $schedaPAIRepository->selectStatoSchedePai($stato);
+            else
+            $schedaPais= $schedaPAIRepository->findBy([], null, $schedePerPagina, $offset );
         }
         if($ruoloUser[0] == "ROLE_USER"){
-            return $this->render('scheda_pai/index.html.twig', [
-            'scheda_pais' => $schedaPAIRepository->findUserSchedePai($idUser),
+            $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser);      
+        }
+        return $this->render('scheda_pai/index.html.twig', [
+            'scheda_pais' => $schedaPais,
             'pagina'=>$page,
             'pagine_totali'=>$pagineTotali]);
-        }
 
     }
+
+
+
 
     #[Route('/new', name: 'app_scheda_pai_new', methods: ['GET', 'POST'])]
     public function new(Request $request, SchedaPAIRepository $schedaPAIRepository): Response
