@@ -39,38 +39,87 @@ class SchedaPAIRepository extends ServiceEntityRepository
         }
     }
 
-    public function contaSchedePai(): int
+    public function contaSchedePai(string $roleUser, int $idUser, ?string $stato=null): int
     {
-        return $this->createQueryBuilder('s')
-        ->select('count(s.id)')
-        ->getQuery()
-        ->getSingleScalarResult();
+        $totale = 0;
+
+        if($roleUser[0] == 'ROLE_ADMIN'){
+            if($stato == null || $stato==""){
+                $totale = $this->createQueryBuilder('s')
+                ->select('count(s.id)')
+                ->getQuery()
+                ->getSingleScalarResult();
+        }   
+            else{
+                $qb = $this->selectStatoSchedePai($stato);
+                $totale = count($qb);     
+            }
+        }
+        if($roleUser[0] == 'ROLE_USER'){
+            if($stato == null){
+                $qb = $this->findUserSchedePai($idUser);
+                $totale = count($qb);
+            }
+            else{
+                $qb = $this->findUserSchedePaiConStato($idUser, $stato);
+                $totale = count($qb);
+            }
+        }
+        
+        return $totale;
 
     }
 
 
-    public function findUserSchedePai(int $idUser): array
+    //funzioni per utenti User
+    public function findUserSchedePai(int $idUser, string $stato = null): array
     {
-        return $this->createQueryBuilder('s')
+        if($stato != null){
+            return $this->createQueryBuilder('s')
 
-        ->leftJoin('s.idOperatoreSecondarioInf', 's1')
-        ->leftJoin('s.idOperatoreSecondarioTdr', 's2')
-        ->leftJoin('s.idOperatoreSecondarioLog', 's3')
-        ->leftJoin('s.idOperatoreSecondarioAsa', 's4')
-        ->leftJoin('s.idOperatoreSecondarioOss', 's5')
-        ->Where('s.idOperatorePrincipale = :id')
-        ->orWhere('s1.id = :id')
-        ->orWhere('s2.id = :id')
-        ->orWhere('s3.id = :id')
-        ->orWhere('s4.id = :id')
-        ->orWhere('s5.id = :id')
-        ->setParameter('id', $idUser)
-        ->orderBy('s.id','ASC')
-        ->getQuery()
-        ->getResult();
+            ->leftJoin('s.idOperatoreSecondarioInf', 's1')
+            ->leftJoin('s.idOperatoreSecondarioTdr', 's2')
+            ->leftJoin('s.idOperatoreSecondarioLog', 's3')
+            ->leftJoin('s.idOperatoreSecondarioAsa', 's4')
+            ->leftJoin('s.idOperatoreSecondarioOss', 's5')
+            ->Where('s.idOperatorePrincipale = :id')
+            ->orWhere('s1.id = :id')
+            ->orWhere('s2.id = :id')
+            ->orWhere('s3.id = :id')
+            ->orWhere('s4.id = :id')
+            ->orWhere('s5.id = :id')
+            ->andWhere('s.currentPlace = :stato')
+            ->setParameter('id', $idUser)
+            ->setParameter('stato', $stato)
+            ->orderBy('s.id','ASC')
+            ->getQuery()
+            ->getResult();
+        }
+        else{
+            return $this->createQueryBuilder('s')
+
+            ->leftJoin('s.idOperatoreSecondarioInf', 's1')
+            ->leftJoin('s.idOperatoreSecondarioTdr', 's2')
+            ->leftJoin('s.idOperatoreSecondarioLog', 's3')
+            ->leftJoin('s.idOperatoreSecondarioAsa', 's4')
+            ->leftJoin('s.idOperatoreSecondarioOss', 's5')
+            ->Where('s.idOperatorePrincipale = :id')
+            ->orWhere('s1.id = :id')
+            ->orWhere('s2.id = :id')
+            ->orWhere('s3.id = :id')
+            ->orWhere('s4.id = :id')
+            ->orWhere('s5.id = :id')
+            ->setParameter('id', $idUser)
+            ->orderBy('s.id','ASC')
+            ->getQuery()
+            ->getResult();
+        }
+
         
     }
 
+
+    //funzioni per utenti admin
     public function selectStatoSchedePai(string $stato): array
     {
         return $this->createQueryBuilder('s')

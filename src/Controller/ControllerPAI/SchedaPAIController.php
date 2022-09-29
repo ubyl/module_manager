@@ -25,32 +25,56 @@ class SchedaPAIController extends AbstractController
     #[Route('/{page}', name: 'app_scheda_pai_index',requirements: ['page' => '\d+'], methods: ['GET', 'POST'])]
     public function index(Request $request, SchedaPAIRepository $schedaPAIRepository, int $page=1): Response
     {
-        $schedePerPagina = 10;
-        $offset = $schedePerPagina*$page-$schedePerPagina;
-        $totaleSchede = $schedaPAIRepository->contaSchedePai();
-        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
-        $schedaPais= null;
-
-        //filtri
-        $stato=$request->request->get('filtro_stato');
         
+        //controllo login
         $user= $this-> getUser();
 
         if($user == null){
             return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
         }
+
+        //parametri per calcolo tabella
         $ruoloUser = $user->getRoles();
         $idUser = $user->getId();
+        //filtri
+        $stato=$request->request->get('filtro_stato');
+        $ordinamentoId = $request->request->get('filtro_id');
+        
+        //calcolo tabella
+        $schedaPais= null;
+        $schedePerPagina = 10;
+        $offset = $schedePerPagina*$page-$schedePerPagina;
+        
 
         if($ruoloUser[0] == "ROLE_ADMIN"){
-            if($stato != null)
-            $schedaPais = $schedaPAIRepository->selectStatoSchedePai($stato);
-            else
-            $schedaPais= $schedaPAIRepository->findBy([], null, $schedePerPagina, $offset );
+            if($stato != null){
+                $schedaPais = $schedaPAIRepository->selectStatoSchedePai($stato);
+            }
+            else{
+                if($ordinamentoId == null)
+                    $schedaPais= $schedaPAIRepository->findBy([], null, $schedePerPagina, $offset );
+                if($ordinamentoId == 'Crescente'){
+                    $schedaPais= $schedaPAIRepository->findBy([], array('id' => 'ASC'), $schedePerPagina, $offset );
+                }
+                if($ordinamentoId == 'Decrescente')
+                    $schedaPais= $schedaPAIRepository->findBy([], array('id' => 'DESC'), $schedePerPagina, $offset );
+            }
         }
-        if($ruoloUser[0] == "ROLE_USER"){
-            $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser);      
+        else if($ruoloUser[0] == "ROLE_USER"){
+            if($stato == null){
+                $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser, null);  
+            }
+            else{
+                $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser, $stato);  
+            }
         }
+        //calcolo pagine per paginatore
+        $totaleSchede = $schedaPAIRepository->contaSchedePai($ruoloUser[0], $idUser, $stato);
+        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
+
+        if($pagineTotali == 0)
+            $pagineTotali = 1;
+
         return $this->render('scheda_pai/index.html.twig', [
             'scheda_pais' => $schedaPais,
             'pagina'=>$page,

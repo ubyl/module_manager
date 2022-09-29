@@ -24,7 +24,12 @@
                 <th>Operazioni</th>
             </tr>
             <tr>
-                <th></th>
+                <th><select class="form-select" name='filtro_id' onchange="this.form.submit()">
+                    <option value>Ordina</option>
+                    <option value="Crescente">Crescente</option>
+                    <option value="Decrescente">Decrescente</option>
+                    </select>
+                </th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -35,11 +40,14 @@
                 <th></th>
                 <th></th>
                 <th><select class="form-select" name='filtro_stato' onchange="this.form.submit()">
-                    <option selected>Filtra</option>
+                    <option value>Filtra</option>
                     <option value="nuova">Nuova</option>
                     <option value="attiva">Attiva</option>
                     <option value="approvata">Approvata</option>
-                    <option value=null>Nessuno</option>
+                    <option value="in_attesa_di_chiusura"> In attesa di chiusura</option>
+                    <option value="chiusa">Chiusa</option>
+                    <option value="chiusa_con_rinnovo">Chiusa con rinnovo</option>
+                    <option value="">Nessuno</option>
                     </select>
                 </th>
                 <th></th>
