@@ -12,6 +12,8 @@ use Symfony\Component\Workflow\WorkflowInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
+
+
 #[Route('/scheda_pai')]
 class SchedaPAIController extends AbstractController
 {
@@ -26,6 +28,7 @@ class SchedaPAIController extends AbstractController
     public function index(Request $request, SchedaPAIRepository $schedaPAIRepository, int $page=1): Response
     {
         
+        
         //controllo login
         $user= $this-> getUser();
 
@@ -39,19 +42,20 @@ class SchedaPAIController extends AbstractController
         //filtri
         $stato=$request->request->get('filtro_stato');
         $ordinamentoId = $request->request->get('filtro_id');
+        $numeroSchedeVisibiliPerPagina= $request->request->get('filtro_numero_schede');
         
         //calcolo tabella
         $schedaPais= null;
-        $schedePerPagina = 10;
+        $schedePerPagina = $numeroSchedeVisibiliPerPagina;
         $offset = $schedePerPagina*$page-$schedePerPagina;
         
 
         if($ruoloUser[0] == "ROLE_ADMIN"){
             if($stato != null){
-                $schedaPais = $schedaPAIRepository->selectStatoSchedePai($stato);
+                $schedaPais = $schedaPAIRepository->selectStatoSchedePai($stato, $ordinamentoId);
             }
             else{
-                if($ordinamentoId == null)
+                if($ordinamentoId == null || $ordinamentoId == "")
                     $schedaPais= $schedaPAIRepository->findBy([], null, $schedePerPagina, $offset );
                 if($ordinamentoId == 'Crescente'){
                     $schedaPais= $schedaPAIRepository->findBy([], array('id' => 'ASC'), $schedePerPagina, $offset );
@@ -61,11 +65,11 @@ class SchedaPAIController extends AbstractController
             }
         }
         else if($ruoloUser[0] == "ROLE_USER"){
-            if($stato == null){
-                $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser, null);  
+            if($stato == null || $stato == ""){
+                $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser, null, $ordinamentoId);  
             }
             else{
-                $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser, $stato);  
+                $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser, $stato, $ordinamentoId);  
             }
         }
         //calcolo pagine per paginatore
@@ -78,7 +82,10 @@ class SchedaPAIController extends AbstractController
         return $this->render('scheda_pai/index.html.twig', [
             'scheda_pais' => $schedaPais,
             'pagina'=>$page,
-            'pagine_totali'=>$pagineTotali]);
+            'pagine_totali'=>$pagineTotali,
+            'schede_per_pagina' => $schedePerPagina,
+            'ordinamento' => $ordinamentoId,
+            'stato' => $stato]);
 
     }
 

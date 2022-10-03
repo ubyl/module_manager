@@ -39,11 +39,11 @@ class SchedaPAIRepository extends ServiceEntityRepository
         }
     }
 
-    public function contaSchedePai(string $roleUser, int $idUser, ?string $stato=null): int
+    public function contaSchedePai( string $roleUser, int $idUser, ?string $stato=null): int
     {
         $totale = 0;
 
-        if($roleUser[0] == 'ROLE_ADMIN'){
+        if($roleUser == 'ROLE_ADMIN'){
             if($stato == null || $stato==""){
                 $totale = $this->createQueryBuilder('s')
                 ->select('count(s.id)')
@@ -55,13 +55,13 @@ class SchedaPAIRepository extends ServiceEntityRepository
                 $totale = count($qb);     
             }
         }
-        if($roleUser[0] == 'ROLE_USER'){
-            if($stato == null){
+        if($roleUser == 'ROLE_USER'){
+            if($stato == null || $stato==""){
                 $qb = $this->findUserSchedePai($idUser);
                 $totale = count($qb);
             }
             else{
-                $qb = $this->findUserSchedePaiConStato($idUser, $stato);
+                $qb = $this->findUserSchedePai($idUser, $stato);
                 $totale = count($qb);
             }
         }
@@ -72,62 +72,66 @@ class SchedaPAIRepository extends ServiceEntityRepository
 
 
     //funzioni per utenti User
-    public function findUserSchedePai(int $idUser, string $stato = null): array
+    public function findUserSchedePai(int $idUser, string $stato = null, string $ordinamentoId = null): array
     {
-        if($stato != null){
-            return $this->createQueryBuilder('s')
+        $qb = $this->createQueryBuilder('s')
 
-            ->leftJoin('s.idOperatoreSecondarioInf', 's1')
-            ->leftJoin('s.idOperatoreSecondarioTdr', 's2')
-            ->leftJoin('s.idOperatoreSecondarioLog', 's3')
-            ->leftJoin('s.idOperatoreSecondarioAsa', 's4')
-            ->leftJoin('s.idOperatoreSecondarioOss', 's5')
-            ->Where('s.idOperatorePrincipale = :id')
-            ->orWhere('s1.id = :id')
-            ->orWhere('s2.id = :id')
-            ->orWhere('s3.id = :id')
-            ->orWhere('s4.id = :id')
-            ->orWhere('s5.id = :id')
+        ->leftJoin('s.idOperatoreSecondarioInf', 's1')
+        ->leftJoin('s.idOperatoreSecondarioTdr', 's2')
+        ->leftJoin('s.idOperatoreSecondarioLog', 's3')
+        ->leftJoin('s.idOperatoreSecondarioAsa', 's4')
+        ->leftJoin('s.idOperatoreSecondarioOss', 's5')
+        ->Where('s.idOperatorePrincipale = :id')
+        ->orWhere('s1.id = :id')
+        ->orWhere('s2.id = :id')
+        ->orWhere('s3.id = :id')
+        ->orWhere('s4.id = :id')
+        ->orWhere('s5.id = :id')
+        ->setParameter('id', $idUser);
+
+    
+        if($stato != null){
+            $qb 
             ->andWhere('s.currentPlace = :stato')
-            ->setParameter('id', $idUser)
-            ->setParameter('stato', $stato)
-            ->orderBy('s.id','ASC')
-            ->getQuery()
-            ->getResult();
+            ->setParameter('stato', $stato);
+           
+        }
+        
+        if($ordinamentoId == null || $ordinamentoId == "Crescente"){
+            $qb 
+            ->orderBy('s.id', 'ASC');
         }
         else{
-            return $this->createQueryBuilder('s')
-
-            ->leftJoin('s.idOperatoreSecondarioInf', 's1')
-            ->leftJoin('s.idOperatoreSecondarioTdr', 's2')
-            ->leftJoin('s.idOperatoreSecondarioLog', 's3')
-            ->leftJoin('s.idOperatoreSecondarioAsa', 's4')
-            ->leftJoin('s.idOperatoreSecondarioOss', 's5')
-            ->Where('s.idOperatorePrincipale = :id')
-            ->orWhere('s1.id = :id')
-            ->orWhere('s2.id = :id')
-            ->orWhere('s3.id = :id')
-            ->orWhere('s4.id = :id')
-            ->orWhere('s5.id = :id')
-            ->setParameter('id', $idUser)
-            ->orderBy('s.id','ASC')
-            ->getQuery()
-            ->getResult();
+            $qb 
+            ->orderBy('s.id', 'DESC');
         }
-
+        return $qb ->getQuery()
+                ->getResult();
+        
         
     }
 
 
     //funzioni per utenti admin
-    public function selectStatoSchedePai(string $stato): array
+    public function selectStatoSchedePai(string $stato, string $ordinamentoId = null): array
     {
-        return $this->createQueryBuilder('s')
+        
+        $qb = $this->createQueryBuilder('s')
 
         ->Where('s.currentPlace = :stato')
-        ->setParameter('stato', $stato)
-        ->getQuery()
-        ->getResult();
+        ->setParameter('stato', $stato);
+        
+        if($ordinamentoId == null || $ordinamentoId == "Crescente"){
+            $qb
+            ->orderBy('s.id', 'ASC');
+        }
+        else{
+            $qb 
+            ->orderBy('s.id', 'DESC');
+        }
+        return $qb 
+                ->getQuery()
+                ->getResult();
         
     }
 
