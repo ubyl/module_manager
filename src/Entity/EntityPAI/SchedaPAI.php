@@ -18,7 +18,7 @@ class SchedaPAI
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'principaleSchedaPai')]
     private $idOperatorePrincipale;
 
     #[ORM\ManyToMany(inversedBy: 'infSchedaPai', targetEntity: User::class)]
@@ -116,17 +116,7 @@ class SchedaPAI
         return $this->id;
     }
 
-    public function getIdOperatorePrincipale(): ?int
-    {
-        return $this->idOperatorePrincipale;
-    }
-
-    public function setIdOperatorePrincipale(int $idOperatorePrincipale): self
-    {
-        $this->idOperatorePrincipale = $idOperatorePrincipale;
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection<int, User>
@@ -558,6 +548,18 @@ class SchedaPAI
     public function setCurrentPlace($currentPlace, $context = [])
     {
         $this->currentPlace = $currentPlace;
+    }
+
+    public function getIdOperatorePrincipale(): ?User
+    {
+        return $this->idOperatorePrincipale;
+    }
+
+    public function setIdOperatorePrincipale(?User $idOperatorePrincipale): self
+    {
+        $this->idOperatorePrincipale = $idOperatorePrincipale;
+
+        return $this;
     }
 
 }

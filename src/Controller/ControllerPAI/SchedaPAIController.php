@@ -44,32 +44,37 @@ class SchedaPAIController extends AbstractController
         $ordinamentoId = $request->request->get('filtro_id');
         $numeroSchedeVisibiliPerPagina= $request->request->get('filtro_numero_schede');
         
+        
         //calcolo tabella
         $schedaPais= null;
+
+        if($numeroSchedeVisibiliPerPagina == null)
+        $schedePerPagina = 5;
+        else
         $schedePerPagina = $numeroSchedeVisibiliPerPagina;
+
         $offset = $schedePerPagina*$page-$schedePerPagina;
         
 
         if($ruoloUser[0] == "ROLE_ADMIN"){
             if($stato != null){
-                $schedaPais = $schedaPAIRepository->selectStatoSchedePai($stato, $ordinamentoId);
+                $schedaPais = $schedaPAIRepository->selectStatoSchedePai($stato, $ordinamentoId, $page, $schedePerPagina);
             }
             else{
-                if($ordinamentoId == null || $ordinamentoId == "")
-                    $schedaPais= $schedaPAIRepository->findBy([], null, $schedePerPagina, $offset );
-                if($ordinamentoId == 'Crescente'){
+                if($ordinamentoId == null || $ordinamentoId == "" || $ordinamentoId == 'Crescente'){
                     $schedaPais= $schedaPAIRepository->findBy([], array('id' => 'ASC'), $schedePerPagina, $offset );
                 }
-                if($ordinamentoId == 'Decrescente')
+                else if($ordinamentoId == 'Decrescente'){
                     $schedaPais= $schedaPAIRepository->findBy([], array('id' => 'DESC'), $schedePerPagina, $offset );
+                }
             }
         }
         else if($ruoloUser[0] == "ROLE_USER"){
             if($stato == null || $stato == ""){
-                $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser, null, $ordinamentoId);  
+                $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser, null, $ordinamentoId, $schedePerPagina, $page);  
             }
             else{
-                $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser, $stato, $ordinamentoId);  
+                $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser, $stato, $ordinamentoId, $schedePerPagina, $page);  
             }
         }
         //calcolo pagine per paginatore

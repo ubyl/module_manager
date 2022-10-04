@@ -15,7 +15,11 @@ class SchedaPAIType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('idOperatorePrincipale')
+            ->add('idOperatorePrincipale', EntityType::class,[
+                'class'=> User::class,
+                'required'   => false,
+                'autocomplete' => true,
+            ])
             ->add('idOperatoreSecondarioInf', EntityType::class,[
                 'class'=> User::class,
                 'multiple'=> true,

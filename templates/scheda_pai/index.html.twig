@@ -4,7 +4,42 @@
 
 {% block body %}
     <h1>Schede PAI</h1>
-<form action="{{ path('app_scheda_pai_index')}}" method="POST">
+
+<form action="{{ path('app_scheda_pai_index')}}" method="POST" id="my_form">
+<nav class="navbar navbar-expand bg-light">
+    <div class="container-fluid">
+        <div class="col-md-2">
+        <p class="h6">Schede per pagina</p>
+        <select class=" d-inline form-select" name='filtro_numero_schede' onchange="this.form.submit()">
+                <option {% if schede_per_pagina == 0 %}selected{% endif %} value=2>2</option>
+                <option {% if schede_per_pagina == 5%}selected{% endif %} value=5>5</option>
+                <option {% if schede_per_pagina == 10%}selected{% endif %} value=10>10</option>
+        </select>
+        </div>
+        <div class="col-md-2">
+        <p class="h6">Ordina</p>
+        <select class="d-inline form-select" name='filtro_id' onchange="this.form.submit()">
+                <option {% if ordinamento == '' %}selected{% endif %} value>Ordina</option>
+                <option {% if ordinamento == 'Crescente' %}selected{% endif %} value="Crescente">Crescente</option>
+                <option {% if ordinamento == 'Decrescente' %}selected{% endif %} value="Decrescente">Decrescente</option>
+        </select>
+        </div>
+        <div class="col-md-2">
+        <p class="h6">Filtro stato</p>
+        <select class="d-inline form-select" name='filtro_stato' onchange="this.form.submit()">
+                <option {% if stato == '' %}selected{% endif %} value="">Tutti</option>
+                <option {% if stato == 'nuova' %}selected{% endif %} value="nuova">Nuova</option>
+                <option {% if stato == 'attiva' %}selected{% endif %} value="attiva">Attiva</option>
+                <option {% if stato == 'approvata' %}selected{% endif %} value="approvata">Approvata</option>
+                <option {% if stato == 'in_attesa_di_chiusura' %}selected{% endif %} value="in_attesa_di_chiusura"> In attesa di chiusura</option>
+                <option {% if stato == 'chiusa' %}selected{% endif %} value="chiusa">Chiusa</option>
+                <option {% if stato == 'chiusa_con_rinnovo' %}selected{% endif %} value="chiusa_con_rinnovo">Chiusa con rinnovo</option>
+        </select>
+        </div>
+    </div>
+</nav>
+
+
 <div id="no-more-tables">
     <table class="col-sm-12  table-striped table-condensed cf">
         <thead class="cf">
@@ -24,12 +59,6 @@
                 <th>Operazioni</th>
             </tr>
             <tr>
-                <th><select class="form-select" name='filtro_id' onchange="this.form.submit()">
-                    <option {% if ordinamento == '' %}selected{% endif %} value>Ordina</option>
-                    <option {% if ordinamento == 'Crescente' %}selected{% endif %} value="Crescente">Crescente</option>
-                    <option {% if ordinamento == 'Decrescente' %}selected{% endif %} value="Decrescente">Decrescente</option>
-                    </select>
-                </th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -39,21 +68,9 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th><select class="form-select" name='filtro_stato' onchange="this.form.submit()">
-                    <option {% if stato == '' %}selected{% endif %} value="">Tutti</option>
-                    <option {% if stato == 'nuova' %}selected{% endif %} value="nuova">Nuova</option>
-                    <option {% if stato == 'attiva' %}selected{% endif %} value="attiva">Attiva</option>
-                    <option {% if stato == 'approvata' %}selected{% endif %} value="approvata">Approvata</option>
-                    <option {% if stato == 'in_attesa_di_chiusura' %}selected{% endif %} value="in_attesa_di_chiusura"> In attesa di chiusura</option>
-                    <option {% if stato == 'chiusa' %}selected{% endif %} value="chiusa">Chiusa</option>
-                    <option {% if stato == 'chiusa_con_rinnovo' %}selected{% endif %} value="chiusa_con_rinnovo">Chiusa con rinnovo</option>
-                    </select>
-                </th>
-                <th><select class="form-select" name='filtro_numero_schede' onchange="this.form.submit()">
-                    <option {% if schede_per_pagina == 0 %}selected{% endif %} value=2>Visualizza per pagina</option>
-                    <option {% if schede_per_pagina == 5%}selected{% endif %} value=5>5</option>
-                    <option {% if schede_per_pagina == 10%}selected{% endif %} value=10>10</option>
-                </th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -113,15 +130,15 @@
     
 <nav aria-label="Page navigation example">
    <ul class="pagination justify-content-center">
-       <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="{{ path('app_scheda_pai_index') }}"><<</a></li>
-        <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="{{ path('app_scheda_pai_index', {'page':pagina-1}) }}"><</a></li>
+       <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="javascript:void(0)" onclick="document.getElementById('my_form').action = '{{ path('app_scheda_pai_index') }}'; document.getElementById('my_form').submit();"><<</a></li>
+        <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="javascript:void(0)" onclick="document.getElementById('my_form').action = '{{ path('app_scheda_pai_index', {'page':pagina-1}) }}'; document.getElementById('my_form').submit();"><</a></li>
     {% for i in 1..pagine_totali %}
         {% if i <= pagina + 1 and i >= pagina - 1 %}
-            <li class="page-item"><a class="page-link" href="{{ path('app_scheda_pai_index', {'page':i}) }}">{{i}}</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="document.getElementById('my_form').action = '{{ path('app_scheda_pai_index', {'page':i}) }}'; document.getElementById('my_form').submit();">{{i}}</a></li>
         {% endif %}
     {% endfor %}
-    <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="{{ path('app_scheda_pai_index', {'page':pagina+1}) }}">></a></li>
-      <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="{{ path('app_scheda_pai_index', {'page':pagine_totali}) }}">>></a></li>
+    <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="javascript:void(0)" onclick="document.getElementById('my_form').action = '{{ path('app_scheda_pai_index', {'page':pagina+1}) }}'; document.getElementById('my_form').submit();">></a></li>
+      <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="javascript:void(0)" onclick="document.getElementById('my_form').action = '{{ path('app_scheda_pai_index', {'page':pagine_totali}) }}'; document.getElementById('my_form').submit();">>></a></li>
   </ul>
 </nav>
 {% endblock %}

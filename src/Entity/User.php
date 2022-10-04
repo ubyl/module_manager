@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Entity\EntityPAI\SchedaPAI;
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use App\Entity\EntityPAI\SchedaPAI;
 use PhpParser\ErrorHandler\Collecting;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'user')]
@@ -32,6 +33,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\OneToMany(mappedBy: 'idOperatorePrincipale', targetEntity: SchedaPAI::class)]
+    private $principaleSchedaPai;
+
     #[ORM\ManyToMany(mappedBy: 'idOperatoreSecondarioInf', targetEntity: SchedaPai::class)]
     private $infSchedaPai;
 
@@ -48,6 +52,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $ossSchedaPai;
     
 
+    public function __construct()
+    {
+        $this->principaleSchedaPai = new ArrayCollection();
+    }
     public function __toString()
     {
         return $this->id;
@@ -274,4 +282,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, SchedaPai>
+     */
+    public function getPrincipaleSchedaPai(): Collection
+    {
+        return $this->principaleSchedaPai;
+    }
+
+    public function addPrincipaleSchedaPai(SchedaPAI $principaleSchedaPai): self
+    {
+        if (!$this->principaleSchedaPai->contains($principaleSchedaPai)) {
+            $this->principaleSchedaPai[] = $principaleSchedaPai;
+            $principaleSchedaPai->setIdOperatorePrincipale($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrincipaleSchedaPai(SchedaPAI $principaleSchedaPai): self
+    {
+        if ($this->principaleSchedaPai->removeElement($principaleSchedaPai)) {
+            // set the owning side to null (unless already changed)
+            if ($principaleSchedaPai->getIdOperatorePrincipale() === $this) {
+                $principaleSchedaPai->setIdOperatorePrincipale(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -72,7 +72,7 @@ class SchedaPAIRepository extends ServiceEntityRepository
 
 
     //funzioni per utenti User
-    public function findUserSchedePai(int $idUser, string $stato = null, string $ordinamentoId = null): array
+    public function findUserSchedePai(int $idUser, string $stato = null, string $ordinamentoId = null, int $schedePerPagina = null, int $page = null): array
     {
         $qb = $this->createQueryBuilder('s')
 
@@ -89,12 +89,11 @@ class SchedaPAIRepository extends ServiceEntityRepository
         ->orWhere('s5.id = :id')
         ->setParameter('id', $idUser);
 
-    
+
         if($stato != null){
             $qb 
             ->andWhere('s.currentPlace = :stato')
-            ->setParameter('stato', $stato);
-           
+            ->setParameter('stato', $stato);  
         }
         
         if($ordinamentoId == null || $ordinamentoId == "Crescente"){
@@ -105,6 +104,7 @@ class SchedaPAIRepository extends ServiceEntityRepository
             $qb 
             ->orderBy('s.id', 'DESC');
         }
+        $qb->setFirstResult(($page - 1) * $schedePerPagina)->setMaxResults($schedePerPagina);
         return $qb ->getQuery()
                 ->getResult();
         
@@ -113,7 +113,7 @@ class SchedaPAIRepository extends ServiceEntityRepository
 
 
     //funzioni per utenti admin
-    public function selectStatoSchedePai(string $stato, string $ordinamentoId = null): array
+    public function selectStatoSchedePai(string $stato, string $ordinamentoId = null, int $page = null, int $schedePerPagina = null): array
     {
         
         $qb = $this->createQueryBuilder('s')
@@ -129,6 +129,7 @@ class SchedaPAIRepository extends ServiceEntityRepository
             $qb 
             ->orderBy('s.id', 'DESC');
         }
+        $qb->setFirstResult(($page - 1) * $schedePerPagina)->setMaxResults($schedePerPagina);
         return $qb 
                 ->getQuery()
                 ->getResult();
