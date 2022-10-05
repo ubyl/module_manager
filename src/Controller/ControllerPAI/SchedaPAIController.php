@@ -49,7 +49,7 @@ class SchedaPAIController extends AbstractController
         $schedaPais= null;
 
         if($numeroSchedeVisibiliPerPagina == null)
-        $schedePerPagina = 5;
+        $schedePerPagina = 10;
         else
         $schedePerPagina = $numeroSchedeVisibiliPerPagina;
 
@@ -83,7 +83,6 @@ class SchedaPAIController extends AbstractController
 
         if($pagineTotali == 0)
             $pagineTotali = 1;
-
         return $this->render('scheda_pai/index.html.twig', [
             'scheda_pais' => $schedaPais,
             'pagina'=>$page,
@@ -91,7 +90,7 @@ class SchedaPAIController extends AbstractController
             'schede_per_pagina' => $schedePerPagina,
             'ordinamento' => $ordinamentoId,
             'stato' => $stato]);
-
+    
     }
 
 
@@ -145,7 +144,7 @@ class SchedaPAIController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_scheda_pai_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'app_scheda_pai_delete', methods: ['GET','POST'])]
     public function delete(Request $request, SchedaPAI $schedaPAI, SchedaPAIRepository $schedaPAIRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$schedaPAI->getId(), $request->request->get('_token'))) {

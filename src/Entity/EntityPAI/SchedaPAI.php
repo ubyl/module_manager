@@ -63,7 +63,7 @@ class SchedaPAI
     #[ORM\OneToOne(targetEntity: ValutazioneGenerale::class, inversedBy: 'schedaPAI', cascade: ['persist', 'remove'])]
     private $idValutazioneGenerale;
 
-    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: ValutazioneFiguraProfessionale::class)]
+    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: ValutazioneFiguraProfessionale::class, cascade: ['persist', 'remove'])]
     private $idValutazioneFiguraProfessionale;
 
     #[ORM\OneToOne(targetEntity: ParereMMG::class, inversedBy: 'schedaPAI', cascade: ['persist', 'remove'])]
@@ -72,22 +72,22 @@ class SchedaPAI
     #[ORM\OneToOne(targetEntity: ChiusuraServizio::class,inversedBy: 'schedaPAI', cascade: ['persist', 'remove'])]
     private $idChiusuraServizio;
 
-    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Barthel::class)]
+    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Barthel::class, cascade: ['persist', 'remove'])]
     private $idBarthel;
 
-    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Braden::class)]
+    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Braden::class, cascade: ['persist', 'remove'])]
     private $idBraden;
 
-    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: SPMSQ::class)]
+    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: SPMSQ::class, cascade: ['persist', 'remove'])]
     private $idSpmsq;
 
-    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Tinetti::class)]
+    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Tinetti::class, cascade: ['persist', 'remove'])]
     private $idTinetti;
 
-    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Vas::class)]
+    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Vas::class, cascade: ['persist', 'remove'])]
     private $idVas;
 
-    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Lesioni::class)]
+    #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Lesioni::class, cascade: ['persist', 'remove'])]
     private Collection $idLesioni;
 
     #[ORM\Column(type: 'string')]

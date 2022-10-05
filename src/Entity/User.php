@@ -24,6 +24,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $email;
 
+    #[ORM\Column(type: 'string')]
+    private $name;
+
+    #[ORM\Column(type: 'string')]
+    private $surname;
+
     #[ORM\Column(type: 'json')]
     private $roles = [];
 
@@ -75,6 +81,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->email = $email;
 
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(string $surname): self
+    {
+        $this->surname = $surname;
+        
         return $this;
     }
 
@@ -146,7 +176,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      /**
      * @return Collection<int, SchedaPai>
      */
-    public function getInfSchedaPai(): Collection
+    public function getInfSchedaPai()
     {
         return $this->infSchedaPai;
     }
@@ -174,7 +204,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
          /**
      * @return Collection<int, SchedaPai>
      */
-    public function getTdrSchedaPai(): Collection
+    public function getTdrSchedaPai()
     {
         return $this->tdrSchedaPai;
     }
@@ -202,7 +232,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
          /**
      * @return Collection<int, SchedaPai>
      */
-    public function getLogSchedaPai(): Collection
+    public function getLogSchedaPai()
     {
         return $this->logSchedaPai;
     }
@@ -230,7 +260,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
          /**
      * @return Collection<int, SchedaPai>
      */
-    public function getAsaSchedaPai(): Collection
+    public function getAsaSchedaPai()
     {
         return $this->asaSchedaPai;
     }
@@ -258,7 +288,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
          /**
      * @return Collection<int, SchedaPai>
      */
-    public function getOssSchedaPai(): Collection
+    public function getOssSchedaPai()
     {
         return $this->ossSchedaPai;
     }
@@ -286,7 +316,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, SchedaPai>
      */
-    public function getPrincipaleSchedaPai(): Collection
+    public function getPrincipaleSchedaPai()
     {
         return $this->principaleSchedaPai;
     }
