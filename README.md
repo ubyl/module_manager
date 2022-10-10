@@ -29,3 +29,5 @@ Eseguire migrations
 ```
 $ php bin/console doctrine:migrations:migrate
 ```
+
+in caso di danni: togliere apici alla prima riga nel file bootstrap-icons.scss

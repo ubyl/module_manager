@@ -22,5 +22,9 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "bootstrap-icons": "^1.9.1",
+        "file-loader": "^6.2.0"
     }
 }

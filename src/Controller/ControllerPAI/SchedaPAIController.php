@@ -144,10 +144,11 @@ class SchedaPAIController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/delete', name: 'app_scheda_pai_delete', methods: ['GET','POST'])]
+    #[Route('/delete/{id}', name: 'app_scheda_pai_delete', methods: ['GET','POST'])]
     public function delete(Request $request, SchedaPAI $schedaPAI, SchedaPAIRepository $schedaPAIRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$schedaPAI->getId(), $request->request->get('_token'))) {
+        
+        if ($this->isCsrfTokenValid('delete'.$schedaPAI->getId(), $request->get('_token'))) {
             $schedaPAIRepository->remove($schedaPAI, true);
         }
 
