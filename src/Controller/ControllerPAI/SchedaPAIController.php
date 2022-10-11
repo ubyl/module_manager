@@ -89,7 +89,8 @@ class SchedaPAIController extends AbstractController
             'pagine_totali'=>$pagineTotali,
             'schede_per_pagina' => $schedePerPagina,
             'ordinamento' => $ordinamentoId,
-            'stato' => $stato]);
+            'stato' => $stato,
+            'user' => $user]);
     
     }
 

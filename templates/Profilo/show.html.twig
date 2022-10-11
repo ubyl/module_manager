@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pagina Profilo{% endblock %}
+
+{% block body %}
+    <h1>Profilo Utente</h1>
+
+<div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
+        <tbody>
+            <tr>
+                <th>Nome</th>
+                <td>{% if user.name is empty %}
+                    Nessuno
+                    {% else %}
+                    {{ user.name }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Cognome</th>
+                <td>{% if user.surname is empty %}
+                    Nessuno
+                    {% else %}
+                    {{ user.surname }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Ruolo</th>
+                <td>{% if user.roles[0] == "ROLE_ADMIN" %}
+                    Admin
+                    {% elseif user.roles[0] == "ROLE_USER" %}
+                    Utente
+                    {% elseif user.roles[0] == "ROLE_GESTORE" %}
+                    Gestore
+                    {% endif %}
+                </td>
+            </tr>
+       </tbody>
+    </table>
+</div>
+
+<a class="btn btn-primary" href="{{ path('app_scheda_pai_index') }}">Torna alla lista</a>
+<a class="btn btn-primary" href="{{ path('app_profilo_edit', {'id': user.id}) }}">Modifica dati personali</a>
+
+{% endblock %}
+

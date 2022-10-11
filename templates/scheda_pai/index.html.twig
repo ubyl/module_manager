@@ -5,11 +5,26 @@
 {% block body %}
     <h1>Schede PAI</h1>
 
-<div class="container-fluid">
-    <a class="btn btn-primary btn-lg " href="{{ path('app_profilo') }}">Profilo
-        <swg class="bi bi-file-person"></swg>
-    </a> 
-</div>    
+<nav class="navbar navbar-dark bg-dark">
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="#" class="nav-link px-2 text-white">Home</a></li>
+    </ul>
+    <div class="d-flex flex-row-reverse w-100 pe-3">
+        
+        <a class="d-block link-light text-decoration-none dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+        </a>   
+        <ul class="dropdown-menu text-small" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);" data-popper-placement="bottom-end">
+            <li><a class="dropdown-item" href="{{ path('app_profilo_show') }}">Profilo</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_profilo_edit', {'id': user.id}) }}">Modifica Profilo</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_profilo_password', {'id': user.id}) }}">Modifica Password</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a></li>
+        </ul>
+        
+    </div>
+</nav>
+
+<div class="b-example-divider"></div>
 
 <form action="{{ path('app_scheda_pai_index')}}" method="POST" id="my_form">
 <nav class="navbar navbar-expand bg-light">

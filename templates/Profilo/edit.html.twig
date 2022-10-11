@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EditUser{% endblock %}
+
+{% block body %}
+    <h1>Modifica Profilo</h1>
+
+    {{ include('Profilo/_form.html.twig', {'button_label': 'Salva'}) }}
+   <a class="btn btn-danger" href="{{ path('app_profilo_show') }}">Annulla</a>
+{% endblock %}
