@@ -4,12 +4,12 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\ProfiloFormType;
-use App\Form\PasswordFormType;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/profilo')]
 class ProfiloController extends AbstractController
@@ -51,20 +51,31 @@ class ProfiloController extends AbstractController
     }
 
     #[Route('/password/{id}', name: 'app_profilo_password', methods: ['GET', 'POST'])]
-    public function editPassword(Request $request, User $user, UserRepository $userRepository): Response
+    public function editPassword(Request $request, User $user, UserPasswordHasherInterface $passwordHasher, UserRepository $userRepository): Response
     {
-        $form = $this->createForm(PasswordFormType::class, $user);
-        $form->handleRequest($request);
+       
+        $passwordNuova = $request->get('password_nuova');
+        $confermaPassword = $request->get('conferma_password');
+        
+        if ($passwordNuova == $confermaPassword && $passwordNuova != null ){
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            $hashedPassword = $passwordHasher->hashPassword(
+                $user,
+                $passwordNuova
+            );
+
+            $user->setPassword($hashedPassword);
             $userRepository->add($user, true);
 
             return $this->redirectToRoute('app_profilo_show', [], Response::HTTP_SEE_OTHER);
         }
+        else if( $passwordNuova != $confermaPassword){ 
+            return new Response('Le password non coincidono');
+        }
 
         return $this->renderForm('Profilo/editPassword.html.twig', [
             'user' => $user,
-            'form' => $form,
+            
         ]);
     }
 }
