@@ -2,42 +2,69 @@
 
 namespace App\Command;
 
-use Symfony\Component\Console\Attribute\AsCommand;
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[AsCommand(
     name: 'app:crea-operatore',
-    description: 'Add a short description for your command',
 )]
 class CreaOperatoreCommand extends Command
 {
+    private $entityManager;
+    private $userPasswordHasher;
+
+    public function __construct(EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher)
+    {
+        $this->entityManager = $entityManager;
+        $this->userPasswordHasher = $userPasswordHasher;
+
+        parent::__construct();
+    }
+
     protected function configure(): void
     {
         $this
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
+            ->addArgument('nome', InputArgument::REQUIRED, 'nome')
+            ->addArgument('cognome', InputArgument::REQUIRED, 'cognome')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $arg1 = $input->getArgument('arg1');
+        $em = $this->entityManager;
+        $userRepository = $em ->getRepository(User::class);
+        $user = new User();
+        $nome = $input->getArgument('nome');
+        $cognome = $input->getArgument('cognome');
+        $password = 'prova1';
+        $role[0] = 'ROLE_USER';
+        $isVerified = true;
+        $email = $nome . '.' . $cognome . '@live.it';
 
-        if ($arg1) {
-            $io->note(sprintf('You passed an argument: %s', $arg1));
-        }
+        $hashedPassword = $this->userPasswordHasher->hashPassword(
+            $user,
+            $password
+        );
 
-        if ($input->getOption('option1')) {
-            // ...
-        }
+        $user -> setName($nome);
+        $user -> setSurname($cognome);
+        $user -> setPassword($hashedPassword);
+        $user -> setRoles($role);
+        $user -> setIsVerified($isVerified);
+        $user -> setEmail($email);
+        $userRepository->add($user, true);
+        
 
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+        $io->success('Evviva funziona. Operatore creato');
 
         return Command::SUCCESS;
     }
