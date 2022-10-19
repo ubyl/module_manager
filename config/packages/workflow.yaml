@@ -25,9 +25,12 @@ framework:
                 attiva:
                     from: approvata
                     to:   attiva
-                attendi:
+                attendi1:
                     from: attiva
                     to:   in_attesa_di_chiusura
+                attendi2:
+                    from: approvata
+                    to: in_attesa_di_chiusura
                 chiudi:
                     from: in_attesa_di_chiusura
                     to: chiusa
