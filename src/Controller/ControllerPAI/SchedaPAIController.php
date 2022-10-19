@@ -23,6 +23,7 @@ class SchedaPAIController extends AbstractController
     {
         $this->workflow = $schedePaiCreatingStateMachine;
     }
+    
 
     #[Route('/{page}', name: 'app_scheda_pai_index',requirements: ['page' => '\d+'], methods: ['GET', 'POST'])]
     public function index(Request $request, SchedaPAIRepository $schedaPAIRepository, int $page=1): Response
@@ -32,9 +33,7 @@ class SchedaPAIController extends AbstractController
         //controllo login
         $user= $this-> getUser();
 
-        if($user == null){
-            return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
-        }
+       
 
         //parametri per calcolo tabella
         $ruoloUser = $user->getRoles();

@@ -33,9 +33,20 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/homepage}
-         #, roles: ROLE_ADMIN }
-         #- { path: ^/homepage, roles: ROLE_USER }
+         - { path: ^/homepage, roles: [ROLE_USER, ROLE_ADMIN]}
+         - { path: ^/scheda_pai, roles: [ROLE_USER, ROLE_ADMIN]}
+         - { path: ^/barthel, roles: [ROLE_USER, ROLE_ADMIN]}
+         - { path: ^/braden, roles: [ROLE_USER, ROLE_ADMIN]}
+         - { path: ^/chiusura_servizio, roles: [ROLE_USER, ROLE_ADMIN]}
+         - { path: ^/lesioni, roles: [ROLE_USER, ROLE_ADMIN]}
+         - { path: ^/parere_mmg, roles: [ROLE_USER, ROLE_ADMIN]}
+         - { path: ^/spmsq, roles: [ROLE_USER, ROLE_ADMIN]}
+         - { path: ^/tinetti, roles: [ROLE_USER, ROLE_ADMIN]}
+         - { path: ^/vas, roles: [ROLE_USER, ROLE_ADMIN]}
+         - { path: ^/valutazione_generale, roles: [ROLE_USER, ROLE_ADMIN]}
+         - { path: ^/valutazione_figura_professionale, roles: [ROLE_USER, ROLE_ADMIN]}
+         
+        
 
 when@test:
     security:

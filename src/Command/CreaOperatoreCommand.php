@@ -34,6 +34,7 @@ class CreaOperatoreCommand extends Command
         $this
             ->addArgument('nome', InputArgument::REQUIRED, 'nome')
             ->addArgument('cognome', InputArgument::REQUIRED, 'cognome')
+            ->addArgument('role',InputArgument::REQUIRED,'ruolo = scegli tra ROLE_USER e ROLE_ADMIN' )
         ;
     }
 
@@ -46,7 +47,7 @@ class CreaOperatoreCommand extends Command
         $nome = $input->getArgument('nome');
         $cognome = $input->getArgument('cognome');
         $password = 'prova1';
-        $role[0] = 'ROLE_USER';
+        $role[0] = $input->getArgument('role');
         $isVerified = true;
         $email = $nome . '.' . $cognome . '@live.it';
 
