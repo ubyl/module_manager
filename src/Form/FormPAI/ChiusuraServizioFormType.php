@@ -21,6 +21,7 @@ class ChiusuraServizioFormType extends AbstractType
             ->add('dataValutazione', DateType::class,[
                 'widget' => 'single_text',  
             ])
+            ->add('rinnovo')
         ;
     }
 

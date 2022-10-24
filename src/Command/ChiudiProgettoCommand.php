@@ -11,6 +11,8 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use DateTime;
+
 
 #[AsCommand(
     name: 'app:chiudi-progetto',
@@ -27,20 +29,20 @@ class ChiudiProgettoCommand extends Command
 
     protected function configure(): void
     {
-        $this
-            ->addArgument('id_progetto', InputArgument::REQUIRED, 'id progetto')
-            
-        ;
+        
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $idProgetto = $input->getArgument('id_progetto');
         $em = $this->entityManager;
+        $dataOggi = new DateTime('now');
         $schedaPAIRepository = $em->getRepository(SchedaPAI::class);
-        $schedaPai = $schedaPAIRepository->findOneBy(['idProgetto' =>$idProgetto]);
-        $schedaPai->setCurrentPlace('in_attesa_di_chiusura');
+        $schedaPais = $schedaPAIRepository->findBy(['dataFine' =>$dataOggi, 'currentPlace' => 'attiva']);
+
+        for($i =0; $i<count($schedaPais); $i++)
+        $schedaPais[$i]->setCurrentPlace('in_attesa_di_chiusura');
+        
         $em->flush();
 
 

@@ -2,11 +2,13 @@
 
 namespace App\Entity\EntityPAI;
 
+use DateTime;
 use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\SchedaPAIRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SchedaPAIRepository::class)]
 #[ORM\Table(name: 'SCHEDA_PAI')]
@@ -93,6 +95,14 @@ class SchedaPAI
     #[ORM\Column(type: 'string')]
     private $currentPlace = 'nuova';
 
+    #[ORM\Column(type: 'date')]
+    #[Assert\Type(\DateTime::class)]
+    private $dataInizio;
+
+    #[ORM\Column(type: 'date')]
+    #[Assert\Type(DateTime::class)]
+    private $dataFine;
+
 
     public function __construct()
     {
@@ -116,7 +126,29 @@ class SchedaPAI
         return $this->id;
     }
 
-   
+    public function getDataInizio(): ?\DateTimeInterface
+    {
+        return $this->dataInizio;
+    }
+
+    public function setDataInizio(\DateTimeInterface $dataInizio): self
+    {
+        $this->dataInizio = $dataInizio;
+
+        return $this;
+    }
+
+    public function getDataFine(): ?\DateTimeInterface
+    {
+        return $this->dataFine;
+    }
+
+    public function setDataFine(\DateTimeInterface $dataFine): self
+    {
+        $this->dataFine = $dataFine;
+
+        return $this;
+    }
 
     /**
      * @return Collection<int, User>

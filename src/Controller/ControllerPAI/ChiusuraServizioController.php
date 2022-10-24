@@ -53,6 +53,11 @@ class ChiusuraServizioController extends AbstractController
             $schedaPai->setIdChiusuraServizio($chiusuraServizio);
             $chiusuraServizioRepository = $this->entityManager->getRepository(ChiusuraServizio::class);
             $chiusuraServizioRepository->add($chiusuraServizio, true);
+            $rinnovo = $chiusuraServizio->getRinnovo();
+            if($rinnovo == false)
+            $schedaPai->setCurrentPlace('chiusa');
+            else
+            $schedaPai->setCurrentPlace('chiusa_con_rinnovo');
             $this->entityManager->flush();
 
             return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
@@ -80,6 +85,7 @@ class ChiusuraServizioController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $chiusuraServizioRepository->add($chiusuraServizio, true);
+            
 
             return $this->redirectToRoute('app_chiusura_servizio_index', [], Response::HTTP_SEE_OTHER);
         }

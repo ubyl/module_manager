@@ -4,6 +4,7 @@ namespace App\Command;
 
 use App\Entity\User;
 use App\Entity\EntityPAI\SchedaPAI;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -35,6 +36,11 @@ class SchedaPaiCommand extends Command
         $em = $this->entityManager;
         $schedaPAIRepository = $em->getRepository(SchedaPAI::class);
         $userRepository = $em ->getRepository(User::class);
+
+        $oggi = new DateTime('now');
+        $fine = new DateTime('2022-10-24');
+        $schedaPai->setDataInizio($oggi);
+        $schedaPai->setDataFine($fine);
 
         $randomId = rand(1,6);
         $utente = $userRepository->findOneBySomeField($randomId);
