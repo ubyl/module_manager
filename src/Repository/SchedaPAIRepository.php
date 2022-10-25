@@ -160,4 +160,28 @@ class SchedaPAIRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    public function findOneByState($value): ?SchedaPAI
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.currentPlace = :currentPlace')
+            ->setParameter('currentPlace', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    //trova lista id operatori delle schede con $value==stato
+    public function findListaIdOperatori($value): array
+    {
+        return $this->createQueryBuilder('s')
+            ->select('s.idOperatorePrincipale')
+            ->andWhere('s.currentPlace = :currentPlace')
+            ->setParameter('currentPlace', $value)
+            ->distinct()
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
+
 }

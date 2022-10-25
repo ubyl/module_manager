@@ -109,6 +109,7 @@ class SchedaPAIController extends AbstractController
                 $this->workflow->apply($schedaPAI, 'approva');
             }
             $schedaPAIRepository->add($schedaPAI, true);
+    
             return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
         }
 
