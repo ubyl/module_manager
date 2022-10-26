@@ -1,22 +1,74 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        <div class = "container-fluid container-lg">
-        {% block body %}{% endblock %}
-        </div>
-    </body>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		{% block header %}
+			<div class="container-fluid container-lg">
+				<nav class="navbar navbar-dark bg-dark">
+					<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+						<li>
+							<a href="{{ path('app_homepage') }}" class="nav-link px-2 text-white">Home</a>
+						</li>
+					</ul>
+					<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+						<li>
+							<h1 class="text-light">Module Manager</h1>
+						</li>
+					</ul>
+					<div class="d-flex flex-row-reverse w-10 pe-3">
+
+						<a class="d-block link-light text-decoration-none dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">
+							<img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+						</a>
+						<ul class="dropdown-menu text-small" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);" data-popper-placement="bottom-end">
+							<li>
+								<a class="dropdown-item" href="{{ path('app_profilo_show') }}">Profilo</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_profilo_edit', {'id': app.user.id}) }}">Modifica Profilo</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_profilo_password', {'id': app.user.id}) }}">Modifica Password</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a>
+							</li>
+						</ul>
+
+					</div>
+				</nav>
+			</div>
+		{% endblock %}
+		<div class="container-fluid container-lg"> {% block body %}{% endblock %}
+			{% block foot %}
+
+				<nav class="navbar navbar-dark bg-dark">
+					<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+						<li>
+							<h6 class="text-light">Contatti e descrizione</h6>
+
+						</li>
+					</ul>
+				</nav>
+			{% endblock %}
+
+		</div>
+	</body>
 </html>

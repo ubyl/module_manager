@@ -18,17 +18,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SchedaPAIController extends AbstractController
 {
     private $workflow;
+    
 
     public function __construct(WorkflowInterface $schedePaiCreatingStateMachine)
     {
         $this->workflow = $schedePaiCreatingStateMachine;
+        
     }
     
 
     #[Route('/{page}', name: 'app_scheda_pai_index',requirements: ['page' => '\d+'], methods: ['GET', 'POST'])]
     public function index(Request $request, SchedaPAIRepository $schedaPAIRepository, int $page=1): Response
     {
-        
         
         //controllo login
         $user= $this-> getUser();

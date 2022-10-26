@@ -24,7 +24,7 @@
                     {% endif %}</td>
             </tr>
             <tr> 
-                <th>Operatore Secondario Inf</th>
+                <th>Op Inf</th>
                 <td>{% if scheda_pai.idOperatoreSecondarioInf  is empty %}
                                 Nessuno
                         {% endif %}
@@ -35,7 +35,7 @@
                         {% endfor %} </td>
             </tr>
             <tr>
-                <th>Operatore Secondario Tdr</th>
+                <th>Op Tdr</th>
                 <td>{% if scheda_pai.idOperatoreSecondarioTdr is empty %}
                                 Nessuno
                         {% endif %}
@@ -46,7 +46,7 @@
                         {% endfor %} </td>
             </tr>
             <tr>
-                <th>Operatore Secondario Log</th>
+                <th>Op Log</th>
                 <td>{% if scheda_pai.idOperatoreSecondarioLog  is empty %}
                                 Nessuno
                         {% endif %}
@@ -57,7 +57,7 @@
                         {% endfor %} </td>
             </tr>
             <tr>
-                <th>Operatore Secondario Asa</th>
+                <th>Op Asa</th>
                 <td>{% if scheda_pai.idOperatoreSecondarioAsa  is empty %}
                                 Nessuno
                         {% endif %}
@@ -68,7 +68,7 @@
                         {% endfor %} </td>
             </tr>
             <tr>
-                <th>Operatore Secondario Oss</th>
+                <th>Op Oss</th>
                 <td>{% if scheda_pai.idOperatoreSecondarioOss  is empty %}
                                 Nessuno
                         {% endif %}
@@ -81,14 +81,6 @@
             <tr>
                 <th>Assistito</th>
                 <td>{{ scheda_pai.idAssistito }}</td>
-            </tr>
-            <tr>
-                <th>Id Console</th>
-                <td>{{ scheda_pai.idConsole }}</td>
-            </tr>
-            <tr>
-                <th>Id Progetto</th>
-                <td>{{ scheda_pai.idProgetto }}</td>
             </tr>
         </tbody>
     </table>

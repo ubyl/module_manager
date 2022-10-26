@@ -44,11 +44,12 @@ class MailerGenerator
         $em = $this->entityManager;
         $schedaPAIRepository = $em->getRepository(SchedaPAI::class);
         $userRepository = $em->getRepository(User::class);
-        $listaIdOperatori = $schedaPAIRepository->findListaIdOperatori('approvata');
+        $listaOperatori = $schedaPAIRepository->findListaOperatori('approvata');
 
-        for($i =0; $i<count($listaIdOperatori); $i++)
+        for($i =0; $i<count($listaOperatori); $i++)
         {
-            $idOperatore = $listaIdOperatori[$i];
+            $test = $listaOperatori[$i]; 
+            $idOperatore = $test->getEmail();
             $mail = $userRepository->findEmailById($idOperatore);
         
             $email = (new Email())

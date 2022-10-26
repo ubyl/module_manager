@@ -172,7 +172,7 @@ class SchedaPAIRepository extends ServiceEntityRepository
     }
 
     //trova lista id operatori delle schede con $value==stato
-    public function findListaIdOperatori($value): array
+    public function findListaOperatori($value): array
     {
         return $this->createQueryBuilder('s')
             ->select('s.idOperatorePrincipale')

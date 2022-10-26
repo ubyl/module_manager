@@ -2,6 +2,10 @@
 
 {% block title %}Log in!{% endblock %}
 
+{% block header %}
+
+{% endblock %}
+
 {% block body %}
 <form method="post">
     {% if error %}
@@ -44,4 +48,6 @@
     Hai dimenticato la password? Richiedine una nuova
     <a class="btn btn-link" href="{{ path('app_forgot_password_request') }}">Reset password</a>
 </div>
+{% endblock %}
+{% block foot %}
 {% endblock %}

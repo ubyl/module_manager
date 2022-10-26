@@ -5,25 +5,6 @@
 {% block body %}
     <h1>Schede PAI</h1>
 
-<nav class="navbar navbar-dark bg-dark">
-    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 text-white">Home</a></li>
-    </ul>
-    <div class="d-flex flex-row-reverse w-100 pe-3">
-        
-        <a class="d-block link-light text-decoration-none dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-        </a>   
-        <ul class="dropdown-menu text-small" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);" data-popper-placement="bottom-end">
-            <li><a class="dropdown-item" href="{{ path('app_profilo_show') }}">Profilo</a></li>
-            <li><a class="dropdown-item" href="{{ path('app_profilo_edit', {'id': user.id}) }}">Modifica Profilo</a></li>
-            <li><a class="dropdown-item" href="{{ path('app_profilo_password', {'id': user.id}) }}">Modifica Password</a></li>
-            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a></li>
-        </ul>
-        
-    </div>
-</nav>
-
 <div class="b-example-divider"></div>
 
 <form action="{{ path('app_scheda_pai_index')}}" method="POST" id="my_form">
@@ -68,20 +49,16 @@
             <tr>
                 <th>Id</th>
                 <th>Operatore Principale</th>
-                <th>Operatore Secondario Inf</th>
-                <th>Operatore Secondario Tdr</th>
-                <th>Operatore Secondario Log</th>
-                <th>Operatore Secondario Asa</th>
-                <th>Operatore Secondario Oss</th>
+                <th>Op Inf</th>
+                <th>Op Tdr</th>
+                <th>Op Log</th>
+                <th>Op Asa</th>
+                <th>Op Oss</th>
                 <th>Assistito</th>
-                <th>Id Console</th>
-                <th>Id Progetto</th>
                 <th>Stato</th>
                 <th>Operazioni</th>
             </tr>
             <tr>
-                <th></th>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -107,7 +84,7 @@
                         <br>
                     {% endif %}
                 </td>
-                <td data-title='Operatore Secondario Inf'>
+                <td data-title='Op Inf'>
                         {% if scheda_pai.idOperatoreSecondarioInf  is empty %}
                                 Nessuno
                         {% endif %}
@@ -117,7 +94,7 @@
                             <br>
                         {% endfor %} 
                 </td>
-                <td data-title='Operatore Secondario Tdr'>
+                <td data-title='Op Tdr'>
                 {% if scheda_pai.idOperatoreSecondarioTdr  is empty %}
                                 Nessuno
                         {% endif %}
@@ -127,7 +104,7 @@
                             <br>
                         {% endfor %}
                 </td>
-                <td data-title='Operatore Secondario Log'>
+                <td data-title='Op Log'>
                 {% if scheda_pai.idOperatoreSecondarioLog  is empty %}
                                 Nessuno
                         {% endif %}
@@ -137,7 +114,7 @@
                             <br>
                         {% endfor %}
                 </td>
-                <td data-title='Operatore Secondario Asa'>
+                <td data-title='Op Asa'>
                 {% if scheda_pai.idOperatoreSecondarioAsa  is empty %}
                                 Nessuno
                         {% endif %}
@@ -147,7 +124,7 @@
                             <br>
                         {% endfor %}
                 </td>
-                <td data-title='Operatore Secondario Oss'>
+                <td data-title='Op Oss'>
                 {% if scheda_pai.idOperatoreSecondarioOss  is empty %}
                                 Nessuno
                         {% endif %}
@@ -158,8 +135,6 @@
                         {% endfor %}
                 </td>
                 <td data-title='Assistito'>{{ scheda_pai.idAssistito }}</td>
-                <td data-title='Id Console'>{{ scheda_pai.idConsole }}</td>
-                <td data-title='Id Progetto'>{{ scheda_pai.idProgetto }}</td>
                 <td data-title='Stato'>{{ scheda_pai.currentPlace }}</td>
                 <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
