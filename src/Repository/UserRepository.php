@@ -81,14 +81,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ;
     }
 
-    public function findEmailById($id): string
+    public function findEmailById($id): array
     {
         return $this->createQueryBuilder('u')
             ->select('u.email')
             ->andWhere('u.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
     }
 }

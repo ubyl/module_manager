@@ -136,20 +136,18 @@ class SchedaPAIRepository extends ServiceEntityRepository
         
     }
 
-//    /**
-//     * @return SchedaPAI[] Returns an array of SchedaPAI objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return SchedaPAI[] Returns an array of SchedaPAI objects
+    */
+    public function findByState($value): array
+    {
+        return $this->createQueryBuilder('s')
+           ->andWhere('s.currentPlace = :currentPlace')
+            ->setParameter('currentPlace', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     public function findOneBySomeField($value): ?SchedaPAI
     {
@@ -171,17 +169,6 @@ class SchedaPAIRepository extends ServiceEntityRepository
         ;
     }
 
-    //trova lista id operatori delle schede con $value==stato
-    public function findListaOperatori($value): array
-    {
-        return $this->createQueryBuilder('s')
-            ->select('s.idOperatorePrincipale')
-            ->andWhere('s.currentPlace = :currentPlace')
-            ->setParameter('currentPlace', $value)
-            ->distinct()
-            ->getQuery()
-            ->getArrayResult()
-        ;
-    }
+   
 
 }
