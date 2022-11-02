@@ -5,54 +5,7 @@
 {% block body %}
     <h1>Vas</h1>
 
-<div id="no-more-tables">
-    <table class="col-sm-12  table-striped table-condensed cf">
-        <thead class="cf">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ va.id }}</td>
-            </tr>
-            <tr>
-                <th>Paziente</th>
-                <td>{{ va.paziente }}</td>
-            </tr>
-            <tr>
-                <th>Data</th>
-                <td>{{ va.data ? va.data|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Ora</th>
-                <td>{{ va.ora ? va.ora|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Rilevazione di Base 2 volte</th>
-                <td>{{ va.base2 }}</td>
-            </tr>
-            <tr>
-                <th>Rilevazione al bisogno del Pz</th>
-                <td>{{ va.pz }}</td>
-            </tr>
-            <tr>
-                <th>Esito rilevazione post trattamento</th>
-                <td>{{ va.esito }}</td>
-            </tr>
-            <tr>
-                <th>Rilevazione Monitoraggio</th>
-                <td>{{ va.rilevanzaMonitoraggio }}</td>
-            </tr>
-            <tr>
-                <th>Farmaci</th>
-                <td>{{ va.farmaci ? 'Si' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Altro</th>
-                <td>{{ va.altro ? 'Si' : 'No' }}</td>
-            </tr>
-            </thead>
-        </tbody>
-    </table>
-</div>
+    {{ include('campi_vas.html.twig') }}
 
     <a class="btn btn-primary" href="{{ path('app_vas_index') }}">Torna alla lista</a>
 

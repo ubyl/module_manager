@@ -68,8 +68,10 @@ class VasController extends AbstractController
     #[Route('/show/{id}', name: 'app_vas_show', methods: ['GET'])]
     public function show(Vas $va): Response
     {
+        $variabileTest = null;
         return $this->render('vas/show.html.twig', [
             'va' => $va,
+            'variabileTest' => $variabileTest
         ]);
     }
 

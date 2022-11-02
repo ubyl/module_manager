@@ -5,30 +5,7 @@
 {% block body %}
     <h1>Chiusura Servizio</h1>
 
-<div id="no-more-tables">
-    <table class="col-sm-12  table-striped table-condensed cf">
-        <thead class="cf">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ chiusura_servizio.id }}</td>
-            </tr>
-            <tr>
-                <th>Nome</th>
-                <td>{{ chiusura_servizio.nome }}</td>
-            </tr>
-            <tr>
-                <th>Conclusioni</th>
-                <td>{{ chiusura_servizio.conclusioni }}</td>
-            </tr>
-            <tr>
-                <th>Data di valutazione</th>
-                <td>{{ chiusura_servizio.dataValutazione ? chiusura_servizio.dataValutazione|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
+    {{ include('campi_chiusura_servizio.html.twig') }}
     <a class="btn btn-primary" href="{{ path('app_chiusura_servizio_index') }}">Torna alla lista</a>
 
     <a class="btn btn-primary" href="{{ path('app_chiusura_servizio_edit', {'id': chiusura_servizio.id}) }}">Modifica</a>

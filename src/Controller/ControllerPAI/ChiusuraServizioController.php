@@ -72,8 +72,10 @@ class ChiusuraServizioController extends AbstractController
     #[Route('/show/{id}', name: 'app_chiusura_servizio_show', methods: ['GET'])]
     public function show(ChiusuraServizio $chiusuraServizio): Response
     {
+        $variabileTest = null;
         return $this->render('chiusura_servizio/show.html.twig', [
             'chiusura_servizio' => $chiusuraServizio,
+            'variabileTest' => $variabileTest
         ]);
     }
 

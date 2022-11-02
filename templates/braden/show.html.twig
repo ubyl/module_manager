@@ -5,53 +5,7 @@
 {% block body %}
     <h1>Braden</h1>
 
-<div id="no-more-tables">
-    <table class="col-sm-12  table-striped table-condensed cf">
-        <thead class="cf">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ braden.id }}</td>
-            </tr>
-            <tr>
-                <th>Nome</th>
-                <td>{{ braden.nome }}</td>
-            </tr>
-            <tr>
-                <th>Percezione Sensoriale</th>
-                <td>{{ braden.percezioneSensoriale }}</td>
-            </tr>
-            <tr>
-                <th>Umidità</th>
-                <td>{{ braden.umidita }}</td>
-            </tr>
-            <tr>
-                <th>Attività</th>
-                <td>{{ braden.attivita }}</td>
-            </tr>
-            <tr>
-                <th>Mobilità</th>
-                <td>{{ braden.mobilita }}</td>
-            </tr>
-            <tr>
-                <th>Nutrizione</th>
-                <td>{{ braden.nutrizione }}</td>
-            </tr>
-            <tr>
-                <th>Frizione Scivolamento</th>
-                <td>{{ braden.frizioneScivolamento }}</td>
-            </tr>
-            <tr>
-                <th>Data Valutazione</th>
-                <td>{{ braden.dataValutazione ? braden.dataValutazione|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Totale</th>
-                <td>{{ braden.totale }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+     {{ include('campi_braden.html.twig') }}
 
     <a class="btn btn-primary" href="{{ path('app_form_pai_braden_index') }}">Torna alla lista</a>
 

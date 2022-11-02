@@ -69,8 +69,10 @@ class ParereMMGController extends AbstractController
     #[Route('/show/{id}', name: 'app_parere_mmg_show', methods: ['GET'])]
     public function show(ParereMMG $parereMMG): Response
     {
+        $variabileTest = null;
         return $this->render('parere_mmg/show.html.twig', [
             'parere_mmg' => $parereMMG,
+            'variabileTest' => $variabileTest
         ]);
     }
 

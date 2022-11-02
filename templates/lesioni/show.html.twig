@@ -5,53 +5,7 @@
 {% block body %}
     <h1>Lesioni</h1>
 
-<div id="no-more-tables">
-    <table class="col-sm-12  table-striped table-condensed cf">
-        <thead class="cf">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ lesioni.id }}</td>
-            </tr>
-            <tr>
-                <th>Nome</th>
-                <td>{{ lesioni.nome }}</td>
-            </tr>
-            <tr>
-                <th>Data Rivalutazioni Settimanali</th>
-                <td>{{ lesioni.dataRivalutazioniSettimanali ? lesioni.dataRivalutazioniSettimanali|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Tipologia Lesione</th>
-                <td>{{ lesioni.tipologiaLesione }}</td>
-            </tr>
-            <tr>
-                <th>Numero Sede Lesione</th>
-                <td>{{ lesioni.numeroSedeLesione }}</td>
-            </tr>
-            <tr>
-                <th>Grado Lesione</th>
-                <td>{{ lesioni.gradoLesione }}</td>
-            </tr>
-            <tr>
-                <th>Condizione Lesione</th>
-                <td>{{ lesioni.condizioneLesione }}</td>
-            </tr>
-            <tr>
-                <th>Bordi Lesione</th>
-                <td>{{ lesioni.bordiLesione }}</td>
-            </tr>
-            <tr>
-                <th>Cute Perilesionale</th>
-                <td>{{ lesioni.cutePerilesionale }}</td>
-            </tr>
-            <tr>
-                <th>Note sulla lesione</th>
-                <td>{{ lesioni.noteSullaLesione }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    {{ include('campi_lesioni.html.twig') }}
 
     <a class="btn btn-primary" href="{{ path('app_lesioni_index') }}">Torna alla lista</a>
 

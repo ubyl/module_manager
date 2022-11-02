@@ -1,0 +1,96 @@
+<div id="no-more-tables">
+	<table class="col-sm-12  table-striped table-condensed cf">
+		<thead class="cf"></thead>
+		<tbody>
+			{% if variabileTest != 1%}
+				<tr>
+					<th>Id</th>
+					<td>{{ scheda_pai.id }}</td>
+				</tr>
+			{% endif %}
+				<tr>
+
+					<th>Operatore Principale</th>
+					<td>
+						{% if scheda_pai.idOperatorePrincipale == null %}
+							Nessuno
+						{% else %}
+							{{ scheda_pai.idOperatorePrincipale.name}}
+							{{ scheda_pai.idOperatorePrincipale.surname}}
+							<br>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<th>Op Inf</th>
+					<td>
+						{% if scheda_pai.idOperatoreSecondarioInf  is empty %}
+							Nessuno
+						{% endif %}
+						{% for i in scheda_pai.idOperatoreSecondarioInf %}
+							{{i.name}}
+							{{i.surname}}
+							<br>
+						{% endfor %}
+					</td>
+				</tr>
+				<tr>
+					<th>Op Tdr</th>
+					<td>
+						{% if scheda_pai.idOperatoreSecondarioTdr is empty %}
+							Nessuno
+						{% endif %}
+						{% for i in scheda_pai.idOperatoreSecondarioTdr %}
+							{{i.name}}
+							{{i.surname}}
+							<br>
+						{% endfor %}
+					</td>
+				</tr>
+				<tr>
+					<th>Op Log</th>
+					<td>
+						{% if scheda_pai.idOperatoreSecondarioLog  is empty %}
+							Nessuno
+						{% endif %}
+						{% for i in scheda_pai.idOperatoreSecondarioLog %}
+							{{i.name}}
+							{{i.surname}}
+							<br>
+						{% endfor %}
+					</td>
+				</tr>
+				<tr>
+					<th>Op Asa</th>
+					<td>
+						{% if scheda_pai.idOperatoreSecondarioAsa  is empty %}
+							Nessuno
+						{% endif %}
+						{% for i in scheda_pai.idOperatoreSecondarioAsa %}
+							{{i.name}}
+							{{i.surname}}
+							<br>
+						{% endfor %}
+					</td>
+				</tr>
+				<tr>
+					<th>Op Oss</th>
+					<td>
+						{% if scheda_pai.idOperatoreSecondarioOss  is empty %}
+							Nessuno
+						{% endif %}
+						{% for i in scheda_pai.idOperatoreSecondarioOss %}
+							{{i.name}}
+							{{i.surname}}
+							<br>
+						{% endfor %}
+					</td>
+				</tr>
+				<tr>
+					<th>Assistito</th>
+					<td>{{ scheda_pai.idAssistito }}</td>
+				</tr>
+			</tbody>
+		</tbody>
+	</table>
+</div>

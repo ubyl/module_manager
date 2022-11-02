@@ -67,8 +67,10 @@ class BarthelController extends AbstractController
     #[Route('/show/{id}', name: 'app_barthel_show', methods: ['GET'])]
     public function show(Barthel $barthel): Response
     {
+        $variabileTest = null;
         return $this->render('barthel/show.html.twig', [
             'barthel' => $barthel,
+            'variabileTest' => $variabileTest
         ]);
     }
 

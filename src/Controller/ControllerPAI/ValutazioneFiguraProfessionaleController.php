@@ -67,8 +67,10 @@ class ValutazioneFiguraProfessionaleController extends AbstractController
     #[Route('/show/{id}', name: 'app_valutazione_figura_professionale_show', methods: ['GET'])]
     public function show(ValutazioneFiguraProfessionale $valutazioneFiguraProfessionale): Response
     {
+        $variabileTest = null;
         return $this->render('valutazione_figura_professionale/show.html.twig', [
             'valutazione_figura_professionale' => $valutazioneFiguraProfessionale,
+            'variabileTest' => $variabileTest
         ]);
     }
 

@@ -68,8 +68,10 @@ class SPMSQController extends AbstractController
     #[Route('/show/{id}', name: 'app_s_p_m_s_q_show', methods: ['GET'])]
     public function show(SPMSQ $sPMSQ): Response
     {
+        $variabileTest = null;
         return $this->render('spmsq/show.html.twig', [
             's_p_m_s_q' => $sPMSQ,
+            'variabileTest' => $variabileTest
         ]);
     }
 

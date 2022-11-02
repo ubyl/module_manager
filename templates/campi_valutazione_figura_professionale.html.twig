@@ -1,0 +1,43 @@
+
+
+<div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
+        <tbody>
+        {% if variabileTest != 1%}
+            <tr>
+                <th>Id</th>
+                <td>{{ valutazione_figura_professionale.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ valutazione_figura_professionale.nome }}</td>
+            </tr>
+        {% endif %}
+            <tr>
+                <th>Tipo di operatore</th>
+                <td>{{ valutazione_figura_professionale.tipoOperatore }}</td>
+            </tr>
+            <tr>
+                <th>Diagnosi Professionale</th>
+                <td>{{ valutazione_figura_professionale.diagnosiProfessionale }}</td>
+            </tr>
+            <tr>
+                <th>Obbiettivi da raggiungere</th>
+                <td>{{ valutazione_figura_professionale.obbiettiviDaRaggiungere }}</td>
+            </tr>
+            <tr>
+                <th>Tipo e frequenza</th>
+                <td>{{ valutazione_figura_professionale.tipoEFrequenza }}</td>
+            </tr>
+            <tr>
+                <th>Modalità e tempi di monitoraggio degli obbiettivi</th>
+                <td>{{ valutazione_figura_professionale.modalitaTempiMonitoraggio }}</td>
+            </tr>
+            <tr>
+                <th>Data di valutazione</th>
+                <td>{{ valutazione_figura_professionale.dataValutazione ? valutazione_figura_professionale.dataValutazione|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

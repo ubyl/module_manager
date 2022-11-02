@@ -76,8 +76,10 @@ class ValutazioneGeneraleController extends AbstractController
     #[Route('/show/{id}', name: 'app_valutazione_generale_show', methods: ['GET'])]
     public function show(ValutazioneGenerale $valutazioneGenerale): Response
     {
+        $variabileTest = null;
         return $this->render('valutazione_generale/show.html.twig', [
             'valutazione_generale' => $valutazioneGenerale,
+            'variabileTest' => $variabileTest
         ]);
     }
 

@@ -67,8 +67,10 @@ class BradenController extends AbstractController
     #[Route('/show/{id}', name: 'app_form_pai_braden_show', methods: ['GET'])]
     public function show(Braden $braden): Response
     {
+        $variabileTest = null;
         return $this->render('braden/show.html.twig', [
             'braden' => $braden,
+            'variabileTest' => $variabileTest
         ]);
     }
 

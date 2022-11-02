@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SchedaPAI
+{% endblock %}
+
+{% block body %}
+    <h3>Scheda PAI</h3>
+	{{ include('campi_scheda_pai.html.twig') }}
+    <h3>Valutazione Generale</h3>
+    {% if valutazione_generale is empty %}
+		<h6>Nessuna scheda di valutazione generale</h6>
+	{% else %}
+	{{ include('campi_valutazione_generale.html.twig') }}
+    {% endif %}
+	<h3>Valutazione Figura Professionale</h3>
+	{% if valutazioni_figura_professionale is empty %}
+		<h6>Nessuna scheda di valutazione professionale</h6>
+	{% else %}
+		{% for valutazione_figura_professionale in valutazioni_figura_professionale %}
+
+			{{ include('campi_valutazione_figura_professionale.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<h3>Parere MMG</h3>
+	{% if parere_mmg is empty %}
+		<h6>Nessun parere mmg</h6>
+	{% else %}
+		{{ include('campi_parere_mmg.html.twig') }}
+	{% endif %}
+	<h3>Barthel</h3>
+	{% if barthels is empty %}
+		<h6>Nessuna scheda di valutazione barthel</h6>
+	{% else %}
+		{% for barthel in barthels %}
+			{{ include('campi_barthel.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<h3>Braden</h3>
+	{% if bradens is empty %}
+		<h6>Nessuna scheda di valutazione braden</h6>
+	{% else %}
+		{% for braden in bradens %}
+			{{ include('campi_braden.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<h3>SPMSQ</h3>
+	{% if spmsqs is empty %}
+		<h6>Nessuna scheda di valutazione spmsq</h6>
+	{% else %}
+		{% for s_p_m_s_q in spmsqs %}
+			{{ include('campi_spmsq.html.twig') }}
+		{% endfor %}
+	{% endif %}
+
+	<h3>Tinetti</h3>
+	{% if tinettis is empty %}
+		<h6>Nessuna scheda di valutazione tinetti</h6>
+	{% else %}
+		{% for tinetti in tinettis %}
+			{{ include('campi_tinetti.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<h3>Vas</h3>
+	{% if vass is empty %}
+		<h6>Nessuna scheda di valutazione vas</h6>
+	{% else %}
+		{% for va in vass %}
+			{{ include('campi_vas.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<h3>Lesioni</h3>
+	{% if lesionis is empty %}
+		<h6>Nessuna scheda di valutazione lesioni</h6>
+	{% else %}
+		{% for lesioni in lesionis %}
+			{{ include('campi_lesioni.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<h3>Chiusura Servizio</h3>
+	{% if chiusura_servizio is empty %}
+		<h6>Nessuna chiusura servizio</h6>
+	{% else %}
+		{{ include('campi_chiusura_servizio.html.twig') }}
+	{% endif %}
+
+	<a class="btn btn-primary" href="{{ path('app_scheda_pai_index') }}">Indietro</a>
+{% endblock %}

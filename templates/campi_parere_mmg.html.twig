@@ -1,0 +1,25 @@
+<div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
+        <tbody>
+        {% if variabileTest != 1%}
+            <tr>
+                <th>Id</th>
+                <td>{{ parere_mmg.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ parere_mmg.nome }}</td>
+            </tr>
+        {% endif %}
+            <tr>
+                <th>Parere</th>
+                <td>{{ parere_mmg.parere}}</td>
+            </tr>
+            <tr>
+                <th>Descrizione</th>
+                <td>{{ parere_mmg.descrizione }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

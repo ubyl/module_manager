@@ -68,8 +68,10 @@ class TinettiController extends AbstractController
     #[Route('/show/{id}', name: 'app_tinetti_show', methods: ['GET'])]
     public function show(Tinetti $tinetti): Response
     {
+        $variabileTest = null;
         return $this->render('tinetti/show.html.twig', [
             'tinetti' => $tinetti,
+            'variabileTest' => $variabileTest
         ]);
     }
 

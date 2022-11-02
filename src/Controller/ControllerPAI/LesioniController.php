@@ -67,8 +67,10 @@ class LesioniController extends AbstractController
     #[Route('/show/{id}', name: 'app_lesioni_show', methods: ['GET'])]
     public function show(Lesioni $lesioni): Response
     {
+        $variabileTest = null;
         return $this->render('lesioni/show.html.twig', [
             'lesioni' => $lesioni,
+            'variabileTest' => $variabileTest
         ]);
     }
 

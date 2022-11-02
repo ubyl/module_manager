@@ -1,0 +1,25 @@
+<div id="no-more-tables">
+    <table class="col-sm-12  table-striped table-condensed cf">
+        <thead class="cf">
+        <tbody>
+        {% if variabileTest != 1%}
+            <tr>
+                <th>Id</th>
+                <td>{{ chiusura_servizio.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ chiusura_servizio.nome }}</td>
+            </tr>
+        {% endif %}
+            <tr>
+                <th>Conclusioni</th>
+                <td>{{ chiusura_servizio.conclusioni }}</td>
+            </tr>
+            <tr>
+                <th>Data di valutazione</th>
+                <td>{{ chiusura_servizio.dataValutazione ? chiusura_servizio.dataValutazione|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

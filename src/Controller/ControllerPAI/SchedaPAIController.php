@@ -3,6 +3,7 @@
 namespace App\Controller\ControllerPAI;
 
 use App\Entity\EntityPAI\SchedaPAI;
+use App\Entity\EntityPAI\ValutazioneGenerale;
 use App\Form\FormPAI\SchedaPAIType;
 use App\Repository\SchedaPAIRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -123,8 +124,30 @@ class SchedaPAIController extends AbstractController
     #[Route('/show/{id}', name: 'app_scheda_pai_show', methods: ['GET'])]
     public function show(SchedaPAI $schedaPAI): Response
     {
-        return $this->render('scheda_pai/show.html.twig', [
+        $valutazioneGenerale = $schedaPAI->getIdValutazioneGenerale();
+        $valutazioniFiguraProfessionale = $schedaPAI ->getIdValutazioneFiguraProfessionale();
+        $parereMMG = $schedaPAI->getIdParereMmg();
+        $barthel = $schedaPAI->getIdBarthel();
+        $braden = $schedaPAI->getIdBraden();
+        $spmsq = $schedaPAI->getIdSpmsq();
+        $tinetti = $schedaPAI->getIdTinetti();
+        $vas = $schedaPAI->getIdVas();
+        $lesioni = $schedaPAI->getIdLesioni();
+        $chiusuraServizio = $schedaPAI->getIdChiusuraServizio();
+        $variabileTest = 1;
+        return $this->render('scheda_pai_completa.html.twig', [
             'scheda_pai' => $schedaPAI,
+            'valutazione_generale' => $valutazioneGenerale,
+            'valutazioni_figura_professionale' => $valutazioniFiguraProfessionale,
+            'parere_mmg' => $parereMMG,
+            'barthels' => $barthel,
+            'bradens' => $braden,
+            'spmsqs' => $spmsq,
+            'tinettis' => $tinetti,
+            'vass' => $vas,
+            'lesionis' => $lesioni,
+            'chiusura_servizio' =>$chiusuraServizio,
+            'variabileTest' => $variabileTest
         ]);
     }
 

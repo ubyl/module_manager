@@ -5,29 +5,7 @@
 {% block body %}
     <h1>Parere MMG</h1>
 
-<div id="no-more-tables">
-    <table class="col-sm-12  table-striped table-condensed cf">
-        <thead class="cf">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ parere_mmg.id }}</td>
-            </tr>
-            <tr>
-                <th>Nome</th>
-                <td>{{ parere_mmg.nome }}</td>
-            </tr>
-            <tr>
-                <th>Parere</th>
-                <td>{{ parere_mmg.parere}}</td>
-            </tr>
-            <tr>
-                <th>Descrizione</th>
-                <td>{{ parere_mmg.descrizione }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    {{ include('campi_parere_mmg.html.twig') }}
 
     <a class="btn btn-primary" href="{{ path('app_parere_mmg_index') }}">Torna alla lista</a>
 
