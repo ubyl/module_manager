@@ -1,0 +1,91 @@
+{% block body %}
+	<h1 style= "text-align: center; "> Scheda di valutazione completa</h1>
+	
+	<h3 style= "text-align: center; ">Scheda PAI</h3>
+	{{ include('campi_scheda_pai.html.twig') }}
+	
+	<h3 style= "text-align: center; ">Valutazione Generale</h3>
+	{% if valutazione_generale is empty %}
+		<h4>Nessuna scheda di valutazione generale</h4>
+	{% else %}
+		{{ include('campi_valutazione_generale.html.twig') }}
+	{% endif %}
+	<div style= "page-break-before: always;"></div>
+	<h3 style= "text-align: center; ">Valutazione Figura Professionale</h3>
+	{% if valutazioni_figura_professionale is empty %}
+		<h4>Nessuna scheda di valutazione professionale</h4>
+	{% else %}
+		{% for valutazione_figura_professionale in valutazioni_figura_professionale %}
+
+			{{ include('campi_valutazione_figura_professionale.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<div style= "page-break-before: always;"></div>	
+	<h3 style= "text-align: center; ">Barthel</h3>
+	{% if barthels is empty %}
+		<h4>Nessuna scheda di valutazione barthel</h4>
+	{% else %}
+		{% for barthel in barthels %}
+			{{ include('campi_barthel.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<div style= "page-break-before: always;"></div>
+	<h3 style= "text-align: center; ">Braden</h3>
+	{% if bradens is empty %}
+		<h4>Nessuna scheda di valutazione braden</h4>
+	{% else %}
+		{% for braden in bradens %}
+			{{ include('campi_braden.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<div style= "page-break-before: always;"></div>
+	<h3 style= "text-align: center; ">SPMSQ</h3>
+	{% if spmsqs is empty %}
+		<h4>Nessuna scheda di valutazione spmsq</h4>
+	{% else %}
+		{% for s_p_m_s_q in spmsqs %}
+			{{ include('campi_spmsq.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<div style= "page-break-before: always;"></div>
+	<h3 style= "text-align: center; ">Tinetti</h3>
+	{% if tinettis is empty %}
+		<h4>Nessuna scheda di valutazione tinetti</h4>
+	{% else %}
+		{% for tinetti in tinettis %}
+			{{ include('campi_tinetti.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<div style= "page-break-before: always;"></div>
+	<h3 style= "text-align: center; ">Vas</h3>
+	{% if vass is empty %}
+		<h4>Nessuna scheda di valutazione vas</h4>
+	{% else %}
+		{% for va in vass %}
+			{{ include('campi_vas.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<div style= "page-break-before: always;"></div>
+	<h3 style= "text-align: center; ">Lesioni</h3>
+	{% if lesionis is empty %}
+		<h4>Nessuna scheda di valutazione lesioni</h4>
+	{% else %}
+		{% for lesioni in lesionis %}
+			{{ include('campi_lesioni.html.twig') }}
+		{% endfor %}
+	{% endif %}
+	<div style= "page-break-before: always;"></div>
+	<h3 style= "text-align: center; ">Parere MMG</h3>
+	{% if parere_mmg is empty %}
+		<h4>Nessun parere mmg</h4>
+	{% else %}
+		{{ include('campi_parere_mmg.html.twig') }}
+	{% endif %}
+	<h3 style= "text-align: center; ">Chiusura Servizio</h3>
+	{% if chiusura_servizio is empty %}
+		<h4>Nessuna chiusura servizio</h4>
+	{% else %}
+		{{ include('campi_chiusura_servizio.html.twig') }}
+	{% endif %}
+	
+{% endblock %}

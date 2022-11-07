@@ -12,87 +12,83 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Workflow\WorkflowInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 
 #[Route('/scheda_pai')]
 class SchedaPAIController extends AbstractController
 {
     private $workflow;
-    
+
 
     public function __construct(WorkflowInterface $schedePaiCreatingStateMachine)
     {
         $this->workflow = $schedePaiCreatingStateMachine;
-        
     }
-    
 
-    #[Route('/{page}', name: 'app_scheda_pai_index',requirements: ['page' => '\d+'], methods: ['GET', 'POST'])]
-    public function index(Request $request, SchedaPAIRepository $schedaPAIRepository, int $page=1): Response
+
+    #[Route('/{page}', name: 'app_scheda_pai_index', requirements: ['page' => '\d+'], methods: ['GET', 'POST'])]
+    public function index(Request $request, SchedaPAIRepository $schedaPAIRepository, int $page = 1): Response
     {
-        
-        //controllo login
-        $user= $this-> getUser();
 
-       
+        //controllo login
+        $user = $this->getUser();
+
+
 
         //parametri per calcolo tabella
         $ruoloUser = $user->getRoles();
         $idUser = $user->getId();
         //filtri
-        $stato=$request->request->get('filtro_stato');
+        $stato = $request->request->get('filtro_stato');
         $ordinamentoId = $request->request->get('filtro_id');
-        $numeroSchedeVisibiliPerPagina= $request->request->get('filtro_numero_schede');
-        
-        
+        $numeroSchedeVisibiliPerPagina = $request->request->get('filtro_numero_schede');
+
+
         //calcolo tabella
-        $schedaPais= null;
+        $schedaPais = null;
 
-        if($numeroSchedeVisibiliPerPagina == null)
-        $schedePerPagina = 10;
+        if ($numeroSchedeVisibiliPerPagina == null)
+            $schedePerPagina = 10;
         else
-        $schedePerPagina = $numeroSchedeVisibiliPerPagina;
+            $schedePerPagina = $numeroSchedeVisibiliPerPagina;
 
-        $offset = $schedePerPagina*$page-$schedePerPagina;
-        
+        $offset = $schedePerPagina * $page - $schedePerPagina;
 
-        if($ruoloUser[0] == "ROLE_ADMIN"){
-            if($stato != null){
+
+        if ($ruoloUser[0] == "ROLE_ADMIN") {
+            if ($stato != null) {
                 $schedaPais = $schedaPAIRepository->selectStatoSchedePai($stato, $ordinamentoId, $page, $schedePerPagina);
-            }
-            else{
-                if($ordinamentoId == null || $ordinamentoId == "" || $ordinamentoId == 'Crescente'){
-                    $schedaPais= $schedaPAIRepository->findBy([], array('id' => 'ASC'), $schedePerPagina, $offset );
-                }
-                else if($ordinamentoId == 'Decrescente'){
-                    $schedaPais= $schedaPAIRepository->findBy([], array('id' => 'DESC'), $schedePerPagina, $offset );
+            } else {
+                if ($ordinamentoId == null || $ordinamentoId == "" || $ordinamentoId == 'Crescente') {
+                    $schedaPais = $schedaPAIRepository->findBy([], array('id' => 'ASC'), $schedePerPagina, $offset);
+                } else if ($ordinamentoId == 'Decrescente') {
+                    $schedaPais = $schedaPAIRepository->findBy([], array('id' => 'DESC'), $schedePerPagina, $offset);
                 }
             }
-        }
-        else if($ruoloUser[0] == "ROLE_USER"){
-            if($stato == null || $stato == ""){
-                $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser, null, $ordinamentoId, $schedePerPagina, $page);  
-            }
-            else{
-                $schedaPais= $schedaPAIRepository->findUserSchedePai($idUser, $stato, $ordinamentoId, $schedePerPagina, $page);  
+        } else if ($ruoloUser[0] == "ROLE_USER") {
+            if ($stato == null || $stato == "") {
+                $schedaPais = $schedaPAIRepository->findUserSchedePai($idUser, null, $ordinamentoId, $schedePerPagina, $page);
+            } else {
+                $schedaPais = $schedaPAIRepository->findUserSchedePai($idUser, $stato, $ordinamentoId, $schedePerPagina, $page);
             }
         }
         //calcolo pagine per paginatore
         $totaleSchede = $schedaPAIRepository->contaSchedePai($ruoloUser[0], $idUser, $stato);
-        $pagineTotali = ceil($totaleSchede/$schedePerPagina);
+        $pagineTotali = ceil($totaleSchede / $schedePerPagina);
 
-        if($pagineTotali == 0)
+        if ($pagineTotali == 0)
             $pagineTotali = 1;
         return $this->render('scheda_pai/index.html.twig', [
             'scheda_pais' => $schedaPais,
-            'pagina'=>$page,
-            'pagine_totali'=>$pagineTotali,
+            'pagina' => $page,
+            'pagine_totali' => $pagineTotali,
             'schede_per_pagina' => $schedePerPagina,
             'ordinamento' => $ordinamentoId,
             'stato' => $stato,
-            'user' => $user]);
-    
+            'user' => $user
+        ]);
     }
 
 
@@ -107,11 +103,11 @@ class SchedaPAIController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $schedaPAI->setCurrentPlace('nuova');
-            if($this->workflow->can($schedaPAI, 'approva')){
+            if ($this->workflow->can($schedaPAI, 'approva')) {
                 $this->workflow->apply($schedaPAI, 'approva');
             }
             $schedaPAIRepository->add($schedaPAI, true);
-    
+
             return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -125,7 +121,7 @@ class SchedaPAIController extends AbstractController
     public function show(SchedaPAI $schedaPAI): Response
     {
         $valutazioneGenerale = $schedaPAI->getIdValutazioneGenerale();
-        $valutazioniFiguraProfessionale = $schedaPAI ->getIdValutazioneFiguraProfessionale();
+        $valutazioniFiguraProfessionale = $schedaPAI->getIdValutazioneFiguraProfessionale();
         $parereMMG = $schedaPAI->getIdParereMmg();
         $barthel = $schedaPAI->getIdBarthel();
         $braden = $schedaPAI->getIdBraden();
@@ -146,7 +142,7 @@ class SchedaPAIController extends AbstractController
             'tinettis' => $tinetti,
             'vass' => $vas,
             'lesionis' => $lesioni,
-            'chiusura_servizio' =>$chiusuraServizio,
+            'chiusura_servizio' => $chiusuraServizio,
             'variabileTest' => $variabileTest
         ]);
     }
@@ -169,14 +165,68 @@ class SchedaPAIController extends AbstractController
         ]);
     }
 
-    #[Route('/delete/{id}', name: 'app_scheda_pai_delete', methods: ['GET','POST'])]
+    #[Route('/delete/{id}', name: 'app_scheda_pai_delete', methods: ['GET', 'POST'])]
     public function delete(Request $request, SchedaPAI $schedaPAI, SchedaPAIRepository $schedaPAIRepository): Response
     {
-        
-        if ($this->isCsrfTokenValid('delete'.$schedaPAI->getId(), $request->get('_token'))) {
+
+        if ($this->isCsrfTokenValid('delete' . $schedaPAI->getId(), $request->get('_token'))) {
             $schedaPAIRepository->remove($schedaPAI, true);
         }
 
         return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/pdf/{id}', name: 'app_scheda_pai_pdf', methods: ['GET'])]
+    public function generatePdf(SchedaPAI $schedaPAI)
+    {
+        $valutazioneGenerale = $schedaPAI->getIdValutazioneGenerale();
+        $valutazioniFiguraProfessionale = $schedaPAI->getIdValutazioneFiguraProfessionale();
+        $parereMMG = $schedaPAI->getIdParereMmg();
+        $barthel = $schedaPAI->getIdBarthel();
+        $braden = $schedaPAI->getIdBraden();
+        $spmsq = $schedaPAI->getIdSpmsq();
+        $tinetti = $schedaPAI->getIdTinetti();
+        $vas = $schedaPAI->getIdVas();
+        $lesioni = $schedaPAI->getIdLesioni();
+        $chiusuraServizio = $schedaPAI->getIdChiusuraServizio();
+        $variabileTest = 1;
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('template_pdf.html.twig', [
+            'title' => "Scheda Pai completa",
+            'scheda_pai' => $schedaPAI,
+            'valutazione_generale' => $valutazioneGenerale,
+            'valutazioni_figura_professionale' => $valutazioniFiguraProfessionale,
+            'parere_mmg' => $parereMMG,
+            'barthels' => $barthel,
+            'bradens' => $braden,
+            'spmsqs' => $spmsq,
+            'tinettis' => $tinetti,
+            'vass' => $vas,
+            'lesionis' => $lesioni,
+            'chiusura_servizio' => $chiusuraServizio,
+            'variabileTest' => $variabileTest
+        ]);
+        //$html .= '<link type="text/css" href="/absolute/path/to/pdf.css" rel="stylesheet" />';
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (inline view)
+        $dompdf->stream("SchedaPai.pdf", [
+            "Attachment" => false
+        ]);
     }
 }
