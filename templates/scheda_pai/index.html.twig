@@ -135,7 +135,7 @@
                         {% endfor %}
                 </td>
                 <td data-title='Assistito'>{{ scheda_pai.idAssistito }}</td>
-                <td data-title='Stato'>{{ scheda_pai.currentPlace }}</td>
+                <td data-title='Stato' class = "{% if scheda_pai.currentPlace == 'attiva' %} text-success {% endif %}{% if scheda_pai.currentPlace == 'approvata' %} text-pink {% endif %} {% if scheda_pai.currentPlace == 'nuova' %} text-purple {% endif %} {% if scheda_pai.currentPlace == 'in_attesa_di_chiusura' %} text-warning {% endif %} {% if scheda_pai.currentPlace == 'chiusa' %} text-danger {% endif %} {% if scheda_pai.currentPlace == 'chiusa_con_rinnovo' %} text-orange {% endif %}">{{ scheda_pai.currentPlace }}</td>
                 <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -173,7 +173,7 @@
 </form>
 
     <a class="btn btn-primary" href="{{ path('app_scheda_pai_new') }}">Nuova scheda</a>
-    <a class="btn btn-primary" href="{{ path('app_homepage') }}">Menù Principale</a>
+    
     
 <nav aria-label="Page navigation example">
    <ul class="pagination justify-content-center">

@@ -226,7 +226,7 @@ class SchedaPAIController extends AbstractController
 
         // Output the generated PDF to Browser (inline view)
         $dompdf->stream("SchedaPai.pdf", [
-            "Attachment" => false
+            "Attachment" => true
         ]);
     }
 }

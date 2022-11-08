@@ -2,115 +2,127 @@
 
 {% block title %}SchedaPAI
 {% endblock %}
-
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+	<style>
+		tr:hover {
+			background-color: coral;
+		}
+	</style>
+{% endblock %}
 {% block body %}
-    <div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">
-	Scheda Pai
+	<div class="pb-2 mb-4"></div>
+	<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">
+		Scheda Pai
 	</div>
 	{{ include('campi_scheda_pai.html.twig') }}
+	<div class="pb-2 mb-4"></div>
 	<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">
-    Valutazione Generale
+		Valutazione Generale
 	</div>
-    {% if valutazione_generale is empty %}
+	{% if valutazione_generale is empty %}
 		<h6>Nessuna scheda di valutazione generale</h6>
 	{% else %}
-	{{ include('campi_valutazione_generale.html.twig') }}
-    {% endif %}
+		{{ include('campi_valutazione_generale.html.twig') }}
+		<div class="pb-2 mb-4"></div>
+	{% endif %}
 	<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">
-	Valutazione Figura Professionale
+		Valutazione Figura Professionale
 	</div>
 	{% if valutazioni_figura_professionale is empty %}
 		<h6>Nessuna scheda di valutazione professionale</h6>
 	{% else %}
 		{% for valutazione_figura_professionale in valutazioni_figura_professionale %}
-
 			{{ include('campi_valutazione_figura_professionale.html.twig') }}
-			<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark"></div>
+			<div class="pb-2 mb-4"></div>
 		{% endfor %}
 	{% endif %}
 	<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">
-	Parere MMG
+		Parere MMG
 	</div>
 	{% if parere_mmg is empty %}
 		<h6>Nessun parere mmg</h6>
 	{% else %}
 		{{ include('campi_parere_mmg.html.twig') }}
+		<div class="pb-2 mb-4"></div>
 	{% endif %}
 	<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">
-	Barthel
+		Barthel
 	</div>
 	{% if barthels is empty %}
 		<h6>Nessuna scheda di valutazione barthel</h6>
 	{% else %}
 		{% for barthel in barthels %}
 			{{ include('campi_barthel.html.twig') }}
-			<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark"></div>
+			<div class="pb-2 mb-4"></div>
 		{% endfor %}
 	{% endif %}
 	<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">
-	Braden
+		Braden
 	</div>
 	{% if bradens is empty %}
 		<h6>Nessuna scheda di valutazione braden</h6>
 	{% else %}
 		{% for braden in bradens %}
 			{{ include('campi_braden.html.twig') }}
-			<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark"></div>
+			<div class="pb-2 mb-4"></div>
 		{% endfor %}
 	{% endif %}
 	<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">
-	SPMSQ
+		SPMSQ
 	</div>
 	{% if spmsqs is empty %}
 		<h6>Nessuna scheda di valutazione spmsq</h6>
 	{% else %}
 		{% for s_p_m_s_q in spmsqs %}
 			{{ include('campi_spmsq.html.twig') }}
-			<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark"></div>
+			<div class="pb-2 mb-4"></div>
 		{% endfor %}
 	{% endif %}
 	<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">
-	Tinetti
+		Tinetti
 	</div>
 	{% if tinettis is empty %}
 		<h6>Nessuna scheda di valutazione tinetti</h6>
 	{% else %}
 		{% for tinetti in tinettis %}
 			{{ include('campi_tinetti.html.twig') }}
-			<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark"></div>
+			<div class="pb-2 mb-4"></div>
 		{% endfor %}
 	{% endif %}
 	<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">
-	Vas
+		Vas
 	</div>
 	{% if vass is empty %}
 		<h6>Nessuna scheda di valutazione vas</h6>
 	{% else %}
 		{% for va in vass %}
 			{{ include('campi_vas.html.twig') }}
-			<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark"></div>
+			<div class="pb-2 mb-4"></div>
 		{% endfor %}
 	{% endif %}
 	<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">
-	Lesioni
+		Lesioni
 	</div>
 	{% if lesionis is empty %}
 		<h6>Nessuna scheda di valutazione lesioni</h6>
 	{% else %}
 		{% for lesioni in lesionis %}
 			{{ include('campi_lesioni.html.twig') }}
-			<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark"></div>
+			<div class="pb-2 mb-4"></div>
 		{% endfor %}
 	{% endif %}
 	<div class="h3 pb-2 mb-4 text-dark border-bottom border-dark">
-	Chiusura Servizio
+		Chiusura Servizio
 	</div>
 	{% if chiusura_servizio is empty %}
 		<h6>Nessuna chiusura servizio</h6>
 	{% else %}
 		{{ include('campi_chiusura_servizio.html.twig') }}
 	{% endif %}
-	
+
+	<div class="pb-2 mb-4"></div>
 	<a class="btn btn-primary" href="{{ path('app_scheda_pai_pdf', {'id': scheda_pai.id}) }}">Genera PDF</a>
 	<a class="btn btn-primary" href="{{ path('app_scheda_pai_index') }}">Indietro</a>
+	<div class="pb-2 mb-4"></div>
 {% endblock %}

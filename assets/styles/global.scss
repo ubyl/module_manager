@@ -1,7 +1,8 @@
-
-
 // customize some Bootstrap variables
 $primary: darken(#428bca, 20%);
+$orange: #fd7e14;
+$purple: #6f42c1;
+$pink: #d63384;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
@@ -13,54 +14,116 @@ label.required:after {
 }
 
 @media only screen and (max-width: 1200px) {
+
     /* Force table to not be like tables anymore */
     #no-more-tables table,
     #no-more-tables thead,
     #no-more-tables tbody,
     #no-more-tables th,
     #no-more-tables td,
-    #no-more-tables tr {
-    display: block;
+    #no-more-tables tr,
+    #visualizza-tables table,
+    #visualizza-tables thead,
+    #visualizza-tables tbody,
+    #visualizza-tables th,
+    #visualizza-tables td,
+    #visualizza-tables tr {
+        display: block;
     }
-     
+
     /* Hide table headers (but not display: none;, for accessibility) */
     #no-more-tables thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
     }
-     
-    #no-more-tables tr { border: 1px solid #ccc; }
-      
+
+    #no-more-tables tr {
+        border: 1px solid #ccc;
+    }
+
     #no-more-tables td {
-    /* Behave like a "row" */
-    border: none;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-left: 50%;
-    white-space: normal;
-    text-align:left;
+        /* Behave like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
     }
-     
+
     #no-more-tables td:before {
-    /* Now like a table header */
-    position: absolute;
-    /* Top/left values mimic padding */
-    top: 6px;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    text-align:left;
-    font-weight: bold;
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
     }
-     
+
+    #visualizza-tables thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #visualizza-tables tr {
+        border: 1px solid #ccc;
+    }
+
+    #visualizza-tables td {
+        /* Behave like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+    }
+
+    #visualizza-tables td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
     /*
     Label the data
     */
-    #no-more-tables td:before { content: attr(data-title); }
+    #no-more-tables td:before {
+        content: attr(data-title);
     }
+}
 
-    
 
-    
+.text-orange {
+    color: $orange;
+}
+
+.text-purple {
+    color: $purple;
+}
+
+.text-pink {
+    color: $pink;
+}
+
+#visualizza-tables {
+
+    td,
+    th {
+        border: 1px solid;
+        width: 50%;
+    }
+}
