@@ -48,6 +48,8 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Data Inizio</th>
+                <th>Data Fine</th>
                 <th>Operatore Principale</th>
                 <th>Op Inf</th>
                 <th>Op Tdr</th>
@@ -75,6 +77,8 @@
         {% for scheda_pai in scheda_pais %}
             <tr>
                 <td data-title='Id'>{{ scheda_pai.id }}</td>
+                <td data-title='Data Inizio'>{{ scheda_pai.dataInizio|date('Y-m-d') }} </td>
+                <td data-title='Data Fine'>{{ scheda_pai.dataFine|date('Y-m-d')}} </td>
                 <td data-title='Operatore Principale'>
                     {% if scheda_pai.idOperatorePrincipale == null %}
                         Nessuno
