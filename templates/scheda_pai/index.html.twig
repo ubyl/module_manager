@@ -3,6 +3,7 @@
 {% block title %}SchedaPAI index{% endblock %}
 
 {% block body %}
+<div id = "scheda_pai">
     <h1>Schede PAI</h1>
 
 <div class="b-example-divider"></div>
@@ -40,9 +41,9 @@
         </div>
     </div>
 </nav>
+</form>
 
-
-<div id="no-more-tables">
+<div class="no-more-tables">
     <table class="col-sm-12  table-striped table-condensed cf">
         <thead class="cf">
         <thead>
@@ -51,18 +52,12 @@
                 <th>Data Inizio</th>
                 <th>Data Fine</th>
                 <th>Operatore Principale</th>
-                <th>Op Inf</th>
-                <th>Op Tdr</th>
-                <th>Op Log</th>
-                <th>Op Asa</th>
-                <th>Op Oss</th>
                 <th>Assistito</th>
                 <th>Stato</th>
                 <th>Operazioni</th>
+                <th>Espandi</th>
             </tr>
             <tr>
-                <th></th>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -88,58 +83,8 @@
                         <br>
                     {% endif %}
                 </td>
-                <td data-title='Op Inf'>
-                        {% if scheda_pai.idOperatoreSecondarioInf  is empty %}
-                                Nessuno
-                        {% endif %}
-                        {% for i in scheda_pai.idOperatoreSecondarioInf %}
-                            {{i.name}}
-                            {{i.surname}}  
-                            <br>
-                        {% endfor %} 
-                </td>
-                <td data-title='Op Tdr'>
-                {% if scheda_pai.idOperatoreSecondarioTdr  is empty %}
-                                Nessuno
-                        {% endif %}
-                        {% for i in scheda_pai.idOperatoreSecondarioTdr %}
-                            {{i.name}}
-                            {{i.surname}}  
-                            <br>
-                        {% endfor %}
-                </td>
-                <td data-title='Op Log'>
-                {% if scheda_pai.idOperatoreSecondarioLog  is empty %}
-                                Nessuno
-                        {% endif %}
-                        {% for i in scheda_pai.idOperatoreSecondarioLog %}
-                            {{i.name}}
-                            {{i.surname}}  
-                            <br>
-                        {% endfor %}
-                </td>
-                <td data-title='Op Asa'>
-                {% if scheda_pai.idOperatoreSecondarioAsa  is empty %}
-                                Nessuno
-                        {% endif %}
-                        {% for i in scheda_pai.idOperatoreSecondarioAsa %}
-                            {{i.name}}
-                            {{i.surname}}  
-                            <br>
-                        {% endfor %}
-                </td>
-                <td data-title='Op Oss'>
-                {% if scheda_pai.idOperatoreSecondarioOss  is empty %}
-                                Nessuno
-                        {% endif %}
-                        {% for i in scheda_pai.idOperatoreSecondarioOss %}
-                            {{i.name}}
-                            {{i.surname}}  
-                            <br>
-                        {% endfor %}
-                </td>
                 <td data-title='Assistito'>{{ scheda_pai.idAssistito }}</td>
-                <td data-title='Stato' class = "{% if scheda_pai.currentPlace == 'attiva' %} text-success {% endif %}{% if scheda_pai.currentPlace == 'approvata' %} text-pink {% endif %} {% if scheda_pai.currentPlace == 'nuova' %} text-purple {% endif %} {% if scheda_pai.currentPlace == 'in_attesa_di_chiusura' %} text-warning {% endif %} {% if scheda_pai.currentPlace == 'chiusa' %} text-danger {% endif %} {% if scheda_pai.currentPlace == 'chiusa_con_rinnovo' %} text-orange {% endif %}">{{ scheda_pai.currentPlace }}</td>
+                <td data-title='Stato' class ="{% if scheda_pai.currentPlace == 'approvata' %} text-pink {% elseif scheda_pai.currentPlace == 'attiva' %} text-success {% elseif scheda_pai.currentPlace == 'nuova' %} text-purple {% elseif scheda_pai.currentPlace == 'in_attesa_di_chiusura' %} text-warning {% elseif scheda_pai.currentPlace == 'chiusa' %} text-danger{% elseif scheda_pai.currentPlace == 'chiusa_con_rinnovo' %} text-orange {% endif %}">{{ scheda_pai.currentPlace }}</td>
                 <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -162,8 +107,79 @@
                         <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_lesioni_new', {'id_pai': scheda_pai.id})}}">Lesioni</a></li>  
                     </ul>
                     </div>
-                    
                 </td>
+                <td class="bi bi-plus-circle" data-bs-toggle="collapse" data-bs-target="#data{{scheda_pai.id}}" aria-expanded="false" aria-controls="data{{scheda_pai.id}}">
+                <a href="#" >
+                </td> 
+            </tr>
+             <tr>
+            <td colspan="8" class="hiddenRow">
+                <div  class="collapse collapse-vertical" id="data{{scheda_pai.id}}"> 
+                    <table class="col-sm-12  table-striped table-condensed ">
+                        <thead class="cf">
+                            <tr>
+                                <th>Op Inf</th>
+                                <th>Op Tdr</th>
+                                <th>Op Log</th>
+                                <th>Op Asa</th>
+                                <th>Op Oss</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <td data-title='Op Inf'>
+                            {% if scheda_pai.idOperatoreSecondarioInf  is empty %}
+                                Nessuno
+                            {% endif %}
+                            {% for i in scheda_pai.idOperatoreSecondarioInf %}
+                                {{i.name}}
+                                {{i.surname}}  
+                                <br>
+                            {% endfor %} 
+                            </td>
+                            <td data-title='Op Tdr'>
+                            {% if scheda_pai.idOperatoreSecondarioTdr  is empty %}
+                                Nessuno
+                            {% endif %}
+                            {% for i in scheda_pai.idOperatoreSecondarioTdr %}
+                                {{i.name}}
+                                {{i.surname}}  
+                                <br>
+                            {% endfor %}
+                            </td>
+                            <td data-title='Op Log'>
+                            {% if scheda_pai.idOperatoreSecondarioLog  is empty %}
+                                Nessuno
+                            {% endif %}
+                            {% for i in scheda_pai.idOperatoreSecondarioLog %}
+                                {{i.name}}
+                                {{i.surname}}  
+                                <br>
+                            {% endfor %}
+                            </td>
+                            <td data-title='Op Asa'>
+                            {% if scheda_pai.idOperatoreSecondarioAsa  is empty %}
+                                Nessuno
+                            {% endif %}
+                            {% for i in scheda_pai.idOperatoreSecondarioAsa %}
+                                {{i.name}}
+                                {{i.surname}}  
+                                <br>
+                            {% endfor %}
+                            </td>
+                            <td data-title='Op Oss'>
+                            {% if scheda_pai.idOperatoreSecondarioOss  is empty %}
+                                Nessuno
+                            {% endif %}
+                            {% for i in scheda_pai.idOperatoreSecondarioOss %}
+                                {{i.name}}
+                                {{i.surname}}  
+                                <br>
+                            {% endfor %}
+                            </td>
+                        </tbody>
+                    </table>      
+                </div> 
+            </td>
             </tr>
         {% else %}
             <tr>
@@ -174,7 +190,7 @@
     </table>
 </div>
 
-</form>
+
 
     <a class="btn btn-primary" href="{{ path('app_scheda_pai_new') }}">Nuova scheda</a>
     
@@ -192,6 +208,6 @@
       <li class="page-item"><a class="page-link {% if pagina==pagine_totali %}disabled{% endif %}" href="javascript:void(0)" onclick="document.getElementById('my_form').action = '{{ path('app_scheda_pai_index', {'page':pagine_totali}) }}'; document.getElementById('my_form').submit();">>></a></li>
   </ul>
 </nav>
-
+</div>
 {% endblock %}
 
