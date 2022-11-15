@@ -6,14 +6,13 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class SDManagerClientApiService
 {
     private $client;
-    
 
     public function __construct(HttpClientInterface $client)
     {
         $this->client = $client;
     }
 
-    public function getProgetti(string $dataInizio, string $dataFine): array
+    public function getProgetti(string $dataInizio, string $dataFine ): array
     {
          
         $response = $this->client->request(
@@ -32,7 +31,7 @@ class SDManagerClientApiService
     {
         $response = $this->client->request(
             'GET',
-            ''
+            'https://demo.sdmanager.it/ws/1.0/mSADManager/list-operatori/'
         );
 
         $content = $response->getContent();

@@ -169,6 +169,16 @@ class SchedaPAIRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findOneByProgetto($value): ?SchedaPAI
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.idProgetto = :idProgetto')
+            ->setParameter('idProgetto', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
    
 
 }

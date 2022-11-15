@@ -56,7 +56,7 @@ class SchedaPAI
     #[ORM\Column(type: 'integer')]
     private $idAssistito;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'string')]
     private $idConsole;
 
     #[ORM\Column(type: 'integer')]
@@ -302,12 +302,12 @@ class SchedaPAI
         return $this;
     }
 
-    public function getIdConsole(): ?int
+    public function getIdConsole(): ?string
     {
         return $this-> idConsole;
     }
 
-    public function setIdConsole(?int $idConsole): self
+    public function setIdConsole(?string $idConsole): self
     {
         $this-> idConsole = $idConsole;
 
