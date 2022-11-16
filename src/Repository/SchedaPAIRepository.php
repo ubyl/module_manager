@@ -179,6 +179,22 @@ class SchedaPAIRepository extends ServiceEntityRepository
         ;
     }
 
+    public function updateSchedaByIdprogetto($idProgetto,$idAssistito, $dataInizio, $dataFine): void
+    {
+        $queryBuilder = $this->createQueryBuilder('u')
+        ->update(null, null)
+        ->set('u.dataFine', ':dataFine')
+        ->set('u.dataInizio', ':dataInizio')
+        ->set('u.idAssistito', ':idAssistito')
+        ->where('u.idProgetto = :idProgetto')
+        ->setParameter('dataInizio', $dataInizio)
+        ->setParameter('dataFine', $dataFine)
+        ->setParameter('idAssistito', $idAssistito)
+        ->setParameter('idProgetto', $idProgetto)
+        ->getQuery()
+        ->execute();
+    }
+
    
 
 }

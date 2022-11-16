@@ -12,9 +12,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 
 #[AsCommand(
-    name: 'app:scarica-operatori',
+    name: 'app:scarica-assistiti',
 )]
-class ScaricaOperatoriCommand extends Command
+class ScaricaAssistitiCommand extends Command
 {
     private $sdManagerClientApiService;
 
@@ -26,21 +26,15 @@ class ScaricaOperatoriCommand extends Command
 
     }
 
-    protected function configure(): void
-    {
-        
-    }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         
-        $this->sdManagerClientApiService->sincOperatori();
-        
-        $io->success('Operatori scaricati e aggiornati con successo');
+        $this->sdManagerClientApiService->sincAssistiti();
+
+        $io->success('Evviva funziona.');
 
         return Command::SUCCESS;
-
-
     }
 }

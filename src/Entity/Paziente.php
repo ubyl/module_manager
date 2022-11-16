@@ -19,8 +19,20 @@ class Paziente
     #[ORM\Column(length: 255)]
     private ?string $cognome = null;
 
-    #[ORM\Column]
-    private ?int $eta = null;
+    #[ORM\Column(length: 255)]
+    private ?string $codiceFiscale;
+
+    #[ORM\Column(length: 255)]
+    private ?string $indirizzo;
+    
+    #[ORM\Column(length: 255)]
+    private ?string $comune;
+
+    #[ORM\Column(length: 255)]
+    private ?string $provincia;
+
+    #[ORM\Column(length: 255)]
+    private ?int $cap;
 
     public function getId(): ?int
     {
@@ -51,15 +63,63 @@ class Paziente
         return $this;
     }
 
-    public function getEta(): ?int
+    public function getCodiceFiscale(): ?string
     {
-        return $this->eta;
+        return $this->codiceFiscale;
     }
 
-    public function setEta(int $eta): self
+    public function setCodiceFiscale(string $codiceFiscale): self
     {
-        $this->eta = $eta;
+        $this->codiceFiscale = $codiceFiscale;
 
         return $this;
     }
+
+    public function getIndirizzo(): ?string
+    {
+        return $this->indirizzo;
+    }
+
+    public function setIndirizzo(string $indirizzo): self
+    {
+        $this->indirizzo = $indirizzo;
+
+        return $this;
+    }
+
+    public function getComune(): ?string
+    {
+        return $this->comune;
+    }
+
+    public function setComune(string $comune): self
+    {
+        $this->comune = $comune;
+
+        return $this;
+    }
+
+    public function getProvincia(): ?string
+    {
+        return $this->provincia;
+    }
+
+    public function setProvincia(string $provincia): self
+    {
+        $this->provincia = $provincia;
+
+        return $this;
+    }
+
+    public function getCap(): ?int
+    {
+        return $this->cap;
+    }
+
+    public function setCap(int $cap): self
+    {
+        $this->cap = $cap;
+
+        return $this;
+    }   
 }

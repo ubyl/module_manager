@@ -46,6 +46,36 @@ class PazienteRepository extends ServiceEntityRepository
         ->getSingleScalarResult();
 
     }
+    public function findOneByCf($value): ?Paziente
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.codiceFiscale = :codiceFiscale')
+            ->setParameter('codiceFiscale', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    public function updateAssistitiByCf($cf, $nome, $cognome, $indirizzo, $comune, $provincia, $cap): void
+    {
+        $queryBuilder = $this->createQueryBuilder('u')
+        ->update(null, null)
+        ->set('u.nome', ':nome')
+        ->set('u.cognome', ':cognome')
+        ->set('u.indirizzo', ':indirizzo')
+        ->set('u.comune', ':comune')
+        ->set('u.provincia', ':provincia')
+        ->set('u.cap', ':cap')
+        ->where('u.codiceFiscale = :cf')
+        ->setParameter('nome', $nome)
+        ->setParameter('cognome', $cognome)
+        ->setParameter('indirizzo', $indirizzo)
+        ->setParameter('comune', $comune)
+        ->setParameter('provincia', $provincia)
+        ->setParameter('cap', $cap)
+        ->setParameter('cf', $cf)
+        ->getQuery()
+        ->execute();
+    }
 
 //    /**
 //     * @return Paziente[] Returns an array of Paziente objects
