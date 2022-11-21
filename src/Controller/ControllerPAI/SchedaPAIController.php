@@ -4,6 +4,7 @@ namespace App\Controller\ControllerPAI;
 
 use App\Entity\EntityPAI\SchedaPAI;
 use App\Entity\EntityPAI\ValutazioneGenerale;
+use App\Entity\Paziente;
 use App\Form\FormPAI\SchedaPAIType;
 use App\Repository\SchedaPAIRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Workflow\WorkflowInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -20,11 +22,13 @@ use Dompdf\Options;
 class SchedaPAIController extends AbstractController
 {
     private $workflow;
+    private $entityManager;
 
 
-    public function __construct(WorkflowInterface $schedePaiCreatingStateMachine)
+    public function __construct(WorkflowInterface $schedePaiCreatingStateMachine, EntityManagerInterface $entityManager)
     {
         $this->workflow = $schedePaiCreatingStateMachine;
+        $this->entityManager = $entityManager;
     }
 
 
@@ -32,6 +36,10 @@ class SchedaPAIController extends AbstractController
     public function index(Request $request, SchedaPAIRepository $schedaPAIRepository, int $page = 1): Response
     {
 
+        //assistiti
+        $em = $this->entityManager;
+        $assistitiRepository = $em->getRepository(Paziente::class);
+        $assistiti = $assistitiRepository->findAll();
         //controllo login
         $user = $this->getUser();
 
@@ -87,7 +95,8 @@ class SchedaPAIController extends AbstractController
             'schede_per_pagina' => $schedePerPagina,
             'ordinamento' => $ordinamentoId,
             'stato' => $stato,
-            'user' => $user
+            'user' => $user,
+            'assistiti' => $assistiti,
         ]);
     }
 
@@ -120,6 +129,13 @@ class SchedaPAIController extends AbstractController
     #[Route('/show/{id}', name: 'app_scheda_pai_show', methods: ['GET'])]
     public function show(SchedaPAI $schedaPAI): Response
     {
+        //assistiti
+        $em = $this->entityManager;
+        $assistitiRepository = $em->getRepository(Paziente::class);
+        $assistiti = $assistitiRepository->findAll();
+        $idAssistito = $schedaPAI->getIdAssistito();
+        $assistito = $assistitiRepository->findOneById($idAssistito);
+
         $valutazioneGenerale = $schedaPAI->getIdValutazioneGenerale();
         $valutazioniFiguraProfessionale = $schedaPAI->getIdValutazioneFiguraProfessionale();
         $parereMMG = $schedaPAI->getIdParereMmg();
@@ -143,7 +159,9 @@ class SchedaPAIController extends AbstractController
             'vass' => $vas,
             'lesionis' => $lesioni,
             'chiusura_servizio' => $chiusuraServizio,
-            'variabileTest' => $variabileTest
+            'variabileTest' => $variabileTest,
+            'assistito' => $assistito,
+            'assistiti' => $assistiti,
         ]);
     }
 
@@ -227,6 +245,21 @@ class SchedaPAIController extends AbstractController
         // Output the generated PDF to Browser (inline view)
         $dompdf->stream("SchedaPai.pdf", [
             "Attachment" => true
+        ]);
+    }
+    #[Route('/anagrafica_assistito/{id}', name: 'app_scheda_pai_anagrafica_assistito', methods: ['GET'])]
+    public function datiAssistito(SchedaPAI $schedaPAI)
+    {
+        $em = $this->entityManager;
+        $assistitiRepository = $em->getRepository(Paziente::class);
+        $idAssistito = $schedaPAI->getIdAssistito();
+        $assistito = $assistitiRepository->findOneById($idAssistito);
+        $variabileTest = 1;
+
+        return $this->render('scheda_pai/show_assistito.html.twig', [
+            'scheda_pai' => $schedaPAI,
+            'assistito' => $assistito,
+            'variabileTest' => $variabileTest
         ]);
     }
 }

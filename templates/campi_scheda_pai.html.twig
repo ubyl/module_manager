@@ -89,7 +89,13 @@
 			</tr>
 			<tr>
 				<th>Assistito</th>
-				<td>{{ scheda_pai.idAssistito }}</td>
+				<td> 
+                 {% if assistito.id == scheda_pai.idAssistito %}
+                    {{ assistito.nome }}
+                    {{ assistito.cognome }}
+                    <br>
+                 {% endif %}
+				</td>
 			</tr>
 		</tbody>
 	</tbody>

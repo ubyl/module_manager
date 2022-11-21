@@ -77,6 +77,26 @@ class PazienteRepository extends ServiceEntityRepository
         ->execute();
     }
 
+    public function getNameById($value): string
+    {
+        return $this->createQueryBuilder('u')
+        ->select('u.nome')
+        ->where('u.id = :id')
+        ->setParameter('id', $value)
+        ->getQuery()
+        ->getSingleScalarResult();
+    }
+
+    public function getSurnameById($value): string
+    {
+        return $this->createQueryBuilder('u')
+        ->select('u.cognome')
+        ->where('u.id = :id')
+        ->setParameter('id', $value)
+        ->getQuery()
+        ->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return Paziente[] Returns an array of Paziente objects
 //     */
@@ -92,13 +112,13 @@ class PazienteRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Paziente
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findOneById($value): ?Paziente
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id = :id')
+            ->setParameter('id', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

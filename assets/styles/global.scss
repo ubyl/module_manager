@@ -103,6 +103,12 @@ label.required:after {
     .no-more-tables td:before {
         content: attr(data-title);
     }
+     /*
+    Label the data
+    */
+    #visualizza-tables td:before {
+        content: attr(data-title);
+    }
 }
 body #scheda_pai table tr td {
 
@@ -124,7 +130,7 @@ body #scheda_pai table tr td {
     td,
     th {
         border: 1px solid;
-        width: 50%;
+        
     }
 }
 .hiddenRow {

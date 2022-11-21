@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class SchedaPAIType extends AbstractType
 {
@@ -24,6 +24,7 @@ class SchedaPAIType extends AbstractType
             ])
             ->add('idOperatorePrincipale', EntityType::class,[
                 'class'=> User::class,
+                //'multiple'=> true,
                 'required'   => false,
                 'autocomplete' => true,
             ])
@@ -58,9 +59,21 @@ class SchedaPAIType extends AbstractType
                 'required'   => false,
                 'autocomplete' => true,
             ])
-            ->add('idAssistito')
-            ->add('idConsole')
-            ->add('idProgetto')
+            ->add('abilitaBarthel')
+            ->add('abilitaBraden')
+            ->add('abilitaSpmsq')
+            ->add('abilitaTinetti')
+            ->add('abilitaVas')
+            ->add('abilitaLesioni')
+            ->add('idAssistito',TextType::class, array(
+                'disabled' => true,
+            ))
+            ->add('idConsole',TextType::class, array(
+                'disabled' => true,
+            ))
+            ->add('idProgetto',TextType::class, array(
+                'disabled' => true,
+            ))
         ;
     }
 

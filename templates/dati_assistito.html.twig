@@ -1,0 +1,58 @@
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+	<style>
+		tr:hover {
+			background-color: coral;
+		}
+	</style>
+{% endblock %}
+<div id="visualizza-tables">
+	<table class="col-sm-12  table-striped table-condensed cf">
+		<thead class="cf"></thead>
+		<tbody>
+			<tr>
+
+				<th>nome</th>
+				<td>
+					{{assistito.nome}}
+				</td>
+			</tr>
+			<tr>
+				<th>cognome</th>
+				<td>
+					{{assistito.cognome}}
+				</td>
+			</tr>
+			<tr>
+				<th>codice fiscale</th>
+				<td>
+					{{assistito.codiceFiscale}}
+				</td>
+			</tr>
+			<tr>
+				<th>Indirizzo</th>
+				<td>
+					{{assistito.indirizzo}}
+				</td>
+			</tr>
+			<tr>
+				<th>Comune</th>
+				<td>
+					{{assistito.comune}}
+				</td>
+			</tr>
+			<tr>
+				<th>Provincia</th>
+				<td>
+					{{assistito.provincia}}
+				</td>
+			</tr>
+			<tr>
+				<th>CAP</th>
+				<td>
+					{{assistito.cap}}
+				</td>
+			</tr>
+		</tbody>
+	</tbody>
+</table></div>

@@ -103,6 +103,25 @@ class SchedaPAI
     #[Assert\Type(DateTime::class)]
     private $dataFine;
 
+    #[ORM\Column(type: 'boolean')]
+    private $abilitaBarthel;
+
+    #[ORM\Column(type: 'boolean')]
+    private $abilitaBraden;
+
+    #[ORM\Column(type: 'boolean')]
+    private $abilitaSpmsq;
+
+    #[ORM\Column(type: 'boolean')]
+    private $abilitaTinetti;
+
+    #[ORM\Column(type: 'boolean')]
+    private $abilitaVas;
+
+    #[ORM\Column(type: 'boolean')]
+    private $abilitaLesioni;
+
+
 
     public function __construct()
     {
@@ -590,6 +609,73 @@ class SchedaPAI
     public function setIdOperatorePrincipale(?User $idOperatorePrincipale): self
     {
         $this->idOperatorePrincipale = $idOperatorePrincipale;
+
+        return $this;
+    }
+
+    public function isAbilitaBarthel(): ?bool
+    {
+        return $this->abilitaBarthel;
+    }
+
+    public function setAbilitaBarthel(bool $abilitaBarthel): self
+    {
+        $this->abilitaBarthel = $abilitaBarthel;
+
+        return $this;
+    }
+    public function isAbilitaBraden(): ?bool
+    {
+        return $this->abilitaBraden;
+    }
+
+    public function setAbilitaBraden(bool $abilitaBraden): self
+    {
+        $this->abilitaBraden = $abilitaBraden;
+
+        return $this;
+    }
+    public function isAbilitaSpmsq(): ?bool
+    {
+        return $this->abilitaSpmsq;
+    }
+
+    public function setAbilitaSpmsq(bool $abilitaSpmsq): self
+    {
+        $this->abilitaSpmsq = $abilitaSpmsq;
+
+        return $this;
+    }
+    public function isAbilitaTinetti(): ?bool
+    {
+        return $this->abilitaTinetti;
+    }
+
+    public function setAbilitaTinetti(bool $abilitaTinetti): self
+    {
+        $this->abilitaTinetti = $abilitaTinetti;
+
+        return $this;
+    }
+    public function isAbilitaVas(): ?bool
+    {
+        return $this->abilitaVas;
+    }
+
+    public function setAbilitaVas(bool $abilitaVas): self
+    {
+        $this->abilitaVas = $abilitaVas;
+
+        return $this;
+    }
+    public function isAbilitaLesioni(): ?bool
+    {
+        return $this->abilitaLesioni;
+    }
+
+    public function setAbilitaLesioni(bool $abilitaLesioni): self
+    {
+        $this->abilitaLesioni = $abilitaLesioni;
 
         return $this;
     }
