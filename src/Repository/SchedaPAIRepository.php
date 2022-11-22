@@ -71,6 +71,7 @@ class SchedaPAIRepository extends ServiceEntityRepository
     }
 
 
+
     //funzioni per utenti User
     public function findUserSchedePai(int $idUser, string $stato = null, string $ordinamentoId = null, int $schedePerPagina = null, int $page = null): array
     {

@@ -25,31 +25,31 @@ class SchedaPAI
 
     #[ORM\ManyToMany(inversedBy: 'infSchedaPai', targetEntity: User::class)]
     #[ORM\JoinTable(name: 'scheda_pai_user_inf')]
-    #[ORM\JoinColumn(name: 'user_inf_id', referencedColumnName: 'id', nullable:true)]
+    #[ORM\JoinColumn(name: 'user_inf_id', referencedColumnName: 'id', nullable: true)]
     #[ORM\InverseJoinColumn(name: 'scheda_pai_inf_id', referencedColumnName: 'id')]
     private $idOperatoreSecondarioInf;
 
     #[ORM\ManyToMany(inversedBy: 'tdrSchedaPai', targetEntity: User::class)]
     #[ORM\JoinTable(name: 'scheda_pai_user_tdr')]
-    #[ORM\JoinColumn(name: 'user_tdr_id', referencedColumnName: 'id', nullable:true)]
+    #[ORM\JoinColumn(name: 'user_tdr_id', referencedColumnName: 'id', nullable: true)]
     #[ORM\InverseJoinColumn(name: 'scheda_pai_tdr_id', referencedColumnName: 'id')]
     private $idOperatoreSecondarioTdr;
 
     #[ORM\ManyToMany(inversedBy: 'logSchedaPai', targetEntity: User::class)]
     #[ORM\JoinTable(name: 'scheda_pai_user_log')]
-    #[ORM\JoinColumn(name: 'user_log_id', referencedColumnName: 'id', nullable:true)]
+    #[ORM\JoinColumn(name: 'user_log_id', referencedColumnName: 'id', nullable: true)]
     #[ORM\InverseJoinColumn(name: 'scheda_pai_log_id', referencedColumnName: 'id')]
     private $idOperatoreSecondarioLog;
 
     #[ORM\ManyToMany(inversedBy: 'asaSchedaPai', targetEntity: User::class)]
     #[ORM\JoinTable(name: 'scheda_pai_user_asa')]
-    #[ORM\JoinColumn(name: 'user_asa_id', referencedColumnName: 'id', nullable:true)]
+    #[ORM\JoinColumn(name: 'user_asa_id', referencedColumnName: 'id', nullable: true)]
     #[ORM\InverseJoinColumn(name: 'scheda_pai_asa_id', referencedColumnName: 'id')]
     private $idOperatoreSecondarioAsa;
 
     #[ORM\ManyToMany(inversedBy: 'ossSchedaPai', targetEntity: User::class)]
     #[ORM\JoinTable(name: 'scheda_pai_user_oss')]
-    #[ORM\JoinColumn(name: 'user_oss_id', referencedColumnName: 'id', nullable:true)]
+    #[ORM\JoinColumn(name: 'user_oss_id', referencedColumnName: 'id', nullable: true)]
     #[ORM\InverseJoinColumn(name: 'scheda_pai_oss_id', referencedColumnName: 'id')]
     private $idOperatoreSecondarioOss;
 
@@ -71,7 +71,7 @@ class SchedaPAI
     #[ORM\OneToOne(targetEntity: ParereMMG::class, inversedBy: 'schedaPAI', cascade: ['persist', 'remove'])]
     private $idParereMmg;
 
-    #[ORM\OneToOne(targetEntity: ChiusuraServizio::class,inversedBy: 'schedaPAI', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: ChiusuraServizio::class, inversedBy: 'schedaPAI', cascade: ['persist', 'remove'])]
     private $idChiusuraServizio;
 
     #[ORM\OneToMany(mappedBy: 'schedaPAI', targetEntity: Barthel::class, cascade: ['persist', 'remove'])]
@@ -120,6 +120,43 @@ class SchedaPAI
 
     #[ORM\Column(type: 'boolean')]
     private $abilitaLesioni;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroBarthel;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroBraden;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroSpmsq;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroTinetti;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroVas;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroLesioni;
+
+    #[ORM\Column(type: 'integer')]
+    private $frequenzaBarthel;
+
+    #[ORM\Column(type: 'integer')]
+    private $frequenzaBraden;
+
+    #[ORM\Column(type: 'integer')]
+    private $frequenzaSpmsq;
+
+    #[ORM\Column(type: 'integer')]
+    private $frequenzaTinetti;
+
+    #[ORM\Column(type: 'integer')]
+    private $frequenzaVas;
+
+    #[ORM\Column(type: 'integer')]
+    private $frequenzaLesioni;
+
 
 
 
@@ -181,7 +218,6 @@ class SchedaPAI
     {
         if (!$this->idOperatoreSecondarioInf->contains($idOperatoreSecondarioInf)) {
             $this->idOperatoreSecondarioInf[] = $idOperatoreSecondarioInf;
-            
         }
 
         return $this;
@@ -191,13 +227,13 @@ class SchedaPAI
     {
         if ($this->idOperatoreSecondarioInf->removeElement($idOperatoreSecondarioInf)) {
             // set the owning side to null (unless already changed)
-           
+
         }
 
         return $this;
     }
 
-     /**
+    /**
      * @return Collection<int, User>
      */
     public function getidOperatoreSecondarioTdr(): Collection
@@ -209,7 +245,6 @@ class SchedaPAI
     {
         if (!$this->idOperatoreSecondarioTdr->contains($idOperatoreSecondarioTdr)) {
             $this->idOperatoreSecondarioTdr[] = $idOperatoreSecondarioTdr;
-            
         }
 
         return $this;
@@ -219,13 +254,13 @@ class SchedaPAI
     {
         if ($this->idOperatoreSecondarioTdr->removeElement($idOperatoreSecondarioTdr)) {
             // set the owning side to null (unless already changed)
-           
+
         }
 
         return $this;
     }
 
-     /**
+    /**
      * @return Collection<int, User>
      */
     public function getidOperatoreSecondarioLog(): Collection
@@ -237,7 +272,6 @@ class SchedaPAI
     {
         if (!$this->idOperatoreSecondarioLog->contains($idOperatoreSecondarioLog)) {
             $this->idOperatoreSecondarioLog[] = $idOperatoreSecondarioLog;
-            
         }
 
         return $this;
@@ -247,13 +281,13 @@ class SchedaPAI
     {
         if ($this->idOperatoreSecondarioLog->removeElement($idOperatoreSecondarioLog)) {
             // set the owning side to null (unless already changed)
-           
+
         }
 
         return $this;
     }
 
-     /**
+    /**
      * @return Collection<int, User>
      */
     public function getidOperatoreSecondarioAsa(): Collection
@@ -265,7 +299,6 @@ class SchedaPAI
     {
         if (!$this->idOperatoreSecondarioAsa->contains($idOperatoreSecondarioAsa)) {
             $this->idOperatoreSecondarioAsa[] = $idOperatoreSecondarioAsa;
-            
         }
 
         return $this;
@@ -275,13 +308,13 @@ class SchedaPAI
     {
         if ($this->idOperatoreSecondarioAsa->removeElement($idOperatoreSecondarioAsa)) {
             // set the owning side to null (unless already changed)
-           
+
         }
 
         return $this;
     }
 
-     /**
+    /**
      * @return Collection<int, User>
      */
     public function getidOperatoreSecondarioOss(): Collection
@@ -293,7 +326,6 @@ class SchedaPAI
     {
         if (!$this->idOperatoreSecondarioOss->contains($idOperatoreSecondarioOss)) {
             $this->idOperatoreSecondarioOss[] = $idOperatoreSecondarioOss;
-            
         }
 
         return $this;
@@ -303,7 +335,7 @@ class SchedaPAI
     {
         if ($this->idOperatoreSecondarioOss->removeElement($idOperatoreSecondarioOss)) {
             // set the owning side to null (unless already changed)
-           
+
         }
 
         return $this;
@@ -311,7 +343,7 @@ class SchedaPAI
 
     public function getIdAssistito(): ?int
     {
-        return $this-> idAssistito;
+        return $this->idAssistito;
     }
 
     public function setIdAssistito(?int $idAssistito): self
@@ -323,19 +355,19 @@ class SchedaPAI
 
     public function getIdConsole(): ?string
     {
-        return $this-> idConsole;
+        return $this->idConsole;
     }
 
     public function setIdConsole(?string $idConsole): self
     {
-        $this-> idConsole = $idConsole;
+        $this->idConsole = $idConsole;
 
         return $this;
     }
 
     public function getIdProgetto(): ?int
     {
-        return $this-> idProgetto;
+        return $this->idProgetto;
     }
 
     public function setIdProgetto(?int $idProgetto): self
@@ -680,4 +712,195 @@ class SchedaPAI
         return $this;
     }
 
+    public function getNumeroBarthel(): ?int
+    {
+        return $this->numeroBarthel;
+    }
+
+    public function setNumeroBarthel(int $frequenzaBarthel): self
+    {
+        if ($frequenzaBarthel != 0) {
+            $partenza = $this->dataInizio;
+            $arrivo = $this->dataFine;
+            $numeroGiorni = $arrivo->diff($partenza)->format("%a");
+            $totaleBarthel = $numeroGiorni / $frequenzaBarthel;
+            $this->numeroBarthel = $totaleBarthel;
+
+            return $this;
+        } else
+            return 0;
+    }
+
+    public function getNumeroBraden(): ?int
+    {
+        return $this->numeroBraden;
+    }
+
+    public function setNumeroBraden(int $frequenzaBraden): self
+    {
+        if ($frequenzaBraden != 0) {
+            $partenza = $this->dataInizio;
+            $arrivo = $this->dataFine;
+            $numeroGiorni = $arrivo->diff($partenza)->format("%a");
+            $totaleBraden = $numeroGiorni / $frequenzaBraden;
+            $this->numeroBraden = $totaleBraden;
+
+            return $this;
+        } else
+            return 0;
+    }
+
+    public function getNumeroSpmsq(): ?int
+    {
+        return $this->numeroSpmsq;
+    }
+
+    public function setNumeroSpmsq(int $frequenzaSpmsq): self
+    {
+        if ($frequenzaSpmsq != 0) {
+            $partenza = $this->dataInizio;
+            $arrivo = $this->dataFine;
+            $numeroGiorni = $arrivo->diff($partenza)->format("%a");
+            $totaleSpmsq = $numeroGiorni / $frequenzaSpmsq;
+            $this->numeroSpmsq = $totaleSpmsq;
+
+            return $this;
+        } else
+            return 0;
+    }
+
+    public function getNumeroTinetti(): ?int
+    {
+        return $this->numeroTinetti;
+    }
+
+    public function setNumeroTinetti(int $frequenzaTinetti): self
+    {
+        if ($frequenzaTinetti != 0) {
+            $partenza = $this->dataInizio;
+            $arrivo = $this->dataFine;
+            $numeroGiorni = $arrivo->diff($partenza)->format("%a");
+            $totaleTinetti = $numeroGiorni / $frequenzaTinetti;
+            $this->numeroTinetti = $totaleTinetti;
+
+            return $this;
+        } else
+            return 0;
+    }
+
+    public function getNumeroVas(): ?int
+    {
+        return $this->numeroVas;
+    }
+
+    public function setNumeroVas(int $frequenzaVas): self
+    {
+        if ($frequenzaVas != 0) {
+            $partenza = $this->dataInizio;
+            $arrivo = $this->dataFine;
+            $numeroGiorni = $arrivo->diff($partenza)->format("%a");
+            $totaleVas = $numeroGiorni / $frequenzaVas;
+            $this->numeroVas = $totaleVas;
+
+            return $this;
+        } else
+            return 0;
+    }
+
+    public function getNumeroLesioni(): ?int
+    {
+        return $this->numeroLesioni;
+    }
+
+    public function setNumeroLesioni(int $frequenzaLesioni): self
+    {
+        if ($frequenzaLesioni != 0) {
+            $partenza = $this->dataInizio;
+            $arrivo = $this->dataFine;
+            $numeroGiorni = $arrivo->diff($partenza)->format("%a");
+            $totaleLesioni = $numeroGiorni / $frequenzaLesioni;
+            $this->numeroLesioni = $totaleLesioni;
+
+            return $this;
+        } else
+            return 0;
+    }
+
+    public function getFrequenzaBarthel(): ?int
+    {
+        return $this->frequenzaBarthel;
+    }
+
+    public function setFrequenzaBarthel(int $frequenzaBarthel): self
+    {
+        $this->frequenzaBarthel = $frequenzaBarthel;
+        $this->setNumeroBarthel($frequenzaBarthel);
+
+        return $this;
+    }
+
+    public function getFrequenzaBraden(): ?int
+    {
+        return $this->frequenzaBraden;
+    }
+
+    public function setFrequenzaBraden(int $frequenzaBraden): self
+    {
+        $this->frequenzaBraden = $frequenzaBraden;
+        $this->setNumeroBraden($frequenzaBraden);
+
+        return $this;
+    }
+
+    public function getFrequenzaSpmsq(): ?int
+    {
+        return $this->frequenzaSpmsq;
+    }
+
+    public function setFrequenzaSpmsq(int $frequenzaSpmsq): self
+    {
+        $this->frequenzaSpmsq = $frequenzaSpmsq;
+        $this->setNumeroSpmsq($frequenzaSpmsq);
+
+        return $this;
+    }
+
+    public function getFrequenzaTinetti(): ?int
+    {
+        return $this->frequenzaTinetti;
+    }
+
+    public function setFrequenzaTinetti(int $frequenzaTinetti): self
+    {
+        $this->frequenzaTinetti = $frequenzaTinetti;
+        $this->setNumeroTinetti($frequenzaTinetti);
+
+        return $this;
+    }
+
+    public function getFrequenzaVas(): ?int
+    {
+        return $this->frequenzaVas;
+    }
+
+    public function setFrequenzaVas(int $frequenzaVas): self
+    {
+        $this->frequenzaVas = $frequenzaVas;
+        $this->setNumeroVas($frequenzaVas);
+
+        return $this;
+    }
+
+    public function getFrequenzaLesioni(): ?int
+    {
+        return $this->frequenzaLesioni;
+    }
+
+    public function setFrequenzaLesioni(int $frequenzaLesioni): self
+    {
+        $this->frequenzaLesioni = $frequenzaLesioni;
+        $this->setNumeroLesioni($frequenzaLesioni);
+
+        return $this;
+    }
 }

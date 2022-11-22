@@ -47,6 +47,16 @@ class LesioniRepository extends ServiceEntityRepository
 
     }
 
+    public function findByLesioniPerScheda($idSchedaPai): int
+    {
+        return $this->createQueryBuilder('b')
+            ->select('count(b.id)')
+            ->andWhere('b.schedaPAI = :schedaPaiId')
+            ->setParameter('schedaPaiId', $idSchedaPai)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return Lesioni[] Returns an array of Lesioni objects
 //     */

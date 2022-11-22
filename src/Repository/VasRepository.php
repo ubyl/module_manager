@@ -47,6 +47,16 @@ class VasRepository extends ServiceEntityRepository
 
     }
 
+    public function findByVasPerScheda($idSchedaPai): int
+    {
+        return $this->createQueryBuilder('b')
+            ->select('count(b.id)')
+            ->andWhere('b.schedaPAI = :schedaPaiId')
+            ->setParameter('schedaPaiId', $idSchedaPai)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return Vas[] Returns an array of Vas objects
 //     */

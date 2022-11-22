@@ -60,11 +60,17 @@ class SchedaPAIType extends AbstractType
                 'autocomplete' => true,
             ])
             ->add('abilitaBarthel')
+            ->add('frequenzaBarthel')
             ->add('abilitaBraden')
+            ->add('frequenzaBraden')
             ->add('abilitaSpmsq')
+            ->add('frequenzaSpmsq')
             ->add('abilitaTinetti')
+            ->add('frequenzaTinetti')
             ->add('abilitaVas')
+            ->add('frequenzaVas')
             ->add('abilitaLesioni')
+            ->add('frequenzaLesioni')
             ->add('idAssistito',TextType::class, array(
                 'disabled' => true,
             ))

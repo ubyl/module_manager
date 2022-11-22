@@ -47,6 +47,16 @@ class BradenRepository extends ServiceEntityRepository
 
     }
 
+    public function findByBradenPerScheda($idSchedaPai): int
+    {
+        return $this->createQueryBuilder('b')
+            ->select('count(b.id)')
+            ->andWhere('b.schedaPAI = :schedaPaiId')
+            ->setParameter('schedaPaiId', $idSchedaPai)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return Braden[] Returns an array of Braden objects
 //     */

@@ -47,6 +47,16 @@ class SPMSQRepository extends ServiceEntityRepository
 
     }
 
+    public function findBySpmsqPerScheda($idSchedaPai): int
+    {
+        return $this->createQueryBuilder('b')
+            ->select('count(b.id)')
+            ->andWhere('b.schedaPAI = :schedaPaiId')
+            ->setParameter('schedaPaiId', $idSchedaPai)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return SPMSQ[] Returns an array of SPMSQ objects
 //     */

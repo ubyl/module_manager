@@ -40,7 +40,7 @@ class ValutazioneGeneraleFormType extends AbstractType
         
 
         $builder
-            ->add('nome')
+            
             ->add('data_valutazione', DateType::class,[
                 'widget' => 'single_text', 
             ])

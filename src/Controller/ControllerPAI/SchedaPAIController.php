@@ -2,20 +2,25 @@
 
 namespace App\Controller\ControllerPAI;
 
-use App\Entity\EntityPAI\SchedaPAI;
-use App\Entity\EntityPAI\ValutazioneGenerale;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Entity\Paziente;
+use App\Entity\EntityPAI\Vas;
+use App\Entity\EntityPAI\SPMSQ;
+use App\Entity\EntityPAI\Braden;
+use App\Entity\EntityPAI\Barthel;
+use App\Entity\EntityPAI\Lesioni;
+use App\Entity\EntityPAI\Tinetti;
+use App\Entity\EntityPAI\SchedaPAI;
 use App\Form\FormPAI\SchedaPAIType;
 use App\Repository\SchedaPAIRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Workflow\WorkflowInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\ORM\EntityManagerInterface;
-
-use Dompdf\Dompdf;
-use Dompdf\Options;
 
 
 #[Route('/scheda_pai')]
@@ -261,5 +266,34 @@ class SchedaPAIController extends AbstractController
             'assistito' => $assistito,
             'variabileTest' => $variabileTest
         ]);
+    }
+    #[Route('/chiusura_scheda/{id}', name: 'app_scheda_pai_chiusura', methods: ['GET'])]
+    public function chiudiScheda(SchedaPAI $schedaPAI): Response
+    {
+        $idScheda = $schedaPAI->getId();
+        $em = $this->entityManager;
+        $barthelRepository = $em->getRepository(Barthel::class);
+        $bradenRepository = $em->getRepository(Braden::class);
+        $spmsqRepository = $em->getRepository(SPMSQ::class);
+        $tinettiRepository = $em->getRepository(Tinetti::class);
+        $vasRepository = $em->getRepository(Vas::class);
+        $lesioniRepository = $em->getRepository(Lesioni::class);
+        $numeroBarthelPresenti = $barthelRepository->findByBarthelPerScheda($idScheda);
+        $numeroBarthelCorretto = $schedaPAI->getNumeroBarthel();
+        $numeroBradenPresenti = $bradenRepository->findByBradenPerScheda($idScheda);
+        $numeroBradenCorretto = $schedaPAI->getNumeroBraden();
+        $numeroSpmsqPresenti = $spmsqRepository->findBySpmsqPerScheda($idScheda);
+        $numeroSpmsqCorretto = $schedaPAI->getNumeroSpmsq();
+        $numeroTinettiPresenti = $tinettiRepository->findByTinettiPerScheda($idScheda);
+        $numeroTinettiCorretto = $schedaPAI->getNumeroTinetti();
+        $numeroVasPresenti = $vasRepository->findByVasPerScheda($idScheda);
+        $numeroVasCorretto = $schedaPAI->getNumeroVas();
+        $numeroLesioniPresenti = $lesioniRepository->findByLesioniPerScheda($idScheda);
+        $numeroLesioniCorretto = $schedaPAI->getNumeroLesioni();
+        
+
+        
+
+        return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
     }
 }

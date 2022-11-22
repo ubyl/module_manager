@@ -47,6 +47,16 @@ class TinettiRepository extends ServiceEntityRepository
 
     }
 
+    public function findByTinettiPerScheda($idSchedaPai): int
+    {
+        return $this->createQueryBuilder('b')
+            ->select('count(b.id)')
+            ->andWhere('b.schedaPAI = :schedaPaiId')
+            ->setParameter('schedaPaiId', $idSchedaPai)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return Tinetti[] Returns an array of Tinetti objects
 //     */
