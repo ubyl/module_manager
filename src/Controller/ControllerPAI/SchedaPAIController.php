@@ -298,16 +298,23 @@ class SchedaPAIController extends AbstractController
         $numeroValutazioneProfessionaliMinime = $numeroOperatoriInf + $numeroOperatoriTdr + $numeroOperatoriLog + $numeroOperatoriAsa + $numeroOperatoriOss;
         $numeroValutazioniProfessionali = count($schedaPAI->getIdValutazioneFiguraProfessionale());
         $chiusuraServizio = $schedaPAI->getIdChiusuraServizio();
+        dump($numeroValutazioneProfessionaliMinime);
+        dump($numeroValutazioniProfessionali);
         
         if ($numeroBarthelPresenti == $numeroBarthelCorretto && $numeroBradenPresenti == $numeroBradenCorretto && $numeroSpmsqPresenti == $numeroSpmsqCorretto && $numeroTinettiPresenti == $numeroTinettiCorretto && $numeroVasPresenti == $numeroVasCorretto && $numeroLesioniPresenti == $numeroLesioniCorretto && $chiusuraServizio!=null && $numeroValutazioniProfessionali >= $numeroValutazioneProfessionaliMinime)
         {
-            if($chiusuraServizio->getRinnovo() == false)
+            if($chiusuraServizio->getRinnovo() == false){
                 $schedaPAI->setCurrentPlace('chiusa');
-            else
+                $this->entityManager->flush();
+            }
+            else{
                 $schedaPAI->setCurrentPlace('chiusa_con_rinnovo');
-        }        
-
-        
+                $this->entityManager->flush();
+            }
+        }   
+        else{
+            //stampa errore
+        }
 
         return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
     }

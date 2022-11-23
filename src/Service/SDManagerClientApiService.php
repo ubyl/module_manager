@@ -73,31 +73,29 @@ class SDManagerClientApiService
         $userRepository = $em->getRepository(User::class);
         for( $i = 0; $i< count($utenti); $i++){
             $userUtente=$utenti[$i]['username'];
-            if($userRepository->findOneByUsername($userUtente)== null){
+            if($userRepository->findOneByUsername($userUtente) == null){
                 $utente = new User;
                 if($utenti[$i]['emails']!=null){
-                $email = $utenti[$i]['emails'][0]['email'];
-                $utente->setEmail($email);
-                $utente->setSdManagerOperatore(true);
-                }
-                else
-                    break;
-
-                
-                $password = 'prova1';
-                $hashedPassword = $this->userPasswordHasher->hashPassword(
-                    $utente,
-                    $password
-                );
-                
-                $utente->setPassword($hashedPassword);
-                $utente->setName($utenti[$i]['nome']);
-                $utente->setSurname($utenti[$i]['cognome']);
-                $role[0] = 'ROLE_USER';
-                $utente->setRoles($role);
-                $utente->setUsername($userUtente);
-
-                $userRepository->add($utente, true);
+                    $email = $utenti[$i]['emails'][0]['email'];
+                    if($userRepository->findOneByEmail($email) == null){
+                        $utente->setEmail($email);
+                        $password = 'prova1';
+                        $hashedPassword = $this->userPasswordHasher->hashPassword(
+                            $utente,
+                            $password
+                        );
+                        
+                        $utente->setPassword($hashedPassword);
+                        $utente->setName($utenti[$i]['nome']);
+                        $utente->setSurname($utenti[$i]['cognome']);
+                        $role[0] = 'ROLE_USER';
+                        $utente->setRoles($role);
+                        $utente->setUsername($userUtente);
+                        $utente->setSdManagerOperatore(true);
+        
+                        $userRepository->add($utente, true);
+                    }
+                }   
             }
             else{
                 $email = $utenti[$i]['emails'][0]['email'];
