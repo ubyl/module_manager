@@ -75,9 +75,10 @@ class SDManagerClientApiService
             $userUtente=$utenti[$i]['username'];
             if($userRepository->findOneByUsername($userUtente)== null){
                 $utente = new User;
-                if($utenti[$i]['emails']!=null ){
+                if($utenti[$i]['emails']!=null){
                 $email = $utenti[$i]['emails'][0]['email'];
                 $utente->setEmail($email);
+                $utente->setSdManagerOperatore(true);
                 }
                 else
                     break;

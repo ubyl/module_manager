@@ -290,7 +290,22 @@ class SchedaPAIController extends AbstractController
         $numeroVasCorretto = $schedaPAI->getNumeroVas();
         $numeroLesioniPresenti = $lesioniRepository->findByLesioniPerScheda($idScheda);
         $numeroLesioniCorretto = $schedaPAI->getNumeroLesioni();
+        $numeroOperatoriInf = count($schedaPAI->getidOperatoreSecondarioInf());
+        $numeroOperatoriTdr = count($schedaPAI->getidOperatoreSecondarioTdr());
+        $numeroOperatoriLog = count($schedaPAI->getidOperatoreSecondarioLog());
+        $numeroOperatoriAsa = count($schedaPAI->getidOperatoreSecondarioAsa());
+        $numeroOperatoriOss = count($schedaPAI->getidOperatoreSecondarioOss());
+        $numeroValutazioneProfessionaliMinime = $numeroOperatoriInf + $numeroOperatoriTdr + $numeroOperatoriLog + $numeroOperatoriAsa + $numeroOperatoriOss;
+        $numeroValutazioniProfessionali = count($schedaPAI->getIdValutazioneFiguraProfessionale());
+        $chiusuraServizio = $schedaPAI->getIdChiusuraServizio();
         
+        if ($numeroBarthelPresenti == $numeroBarthelCorretto && $numeroBradenPresenti == $numeroBradenCorretto && $numeroSpmsqPresenti == $numeroSpmsqCorretto && $numeroTinettiPresenti == $numeroTinettiCorretto && $numeroVasPresenti == $numeroVasCorretto && $numeroLesioniPresenti == $numeroLesioniCorretto && $chiusuraServizio!=null && $numeroValutazioniProfessionali >= $numeroValutazioneProfessionaliMinime)
+        {
+            if($chiusuraServizio->getRinnovo() == false)
+                $schedaPAI->setCurrentPlace('chiusa');
+            else
+                $schedaPAI->setCurrentPlace('chiusa_con_rinnovo');
+        }        
 
         
 

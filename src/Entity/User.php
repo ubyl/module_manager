@@ -22,8 +22,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 180)]
     private $email;
 
-    #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private $username;
+    #[ORM\Column(type: 'string', length: 180, nullable: true)]
+    private $username = null;
 
     #[ORM\Column(type: 'string')]
     private $name;
@@ -57,6 +57,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
    
     #[ORM\ManyToMany(mappedBy: 'idOperatoreSecondarioOss', targetEntity: SchedaPai::class)]
     private $ossSchedaPai;
+
+    #[ORM\Column(type: 'boolean')]
+    private $sdManagerOperatore = false;
     
 
     public function __construct()
@@ -351,6 +354,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $principaleSchedaPai->setIdOperatorePrincipale(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isSdManagerOperatore():bool
+    {
+        return $this->sdManagerOperatore;
+    }
+
+    public function setSdManagerOperatore(bool $sdManagerOperatore): self
+    {
+        
+        $this->sdManagerOperatore = $sdManagerOperatore;
 
         return $this;
     }
