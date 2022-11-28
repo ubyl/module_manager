@@ -51,14 +51,12 @@
                 <th>Id</th>
                 <th>Data Inizio</th>
                 <th>Data Fine</th>
-                <th>Operatore Principale</th>
                 <th>Assistito</th>
                 <th>Stato</th>
                 <th>Operazioni</th>
                 <th>Espandi</th>
             </tr>
             <tr>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -74,15 +72,6 @@
                 <td data-title='Id'>{{ scheda_pai.id }}</td>
                 <td data-title='Data Inizio'>{{ scheda_pai.dataInizio|date('Y-m-d') }} </td>
                 <td data-title='Data Fine'>{{ scheda_pai.dataFine|date('Y-m-d')}} </td>
-                <td data-title='Operatore Principale'>
-                    {% if scheda_pai.idOperatorePrincipale == null %}
-                        Nessuno
-                    {% else %}
-                        {{ scheda_pai.idOperatorePrincipale.name}}
-                        {{ scheda_pai.idOperatorePrincipale.surname}}
-                        <br>
-                    {% endif %}
-                </td>
                 <td data-title='Assistito'>
                 {% for i in assistiti %}
                  {% if i.id == scheda_pai.idAssistito %}
@@ -103,7 +92,7 @@
                         <li><a class="dropdown-item" href="{{ path('app_scheda_pai_show', {'id': scheda_pai.id}) }}">Visualizza scheda Pai</a></li>
                         <li><a class="dropdown-item {% if user.username != scheda_pai.idOperatorePrincipale.username %}disabled{% endif %}"href="{{ path('app_scheda_pai_edit', {'id': scheda_pai.id}) }}">Modifica scheda Pai</a></li>
                         <li><a class="dropdown-item" href="{{ path('app_scheda_pai_delete', {'id': scheda_pai.id, '_token':  csrf_token('delete' ~ scheda_pai.id) }) }}"onclick="return confirm('Sei sicuro di voler eliminare la scheda?')">Elimina scheda Pai</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_scheda_pai_chiusura', {'id': scheda_pai.id}) }}">Chiudi Scheda</a></li>
+                        <li><a class="dropdown-item {% if scheda_pai.currentPlace == 'chiusa' or scheda_pai.currentPlace == 'chiusa_con_rinnovo' %}disabled{% endif %}" href="{{ path('app_scheda_pai_chiusura', {'id': scheda_pai.id}) }}">Chiudi Scheda</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'approvata' or user.username != scheda_pai.idOperatorePrincipale.username %}disabled{% endif %}" href="{{ path('app_valutazione_generale_new', {'id_pai': scheda_pai.id})}}">Valutazione Generale</a></li>
                         <li><a class="dropdown-item {% if scheda_pai.currentPlace != 'attiva' %}disabled{% endif %}" href="{{ path('app_valutazione_figura_professionale_new', {'id_pai': scheda_pai.id})}}">Valutazione Figura Professionale</a></li>
@@ -128,6 +117,8 @@
                     <table class="col-sm-12  table-striped table-condensed ">
                         <thead class="cf">
                             <tr>
+                                <th>Codice Fiscale Assistito</th>
+								<th>Op Principale</th>
                                 <th>Op Inf</th>
                                 <th>Op Tdr</th>
                                 <th>Op Log</th>
@@ -136,6 +127,27 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <td data-title='Codice Fiscale Assistito'>
+						{% for i in assistiti %}
+						    {% if i.id == scheda_pai.idAssistito %}
+								{% if i.codiceFiscale is empty %}
+                                    Nessuno
+                                {% else %}
+                                    {{i.codiceFiscale}}
+                                {% endif %}
+							<br>
+							{% endif %}
+						{% endfor %}
+						</td>
+						<td data-title='Operatore Principale'>
+							{% if scheda_pai.idOperatorePrincipale == null %}
+								Nessuno
+						    {% else %}
+								{{ scheda_pai.idOperatorePrincipale.name}}
+								{{ scheda_pai.idOperatorePrincipale.surname}}
+							<br>
+							{% endif %}
+						</td>
                             <td data-title='Op Inf'>
                             {% if scheda_pai.idOperatoreSecondarioInf  is empty %}
                                 Nessuno

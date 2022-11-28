@@ -6,15 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomepageController extends AbstractController
+class ElencoSchedeController extends AbstractController
 {
-    #[Route('/homepage', name: 'app_homepage')]
+    #[Route('/elenco_schede', name: 'app_elenco_schede')]
     public function index(): Response
     {
         $user= $this-> getUser();
 
-        return $this->render('Homepage/index.html.twig', [
-            'controller_name' => 'HomepageController',
+        return $this->render('elenco_schede/index.html.twig', [
+            'controller_name' => 'ElencoSchedeController',
             'user' => $user
         ]);
     }

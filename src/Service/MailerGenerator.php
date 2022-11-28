@@ -25,13 +25,73 @@ class MailerGenerator
         $em = $this->entityManager;
         $schedaPAIRepository = $em->getRepository(SchedaPAI::class);
         $numeroSchedeNuove = $schedaPAIRepository->findOneByState('nuova');
+        $numeroSchedeChiuse = $schedaPAIRepository->findOneByState('chiusa');
+        $numeroSchedeChiuseConRinnovo = $schedaPAIRepository->findOneByState('chiusa_con_rinnovo');
 
-        if ($numeroSchedeNuove != null) {
+        if ($numeroSchedeNuove != null && $numeroSchedeChiuse == null && $numeroSchedeChiuseConRinnovo == null) {
             $email = (new Email())
                 ->from('tecnico@metarete.it')
                 ->to('admin@live.it')
                 ->subject('Schede nello stato Nuova')
                 ->text('Esiste almeno una scheda nello stato Nuova che deve essere approvata');
+
+            $this->mailer->send($email);
+        }
+        if ($numeroSchedeNuove != null && $numeroSchedeChiuse != null && $numeroSchedeChiuseConRinnovo == null){
+            $email = (new Email())
+                ->from('tecnico@metarete.it')
+                ->to('admin@live.it')
+                ->subject('Schede nello stato Nuova')
+                ->text('Esiste almeno una scheda nello stato Nuova che deve essere approvata e una scheda che è stata chiusa.');
+
+            $this->mailer->send($email);
+        }
+        if ($numeroSchedeNuove != null && $numeroSchedeChiuse != null && $numeroSchedeChiuseConRinnovo != null){
+            $email = (new Email())
+                ->from('tecnico@metarete.it')
+                ->to('admin@live.it')
+                ->subject('Schede nello stato Nuova')
+                ->text('Esiste almeno una scheda nello stato Nuova che deve essere approvata e una scheda che è stata chiusa.
+                Esiste anche una scheda chiusa che necessita di un rinnovo: occorre attivarsi per creare un nuovo Progetto in SD Manager.');
+
+            $this->mailer->send($email);
+        }
+        if ($numeroSchedeNuove == null && $numeroSchedeChiuse != null && $numeroSchedeChiuseConRinnovo != null){
+            $email = (new Email())
+                ->from('tecnico@metarete.it')
+                ->to('admin@live.it')
+                ->subject('Schede nello stato Nuova')
+                ->text('Esiste almeno  una scheda che è stata chiusa.Esiste anche una scheda chiusa che necessita di un rinnovo: occorre attivarsi per creare un nuovo Progetto in SD Manager.');
+
+            $this->mailer->send($email);
+        }
+        if ($numeroSchedeNuove == null && $numeroSchedeChiuse == null && $numeroSchedeChiuseConRinnovo != null){
+            $email = (new Email())
+            ->from('tecnico@metarete.it')
+            ->to('admin@live.it')
+            ->subject('Schede nello stato Nuova')
+            ->text('Esiste una scheda chiusa che necessita di un rinnovo: occorre attivarsi per creare un nuovo Progetto in SD Manager.');
+
+        $this->mailer->send($email);
+        
+        }
+        if ($numeroSchedeNuove == null && $numeroSchedeChiuse != null && $numeroSchedeChiuseConRinnovo == null){
+            $email = (new Email())
+            ->from('tecnico@metarete.it')
+            ->to('admin@live.it')
+            ->subject('Schede nello stato Nuova')
+            ->text('Esiste almeno  una scheda che è stata chiusa.');
+
+        $this->mailer->send($email);
+        
+        }
+        if ($numeroSchedeNuove != null && $numeroSchedeChiuse == null && $numeroSchedeChiuseConRinnovo != null){
+            $email = (new Email())
+                ->from('tecnico@metarete.it')
+                ->to('admin@live.it')
+                ->subject('Schede nello stato Nuova')
+                ->text('Esiste almeno una scheda nello stato Nuova che deve essere approvata.
+                Esiste anche una scheda chiusa che necessita di un rinnovo: occorre attivarsi per creare un nuovo Progetto in SD Manager.');
 
             $this->mailer->send($email);
         }

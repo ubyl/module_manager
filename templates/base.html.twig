@@ -25,7 +25,13 @@
 				<nav class="navbar navbar-dark bg-dark">
 					<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 						<li>
-							<a href="{{ path('app_homepage') }}" class="nav-link px-2 text-white">Home</a>
+							<a href="{{ path('app_scadenzario_index') }}" class="nav-link px-2 text-white">Home</a>
+						</li>
+						<li>
+							<a {% if app.user.roles[0] == 'ROLE_USER' %}class="invisible"{% endif %} href="{{ path('app_elenco_schede') }}" class="nav-link px-2 text-white">Schede</a>
+						</li>
+						<li>
+							<a {% if app.user.roles[0] == 'ROLE_USER' %}class="invisible"{% endif %} href="{{ path('app_scheda_pai_index') }}" class="nav-link px-2 text-white">Sincronizza</a>
 						</li>
 					</ul>
 					<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
