@@ -122,22 +122,22 @@ class SchedaPAI
     private $abilitaLesioni;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroBarthel;
+    private $numeroBarthelCorretto = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroBraden;
+    private $numeroBradenCorretto = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroSpmsq;
+    private $numeroSpmsqCorretto = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroTinetti;
+    private $numeroTinettiCorretto = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroVas;
+    private $numeroVasCorretto = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroLesioni;
+    private $numeroLesioniCorretto = 0;
 
     #[ORM\Column(type: 'integer')]
     private $frequenzaBarthel;
@@ -156,6 +156,42 @@ class SchedaPAI
 
     #[ORM\Column(type: 'integer')]
     private $frequenzaLesioni;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroBarthelAdOggi;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroBradenAdOggi;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroSpmsqAdOggi;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroTinettiAdOggi;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroVasAdOggi;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroLesioniAdOggi;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroBarthelAdOggiCorretto;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroBradenAdOggiCorretto;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroSpmsqAdOggiCorretto;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroTinettiAdOggiCorretto;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroVasAdOggiCorretto;
+
+    #[ORM\Column(type: 'integer')]
+    private $numeroLesioniAdOggiCorretto;
 
 
 
@@ -712,118 +748,70 @@ class SchedaPAI
         return $this;
     }
 
-    public function getNumeroBarthel(): ?int
+    public function getNumeroBarthelCorretto(): ?int
     {
-        return $this->numeroBarthel;
+        return $this->numeroBarthelCorretto;
     }
 
-    public function setNumeroBarthel(int $frequenzaBarthel): self
+    public function setNumeroBarthelCorretto(int $numeroBarthelCorretto): self
     {
-        if ($frequenzaBarthel != 0) {
-            $partenza = $this->dataInizio;
-            $arrivo = $this->dataFine;
-            $numeroGiorni = $arrivo->diff($partenza)->format("%a");
-            $totaleBarthel = $numeroGiorni / $frequenzaBarthel;
-            $this->numeroBarthel = $totaleBarthel;
-
-            return $this;
-        } else
-            return 0;
+        $this->numeroBarthelCorretto = $numeroBarthelCorretto;
+        return $this;
     }
 
-    public function getNumeroBraden(): ?int
+    public function getNumeroBradenCorretto(): ?int
     {
-        return $this->numeroBraden;
+        return $this->numeroBradenCorretto;
     }
 
-    public function setNumeroBraden(int $frequenzaBraden): self
+    public function setNumeroBradenCorretto(int $numeroBradenCorretto): self
     {
-        if ($frequenzaBraden != 0) {
-            $partenza = $this->dataInizio;
-            $arrivo = $this->dataFine;
-            $numeroGiorni = $arrivo->diff($partenza)->format("%a");
-            $totaleBraden = $numeroGiorni / $frequenzaBraden;
-            $this->numeroBraden = $totaleBraden;
-
-            return $this;
-        } else
-            return 0;
+        $this->numeroBradenCorretto = $numeroBradenCorretto;
+        return $this;
     }
 
-    public function getNumeroSpmsq(): ?int
+    public function getNumeroSpmsqCorretto(): ?int
     {
-        return $this->numeroSpmsq;
+        return $this->numeroSpmsqCorretto;
     }
 
-    public function setNumeroSpmsq(int $frequenzaSpmsq): self
+    public function setNumeroSpmsqCorretto(int $numeroSpmsqCorretto): self
     {
-        if ($frequenzaSpmsq != 0) {
-            $partenza = $this->dataInizio;
-            $arrivo = $this->dataFine;
-            $numeroGiorni = $arrivo->diff($partenza)->format("%a");
-            $totaleSpmsq = $numeroGiorni / $frequenzaSpmsq;
-            $this->numeroSpmsq = $totaleSpmsq;
-
-            return $this;
-        } else
-            return 0;
+        $this->numeroSpmsqCorretto = $numeroSpmsqCorretto;
+        return $this;
     }
 
-    public function getNumeroTinetti(): ?int
+    public function getNumeroTinettiCorretto(): ?int
     {
-        return $this->numeroTinetti;
+        return $this->numeroTinettiCorretto;
     }
 
-    public function setNumeroTinetti(int $frequenzaTinetti): self
+    public function setNumeroTinettiCorretto(int $numeroTinettiCorretto): self
     {
-        if ($frequenzaTinetti != 0) {
-            $partenza = $this->dataInizio;
-            $arrivo = $this->dataFine;
-            $numeroGiorni = $arrivo->diff($partenza)->format("%a");
-            $totaleTinetti = $numeroGiorni / $frequenzaTinetti;
-            $this->numeroTinetti = $totaleTinetti;
-
-            return $this;
-        } else
-            return 0;
+        $this->numeroTinettiCorretto = $numeroTinettiCorretto;
+        return $this;
     }
 
-    public function getNumeroVas(): ?int
+    public function getNumeroVasCorretto(): ?int
     {
-        return $this->numeroVas;
+        return $this->numeroVasCorretto;
     }
 
-    public function setNumeroVas(int $frequenzaVas): self
+    public function setNumeroVasCorretto(int $numeroVasCorretto): self
     {
-        if ($frequenzaVas != 0) {
-            $partenza = $this->dataInizio;
-            $arrivo = $this->dataFine;
-            $numeroGiorni = $arrivo->diff($partenza)->format("%a");
-            $totaleVas = $numeroGiorni / $frequenzaVas;
-            $this->numeroVas = $totaleVas;
-
-            return $this;
-        } else
-            return 0;
+        $this->numeroVasCorretto = $numeroVasCorretto;
+        return $this;
     }
 
-    public function getNumeroLesioni(): ?int
+    public function getNumeroLesioniCorretto(): ?int
     {
-        return $this->numeroLesioni;
+        return $this->numeroLesioniCorretto;
     }
 
-    public function setNumeroLesioni(int $frequenzaLesioni): self
+    public function setNumeroLesioniCorretto(int $numeroLesioniCorretto): self
     {
-        if ($frequenzaLesioni != 0) {
-            $partenza = $this->dataInizio;
-            $arrivo = $this->dataFine;
-            $numeroGiorni = $arrivo->diff($partenza)->format("%a");
-            $totaleLesioni = $numeroGiorni / $frequenzaLesioni;
-            $this->numeroLesioni = $totaleLesioni;
-
-            return $this;
-        } else
-            return 0;
+        $this->numeroLesioniCorretto = $numeroLesioniCorretto;
+        return $this;
     }
 
     public function getFrequenzaBarthel(): ?int
@@ -834,7 +822,6 @@ class SchedaPAI
     public function setFrequenzaBarthel(int $frequenzaBarthel): self
     {
         $this->frequenzaBarthel = $frequenzaBarthel;
-        $this->setNumeroBarthel($frequenzaBarthel);
 
         return $this;
     }
@@ -847,7 +834,6 @@ class SchedaPAI
     public function setFrequenzaBraden(int $frequenzaBraden): self
     {
         $this->frequenzaBraden = $frequenzaBraden;
-        $this->setNumeroBraden($frequenzaBraden);
 
         return $this;
     }
@@ -860,7 +846,6 @@ class SchedaPAI
     public function setFrequenzaSpmsq(int $frequenzaSpmsq): self
     {
         $this->frequenzaSpmsq = $frequenzaSpmsq;
-        $this->setNumeroSpmsq($frequenzaSpmsq);
 
         return $this;
     }
@@ -873,7 +858,6 @@ class SchedaPAI
     public function setFrequenzaTinetti(int $frequenzaTinetti): self
     {
         $this->frequenzaTinetti = $frequenzaTinetti;
-        $this->setNumeroTinetti($frequenzaTinetti);
 
         return $this;
     }
@@ -886,7 +870,6 @@ class SchedaPAI
     public function setFrequenzaVas(int $frequenzaVas): self
     {
         $this->frequenzaVas = $frequenzaVas;
-        $this->setNumeroVas($frequenzaVas);
 
         return $this;
     }
@@ -899,8 +882,126 @@ class SchedaPAI
     public function setFrequenzaLesioni(int $frequenzaLesioni): self
     {
         $this->frequenzaLesioni = $frequenzaLesioni;
-        $this->setNumeroLesioni($frequenzaLesioni);
 
         return $this;
+    }
+
+    public function getNumeroBarthelAdOggiCorretto(): ?int
+    {
+        return $this->numeroBarthelAdOggiCorretto;
+    }
+
+    public function setNumeroBarthelAdOggiCorretto($numeroBarthelAdOggiCorretto)
+    {
+        $this->numeroBarthelAdOggiCorretto = $numeroBarthelAdOggiCorretto;
+    }
+
+    public function getNumeroBradenAdOggiCorretto(): ?int
+    {
+        return $this->numeroBradenAdOggiCorretto;
+    }
+
+    public function setNumeroBradenAdOggiCorretto($numeroBradenAdOggiCorretto)
+    {
+        $this->numeroBradenAdOggiCorretto = $numeroBradenAdOggiCorretto;
+    }
+
+    public function getNumeroSpmsqAdOggiCorretto(): ?int
+    {
+        return $this->numeroSpmsqAdOggiCorretto;
+    }
+
+    public function setNumeroSpmsqAdOggiCorretto($numeroSpmsqAdOggiCorretto)
+    {
+        $this->numeroSpmsqAdOggiCorretto = $numeroSpmsqAdOggiCorretto;
+    }
+
+    public function getNumeroTinettiAdOggiCorretto(): ?int
+    {
+        return $this->numeroTinettiAdOggiCorretto;
+    }
+
+    public function setNumeroTinettiAdOggiCorretto($numeroTinettiAdOggiCorretto)
+    {
+        $this->numeroTinettiAdOggiCorretto = $numeroTinettiAdOggiCorretto;
+    }
+
+    public function getNumeroVasAdOggiCorretto(): ?int
+    {
+        return $this->numeroVasAdOggiCorretto;
+    }
+
+    public function setNumeroVasAdOggiCorretto($numeroVasAdOggiCorretto)
+    {
+        $this->numeroVasAdOggiCorretto = $numeroVasAdOggiCorretto;
+    }
+
+    public function getNumeroLesioniAdOggiCorretto(): ?int
+    {
+        return $this->numeroLesioniAdOggiCorretto;
+    }
+
+    public function setNumeroLesioniAdOggiCorretto($numeroLesioniAdOggiCorretto)
+    {
+        $this->numeroLesioniAdOggiCorretto = $numeroLesioniAdOggiCorretto;
+    }
+    public function getNumeroBarthelAdOggi(): ?int
+    {
+        return $this->numeroBarthelAdOggi;
+    }
+
+    public function setNumeroBarthelAdOggi($numeroBarthelAdOggi)
+    {
+        $this->numeroBarthelAdOggi = $numeroBarthelAdOggi;
+    }
+
+    public function getNumeroBradenAdOggi(): ?int
+    {
+        return $this->numeroBradenAdOggi;
+    }
+
+    public function setNumeroBradenAdOggi($numeroBradenAdOggi)
+    {
+        $this->numeroBradenAdOggi = $numeroBradenAdOggi;
+    }
+
+    public function getNumeroSpmsqAdOggi(): ?int
+    {
+        return $this->numeroSpmsqAdOggi;
+    }
+
+    public function setNumeroSpmsqAdOggi($numeroSpmsqAdOggi)
+    {
+        $this->numeroSpmsqAdOggi = $numeroSpmsqAdOggi;
+    }
+
+    public function getNumeroTinettiAdOggi(): ?int
+    {
+        return $this->numeroTinettiAdOggi;
+    }
+
+    public function setNumeroTinettiAdOggi($numeroTinettiAdOggi)
+    {
+        $this->numeroTinettiAdOggi = $numeroTinettiAdOggi;
+    }
+
+    public function getNumeroVasAdOggi(): ?int
+    {
+        return $this->numeroVasAdOggi;
+    }
+
+    public function setNumeroVasAdOggi($numeroVasAdOggi)
+    {
+        $this->numeroVasAdOggi = $numeroVasAdOggi;
+    }
+
+    public function getNumeroLesioniAdOggi(): ?int
+    {
+        return $this->numeroLesioniAdOggi;
+    }
+
+    public function setNumeroLesioniAdOggi($numeroLesioniAdOggi)
+    {
+        $this->numeroLesioniAdOggi = $numeroLesioniAdOggi;
     }
 }

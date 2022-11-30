@@ -51,6 +51,7 @@ class BarthelController extends AbstractController
         }
         if ($form->isSubmitted() && $form->isValid()) {
             $schedaPai->addIdBarthel($barthel);
+            //set parametro listener
             $barthelRepository = $this->entityManager->getRepository(Barthel::class);
             $barthelRepository->add($barthel, true);
             $this->entityManager->flush();

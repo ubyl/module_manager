@@ -48,7 +48,7 @@ class SchedaPAIController extends AbstractController
         //controllo login
         $user = $this->getUser();
 
-
+        
 
         //parametri per calcolo tabella
         $ruoloUser = $user->getRoles();
@@ -120,6 +120,27 @@ class SchedaPAIController extends AbstractController
             if ($this->workflow->can($schedaPAI, 'approva')) {
                 $this->workflow->apply($schedaPAI, 'approva');
             }
+            $frequenzaBarthel = $schedaPAI->getFrequenzaBarthel();
+            $frequenzaBraden = $schedaPAI->getFrequenzaBraden();
+            $frequenzaSpmsq = $schedaPAI->getFrequenzaSpmsq();
+            $frequenzaTinetti = $schedaPAI->getFrequenzaTinetti();
+            $frequenzaVas = $schedaPAI->getFrequenzaVas();
+            $frequenzaLesioni = $schedaPAI->getFrequenzaLesioni();
+            $dataInizio = $schedaPAI->getDataInizio();
+            $dataFine = $schedaPAI->getDataFine();
+            $numeroGiorniTotali = $dataFine->diff($dataInizio)->days;
+            $numeroBarthelCorretto = (int)($numeroGiorniTotali / $frequenzaBarthel);
+            $numeroBradenCorretto = (int)($numeroGiorniTotali / $frequenzaBraden);
+            $numeroSpmsqCorretto = (int)($numeroGiorniTotali / $frequenzaSpmsq);
+            $numeroTinettiCorretto = (int)($numeroGiorniTotali / $frequenzaTinetti);
+            $numeroVasCorretto = (int)($numeroGiorniTotali / $frequenzaVas);
+            $numeroLesioniCorretto = (int)($numeroGiorniTotali / $frequenzaLesioni);
+            $schedaPAI->setNumeroBarthelCorretto($numeroBarthelCorretto);
+            $schedaPAI->setNumeroBradenCorretto($numeroBradenCorretto);
+            $schedaPAI->setNumeroSpmsqCorretto($numeroSpmsqCorretto);
+            $schedaPAI->setNumeroTinettiCorretto($numeroTinettiCorretto);
+            $schedaPAI->setNumeroVasCorretto($numeroVasCorretto);
+            $schedaPAI->setNumeroLesioniCorretto($numeroLesioniCorretto);
             $schedaPAIRepository->add($schedaPAI, true);
 
             return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
@@ -177,7 +198,30 @@ class SchedaPAIController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $frequenzaBarthel = $schedaPAI->getFrequenzaBarthel();
+            $frequenzaBraden = $schedaPAI->getFrequenzaBraden();
+            $frequenzaSpmsq = $schedaPAI->getFrequenzaSpmsq();
+            $frequenzaTinetti = $schedaPAI->getFrequenzaTinetti();
+            $frequenzaVas = $schedaPAI->getFrequenzaVas();
+            $frequenzaLesioni = $schedaPAI->getFrequenzaLesioni();
+            $dataInizio = $schedaPAI->getDataInizio();
+            $dataFine = $schedaPAI->getDataFine();
+            $numeroGiorniTotali = $dataFine->diff($dataInizio)->days;
+            $numeroBarthelCorretto = (int)($numeroGiorniTotali / $frequenzaBarthel);
+            $numeroBradenCorretto = (int)($numeroGiorniTotali / $frequenzaBraden);
+            $numeroSpmsqCorretto = (int)($numeroGiorniTotali / $frequenzaSpmsq);
+            $numeroTinettiCorretto = (int)($numeroGiorniTotali / $frequenzaTinetti);
+            $numeroVasCorretto = (int)($numeroGiorniTotali / $frequenzaVas);
+            $numeroLesioniCorretto = (int)($numeroGiorniTotali / $frequenzaLesioni);
+            $schedaPAI->setNumeroBarthelCorretto($numeroBarthelCorretto);
+            $schedaPAI->setNumeroBradenCorretto($numeroBradenCorretto);
+            $schedaPAI->setNumeroSpmsqCorretto($numeroSpmsqCorretto);
+            $schedaPAI->setNumeroTinettiCorretto($numeroTinettiCorretto);
+            $schedaPAI->setNumeroVasCorretto($numeroVasCorretto);
+            $schedaPAI->setNumeroLesioniCorretto($numeroLesioniCorretto);
+
             $schedaPAIRepository->add($schedaPAI, true);
+            
 
             return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
         }
