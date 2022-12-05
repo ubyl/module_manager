@@ -60,38 +60,26 @@ class SchedaPAIType extends AbstractType
                 'required'   => false,
                 'autocomplete' => true,
             ])
-            ->add('abilitaBarthel', CheckboxType::class, [
-                
-            ])
+            ->add('abilitaBarthel')
             ->add('frequenzaBarthel')
-            ->add('abilitaBraden', CheckboxType::class, [
-                
-            ])
+            ->add('abilitaBraden')
             ->add('frequenzaBraden')
-            ->add('abilitaSpmsq', CheckboxType::class, [
-                
-            ])
+            ->add('abilitaSpmsq')
             ->add('frequenzaSpmsq')
-            ->add('abilitaTinetti', CheckboxType::class, [
-                
-            ])
+            ->add('abilitaTinetti')
             ->add('frequenzaTinetti')
-            ->add('abilitaVas', CheckboxType::class, [
-                
-            ])
+            ->add('abilitaVas')
             ->add('frequenzaVas')
-            ->add('abilitaLesioni', CheckboxType::class, [
-                
-            ])
+            ->add('abilitaLesioni')
             ->add('frequenzaLesioni')
             ->add('idAssistito',TextType::class, array(
-                'disabled' => true,
+                //'disabled' => true,
             ))
             ->add('idConsole',TextType::class, array(
-                'disabled' => true,
+                //'disabled' => true,
             ))
             ->add('idProgetto',TextType::class, array(
-                'disabled' => true,
+                //'disabled' => true,
             ))
         ;
     }
