@@ -34,7 +34,11 @@ class DateCompilazioneSchedeService
         $frequenzaBarthel = $schedaPAI->getFrequenzaBarthel();
         $numeroBarthelPresentiOggi = count($schedaPAI->getIdBarthel());
         
-        if( $attivazioneBarthel == false && $frequenzaBarthel == 0){
+        if($attivazioneBarthel == false){
+            return null;
+        }
+
+        elseif( $frequenzaBarthel == 0){
             return null;
         }
         
@@ -53,7 +57,10 @@ class DateCompilazioneSchedeService
         $frequenzaBraden = $schedaPAI->getFrequenzaBraden();
         $numeroBradenPresentiOggi = count($schedaPAI->getIdBraden());
         
-        if( $attivazioneBraden == false && $frequenzaBraden == 0){
+        if( $attivazioneBraden == false){
+            return null;
+        }
+        elseif($frequenzaBraden == 0){
             return null;
         }
         
@@ -72,7 +79,10 @@ class DateCompilazioneSchedeService
         $frequenzaSpmsq = $schedaPAI->getFrequenzaSpmsq();
         $numeroSpmsqPresentiOggi = count($schedaPAI->getIdSpmsq());
         
-        if( $attivazioneSpmsq == false && $frequenzaSpmsq == 0){
+        if( $attivazioneSpmsq == false ){
+            return null;
+        }
+        elseif($frequenzaSpmsq == 0){
             return null;
         }
         
@@ -91,7 +101,10 @@ class DateCompilazioneSchedeService
         $frequenzaTinetti = $schedaPAI->getFrequenzaTinetti();
         $numeroTinettiPresentiOggi = count($schedaPAI->getIdTinetti());
         
-        if( $attivazioneTinetti == false && $frequenzaTinetti == 0){
+        if( $attivazioneTinetti == false ){
+            return null;
+        }
+        elseif($frequenzaTinetti == 0){
             return null;
         }
         
@@ -111,7 +124,10 @@ class DateCompilazioneSchedeService
         $frequenzaVas = $schedaPAI->getFrequenzaVas();
         $numeroVasPresentiOggi = count($schedaPAI->getIdVas());
         
-        if( $attivazioneVas == false && $frequenzaVas == 0){
+        if( $attivazioneVas == false ){
+            return null;
+        }
+        elseif($frequenzaVas == 0){
             return null;
         }
         
@@ -130,7 +146,10 @@ class DateCompilazioneSchedeService
         $frequenzaLesioni = $schedaPAI->getFrequenzaLesioni();
         $numeroLesioniPresentiOggi = count($schedaPAI->getIdLesioni());
         
-        if( $attivazioneLesioni == false && $frequenzaLesioni == 0){
+        if( $attivazioneLesioni == false ){
+            return null;
+        }
+        elseif($frequenzaLesioni == 0){
             return null;
         }
         

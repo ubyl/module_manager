@@ -129,12 +129,37 @@ class SchedaPAIController extends AbstractController
             $dataInizio = $schedaPAI->getDataInizio();
             $dataFine = $schedaPAI->getDataFine();
             $numeroGiorniTotali = $dataFine->diff($dataInizio)->days;
-            $numeroBarthelCorretto = (int)($numeroGiorniTotali / $frequenzaBarthel);
-            $numeroBradenCorretto = (int)($numeroGiorniTotali / $frequenzaBraden);
-            $numeroSpmsqCorretto = (int)($numeroGiorniTotali / $frequenzaSpmsq);
-            $numeroTinettiCorretto = (int)($numeroGiorniTotali / $frequenzaTinetti);
-            $numeroVasCorretto = (int)($numeroGiorniTotali / $frequenzaVas);
-            $numeroLesioniCorretto = (int)($numeroGiorniTotali / $frequenzaLesioni);
+            if($frequenzaBarthel == 0){
+                $numeroBarthelCorretto=0;
+            }
+            else
+                $numeroBarthelCorretto = (int)($numeroGiorniTotali / $frequenzaBarthel);
+            if($frequenzaBraden == 0){
+                $numeroBradenCorretto =0;
+            }
+            else
+                $numeroBradenCorretto = (int)($numeroGiorniTotali / $frequenzaBraden);
+            if($frequenzaSpmsq==0){
+                $numeroSpmsqCorretto =0;
+            }
+            else
+                $numeroSpmsqCorretto = (int)($numeroGiorniTotali / $frequenzaSpmsq);
+            if($frequenzaTinetti==0){
+                $numeroTinettiCorretto =0;
+            }
+            else
+                $numeroTinettiCorretto = (int)($numeroGiorniTotali / $frequenzaTinetti);
+            if($frequenzaVas ==0){
+                $numeroVasCorretto=0;
+            }
+            else
+                $numeroVasCorretto = (int)($numeroGiorniTotali / $frequenzaVas);
+            if($frequenzaLesioni ==0){
+                $numeroLesioniCorretto=0;
+            }    
+            else
+                $numeroLesioniCorretto = (int)($numeroGiorniTotali / $frequenzaLesioni);
+            
             $schedaPAI->setNumeroBarthelCorretto($numeroBarthelCorretto);
             $schedaPAI->setNumeroBradenCorretto($numeroBradenCorretto);
             $schedaPAI->setNumeroSpmsqCorretto($numeroSpmsqCorretto);
@@ -207,12 +232,37 @@ class SchedaPAIController extends AbstractController
             $dataInizio = $schedaPAI->getDataInizio();
             $dataFine = $schedaPAI->getDataFine();
             $numeroGiorniTotali = $dataFine->diff($dataInizio)->days;
-            $numeroBarthelCorretto = (int)($numeroGiorniTotali / $frequenzaBarthel);
-            $numeroBradenCorretto = (int)($numeroGiorniTotali / $frequenzaBraden);
-            $numeroSpmsqCorretto = (int)($numeroGiorniTotali / $frequenzaSpmsq);
-            $numeroTinettiCorretto = (int)($numeroGiorniTotali / $frequenzaTinetti);
-            $numeroVasCorretto = (int)($numeroGiorniTotali / $frequenzaVas);
-            $numeroLesioniCorretto = (int)($numeroGiorniTotali / $frequenzaLesioni);
+            if($frequenzaBarthel == 0){
+                $numeroBarthelCorretto=0;
+            }
+            else
+                $numeroBarthelCorretto = (int)($numeroGiorniTotali / $frequenzaBarthel);
+            if($frequenzaBraden == 0){
+                $numeroBradenCorretto =0;
+            }
+            else
+                $numeroBradenCorretto = (int)($numeroGiorniTotali / $frequenzaBraden);
+            if($frequenzaSpmsq==0){
+                $numeroSpmsqCorretto =0;
+            }
+            else
+                $numeroSpmsqCorretto = (int)($numeroGiorniTotali / $frequenzaSpmsq);
+            if($frequenzaTinetti==0){
+                $numeroTinettiCorretto =0;
+            }
+            else
+                $numeroTinettiCorretto = (int)($numeroGiorniTotali / $frequenzaTinetti);
+            if($frequenzaVas ==0){
+                $numeroVasCorretto=0;
+            }
+            else
+                $numeroVasCorretto = (int)($numeroGiorniTotali / $frequenzaVas);
+            if($frequenzaLesioni ==0){
+                $numeroLesioniCorretto=0;
+            }    
+            else
+                $numeroLesioniCorretto = (int)($numeroGiorniTotali / $frequenzaLesioni);
+            
             $schedaPAI->setNumeroBarthelCorretto($numeroBarthelCorretto);
             $schedaPAI->setNumeroBradenCorretto($numeroBradenCorretto);
             $schedaPAI->setNumeroSpmsqCorretto($numeroSpmsqCorretto);

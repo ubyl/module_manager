@@ -21,7 +21,8 @@ class CheckSchedePai implements EventSubscriberInterface
     {
         return [
             Events::postUpdate,
-            
+            Events::postPersist,
+            Events::postRemove,
             
         ];
     }
@@ -40,4 +41,34 @@ class CheckSchedePai implements EventSubscriberInterface
         $this->dateCompilazioneSchede->settaScadenzarioSchede($entity);
         
     }
+    public function postPersist(LifecycleEventArgs $args): void
+    {
+        $entity = $args->getObject();
+        
+
+        // if this subscriber only applies to certain entity types,
+        // add some code to check the entity type as early as possible
+        if (!$entity instanceof SchedaPAI) {
+            return;
+        }
+        
+        $this->dateCompilazioneSchede->settaScadenzarioSchede($entity);
+        
+    }
+    public function postRemove(LifecycleEventArgs $args): void
+    {
+        $entity = $args->getObject();
+        
+
+        // if this subscriber only applies to certain entity types,
+        // add some code to check the entity type as early as possible
+        if (!$entity instanceof SchedaPAI) {
+            return;
+        }
+        
+        $this->dateCompilazioneSchede->settaScadenzarioSchede($entity);
+        
+    }
+    
+   
 }

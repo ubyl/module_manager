@@ -7,6 +7,7 @@ use App\Entity\EntityPAI\SchedaPAI;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -59,17 +60,29 @@ class SchedaPAIType extends AbstractType
                 'required'   => false,
                 'autocomplete' => true,
             ])
-            ->add('abilitaBarthel')
+            ->add('abilitaBarthel', CheckboxType::class, [
+                
+            ])
             ->add('frequenzaBarthel')
-            ->add('abilitaBraden')
+            ->add('abilitaBraden', CheckboxType::class, [
+                
+            ])
             ->add('frequenzaBraden')
-            ->add('abilitaSpmsq')
+            ->add('abilitaSpmsq', CheckboxType::class, [
+                
+            ])
             ->add('frequenzaSpmsq')
-            ->add('abilitaTinetti')
+            ->add('abilitaTinetti', CheckboxType::class, [
+                
+            ])
             ->add('frequenzaTinetti')
-            ->add('abilitaVas')
+            ->add('abilitaVas', CheckboxType::class, [
+                
+            ])
             ->add('frequenzaVas')
-            ->add('abilitaLesioni')
+            ->add('abilitaLesioni', CheckboxType::class, [
+                
+            ])
             ->add('frequenzaLesioni')
             ->add('idAssistito',TextType::class, array(
                 'disabled' => true,
