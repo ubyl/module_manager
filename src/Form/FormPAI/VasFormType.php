@@ -20,8 +20,8 @@ class VasFormType extends AbstractType
         $votiMonitoraggioVasChoices = $VotiMonitoraggioVas->getValues();
         $VotiRilevazioneVas = new VotiRilevazioneVas();
         $votiRilevazioneVasChoices = $VotiRilevazioneVas->getValues();
+        
         $builder
-            ->add('paziente')
             ->add('data', DateType::class,[
                 'widget' => 'single_text',  
             ])

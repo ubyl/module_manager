@@ -1,22 +1,147 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pagina Principale{% endblock %}
+{% block title %}Pagina Principale
+{% endblock %}
 
 {% block body %}
 
-    <h1>Menù Principale Admin</h1>
-<div class="d-grid gap-2"> 
-  <a class="btn btn-primary" href="{{ path('app_scheda_pai_index') }}">Schede Pai</a>
-  <a class="btn btn-primary" href="{{ path('app_valutazione_generale_index') }}">Valutazioni Generali<a/>
-  <a class="btn btn-primary" href="{{ path('app_valutazione_figura_professionale_index') }}">Valutazioni Professionali<a/>
-  <a class="btn btn-primary" href="{{ path('app_parere_mmg_index') }}">Pareri MMG<a/>
-  <a class="btn btn-primary" href="{{ path('app_chiusura_servizio_index') }}">Chiusure servizi<a/>
-  <a class="btn btn-primary" href="{{ path('app_barthel_index') }}">Schede Barthel<a/>
-  <a class="btn btn-primary" href="{{ path('app_form_pai_braden_index') }}">Schede Braden<a/>
-  <a class="btn btn-primary" href="{{ path('app_s_p_m_s_q_index') }}">Schede SPMSQ<a/>
-  <a class="btn btn-primary" href="{{ path('app_tinetti_index') }}">Schede Tinetti<a/>
-  <a class="btn btn-primary" href="{{ path('app_vas_index') }}">Schede Vas<a/>
-  <a class="btn btn-primary" href="{{ path('app_lesioni_index') }}">Schede Lesioni<a/>
-</div>
+	<h1>Menù Principale Admin</h1>
+	<div class="container-fluid text-center">
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<img src="/image/PAI.jpg" class="card-img-top" alt="...">
 
-{% endblock %}
+					<div class="card-body">
+						<h5 class="card-title">Schede Pai</h5>
+						<p class="card-text">Elenco totale delle schede pai.
+						</p>
+						<a href="{{ path('app_scheda_pai_index') }}" class="btn btn-primary">Visualizza</a>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card">
+					<img src="/image/PAI.jpg" class="card-img-top" alt="...">
+
+					<div class="card-body">
+						<h5 class="card-title">Valutazioni Generali</h5>
+						<p class="card-text">Elenco totale delle Valutazioni Generali.
+						</p>
+						<a href="{{ path('app_valutazione_generale_index') }}" class="btn btn-primary">Visualizza</a>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card">
+					<img src="/image/PAI.jpg" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Valutazioni Figure Professionali</h5>
+						<p class="card-text">Elenco totale delle Valutazioni Professionali degli operatori principali e secondari.
+						</p>
+						<a href="{{ path('app_valutazione_figura_professionale_index') }}" class="btn btn-primary">Visualizza</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<img src="/image/PAI.jpg" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Pareri del medico condotto</h5>
+						<p class="card-text">Elenco totale dei pareri del medico condotto
+						</p>
+						<a href="{{ path('app_parere_mmg_index') }}" class="btn btn-primary">Visualizza</a>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card">
+					<img src="/image/PAI.jpg" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Chiusure Servizi</h5>
+						<p class="card-text">Elenco totale delle schede di chiusura servizi
+						</p>
+						<a href="{{ path('app_chiusura_servizio_index') }}" class="btn btn-primary">Visualizza</a>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card">
+					<img src="/image/PAI.jpg" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Schede Barthel</h5>
+						<p class="card-text">Elenco totale delle Schede Barthel
+						</p>
+						<a href="{{ path('app_barthel_index') }}" class="btn btn-primary">Visualizza</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<img src="/image/PAI.jpg" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Schede Braden</h5>
+						<p class="card-text">Elenco totale delle Schede Braden
+						</p>
+						<a href="{{ path('app_form_pai_braden_index') }}" class="btn btn-primary">Visualizza</a>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card">
+					<img src="/image/PAI.jpg" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Schede SPMSQ</h5>
+						<p class="card-text">Elenco totale delle Schede SPMSQ
+						</p>
+						<a href="{{ path('app_s_p_m_s_q_index') }}" class="btn btn-primary">Visualizza</a>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card">
+					<img src="/image/PAI.jpg" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Schede Tinetti</h5>
+						<p class="card-text">Elenco totale delle Schede Tinetti
+						</p>
+						<a href="{{ path('app_tinetti_index') }}" class="btn btn-primary">Visualizza</a>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col">
+					<div class="card">
+						<img src="/image/PAI.jpg" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">Schede Vas</h5>
+							<p class="card-text">Elenco totale delle Schede Vas
+							</p>
+							<a href="{{ path('app_vas_index') }}" class="btn btn-primary">Visualizza</a>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card">
+						<img src="/image/PAI.jpg" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">Schede Lesioni</h5>
+							<p class="card-text">Elenco totale delle Schede Lesioni
+							</p>
+							<a href="{{ path('app_lesioni_index') }}" class="btn btn-primary">Visualizza</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	{% endblock %}

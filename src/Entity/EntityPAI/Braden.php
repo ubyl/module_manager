@@ -16,13 +16,6 @@ class Braden
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string')]
-    #[Assert\Regex(
-        pattern: '/^[^\d]+$/',
-        message: 'Carattere non valido',
-    )]
-    private $nome;
-
     #[ORM\Column(type: 'integer')]
     private $percezioneSensoriale;
 
@@ -56,17 +49,6 @@ class Braden
         return $this->id;
     }
 
-    public function getNome(): ?string
-    {
-        return $this->nome;
-    }
-
-    public function setNome(string $nome): self
-    {
-        $this->nome = $nome;
-
-        return $this;
-    }
 
     public function getPercezioneSensoriale(): ?int
     {

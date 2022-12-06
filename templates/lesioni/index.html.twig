@@ -11,15 +11,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nome</th>
                 <th>Data Rivalutazioni Settimanali</th>
                 <th>Tipologia Lesione</th>
-                <th>Numero Sede Lesione</th>
-                <th>Grado Lesione</th>
-                <th>Condizione Lesione</th>
-                <th>Bordi Lesione</th>
-                <th>Cute Perilesionale</th>
-                <th>Note sulla lesione</th>
                 <th>Operazioni</th>
             </tr>
         </thead>
@@ -27,15 +20,8 @@
         {% for lesioni in lesionis %}
             <tr>
                 <td data-title='Id'>{{ lesioni.id }}</td>
-                <td data-title='Nome'>{{ lesioni.nome }}</td>
                 <td data-title='Data Rivalutazioni Settimanali'>{{ lesioni.dataRivalutazioniSettimanali ? lesioni.dataRivalutazioniSettimanali|date('Y-m-d') : '' }}</td>
                 <td data-title='Tipologia Lesione'>{{ lesioni.tipologiaLesione }}</td>
-                <td data-title='Numero Sede Lesione'>{{ lesioni.numeroSedeLesione }}</td>
-                <td data-title='Grado Lesione'>{{ lesioni.gradoLesione }}</td>
-                <td data-title='Condizione Lesione'>{{ lesioni.condizioneLesione }}</td>
-                <td data-title='Bordi Lesione'>{{ lesioni.bordiLesione }}</td>
-                <td data-title='Cute Perilesionale'>{{ lesioni.cutePerilesionale }}</td>
-                <td data-title='Note sulla lesione'>{{ lesioni.noteSullaLesione ? lesioni.noteSullaLesione :'Nessuna'}}</td>
                 <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -54,9 +40,6 @@
         </tbody>
     </table>
 </div>
-
-    
-    <a class="btn btn-primary" href="{{ path('app_scadenzario_index') }}">Menù Principale</a>
 
 <nav aria-label="Page navigation example">
    <ul class="pagination justify-content-center">

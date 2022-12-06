@@ -5,9 +5,6 @@
 {% block body %}
     <h1>Valutazione Figura Professionale</h1>
     {{ include('campi_valutazione_figura_professionale.html.twig') }}
-    <a class="btn btn-primary" href="{{ path('app_valutazione_figura_professionale_index') }}">Torna alla lista</a>
-
-    <a class="btn btn-primary" href="{{ path('app_valutazione_figura_professionale_edit', {'id': valutazione_figura_professionale.id}) }}">Modifica</a>
 
     {{ include('valutazione_figura_professionale/_delete_form.html.twig') }}
 {% endblock %}

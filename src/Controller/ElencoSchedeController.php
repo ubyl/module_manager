@@ -13,9 +13,11 @@ class ElencoSchedeController extends AbstractController
     {
         $user= $this-> getUser();
 
+        
         return $this->render('elenco_schede/index.html.twig', [
             'controller_name' => 'ElencoSchedeController',
-            'user' => $user
+            'user' => $user,
+            
         ]);
     }
 }

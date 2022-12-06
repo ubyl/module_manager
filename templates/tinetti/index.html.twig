@@ -11,29 +11,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nome</th>
                 <th>Data di valutazione</th>
-                <th>Equilibrio da seduto</th>
-                <th>Alzarsi dalla sedia</th>
-                <th>Tentativo di alzarsi</th>
-                <th>Equilibrio stazione eretta</th>
-                <th>Equilibrio stazione eretta prolungata</th>
-                <th>Romberg</th>
-                <th>Romberg Sensibilizzato</th>
-                <th>Girarsi a 360° a</th>
-                <th>Girarsi a 360° b</th>
-                <th>Sedersi</th>
                 <th>Totale Equilibrio</th>
-                <th>Inizio della deambulazione immediatamente dopo il via</th>
-                <th>Lunghezza passo piede destro</th>
-                <th>Altezza passo piede destro</th>
-                <th>Lunghezza passo piede sinistro</th>
-                <th>Altezza passo piede sinistro</th>
-                <th>Simmetria del passo</th>
-                <th>Continuita del passo</th>
-                <th>Traiettoria</th>
-                <th>Tronco</th>
-                <th>Cammino</th>
                 <th>Totale Andatura</th>
                 <th>Totale</th>
                 <th>Operazioni</th>
@@ -43,29 +22,8 @@
         {% for tinetti in tinettis %}
             <tr>
                 <td data-title='Id'>{{ tinetti.id }}</td>
-                <td data-title='Nome'>{{ tinetti.nome }}</td>
                 <td data-title='Data valutazione'>{{ tinetti.dataValutazione ? tinetti.dataValutazione|date('Y-m-d') : '' }}</td>
-                <td data-title='Equilibrio da seduto'>{{ tinetti.equilibrioSeduto }}</td>
-                <td data-title='Alzarsi dalla sedia'>{{ tinetti.sedia }}</td>
-                <td data-title='Tentativo di alzarsi'>{{ tinetti.alzarsi }}</td>
-                <td data-title='Equilibrio stazione eretta'>{{ tinetti.stazioneEretta }}</td>
-                <td data-title='Equilibrio stazione eretta prolungata'>{{ tinetti.stazioneErettaProlungata }}</td>
-                <td data-title='Romberg'>{{ tinetti.romberg }}</td>
-                <td data-title='Romberg sensibilizzato'>{{ tinetti.rombergSensibilizzato }}</td>
-                <td data-title='Girarsi a 360° a'>{{ tinetti.girarsi1 }}</td>
-                <td data-title='Girarsi a 360° b'>{{ tinetti.girarsi2 }}</td>
-                <td data-title='Sedersi'>{{ tinetti.sedersi }}</td>
                 <td data-title='Totale equilibrio'>{{ tinetti.totaleEquilibrio }}</td>
-                <td data-title='Inizio della deambulazione immediatamente dopo il via'>{{ tinetti.inizioDeambulazione }}</td>
-                <td data-title='Lunghezza passo piede destro'>{{ tinetti.piedeDx }}</td>
-                <td data-title='Altezza passo piede destro'>{{ tinetti.piedeDx2 }}</td>
-                <td data-title='Lunghezza passo piede sinistro'>{{ tinetti.piedeSx }}</td>
-                <td data-title='Altezza passo piede sinistro'>{{ tinetti.piedeSx2 }}</td>
-                <td data-title='Simmetria del passo'>{{ tinetti.simmetriaPasso }}</td>
-                <td data-title='Continuita del passo'>{{ tinetti.continuitaPasso }}</td>
-                <td data-title='Traiettoria'>{{ tinetti.traiettoria }}</td>
-                <td data-title='Tronco'>{{ tinetti.tronco }}</td>
-                <td data-title='Cammino'>{{ tinetti.cammino }}</td>
                 <td data-title='Totale andatura'>{{ tinetti.totaleAndatura }}</td>
                 <td data-title='Totale'>{{ tinetti.totale }}</td>
                 <td data-title='Operazioni'>
@@ -86,9 +44,6 @@
         </tbody>
     </table>
 </div>
-
-    
-    <a class="btn btn-primary" href="{{ path('app_scadenzario_index') }}">Menù Principale</a>
 
 <nav aria-label="Page navigation example">
    <ul class="pagination justify-content-center">

@@ -7,9 +7,5 @@
 
     {{ include('campi_tinetti.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('app_tinetti_index') }}">Torna alla lista</a>
-
-    <a class="btn btn-primary" href="{{ path('app_tinetti_edit', {'id': tinetti.id}) }}">Modifica</a>
-
     {{ include('tinetti/_delete_form.html.twig') }}
 {% endblock %}

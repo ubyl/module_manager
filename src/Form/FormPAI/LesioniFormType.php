@@ -31,7 +31,6 @@ class LesioniFormType extends AbstractType
         $cuteChoices = $CutePerilesionale->getValues();
 
         $builder
-            ->add('nome')
             ->add('dataRivalutazioniSettimanali', DateType::class,[
                 'widget' => 'single_text',  
             ])

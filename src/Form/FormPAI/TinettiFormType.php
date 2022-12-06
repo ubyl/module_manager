@@ -21,7 +21,6 @@ class TinettiFormType extends AbstractType
         $votiTinetti02Choices = $VotiTinetti02->getValues();
 
         $builder
-            ->add('nome')
             ->add('dataValutazione', DateType::class,[
                 'widget' => 'single_text',  
             ])

@@ -14,7 +14,6 @@ class ChiusuraServizioFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nome')
             ->add('conclusioni', TextType::class, [
                 'attr' => array('style' => 'height:100px')
             ])

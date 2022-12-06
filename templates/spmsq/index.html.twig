@@ -11,18 +11,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nome</th>
                 <th>Data di valutazione</th>
-                <th>Che giorno è oggi?</th>
-                <th>Che giorno della settimana è?</th>
-                <th>Come si chiama questo posto?</th>
-                <th>Qual è il suo indirizzo?</th>
-                <th>Quanti anni ha?</th>
-                <th>Quando è nato?</th>
-                <th>Chi è il Presidente della Repubblica?</th>
-                <th>Chi era il Presidente precedente?</th>
-                <th>Qual è il cognome da ragazza di sua madre?</th>
-                <th>Sottragga da 20 tre e poi ancora fino in fondo</th>
                 <th>Totale</th>
                 <th>Operazioni</th>
             </tr>
@@ -31,18 +20,7 @@
         {% for s_p_m_s_q in s_p_m_s_qs %}
             <tr>
                 <td data-title='Id'>{{ s_p_m_s_q.id }}</td>
-                <td data-title='Nome'>{{ s_p_m_s_q.nome }}</td>
                 <td data-title='Data di valutazione'>{{ s_p_m_s_q.dataValutazione ? s_p_m_s_q.dataValutazione|date('Y-m-d') : '' }}</td>
-                <td data-title='Che giorno è oggi?'>{{ s_p_m_s_q.giornoOggi ? 'Si' : 'No' }}</td>
-                <td data-title='Che giorno della settimana è?'>{{ s_p_m_s_q.giornoSettimana ? 'Si' : 'No' }}</td>
-                <td data-title='Come si chiama questo posto?'>{{ s_p_m_s_q.posto ? 'Si' : 'No' }}</td>
-                <td data-title='Quel è il suo indirizzo?'>{{ s_p_m_s_q.indirizzo ? 'Si' : 'No' }}</td>
-                <td data-title='Quanti anni ha?'>{{ s_p_m_s_q.anni ? 'Si' : 'No' }}</td>
-                <td data-title='Quando è nato?'>{{ s_p_m_s_q.dataNascita ? 'Si' : 'No' }}</td>
-                <td data-title='Chi è il Presidente della Repubblica?'>{{ s_p_m_s_q.presidenteAttuale ? 'Si' : 'No' }}</td>
-                <td data-title='Chi era il Presidente precedente?'>{{ s_p_m_s_q.presidentePrecedente ? 'Si' : 'No' }}</td>
-                <td data-title='Quel è il cognome da ragazza di sua madre?'>{{ s_p_m_s_q.cognomeMadre ? 'Si' : 'No' }}</td>
-                <td data-title='Sottragga da 20 3 e poi ancora fino in fondo'>{{ s_p_m_s_q.sottrazione ? 'Si' : 'No' }}</td>
                 <td data-title='Totale'>{{ s_p_m_s_q.totale }}</td>
                 <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
@@ -62,9 +40,6 @@
         </tbody>
     </table>
 </div>
-
-    
-    <a class="btn btn-primary" href="{{ path('app_scadenzario_index') }}">Menù Principale</a>
 
 <nav aria-label="Page navigation example">
    <ul class="pagination justify-content-center">

@@ -14,7 +14,6 @@ class ParereMMGFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nome')
             ->add('parere', ChoiceType::class, [
                 'choices'  => [
                     'favorevole' => 'Favorevole',

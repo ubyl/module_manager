@@ -24,7 +24,6 @@ class BarthelFormType extends AbstractType
         $votiBarthel015Choices = $VotiBarthel015->getValues();
 
         $builder
-            ->add('nome')
             ->add('dataValutazione', DateType::class,[
                 'widget' => 'single_text',  
             ])

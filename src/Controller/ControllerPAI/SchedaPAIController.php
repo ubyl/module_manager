@@ -93,6 +93,7 @@ class SchedaPAIController extends AbstractController
 
         if ($pagineTotali == 0)
             $pagineTotali = 1;
+        
         return $this->render('scheda_pai/index.html.twig', [
             'scheda_pais' => $schedaPais,
             'pagina' => $page,

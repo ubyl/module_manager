@@ -16,13 +16,6 @@ class ChiusuraServizio
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string')]
-    #[Assert\Regex(
-        pattern: '/^[^\d]+$/',
-        message: 'Carattere non valido',
-    )]
-    private $nome;
-
     #[ORM\Column(type: 'text')]
     private $conclusioni;
 
@@ -39,18 +32,6 @@ class ChiusuraServizio
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNome(): ?string
-    {
-        return $this->nome;
-    }
-
-    public function setNome(string $nome): self
-    {
-        $this->nome = $nome;
-
-        return $this;
     }
 
     public function getRinnovo(): ?bool

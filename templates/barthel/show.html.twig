@@ -7,9 +7,7 @@
 
     {{ include('campi_barthel.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('app_barthel_index') }}">Torna alla lista</a>
 
-    <a class="btn btn-primary" href="{{ path('app_barthel_edit', {'id': barthel.id}) }}">Modifica</a>
 
     {{ include('barthel/_delete_form.html.twig') }}
 {% endblock %}

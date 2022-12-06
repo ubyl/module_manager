@@ -19,7 +19,6 @@ class ValutazioneFiguraProfessionaleFormType extends AbstractType
         $operatoreChoices = $TipoOperatore->getValues();
 
         $builder
-            ->add('nome')
             ->add('tipoOperatore', ChoiceType::class,[
                 'choices' => $operatoreChoices
             ])

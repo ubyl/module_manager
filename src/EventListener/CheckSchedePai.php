@@ -30,7 +30,7 @@ class CheckSchedePai implements EventSubscriberInterface
     public function postUpdate(LifecycleEventArgs $args): void
     {
         $entity = $args->getObject();
-        dump($entity);
+        
 
         // if this subscriber only applies to certain entity types,
         // add some code to check the entity type as early as possible

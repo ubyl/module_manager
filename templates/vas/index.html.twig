@@ -10,15 +10,8 @@
         <thead class="cf">
             <tr>
                 <th>Id</th>
-                <th>Paziente</th>
                 <th>Data</th>
                 <th>Ora</th>
-                <th>Rilevazione di Base 2 volte</th>
-                <th>Rilevazione al bisogno del Pz</th>
-                <th>Esito rilevazione post trattamento</th>
-                <th>Rilevazione Monitoraggio</th>
-                <th>Farmaci</th>
-                <th>Altro</th>
                 <th>Operazioni</th>
             </tr>
         </thead>
@@ -26,15 +19,8 @@
         {% for va in vas %}
             <tr>
                 <td data-title='Id'>{{ va.id }}</td>
-                <td data-title='Paziente'>{{ va.paziente }}</td>
                 <td data-title='Data'>{{ va.data ? va.data|date('Y-m-d') : '' }}</td>
                 <td data-title='Ora'>{{ va.ora ? va.ora|date('H:i:s') : '' }}</td>
-                <td data-title='Rilevazione di Base 2 volte'>{{ va.base2 }}</td>
-                <td data-title='Rilevazione al bisogno del Pz'>{{ va.pz }}</td>
-                <td data-title='Esito rilevazione post trattamento'>{{ va.esito }}</td>
-                <td data-title='Rilevazione Monitoraggio'>{{ va.rilevanzaMonitoraggio }}</td>
-                <td data-title='Farmaci'>{{ va.farmaci ? 'Si' : 'No' }}</td>
-                <td data-title='Altro'>{{ va.altro ? 'Si' : 'No' }}</td>
                 <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,8 +41,6 @@
 </div>
 
     
-    <a class="btn btn-primary" href="{{ path('app_scadenzario_index') }}">Menù Principale</a>
-
 <nav aria-label="Page navigation example">
    <ul class="pagination justify-content-center">
        <li class="page-item"><a class="page-link {% if pagina==1 %}disabled{% endif %}" href="{{ path('app_vas_index') }}"><<</a></li>

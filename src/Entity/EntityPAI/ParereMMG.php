@@ -17,13 +17,6 @@ class ParereMMG
     private $id;
 
     #[ORM\Column(type: 'string')]
-    #[Assert\Regex(
-        pattern: '/^[^\d]+$/',
-        message: 'Carattere non valido',
-    )]
-    private $nome;
-
-    #[ORM\Column(type: 'string')]
     private $parere;
 
     #[ORM\Column(type: 'text', nullable: true)]
@@ -35,18 +28,6 @@ class ParereMMG
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNome(): ?string
-    {
-        return $this->nome;
-    }
-
-    public function setNome(string $nome): self
-    {
-        $this->nome = $nome;
-
-        return $this;
     }
 
     public function isParere(): ?string

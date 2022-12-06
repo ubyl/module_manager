@@ -11,22 +11,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nome</th>
                 <th>Data valutazione</th>
-                <th>N componenti nucleo abitativo</th>
-                <th>Rischio infettivo</th>
-                <th>Diagnosi</th>
                 <th>Tipologia valutazione</th>
-                <th>Panf</th>
-                <th>Fanf</th>
-                <th>Iss</th>
-                <th>Uso servizi igenici</th>
-                <th>Abbigliamento</th>
-                <th>Alimentazione</th>
-                <th>Indicatore deambulazione</th>
-                <th>Igene personale</th>
-                <th>Cognitività</th>
-                <th>Comportamento</th>
                 <th>Operazioni</th>
             </tr>
         </thead>
@@ -34,22 +20,8 @@
         {% for valutazione_generale in valutazione_generales %}
             <tr>
                 <td data-title='Id'>{{ valutazione_generale.id }}</td>
-                <td data-title='Nome'>{{ valutazione_generale.nome }}</td>
                 <td data-title='Data valutazione'>{{ valutazione_generale.dataValutazione ? valutazione_generale.dataValutazione|date('Y-m-d') : '' }}</td>
-                <td data-title='N componenti nucleo abitativo'>{{ valutazione_generale.nComponentiNucleoAbitativo }}</td>
-                <td data-title='Rischio infettivo'>{{ valutazione_generale.rischioInfettivo ? 'Si' : 'No' }}</td>
-                <td data-title='Diagnosi'>{{ valutazione_generale.diagnosi }}</td>
                 <td data-title='Tipologia valutazione'>{{ valutazione_generale.tipologiaValutazione }}</td>
-                <td data-title='Panf'>{{ valutazione_generale.panf }}</td>
-                <td data-title='Fanf'>{{ valutazione_generale.fanf }}</td>
-                <td data-title='Iss'>{{ valutazione_generale.iss }}</td>
-                <td data-title='Uso servizi igenici'>{{ valutazione_generale.usoServiziIgenici }}</td>
-                <td data-title='Abbigliamento'>{{ valutazione_generale.abbigliamento }}</td>
-                <td data-title='Alimentazione'>{{ valutazione_generale.alimentazione }}</td>
-                <td data-title='Inficatore deambulazione'>{{ valutazione_generale.indicatoreDeambulazione }}</td>
-                <td data-title='Igene personale'>{{ valutazione_generale.igenePersonale }}</td>
-                <td data-title='Cognitività'>{{ valutazione_generale.cognitivita }}</td>
-                <td data-title='Comportamento'>{{ valutazione_generale.comportamento }}</td>
                 <td data-title='Operazioni'>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -69,8 +41,6 @@
     </table>
 </div>
 
-    
-    <a class="btn btn-primary" href="{{ path('app_homepage') }}">Menù Principale</a>
 
 <nav aria-label="Page navigation example">
    <ul class="pagination justify-content-center">

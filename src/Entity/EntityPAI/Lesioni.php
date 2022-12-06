@@ -17,13 +17,6 @@ class Lesioni
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    #[Assert\Regex(
-        pattern: '/^[^\d]+$/',
-        message: 'Carattere non valido',
-    )]
-    private ?string $nome = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\Type(\DateTime::class)]
     private ?\DateTimeInterface $dataRivalutazioniSettimanali = null;
@@ -57,17 +50,6 @@ class Lesioni
         return $this->id;
     }
 
-    public function getNome(): ?string
-    {
-        return $this->nome;
-    }
-
-    public function setNome(string $nome): self
-    {
-        $this->nome = $nome;
-
-        return $this;
-    }
 
     public function getDataRivalutazioniSettimanali(): ?\DateTimeInterface
     {

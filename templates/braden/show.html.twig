@@ -7,9 +7,5 @@
 
      {{ include('campi_braden.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('app_form_pai_braden_index') }}">Torna alla lista</a>
-
-    <a class="btn btn-primary" href="{{ path('app_form_pai_braden_edit', {'id': braden.id}) }}">Modifica</a>
-
     {{ include('braden/_delete_form.html.twig') }}
 {% endblock %}

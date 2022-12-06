@@ -14,7 +14,6 @@ class SPMSQFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nome')
             ->add('dataValutazione', DateType::class,[
                 'widget' => 'single_text',  
             ])

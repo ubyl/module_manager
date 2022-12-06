@@ -17,13 +17,6 @@ class Vas
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string')]
-    #[Assert\Regex(
-        pattern: '/^[^\d]+$/',
-        message: 'Carattere non valido',
-    )]
-    private $paziente;
-
     #[ORM\Column(type: 'date')]
     #[Assert\Type(\DateTime::class)]
     private $data;
@@ -55,18 +48,6 @@ class Vas
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getPaziente(): ?string
-    {
-        return $this->paziente;
-    }
-
-    public function setPaziente(string $paziente): self
-    {
-        $this->paziente = $paziente;
-
-        return $this;
     }
 
     public function getData(): ?\DateTimeInterface

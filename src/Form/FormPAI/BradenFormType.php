@@ -21,7 +21,6 @@ class BradenFormType extends AbstractType
         $votiBraden13Choices = $VotiBraden13->getValues();
 
         $builder
-            ->add('nome')
             ->add('dataValutazione', DateType::class,[
                 'widget' => 'single_text',  
             ])
