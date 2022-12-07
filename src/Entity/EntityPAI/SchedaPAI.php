@@ -56,6 +56,12 @@ class SchedaPAI
     #[ORM\Column(type: 'integer')]
     private $idAssistito;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private $nomeAssistito;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private $cognomeAssistito;
+
     #[ORM\Column(type: 'string')]
     private $idConsole;
 
@@ -158,40 +164,40 @@ class SchedaPAI
     private $frequenzaLesioni;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroBarthelAdOggi;
+    private $numeroBarthelAdOggi = 0; 
 
     #[ORM\Column(type: 'integer')]
-    private $numeroBradenAdOggi;
+    private $numeroBradenAdOggi = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroSpmsqAdOggi;
+    private $numeroSpmsqAdOggi = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroTinettiAdOggi;
+    private $numeroTinettiAdOggi = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroVasAdOggi;
+    private $numeroVasAdOggi = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroLesioniAdOggi;
+    private $numeroLesioniAdOggi = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroBarthelAdOggiCorretto;
+    private $numeroBarthelAdOggiCorretto = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroBradenAdOggiCorretto;
+    private $numeroBradenAdOggiCorretto = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroSpmsqAdOggiCorretto;
+    private $numeroSpmsqAdOggiCorretto = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroTinettiAdOggiCorretto;
+    private $numeroTinettiAdOggiCorretto = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroVasAdOggiCorretto;
+    private $numeroVasAdOggiCorretto = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $numeroLesioniAdOggiCorretto;
+    private $numeroLesioniAdOggiCorretto = 0;
 
 
 
@@ -385,6 +391,28 @@ class SchedaPAI
     public function setIdAssistito(?int $idAssistito): self
     {
         $this->idAssistito = $idAssistito;
+
+        return $this;
+    }
+    public function getNomeAssistito(): ?string
+    {
+        return $this->nomeAssistito;
+    }
+
+    public function setNomeAssistito(?string $nomeAssistito): self
+    {
+        $this->nomeAssistito = $nomeAssistito;
+
+        return $this;
+    }
+    public function getCognomeAssistito(): ?string
+    {
+        return $this->cognomeAssistito;
+    }
+
+    public function setCognomeAssistito(?string $cognomeAssistito): self
+    {
+        $this->cognomeAssistito = $cognomeAssistito;
 
         return $this;
     }

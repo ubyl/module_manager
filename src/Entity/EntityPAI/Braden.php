@@ -38,7 +38,7 @@ class Braden
     #[Assert\Type(\DateTime::class)]
     private $dataValutazione;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'integer', nullable: true)]
     private $totale;
 
     #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idBraden')]

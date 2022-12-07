@@ -4,6 +4,7 @@ namespace App\EventListener;
 
 use App\Service\DateCompilazioneSchedeService;
 use App\Entity\EntityPAI\SchedaPAI;
+use App\Service\SetterDatiSchedaPaiService;
 use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
@@ -11,10 +12,12 @@ use Doctrine\Persistence\Event\LifecycleEventArgs;
 class CheckSchedePai implements EventSubscriberInterface
 {
     private $dateCompilazioneSchede;
+    private $setterDatiSchedePaiService;
 
-    public function __construct(DateCompilazioneSchedeService $dateCompilazioneSchede)
+    public function __construct(DateCompilazioneSchedeService $dateCompilazioneSchede, SetterDatiSchedaPaiService $setterDatiSchedaPAiService)
     {
        $this->dateCompilazioneSchede = $dateCompilazioneSchede;
+       $this->setterDatiSchedePaiService = $setterDatiSchedaPAiService;
     }
 
     public function getSubscribedEvents(): array
@@ -39,6 +42,7 @@ class CheckSchedePai implements EventSubscriberInterface
         }
         
         $this->dateCompilazioneSchede->settaScadenzarioSchede($entity);
+        $this->setterDatiSchedePaiService->settaDati($entity);
         
     }
     public function postPersist(LifecycleEventArgs $args): void
@@ -53,6 +57,7 @@ class CheckSchedePai implements EventSubscriberInterface
         }
         
         $this->dateCompilazioneSchede->settaScadenzarioSchede($entity);
+        $this->setterDatiSchedePaiService->settaDati($entity);
         
     }
     public function postRemove(LifecycleEventArgs $args): void

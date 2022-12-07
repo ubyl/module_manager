@@ -43,7 +43,6 @@ class BradenFormType extends AbstractType
                 'choices' => $votiBraden13Choices
             ])
             
-            ->add('totale')
         ;
     }
 

@@ -41,7 +41,7 @@ class Barthel
     #[ORM\Column(type: 'integer')]
     private $toilet;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'integer',  nullable: true)]
     private $totaleValutazioneFunzionale;
 
     #[ORM\Column(type: 'integer')]
@@ -59,7 +59,7 @@ class Barthel
     #[ORM\Column(type: 'integer')]
     private $usoCarrozzina;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'integer', nullable: true)]
     private $totale;
 
     #[ORM\ManyToOne(targetEntity: SchedaPAI::class, inversedBy: 'idBarthel')]

@@ -67,7 +67,7 @@ class SchedaPaiCommand extends Command
         $schedaPai->addidOperatoreSecondarioOss($utente);
 
         $schedaPai->setIdAssistito(rand(1,100));
-        $schedaPai->setIdConsole(rand(1,10));
+        $schedaPai->setIdConsole('demo');
         $schedaPai->setIdProgetto(rand(1,100));
         $schedaPai->setCurrentPlace('nuova');
 

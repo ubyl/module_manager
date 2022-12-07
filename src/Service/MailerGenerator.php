@@ -103,6 +103,8 @@ class MailerGenerator
         $schedaPAIRepository = $em->getRepository(SchedaPAI::class);
         $userRepository = $em->getRepository(User::class);
         $arraySchedeApprovate = $schedaPAIRepository->findByState('approvata');
+        $arraySchedeAttive = $schedaPAIRepository->findByState('attiva');
+        $arraySchedeInAttesaDiChiusura = $schedaPAIRepository->findByState('in_attesa_di_chiusura');
         $arrayOperatoriGiaAvvisati = [];
         for ($i = 0; $i < count($arraySchedeApprovate); $i++) {
 
@@ -113,12 +115,13 @@ class MailerGenerator
             if (in_array($stringaMail, $arrayOperatoriGiaAvvisati)) {
                 //ho già mandato la mail una volta all'operatore. Non intasiamo la mail 
             } else {
-
+                
                 $email = (new Email())
                     ->from('tecnico@metarete.it')
                     ->to($stringaMail)
                     ->subject('Schede in stato approvata')
-                    ->text('Esiste almeno una scheda in stato approvata in cui sei operatore principale che deve essere attivata ');
+                    ->text('Esiste almeno una scheda in stato approvata in cui sei operatore principale che deve essere attivata. 
+                    Abilitare le scale, impostare la frequenza di compilazione e compilare la valutazione generale.');
 
                 $this->mailer->send($email);
                 array_push($arrayOperatoriGiaAvvisati, $stringaMail);

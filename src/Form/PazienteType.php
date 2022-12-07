@@ -14,7 +14,11 @@ class PazienteType extends AbstractType
         $builder
             ->add('nome')
             ->add('cognome')
-            ->add('eta')
+            ->add('codiceFiscale')
+            ->add('indirizzo')
+            ->add('comune')
+            ->add('provincia')
+            ->add('cap')
         ;
     }
 

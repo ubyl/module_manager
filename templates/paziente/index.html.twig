@@ -11,7 +11,6 @@
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Cognome</th>
-                <th>Età</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,7 +20,6 @@
                 <td>{{ paziente.id }}</td>
                 <td>{{ paziente.nome }}</td>
                 <td>{{ paziente.cognome }}</td>
-                <td>{{ paziente.eta }}</td>
                 <td>
                     <a href="{{ path('app_paziente_show', {'id': paziente.id}) }}">show</a>
                     <a href="{{ path('app_paziente_edit', {'id': paziente.id}) }}">edit</a>

@@ -48,7 +48,6 @@ class BarthelFormType extends AbstractType
             ->add('toilet', ChoiceType::class,[
                 'choices' => $votiBarthel010Choices
             ])
-            ->add('totaleValutazioneFunzionale')
             ->add('trasferimentoLettoSedia', ChoiceType::class,[
                 'choices' => $votiBarthel015Choices
             ])
@@ -62,7 +61,7 @@ class BarthelFormType extends AbstractType
             ->add('usoCarrozzina', ChoiceType::class,[
                 'choices' => $votiBarthel05Choices
             ])
-            ->add('totale')
+            
         ;
     }
 
