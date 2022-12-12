@@ -2,21 +2,22 @@
 
 namespace App\EventListener;
 
-use App\Entity\EntityPAI\Barthel;
-use App\Service\DateCompilazioneSchedeService;
-use App\Entity\EntityPAI\SchedaPAI;
-use App\Entity\EntityPAI\Tinetti;
-use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use Doctrine\ORM\Events;
+use App\Entity\EntityPAI\Tinetti;
+use App\Service\SetterTotaliTinettiService;
+use App\Service\DateCompilazioneSchedeService;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
+use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 
 class CheckTinetti implements EventSubscriberInterface
 {
     private $dateCompilazioneSchede;
+    private $setterTotaliTinettiService;
 
-    public function __construct(DateCompilazioneSchedeService $dateCompilazioneSchede)
+    public function __construct(DateCompilazioneSchedeService $dateCompilazioneSchede, SetterTotaliTinettiService $setterTotaliTinettiService)
     {
        $this->dateCompilazioneSchede = $dateCompilazioneSchede;
+       $this->setterTotaliTinettiService = $setterTotaliTinettiService;
     }
 
     public function getSubscribedEvents(): array
@@ -42,6 +43,7 @@ class CheckTinetti implements EventSubscriberInterface
         $entity = $o->getSchedaPAI();
         
         $this->dateCompilazioneSchede->settaScadenzarioSchede($entity);
+        $this->setterTotaliTinettiService->settaTotali($o);
         
     }
     public function postPersist(LifecycleEventArgs $args): void
@@ -57,7 +59,7 @@ class CheckTinetti implements EventSubscriberInterface
         $entity = $o->getSchedaPAI();
         
         $this->dateCompilazioneSchede->settaScadenzarioSchede($entity);
-        
+        $this->setterTotaliTinettiService->settaTotali($o);
     }
     public function postRemove(LifecycleEventArgs $args): void
     {

@@ -54,7 +54,6 @@ class TinettiFormType extends AbstractType
             ->add('sedersi', ChoiceType::class,[
                 'choices' => $votiTinetti02Choices
             ])
-            ->add('totaleEquilibrio')
             ->add('inizioDeambulazione',  ChoiceType::class,[
                 'choices' => $votiTinetti01Choices
             ])
@@ -85,8 +84,6 @@ class TinettiFormType extends AbstractType
             ->add('cammino',  ChoiceType::class,[
                 'choices' => $votiTinetti01Choices
             ])
-            ->add('totaleAndatura')
-            ->add('totale')
         ;
     }
 
