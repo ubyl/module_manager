@@ -29,9 +29,7 @@ class EmailCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $this->mailer->EmailAdmin();
-        $this->mailer->EmailOperatorePrincipale();
-        //$this->mailer->EmailOperatoreSecondario();
-
+        $this->mailer->EmailOperatore();
         $io->success('Evviva funziona. Email mandate');
 
         return Command::SUCCESS;

@@ -4,6 +4,7 @@ namespace App\Form\FormPAI;
 
 use App\Entity\User;
 use App\Entity\EntityPAI\SchedaPAI;
+use Doctrine\DBAL\Types\StringType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -61,17 +62,29 @@ class SchedaPAIType extends AbstractType
                 'autocomplete' => true,
             ])
             ->add('abilitaBarthel')
-            ->add('frequenzaBarthel')
+            ->add('frequenzaBarthel',null,[
+                'empty_data' => 0,
+            ])
             ->add('abilitaBraden')
-            ->add('frequenzaBraden')
+            ->add('frequenzaBraden',null,[
+                'empty_data' => 0,
+            ])
             ->add('abilitaSpmsq')
-            ->add('frequenzaSpmsq')
+            ->add('frequenzaSpmsq',null,[
+                'empty_data' => 0,
+            ])
             ->add('abilitaTinetti')
-            ->add('frequenzaTinetti')
+            ->add('frequenzaTinetti',null,[
+                'empty_data' => 0,
+            ])
             ->add('abilitaVas')
-            ->add('frequenzaVas')
+            ->add('frequenzaVas',null,[
+                'empty_data' => 0,
+            ])
             ->add('abilitaLesioni')
-            ->add('frequenzaLesioni')
+            ->add('frequenzaLesioni',null,[
+                'empty_data' => 0,
+            ])
             ->add('idAssistito',TextType::class, array(
                 //'disabled' => true,
             ))

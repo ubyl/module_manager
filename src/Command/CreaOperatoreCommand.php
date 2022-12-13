@@ -65,7 +65,7 @@ class CreaOperatoreCommand extends Command
         $userRepository->add($user, true);
         
 
-        $io->success('Evviva funziona. Operatore creato');
+        $io->success('Evviva funziona. Operatore creato. La password è prova1.');
 
         return Command::SUCCESS;
     }
