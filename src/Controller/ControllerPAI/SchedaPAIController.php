@@ -21,19 +21,21 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Workflow\WorkflowInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use App\Service\SDManagerClientApiService;
 
 #[Route('/scheda_pai')]
 class SchedaPAIController extends AbstractController
 {
     private $workflow;
     private $entityManager;
+    private $SdManagerClientApiService;
 
 
-    public function __construct(WorkflowInterface $schedePaiCreatingStateMachine, EntityManagerInterface $entityManager)
+    public function __construct(WorkflowInterface $schedePaiCreatingStateMachine, EntityManagerInterface $entityManager, SdManagerClientApiService $SdManagerClientApiService)
     {
         $this->workflow = $schedePaiCreatingStateMachine;
         $this->entityManager = $entityManager;
+        $this->SdManagerClientApiService = $SdManagerClientApiService;
     }
 
 
@@ -411,6 +413,16 @@ class SchedaPAIController extends AbstractController
             //stampa errore
         }
 
+        return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('/sincronizza_progetti', name: 'app_scheda_pai_sincronizza', methods: ['GET'])]
+    public function sincronizza()
+    {
+        $dataInizio= date("d-m-Y");
+        $dataFine = date('d-m-Y', strtotime('+3 years'));
+        $this->SdManagerClientApiService->sincAssistiti();
+        $this->SdManagerClientApiService->sincOperatori();
+        $this->SdManagerClientApiService->sincProgetti($dataInizio, $dataFine);
         return $this->redirectToRoute('app_scheda_pai_index', [], Response::HTTP_SEE_OTHER);
     }
 }
